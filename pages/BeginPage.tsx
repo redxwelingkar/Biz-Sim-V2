@@ -11,7 +11,7 @@ const BeginPage = () => {
     return (
         <>
             <div className="begin-bg-cover center">
-                <CButton onClick={tutorialpage}>Start</CButton>
+                <CButton onClick={tutorialpage}>START</CButton>
             </div>
         </>
     );

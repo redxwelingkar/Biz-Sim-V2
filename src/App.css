@@ -8,9 +8,32 @@
   background-repeat: no-repeat;
 }
 
+.full-screen{
+  width: 100vw;
+  height: 100vh;
+}
+
 .center{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.center-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-2{
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 40%;
+}
