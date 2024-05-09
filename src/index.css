@@ -42,14 +42,14 @@ body {
 button {
   border-radius: 16px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.6rem 1.2rem;
   margin: 1em;
   background-color: #ffffff;
   color: #12005A;
   cursor: pointer;
   transition: border-color 0.25s;
 
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-variant: small-caps;
@@ -73,7 +73,7 @@ input {
   color: #7e7c7c;
   width: 50vw;
 
-  font-size: 2em;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;

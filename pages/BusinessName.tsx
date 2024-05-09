@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Avatar from "../components/Avatar";
@@ -8,10 +7,15 @@ import Avatar from "../components/Avatar";
 function BusinessName() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
+  const getStoredName = JSON.parse(localStorage.getItem("biz-name"));
+  const [name, setName] = useState(getStoredName);
+
+  useEffect(()=>{
+    localStorage.setItem('biz-name',JSON.stringify(name))    
+  },[name]);
 
   const SaveName = () => {
-    navigate("/Biz-Sim-V2/tutorial");
+    navigate("/Biz-Sim-V2/domainselect");
   };
 
   return (
@@ -23,7 +27,6 @@ function BusinessName() {
           value={name}
           placeholder="Enter the name for your business here..."
           onChange={(e) => setName(e.target.value)}
-          
         />
         <button onClick={SaveName}> LOOK'S GOOD</button>
 
