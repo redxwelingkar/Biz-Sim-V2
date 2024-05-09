@@ -26,6 +26,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -55,12 +56,28 @@ button {
   font-style: normal;
   line-height: normal;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+input {
+  border-radius: 10px;
+  border: 5px solid var(--Icon-Green, #31AE0E);
+  background: #FFF;
+  color: #7e7c7c;
+  width: 50vw;
+
+  font-size: 2em;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  /* font-variant: small-caps; */
 }
 
 @media (prefers-color-scheme: light) {
@@ -68,9 +85,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }

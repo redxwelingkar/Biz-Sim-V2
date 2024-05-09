@@ -1,5 +1,4 @@
 import React from "react";
-import CButton from "../components/CButton";
 import {useNavigate} from "react-router-dom";
 
 const BeginPage = () => {
@@ -11,7 +10,7 @@ const BeginPage = () => {
     return (
         <>
             <div className="begin-bg-cover center">
-                <CButton onClick={tutorialpage}>START</CButton>
+                <button onClick={tutorialpage}>START</button>
             </div>
         </>
     );
