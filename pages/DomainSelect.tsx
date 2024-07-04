@@ -8,7 +8,7 @@ import DomainPill from "../components/DomainPill";
 function DomainSelect() {
     const navigate = useNavigate();
 
-    const getStoredName = JSON.parse(localStorage.getItem("biz-name"));
+    const getStoredName = JSON.parse(localStorage.getItem("biz-name")!);
     const [name, setName] = useState(getStoredName);
 
     const domainlist = [
