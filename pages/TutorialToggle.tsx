@@ -1,31 +1,29 @@
-import * as React from "react";
-import {useNavigate} from "react-router-dom";
-
-import Avatar from "../components/Avatar";
-
+import { To, useNavigate } from "react-router-dom";
+import Avatar from "../components/Avatar"; // Ensure the path is correct
+import TransitionComponent from "../components/TextTransition"; // Adjust path as needed
 
 const TutorialToggle = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
-  const BusinessName = () => {
-      navigate("/Biz-Sim-V2/business-name");
-  };
-  const Home = () => {
-      navigate("/Biz-Sim-V2/Home");
+  const handleNavigation = (path: To) => {
+    navigate(path);
   };
 
   return (
-    <>
-      <div className="full-screen center-column">
-        <h1>Hi! Welcome to Business Simulation</h1>
-        <h2>Do you want tutorials to guide you?</h2>
-        <div  className="m-2">
-        <button onClick={BusinessName}> Yes</button>
-        <button onClick={Home}> No</button>
-        </div>
-      <Avatar/>
+    <TransitionComponent
+      initialText="Hi! Welcome to Business Simulation"
+      mainText="Do you want tutorials to guide you?"
+    >
+      <div className="m-2">
+        <button onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}>
+          Yes
+        </button>
+        <button onClick={() => handleNavigation("/Biz-Sim-V2/Home")}>
+          No
+        </button>
       </div>
-    </>
+      <Avatar />
+    </TransitionComponent>
   );
 };
 

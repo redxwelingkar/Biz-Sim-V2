@@ -1,39 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { To, useNavigate } from "react-router-dom";
+import Avatar from "../components/Avatar"; // Ensure the path is correct
+import TransitionComponent from "../components/TextTransition"; // Adjust path as needed
+import "./BusinessName.css"; // Import the CSS file
 
-import Avatar from "../components/Avatar";
-// import InputText from "../components/InputText";
-
-function BusinessName() {
+const BusinessToggle = () => {
   const navigate = useNavigate();
+  const [businessName, setBusinessName] = useState("");
 
-  const getStoredName = JSON.parse(localStorage.getItem("biz-name")!);
-  const [name, setName] = useState(getStoredName);
-
-  useEffect(()=>{
-    localStorage.setItem('biz-name',JSON.stringify(name))    
-  },[name]);
-
-  const SaveName = () => {
-    navigate("/Biz-Sim-V2/domainselect");
+  const handleNavigation = (path: To) => {
+    navigate(path);
   };
 
   return (
-    <>
-      <div className="full-screen center-column">
-        <h1>Alright! I'll be your guide through the simulation</h1>
-        <h2>Let's start by naming your business</h2>
+    <TransitionComponent
+      initialText="Alright! I’ll be your guide through the simulation"
+      mainText={
+        <span className="main-text">
+          Let’s start by naming your business
+        </span>
+      }
+    >
+      <div className="container">
+        <label htmlFor="businessName" className="label">
+          Enter the name of your business here:
+        </label>
         <input
-          value={name}
-          placeholder="Enter the name for your business here..."
-          onChange={(e) => setName(e.target.value)}
+          type="text"
+          id="businessName"
+          value={businessName}
+          onChange={(e) => setBusinessName(e.target.value)}
+          className="input"
         />
-        <button onClick={SaveName}> LOOK'S GOOD</button>
-
-        <Avatar />
+        <button
+          onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}
+          className="button"
+        >
+          Looks good
+        </button>
       </div>
-    </>
+      <Avatar />
+    </TransitionComponent>
   );
-}
+};
 
-export default BusinessName;
+export default BusinessToggle;

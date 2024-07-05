@@ -1,0 +1,20 @@
+.header {
+    background-color: #744ea0c2;
+    color: white; 
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    width: 100%;
+    max-width: 1200px; 
+    padding: 0 20px;
+}
+
+.header-title {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+}
