@@ -6,6 +6,28 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0
+}
+
+button {
+  font-size: 2rem; /* Adjust the size as needed */
+  padding: 10px 20px; /* Adjust the padding as needed */
+  width: 200px; /* Set a specific width */
+  height: 60px; /* Set a specific height */
+  color: purple;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.5s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .full-screen{

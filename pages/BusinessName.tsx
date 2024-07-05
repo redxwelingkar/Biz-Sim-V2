@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Avatar from "../components/Avatar";
-import Header from "../components/Header";
 // import InputText from "../components/InputText";
 
 function BusinessName() {
@@ -21,7 +20,6 @@ function BusinessName() {
 
   return (
     <>
-      <Header/>
       <div className="full-screen center-column">
         <h1>Alright! I'll be your guide through the simulation</h1>
         <h2>Let's start by naming your business</h2>
