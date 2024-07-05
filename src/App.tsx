@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import BeginPage from "../pages/BeginPage";
-import TutorialToggle from "../pages/TutorialToggle";
-import BusinessName from "../pages/BusinessName";
+import TutorialToggle from "./pages/TutorialToggle";
+import BusinessName from "./pages/BusinessName";
 import DomainSelect from "../pages/DomainSelect";
 
 function App() {
