@@ -9,7 +9,7 @@ const BeginPage = () => {
     return (
         <>
             <div className="begin-bg-cover center">
-                <button onClick={tutorialpage}>START</button>
+                <button className="btns" onClick={tutorialpage}>START</button>
             </div>
         </>
     );

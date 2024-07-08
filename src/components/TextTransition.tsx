@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./TextTransition.css"; // Import CSS for styles
 
-const TransitionComponent = ({ initialText, mainText, children }) => {
+const TransitionComponent = ({ initialText, mainText, children, initialTextHeight }) => {
   const [showInitialText, setShowInitialText] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   const [initialTextPosition, setInitialTextPosition] = useState(false);
@@ -24,14 +24,14 @@ const TransitionComponent = ({ initialText, mainText, children }) => {
 
   return (
     <div className="transition-container">
-      <div className={`welcome-text ${initialTextPosition ? "move-up" : ""}`}>
+      <div className={`welcome-text ${initialTextPosition ? "move-up" : ""}`} style={{ height: initialTextHeight }}>
         <h1 className="text-center" style={{ color: "white" }}>
           {initialText}
         </h1>
       </div>
       {showMainContent && (
         <div className="main-content">
-          <h1 className="text-center" style={{ color: "white" }}>
+          <h1 className="main-text text-center" style={{ color: "white" }}>
             {mainText}
           </h1>
           {children}

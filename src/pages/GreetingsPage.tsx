@@ -13,13 +13,14 @@ const TutorialToggle = () => {
     <TransitionComponent
       initialText="Hi! Welcome to Business Simulation"
       mainText="Do you want tutorials to guide you?"
+      initialTextHeight="100px"
     >
       <div className="m-2">
-        <button onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}>
-          Yes
+        <button className = "btns" onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}>
+          YES
         </button>
-        <button onClick={() => handleNavigation("/Biz-Sim-V2/Home")}>
-          No
+        <button className = "btns" onClick={() => handleNavigation("/Biz-Sim-V2/Home")}>
+          NO
         </button>
       </div>
       <Avatar />

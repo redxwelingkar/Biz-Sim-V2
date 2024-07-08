@@ -1,0 +1,11 @@
+/* Box.css */
+.box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-width: 100px; /* Example minimum width */
+    min-height: 50px; /* Example minimum height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

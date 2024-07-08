@@ -22,21 +22,19 @@ const BusinessToggle = () => {
       }
     >
       <div className="container">
-        <label htmlFor="businessName" className="label">
-          Enter the name of your business here:
-        </label>
         <input
           type="text"
           id="businessName"
           value={businessName}
           onChange={(e) => setBusinessName(e.target.value)}
           className="input"
+          placeholder="Enter the name of the business here"
         />
         <button
-          onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}
+          onClick={() => handleNavigation("/Biz-Sim-V2/total-addressable-market")}
           className="button"
         >
-          Looks good
+          LOOK'S GOOD
         </button>
       </div>
       <Avatar />
