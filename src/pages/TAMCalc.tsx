@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer"; 
 import MainTable from "../components/MainTable";
 import BackButton from "../components/BackButton";
-import '../components/MainTable.css';
+import '../css/MainTable.css';
 
 const TAMCalc = () => {
   const [showMainTable, setShowMainTable] = useState(false);
