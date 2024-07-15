@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { To, useNavigate } from "react-router-dom";
 import Avatar from "../components/Avatar"; // Ensure the path is correct
 import TransitionComponent from "../components/TextTransition"; // Adjust path as needed
-import "./BusinessName.css"; // Import the CSS file
+import "../css/BusinessName.css"; // Import the CSS file
 import BackButton from "../components/BackButton";
 
 const BusinessToggle = () => {
