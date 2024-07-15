@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../css/Footer.css'; // Ensure your CSS file is correctly linked
 
-//make file for hardcoded data
 function Footer({ onNext }) {
     const texts = [
         "Here in TAM, the first thing you need to mention are the different customer segments in the field given under the column of “Customer Segments”, and mention a near accurate approximation of the number of people in that customer segment in the field next to the specified customer segment under the column of “Size”.",
@@ -45,16 +44,20 @@ function Footer({ onNext }) {
                 <p className="footer-text">{texts[textIndex]}</p>
             </div>
             <div className="footer-right">
-                {textIndex > 0 && (
-                    <button className="footer-icon" onClick={handleUpArrowClick}>
-                        <img src="./src/assets/img/upward_arrow.png" alt="Up Arrow" className="arrow-image" />
-                    </button>
-                )}
-                {textIndex < texts.length - 1 && (
-                    <button className={`footer-icon ${blink ? 'blink' : ''}`} onClick={handleDownArrowClick}>
-                        <img src="./src/assets/img/downward_arrow.png" alt="Down Arrow" className="arrow-image" />
-                    </button>
-                )}
+                <button
+                    className={`footer-icon ${textIndex === 0 ? 'disabled' : ''}`}
+                    onClick={handleUpArrowClick}
+                    disabled={textIndex === 0}
+                >
+                    <img src="./src/assets/img/upward_arrow.png" alt="Up Arrow" className="arrow-image" />
+                </button>
+                <button
+                    className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${textIndex === texts.length - 1 ? 'disabled' : ''}`}
+                    onClick={handleDownArrowClick}
+                    disabled={textIndex === texts.length - 1}
+                >
+                    <img src="./src/assets/img/downward_arrow.png" alt="Down Arrow" className="arrow-image" />
+                </button>
             </div>
         </footer>
     );

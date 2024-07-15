@@ -6,33 +6,30 @@
     width: 100%;
     padding: 10px 20px;
     display: flex;
-    height: 186px;
+    height: 156px;
     justify-content: space-between;
     align-items: center;
     font-size: 25px;
 }
 
 .footer-left {
+    flex: 1;
     height: 100%; /* Ensures the image fills the height of the footer */
 }
 
 .footer-image {
-    height: 200px;
-    width: auto; /* Maintains aspect ratio */
+    height: 210px;
 }
 
 .footer-middle {
-    flex: 1; /* Takes up remaining space */
+    flex: 8;
     text-align: center;
-    display: flex;
     align-items: center;
 }
 
-.footer-middle .footer-text {
-    margin: 0 auto; /* Centers the text horizontally */
-}
 
 .footer-right {
+    flex: 1;
     display: flex;
     flex-direction: column; /* Arranges buttons vertically */
     align-items: flex-end; /* Aligns buttons to the right */
@@ -43,28 +40,37 @@
     font-weight: bold;
     margin: 0;
     cursor: pointer;
+    padding-right: 0;
 }
 
 .footer-icon {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    opacity: 1;
+    transition: opacity 0.3s;
+    width: 90px;
 }
 
 .footer-icon img {
-    width: 40px;
+    width: 45px; /* Reduced width for smaller button size */
     height: auto;
 }
 
-.footer-icon:hover,
-.footer-icon:focus {
+.footer-icon.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+.footer-icon:hover:not(.disabled),
+.footer-icon:focus:not(.disabled) {
     outline: none; /* Removes focus outline */
 }
 
 .arrow-image:hover,
 .arrow-image:focus {
-    opacity: 0.8; /* Dim the opacity on hover/focus */
+    opacity: 0.5; /* Dim the opacity on hover/focus */
 }
 
 .blink {

@@ -88,15 +88,15 @@ const MainTable = () => {
   return (
     <div className="table-container">
       {redirect && <TimedRedirect delay={5000} to="/towards-sam" />}
-      <div className="table-scrollable">
-        <table>
-          <thead>
+      <thead>
             <tr>
               <th></th>
               <th className='txt'>Customer Segment</th>
               <th className='txt'>Size</th>
             </tr>
           </thead>
+      <div className="table-scrollable">
+        <table>
           <tbody>
             {rows.map(row => (
               <tr key={row.id}>
