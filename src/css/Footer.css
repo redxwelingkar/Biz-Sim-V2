@@ -1,0 +1,78 @@
+.footer {
+    background-color: #5b3586c2;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    height: 186px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+}
+
+.footer-left {
+    height: 100%; /* Ensures the image fills the height of the footer */
+}
+
+.footer-image {
+    height: 200px;
+    width: auto; /* Maintains aspect ratio */
+}
+
+.footer-middle {
+    flex: 1; /* Takes up remaining space */
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.footer-middle .footer-text {
+    margin: 0 auto; /* Centers the text horizontally */
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column; /* Arranges buttons vertically */
+    align-items: flex-end; /* Aligns buttons to the right */
+}
+
+.footer-text {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 0;
+    cursor: pointer;
+}
+
+.footer-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.footer-icon img {
+    width: 40px;
+    height: auto;
+}
+
+.footer-icon:hover,
+.footer-icon:focus {
+    outline: none; /* Removes focus outline */
+}
+
+.arrow-image:hover,
+.arrow-image:focus {
+    opacity: 0.8; /* Dim the opacity on hover/focus */
+}
+
+.blink {
+    animation: blink-animation 1.5s steps(3, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}

@@ -1,5 +1,5 @@
 // Box.tsx
-import './Box.css'; // Import CSS for styling
+import '../css/Box.css'; // Import CSS for styling
 
 interface BoxProps {
   content: string; // Example prop for content in the box

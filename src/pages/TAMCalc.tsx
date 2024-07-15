@@ -1,17 +1,28 @@
-import Header from "../components/Header"; // Adjust path as needed
-import Footer from "../components/Footer"; // Adjust path as needed
+import { useState } from 'react';
+import Header from "../components/Header"; 
+import Footer from "../components/Footer"; 
+import MainTable from "../components/MainTable";
+import BackButton from "../components/BackButton";
+import '../components/MainTable.css';
 
 const TAMCalc = () => {
+  const [showMainTable, setShowMainTable] = useState(false);
+
+  const handleNext = () => {
+    setShowMainTable(true);
+  };
+
   return (
-    <div className="new-page">
+    <div className="tam-calc">
       <Header />
-
-      <main className="content">
-        <h2>New Page Content</h2>
-        {/* Add your new page content here */}
-      </main>
-
-      <Footer />
+      <BackButton />
+      <h1 style={{ textAlign: 'center', color: 'white' }}>Total Addressable Market</h1>
+      {showMainTable && (
+        <main className="content">
+          <MainTable />
+        </main>
+      )}
+      <Footer onNext={handleNext} />
     </div>
   );
 };

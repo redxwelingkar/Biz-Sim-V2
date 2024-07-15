@@ -65,7 +65,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-input {
+/* input {
   border-radius: 10px;
   border: 5px solid var(--Icon-Green, #31AE0E);
   background: #FFF;
@@ -76,8 +76,7 @@ input {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  /* font-variant: small-caps; */
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {

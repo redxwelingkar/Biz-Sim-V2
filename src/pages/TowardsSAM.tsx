@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import BackButton from '../components/BackButton';
 //import './TowardsSAM.css'; // Ensure your CSS file is correctly linked
 
 const TowardsSAM = () => {
@@ -20,6 +21,8 @@ const TowardsSAM = () => {
     }, []);
 
     return (
+        <>
+        <BackButton/>
         <div className="fade-in-page">
             <div className={`fade-in-container ${showText1 ? 'visible' : ''}`}>
                 <p className="fade-in-text">Text 1</p>
@@ -38,6 +41,7 @@ const TowardsSAM = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

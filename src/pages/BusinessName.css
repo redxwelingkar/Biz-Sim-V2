@@ -17,7 +17,7 @@ p {
 .learn-more-button {
   background: none;
   border: none;
-  color: blue;
+  color: rgb(123, 123, 247);
   text-decoration: underline;
   cursor: pointer;
   margin-bottom: 16px;
@@ -66,3 +66,12 @@ p {
   text-align: center;
   max-width: 1000px;
 }
+
+.error-message {
+  color: rgb(204, 9, 9);
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+

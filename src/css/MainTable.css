@@ -1,0 +1,111 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.table-scrollable {
+  height: 300px; /* Adjust the height as needed */
+  overflow-y: auto;
+  width: 100%;
+  max-width: 650px; /* Adjust the max-width as needed */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead,
+th {
+  background: #a8a6a6b0; /* Adjust the background color as needed */
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1; /* Ensure the header stays above the table rows */
+}
+
+th,
+td {
+  padding: 7px;
+}
+
+.subtract {
+  height: 40px;
+  width: 30px;
+  border-radius: 6px;
+  margin: 5px;
+  padding-top: 3px;
+  padding-right: 25px;
+  background-color: rgb(187, 183, 183);
+  color: white;
+}
+
+input {
+  padding: 5px;
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+  font-size: larger;
+  width: 250px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.txt {
+  font-size: 18px;
+  width: 280px;
+}
+
+.TAM-Calc-page,
+.new-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.save-details {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.sum-container {
+  margin-top: 10px;
+}
+
+.sum-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  position: relative;
+  width: fit-content;
+}
+
+.clear-sum {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.sum-field input {
+  border: none;
+  outline: none;
+  width: 350px;
+  text-align: right;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}

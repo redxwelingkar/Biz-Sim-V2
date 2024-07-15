@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./TextTransition.css"; // Import CSS for styles
+import "../css/TextTransition.css"; // Import CSS for styles
 
 const TransitionComponent = ({ initialText, mainText, children, initialTextHeight }) => {
   const [showInitialText, setShowInitialText] = useState(true);
