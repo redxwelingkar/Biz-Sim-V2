@@ -1,0 +1,45 @@
+:root {
+    --main-text-margin-bottom: 60px;
+    /* Default margin for main text */
+}
+
+.transition-container {
+    height: 100vh;
+    /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically */
+    align-items: center;
+    /* Center horizontally */
+    text-align: center;
+    /* Center text */
+    overflow: hidden;
+    /* Hide overflow for sliding effect */
+    position: relative;
+    /* Ensure absolute positioned elements are relative to this container */
+}
+
+.welcome-text {
+    position: absolute;
+    transition: transform 1.5s ease-in-out;
+}
+
+.move-up {
+    transform: translateY(-230px);
+    /* Adjust this value as needed */
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.main-text {
+    padding-bottom: 30px;
+}
+

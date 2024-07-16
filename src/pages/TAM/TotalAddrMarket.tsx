@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { To, useNavigate } from "react-router-dom";
-import Avatar from "../components/Avatar"; // Ensure the path is correct
-import TransitionComponent from "../components/TextTransition"; // Adjust path as needed
-import "../css/BusinessName.css"; // Import the CSS file
-import BackButton from "../components/BackButton";
+import Avatar from "../../components/Avatar"; // Ensure the path is correct
+import TransitionComponent from "../../components/TextTransition"; // Adjust path as needed
+import "../../css/BusinessName.css"; // Import the CSS file
+import BackButton from "../../components/BackButton";
 
 const BusinessToggle = () => {
   const navigate = useNavigate();
@@ -21,7 +21,10 @@ const BusinessToggle = () => {
 
   return (
     <>
-    <BackButton />
+    {/* TODO: 
+    fix we'll start header
+    1. hides after clicking learn more -> yes 
+    2. does not come back -> no*/}
     <TransitionComponent
       initialText="Alright! Lets build your business"
       mainText={
@@ -33,6 +36,7 @@ const BusinessToggle = () => {
       }
       initialTextHeight="320px" // Adjust this value as needed
     >
+      <BackButton />
       <div className="container">
         <p>
           It refers to the maximum size of the opportunity for a particular product or solution.

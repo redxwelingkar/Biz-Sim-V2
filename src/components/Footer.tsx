@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../css/Footer.css'; // Ensure your CSS file is correctly linked
+import NumberToWordsConverter from './numberToWord';
 
 function Footer({ onNext }) {
     const texts = [

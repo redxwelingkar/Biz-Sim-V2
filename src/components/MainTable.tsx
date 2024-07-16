@@ -87,7 +87,9 @@ const MainTable = () => {
 
   return (
     <div className="table-container">
-      {redirect && <TimedRedirect delay={5000} to="/towards-sam" />}
+      {/* {redirect && <TimedRedirect delay={5000} to="/towards-sam" />}     
+          for 5 sec transition to the next page
+      */}
       <thead>
             <tr>
               <th></th>

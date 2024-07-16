@@ -1,7 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import "../css/TextTransition.css"; // Import CSS for styles
 
-const TransitionComponent = ({ initialText, mainText, children, initialTextHeight }) => {
+interface TransitionComponentProps {
+  initialText: string;
+  mainText: string;
+  children: ReactNode;
+  initialTextHeight: number;
+}
+
+const TransitionComponent = ({ initialText, mainText, children, initialTextHeight }: TransitionComponentProps) => {
   const [showInitialText, setShowInitialText] = useState(true);
   const [showMainContent, setShowMainContent] = useState(false);
   const [initialTextPosition, setInitialTextPosition] = useState(false);

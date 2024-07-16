@@ -3,9 +3,8 @@ import "./App.css";
 import BeginPage from "./pages/BeginPage";
 import TutorialToggle from "./pages/GreetingsPage";
 import BusinessName from "./pages/BusinessName";
-import DomainSelect from "./pages/DomainSelect";
-import TotalAddrMarket from "./pages/TotalAddrMarket";
-import TAMCalc from "./pages/TAMCalc";
+import TotalAddrMarket from "./pages/TAM/TotalAddrMarket";
+import TAMCalc from "./pages/TAM/TAMCalc";
 import TowardsSAM from "./pages/TowardsSAM";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
           <Route path="/Biz-Sim-V2/tutorial" element={<TutorialToggle/>} />
           <Route path="/Biz-Sim-V2/business-name" element={<BusinessName/>} />
           <Route path="/Biz-Sim-V2/total-addressable-market" element={<TotalAddrMarket/>} />
-          <Route path="/Biz-Sim-V2/domainselect" element={<DomainSelect/>} />
           <Route path="/Biz-Sim-V2/tam-calculation" element={<TAMCalc/>} />
           <Route path="/Biz-Sim-V2/towards-sam" element={<TowardsSAM/>} />
         </Routes>

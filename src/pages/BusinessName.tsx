@@ -34,7 +34,6 @@ const BusinessToggle = () => {
 
   return (
     <>
-      <BackButton />
       <TransitionComponent
         initialText="Alright! I’ll be your guide through the simulation"
         mainText={
@@ -43,6 +42,7 @@ const BusinessToggle = () => {
           </span>
         }
       >
+        <BackButton />
         <div className="container">
           <input
             type="text"

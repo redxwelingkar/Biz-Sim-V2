@@ -4,56 +4,63 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 10px 20px;
     display: flex;
     height: 156px;
     justify-content: space-between;
     align-items: center;
-    font-size: 25px;
 }
 
 .footer-left {
-    flex: 1;
-    height: 100%; /* Ensures the image fills the height of the footer */
+    flex: 1; 
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    height: 100%;
 }
 
 .footer-image {
-    height: 210px;
+    height: 100%;
+    width: auto;
+    max-height: 100%; /* Ensure the image does not overflow the footer */
 }
 
 .footer-middle {
-    flex: 8;
+    flex: 8; 
+    display: flex;
+    justify-content: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
     text-align: center;
-    align-items: center;
 }
 
-
 .footer-right {
-    flex: 1;
+    flex: 1; 
     display: flex;
-    flex-direction: column; /* Arranges buttons vertically */
-    align-items: flex-end; /* Aligns buttons to the right */
+    flex-direction: column; /* Arrange buttons vertically */
+    justify-content: center; /* Center the buttons vertically */
+    align-items: flex-end; /* Align buttons to the right */
+    height: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .footer-text {
     font-size: 21px;
     font-weight: bold;
     margin: 0;
-    cursor: pointer;
-    padding-right: 0;
 }
 
 .footer-icon {
-    background: none;
     border: none;
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.3s;
-    width: 90px;
+    width: 75px; /* Adjust width for smaller button size */
+    height: 45px;
 }
 
 .footer-icon img {
-    width: 45px; /* Reduced width for smaller button size */
+    width: 100%;
     height: auto;
 }
 
@@ -62,11 +69,6 @@
     cursor: not-allowed;
 }
 
-
-.footer-icon:hover:not(.disabled),
-.footer-icon:focus:not(.disabled) {
-    outline: none; /* Removes focus outline */
-}
 
 .arrow-image:hover,
 .arrow-image:focus {
