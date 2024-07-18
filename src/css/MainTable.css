@@ -1,180 +1,74 @@
-/* .table-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-}
-
-.table-scrollable {
-  height: 250px; /* Adjust the height as needed 
-  overflow-y: auto;
-  width: 100%;
+.tam-calc-table {
+  width: 60%; /* Increase width for better visibility */
+  margin: 25px auto;
+  text-align: center; /* Center the Add Customer Segment button */
+  position: relative; /* Ensure absolute positioning of the button */
 }
 
 table {
-  width: 100%;
   border-collapse: collapse;
-}
-
-thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1; /* Ensure the header stays above the table rows 
-}
-
-th,
-td {
-  padding: 7px;
-}
-
-.subtract {
-  height: 40px;
-  width: 30px;
-  border-radius: 6px;
-  margin: 5px;
-  padding-top: 3px;
-  padding-right: 25px;
-  background-color: rgb(187, 183, 183);
-  color: white;
-}
-
-input {
-  padding: 5px;
-  border: none;
-  border-radius: 6px;
-  text-align: center;
-  font-size: larger;
-  width: 250px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-
-.txt {
-  font-size: 18px;
-  width: 280px;
-  height: 50px;
-}
-
-.TAM-Calc-page,
-.new-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.content {
-  flex: 1;
-  overflow-y: auto;
-}
-
-.save-details {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px;
-  height: 48px;
-  width: 160px;
-}
-
-.sum-container {
-  margin-top: 10px;
-}
-
-.sum-field {
-  display: flex;
-  align-items: center;
-  border-radius: 4px;
-  padding: 5px;
-  position: relative;
-  width: fit-content;
-}
-
-.clear-sum {
-  cursor: pointer;
-  margin-right: 5px;
-}
-
-.sum-field input {
-  border: none;
-  outline: none;
-  width: 360px;
-  text-align: right;
-}
-
-/* 
-.table-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.table-scrollable {
-  width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling if needed 
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed; /* Ensures equal width columns 
-}
-
-thead {
-  text-align: left;
+  width: 100%; /* Full width of the container */
+  overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 th, td {
-  padding: 10px;
-  text-align: left;
+  padding: 4px 8px; /* Reduce padding */
+  text-align: left; /* Align text to the left */
 }
 
-.subtract {
-  background-color: #f44336;
+th {
+  background-color: #4CAF50; /* Green header background */
   color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.txt {
-  padding: 10px;
   text-align: center;
+  font-size: 18px; /* Adjust font size */
 }
 
-.save-details {
-  margin-top: 10px;
-  background-color: #4CAF50;
+td {
+  vertical-align: middle; /* Center content vertically */
+}
+
+input[type="text"], input[type="number"] {
+  width: calc(100% - 50px); /* Adjust width to fit within cell */
+  padding: 8px; /* Adjust padding */
+  box-sizing: border-box;
+}
+
+input[type="number"] {
+  text-align: right; /* Align text to the right */
+}
+
+.delete-button {
   color: white;
+  background-color: red; /* Background color */
   border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.error {
-  color: red;
-}
-
-.sum-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.sum-field {
-  display: flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.clear-sum {
-  margin-right: 10px;
   padding: 5px;
   cursor: pointer;
+  width: 30px; /* Button width */
+  height: 30px; /* Button height */
+  font-size: 18px; /* Font size */
 }
- */
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.add-button {
+  display: block;
+  margin: 20px auto; /* Center the button */
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 500px; /* Adjust max width */
+  font-weight: bold;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.table-container {
+  max-height: 400px; /* Adjust height for scroll */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

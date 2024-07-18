@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import '../css/Footer.css'; 
 
-function Footer({ onNext }) {
+interface FooterProps {
+    onNext: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNext }) => {
     const texts = [
         "Here in TAM, the first thing you need to mention are the different customer segments in the field given under the column of “Customer Segments”, and mention a near accurate approximation of the number of people in that customer segment in the field next to the specified customer segment under the column of “Size”.",
         "You can add more customer segments by clicking on the “ADD CUSTOMER SEGMENT” button. You can also edit an entry by hovering over it or you can completely remove a row of customer segment by clicking on the “[ - ]” icon before the start of every row.",
