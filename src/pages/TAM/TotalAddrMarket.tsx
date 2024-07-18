@@ -1,68 +1,61 @@
-import { useState } from "react";
-import { To, useNavigate } from "react-router-dom";
-import Avatar from "../../components/Avatar"; // Ensure the path is correct
-import TransitionComponent from "../../components/TextTransition"; // Adjust path as needed
-import "../../css/BusinessName.css"; // Import the CSS file
-import BackButton from "../../components/BackButton";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../../css/TotalAddrMarket.css';
+import BackButton from '../../components/BackButton';
+import Avatar from '../../components/Avatar';
 
-const BusinessToggle = () => {
-  const navigate = useNavigate();
-  const [showMore, setShowMore] = useState(false);
-  const [mainTextVisible, setMainTextVisible] = useState(true); // State to track main text visibility
+function TotalAddrMarket() {
+    const [textMoved, setTextMoved] = useState(false);
+    const [extraContentVisible, setExtraContentVisible] = useState(false);
+    const [contentVisible, setContentVisible] = useState(false);
+    const navigate = useNavigate();
 
-  const handleNavigation = (path: To) => {
-    navigate(path);
-  };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTextMoved(true);
+            setTimeout(() => {
+                setContentVisible(true);
+            }, 2000); // Delay content appearance by 2 seconds
+        }, 1000);
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-    setMainTextVisible(false); // Hide main text when "Learn more" is clicked
-  };
+        return () => clearTimeout(timer);
+    }, []);
 
-  return (
-    <>
-    {/* TODO: 
-    fix we'll start header
-    1. hides after clicking learn more -> yes 
-    2. does not come back -> no*/}
-    <TransitionComponent
-      initialText="Alright! Lets build your business"
-      mainText={
-        mainTextVisible ? (
-          <span className="main-text">
-            We’ll start with defining and calculating the Total Addressable Market (TAM)
-          </span>
-        ) : null
-      }
-      initialTextHeight="320px" // Adjust this value as needed
-    >
-      <BackButton />
-      <div className="container">
-        <p>
-          It refers to the maximum size of the opportunity for a particular product or solution.
-          In other words, if every single person who could potentially find value in a product or
-          solution purchased/started using it (i.e. 100% market share), how big would that market be?
-        </p>
-        <button onClick={toggleShowMore} className="learn-more-button">
-          Learn more
-        </button>
-        {showMore && (
-          <p className="more-text">
-            It refers to the maximum size of the opportunity
-            for a particular product or solution.
-          </p>
-        )}
-        <button
-          onClick={() => handleNavigation("/Biz-Sim-V2/tam-calculation")}
-          className="button"
-        >
-          LET'S START
-        </button>
-      </div>
-      <Avatar />
-    </TransitionComponent>
-    </>
-  );
-};
+    const handleLearnMoreClick = () => {
+        setExtraContentVisible(!extraContentVisible);
+    };
 
-export default BusinessToggle;
+    const handleLetsStartClick = () => {
+        navigate('/Biz-Sim-V2/tam-calculation');
+    };
+
+    return (
+        <div className="totalAddrMarket-container">
+            <BackButton />
+            <div className={`text ${textMoved ? 'moved' : ''}`}>
+                Alright! Lets build your business
+            </div>
+            {textMoved && contentVisible && (
+                <div className="tam-content">
+                    <div className='p1'>We’ll start with defining and calculating the
+                        Total Addressable Market (TAM)</div>
+                    <div className='p2'>It refers to the maximum size of the opportunity
+                        for a particular product or solution. In other words, if every single person who could potentially find value in a product or solution purchased/started using it (i.e. 100% market share), how big would that market be?</div>
+                    <div className="button-container">
+                        <button className="action-button" onClick={handleLearnMoreClick}>
+                            {extraContentVisible ? 'Read Less' : 'Learn More'}
+                        </button>
+                        {extraContentVisible && (
+                            <div className="extra">It refers to the maximum size of the opportunity
+                                for a particular product or solution.</div>
+                        )}
+                        <button className="action-button-next" onClick={handleLetsStartClick}>LET'S START</button>
+                    </div>
+                </div>
+            )}
+            <Avatar />
+        </div>
+    );
+}
+
+export default TotalAddrMarket;

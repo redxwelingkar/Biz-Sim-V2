@@ -1,4 +1,4 @@
-.table-container {
+/* .table-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,10 +6,9 @@
 }
 
 .table-scrollable {
-  height: 250px; /* Adjust the height as needed */
+  height: 250px; /* Adjust the height as needed 
   overflow-y: auto;
   width: 100%;
-  max-width: 650px; /* Adjust the max-width as needed */
 }
 
 table {
@@ -20,7 +19,7 @@ table {
 thead th {
   position: sticky;
   top: 0;
-  z-index: 1; /* Ensure the header stays above the table rows */
+  z-index: 1; /* Ensure the header stays above the table rows 
 }
 
 th,
@@ -102,3 +101,80 @@ input {
   text-align: right;
 }
 
+/* 
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.table-scrollable {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling if needed 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Ensures equal width columns 
+}
+
+thead {
+  text-align: left;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.subtract {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.txt {
+  padding: 10px;
+  text-align: center;
+}
+
+.save-details {
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+
+.sum-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.sum-field {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.clear-sum {
+  margin-right: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+ */

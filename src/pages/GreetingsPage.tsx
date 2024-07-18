@@ -1,65 +1,57 @@
-import { useState, useEffect } from "react";
-import { To, useNavigate } from "react-router-dom";
-import Avatar from "../components/Avatar"; // Ensure the path is correct
-import BackButton from "../components/BackButton";
-import "../css/GreetingsPage.css"; // Import CSS for styles
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../css/GreetingsPage.css';
+import Avatar from '../components/Avatar'; 
+import BackButton from '../components/BackButton';
 
-const TutorialToggle = () => {
+function GreetingsPage() {
+  const [showFirstText, setShowFirstText] = useState(false);
+  const [showSecondText, setShowSecondText] = useState(false);
+  const [showButtonsAndImage, setShowButtonsAndImage] = useState(false);
   const navigate = useNavigate();
-  const [showInitialText, setShowInitialText] = useState(true);
-  const [showMainContent, setShowMainContent] = useState(false);
-  const [initialTextPosition, setInitialTextPosition] = useState(false);
-
-  const handleNavigation = (path: To) => {
-    navigate(path);
-  };
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
-      setInitialTextPosition(true); // Move text to the heading position
-    }, 1000); // 1 second for initial text
+      setShowFirstText(true);
+    }, 1000);
 
     const timer2 = setTimeout(() => {
-      setShowInitialText(true);
-      setShowMainContent(true); // Show main content
-    }, 2000); // 2 seconds delay for smooth transition
+      setShowSecondText(true);
+    }, 2000);
+
+    const timer3 = setTimeout(() => {
+      setShowButtonsAndImage(true);
+    }, 4000);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      clearTimeout(timer3);
     };
   }, []);
 
-  return (
-    <>
-      <div className="transition-container">
-      <BackButton />
-        {showInitialText && (
-          <div className={`welcome-text ${initialTextPosition ? "move-up" : ""}`} >
-            <h1 className="text-center" style={{ color: "white" }}>
-              Hi! Welcome to Business Simulation
-            </h1>
-          </div>
-        )}
-        {showMainContent && (
-          <div className="main-content">
-            <h1 className="main-text text-center" style={{ color: "white" }}>
-              Do you want tutorials to guide you?
-            </h1>
-            <div className="m-2">
-              <button className="btns" onClick={() => handleNavigation("/Biz-Sim-V2/business-name")}>
-                YES
-              </button>
-              <button className="btns" onClick={() => handleNavigation("/Biz-Sim-V2/Home")}>
-                NO
-              </button>
-            </div>
-            <Avatar />
-          </div>
-        )}
-      </div>
-    </>
-  );
-};
+  const handleYesClick = () => {
+    navigate('/Biz-Sim-V2/business-name'); 
+  };
 
-export default TutorialToggle;
+  const handleNoClick = () => {
+    navigate('/'); 
+  };
+
+  return (
+    <div className="greetingsPage">
+      <BackButton />
+      <div className={`text ${showFirstText ? 'show' : ''}`}>Hi! Welcome to Business Simulation</div>
+      <div className={`text second ${showSecondText ? 'show' : ''}`}>Do you want tutorials to guide you?</div>
+      {showButtonsAndImage && (
+        <div className="buttons">
+          <button className="choose-button" onClick={handleYesClick}>YES</button>
+          <button className="choose-button" onClick={handleNoClick}>NO</button>
+          <Avatar />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default GreetingsPage;

@@ -1,0 +1,65 @@
+.totalAddrMarket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.text {
+    opacity: 0;
+    font-size: 48px;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out, font-size 0.5s ease-in-out;
+}
+
+.text.moved {
+    opacity: 1;
+    font-size: 45px;
+    transform: translateY(-350px);
+}
+
+.tam-content {
+    margin-top: 40px;
+    animation: fadeIn 1s forwards;
+    max-width: 1300px;
+}
+
+.p1 {
+    font-size: 61px;
+    font-weight: bold;
+}
+
+.p2 {
+    margin-top: 30px;
+    font-size: 34px;
+}
+
+.extra {
+    display: flex;
+    margin-top: 20px;
+    animation: fadeIn 1s forwards;
+    font-size: 30px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.action-button{
+    background: none;
+    border: none;
+    text-decoration: underline;
+    margin: 10px;
+    color: rgb(121, 121, 231);
+}
+
+.action-button-next{
+    font-weight: bold;
+}

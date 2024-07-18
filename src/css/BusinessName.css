@@ -1,77 +1,72 @@
-.container {
+.businessName-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 16px;
-}
-
-p {
-  text-align: center;
-  margin-bottom: 16px;
-  margin-top: 8px;
-  max-width: 1250px;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
   color: white;
-  font-size: 30px;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.learn-more-button {
-  background: none;
-  border: none;
-  color: rgb(123, 123, 247);
-  text-decoration: underline;
-  cursor: pointer;
-  margin-bottom: 16px;
+.first-text, .second-text {
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out, font-size 1s ease-in-out;
+  font-size: 61px;
+  margin: 10px 0;
+  position: absolute;
 }
 
-.more-text {
-  text-align: center;
-  margin-bottom: 8px;
+.first-text.slide-up {
+  opacity: 1;
+  transform: translateY(-100px);
 }
 
-.input {
-  width: 130%;
+.first-text.slide-up-more {
+  font-size: 48px;
+  transform: translateY(-270px);
+}
+
+.second-text {
+  margin-top: 25px;
+  font-size: 61px;
+}
+
+.second-text.slide-up-normal {
+  opacity: 1;
+  transform: translateY(-150px);
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px; 
+}
+
+.name-input {
   padding: 15px;
-  margin-top: 15px;
-  margin-bottom: 60px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 38px;
+  margin-top: 150px;
+  width: 850px;
+  height: 40px;
   text-align: center;
-  font-size: 30px;/* Placeholder text color */
+  border-radius: 10px;
 }
 
-.input::placeholder {
-  color: grey;
-}
-
-.button {
-  width: 240px;
-  padding: 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 4px;
+.looks-good-button {
+  margin-top: 70px;
+  padding: 10px 20px;
   cursor: pointer;
-  text-align: center;
-}
-
-.button:hover {
-  background-color: #f0f0f0;
-}
-
-.main-text {
-  margin-top: 60px;
-  margin-bottom: 30px;
-  font-size: 36px;
-  font-weight: bold;
-  text-align: center;
-  max-width: 1000px;
-}
-
-.error-message {
-  color: rgb(204, 9, 9);
-  font-size: 20px;
-  width: 100%;
-  text-align: center;
+  border: none;
+  width: 260px;
+  height: 75px;
+  font-size: 26px;
   font-weight: bold;
 }
 
+.error-message{
+  margin-top: 20px;
+  color: red;
+  font-size: 28px;
+}

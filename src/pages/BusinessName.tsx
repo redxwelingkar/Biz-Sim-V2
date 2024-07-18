@@ -1,69 +1,73 @@
-import { useState, useEffect } from "react";
-import { To, useNavigate } from "react-router-dom";
-import Avatar from "../components/Avatar"; // Ensure the path is correct
-import TransitionComponent from "../components/TextTransition"; // Adjust path as needed
-import "../css/BusinessName.css"; // Import the CSS file
-import BackButton from "../components/BackButton";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../css/BusinessName.css';
+import Avatar from '../components/Avatar';
+import BackButton from '../components/BackButton';
 
-const BusinessToggle = () => {
-  const navigate = useNavigate();
-  const [businessName, setBusinessName] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+function BusinessName() {
+    const [showFirstText, setShowFirstText] = useState(false);
+    const [showSecondText, setShowSecondText] = useState(false);
+    const [showInput, setShowInput] = useState(false);
+    const [businessName, setBusinessName] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    const storedBusinessName = localStorage.getItem("businessName");
-    if (storedBusinessName) {
-      setBusinessName(storedBusinessName);
-    }
-  }, []);
+    const navigate = useNavigate();
 
-  const handleBusinessNameChange = (e) => {
-    const newName = e.target.value;
-    setBusinessName(newName);
-    localStorage.setItem("businessName", newName);
-    setErrorMessage(""); // Clear error message on input change
-  };
+    useEffect(() => {
+        const timer1 = setTimeout(() => {
+            setShowFirstText(true);
+        }, 1000);
 
-  const handleNavigation = (path: To) => {
-    if (businessName.trim() === "") {
-      setErrorMessage("Please enter the name of the business!");
-    } else {
-      navigate(path);
-    }
-  };
+        const timer2 = setTimeout(() => {
+            setShowSecondText(true);
+        }, 3000);
 
-  return (
-    <>
-      <TransitionComponent
-        initialText="Alright! I’ll be your guide through the simulation"
-        mainText={
-          <span className="main-text">
-            Let’s start by naming your business
-          </span>
+        const timer3 = setTimeout(() => {
+            setShowInput(true);
+        }, 4500);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+        };
+    }, []);
+
+    const handleButtonClick = () => {
+        if (businessName.trim() === '') {
+            setErrorMessage('Please provide a name for your business.');
+        } else {
+            localStorage.setItem('businessName', businessName);
+            setErrorMessage('');
+            navigate('/Biz-Sim-V2/towards-tam'); 
         }
-      >
-        <BackButton />
-        <div className="container">
-          <input
-            type="text"
-            id="businessName"
-            value={businessName}
-            onChange={handleBusinessNameChange}
-            className="input"
-            placeholder="Enter the name of the business here"
-          />
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <button
-            onClick={() => handleNavigation("/Biz-Sim-V2/total-addressable-market")}
-            className="button"
-          >
-            LOOK'S GOOD
-          </button>
-        </div>
-        <Avatar />
-      </TransitionComponent>
-    </>
-  );
-};
+    };
 
-export default BusinessToggle;
+    return (
+        <div className="businessName-container">
+            <BackButton />
+            <div className={`first-text ${showFirstText ? 'slide-up' : ''} ${showSecondText ? 'slide-up-more' : ''}`}>
+                Alright! I’ll be your guide through the simulation
+            </div>
+            <div className={`second-text ${showSecondText ? 'slide-up-normal' : ''}`}>
+                Let’s start by naming your business
+            </div>
+            {showInput && (
+                <div className="input-section">
+                    <input
+                        type="text"
+                        placeholder="Enter the name for your business here"
+                        className="name-input"
+                        value={businessName}
+                        onChange={(e) => setBusinessName(e.target.value)}
+                    />
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    <button className="looks-good-button" onClick={handleButtonClick}>LOOK'S GOOD</button>
+                </div>
+            )}
+            <Avatar />
+        </div>
+    );
+}
+
+export default BusinessName;
