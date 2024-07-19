@@ -12,44 +12,43 @@
 
 .text {
     opacity: 0;
-    font-size: 48px;
     transition: opacity 1s ease-in-out, transform 1s ease-in-out, font-size 0.5s ease-in-out;
 }
 
 .text.moved {
     opacity: 1;
-    font-size: 45px;
-    transform: translateY(-350px);
+    font-size: 2.3vw;
+    transform: translateY(-19vw);
 }
 
 .tam-content {
-    margin-top: 40px;
+    margin-top: 5vw;
     animation: fadeIn 1s forwards;
-    max-width: 1300px;
+    max-width: 65vw;
 }
 
 .p1 {
-    font-size: 61px;
+    font-size: 3vw;
     font-weight: bold;
 }
 
 .p2 {
-    margin-top: 30px;
-    font-size: 34px;
+    margin-top: 2vw;
+    font-size: 1.9vw;
 }
 
 .extra {
     display: flex;
-    margin-top: 20px;
+    margin-top: 0.5vw;
     animation: fadeIn 1s forwards;
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 .button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 1vw; /* Adjust as needed */
 }
 
 .action-button{
@@ -58,8 +57,12 @@
     text-decoration: underline;
     margin: 10px;
     color: rgb(121, 121, 231);
+    font-size: 1.5vw;
+    width: 15vw;
 }
 
 .action-button-next{
     font-weight: bold;
+    width: 15vw;
+    font-size: 1.5vw;
 }

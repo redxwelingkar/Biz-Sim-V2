@@ -16,7 +16,7 @@ const Size = ({ value, onChange }: SizeProps) => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div className="size-cell">
       <input
         type="number"
         placeholder="Enter Value"
@@ -24,7 +24,7 @@ const Size = ({ value, onChange }: SizeProps) => {
         onChange={handleInputChange}
         style={{ textAlign: value ? 'right' : 'left' }} // Align right when value is entered
       />
-      <span style={{ marginLeft: '10px' }}>{value ? convertNumberToWords(parseInt(value)) : ''}</span>
+      <span>{value ? convertNumberToWords(parseInt(value)) : ''}</span>
     </div>
   );
 };

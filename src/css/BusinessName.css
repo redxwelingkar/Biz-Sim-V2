@@ -12,60 +12,58 @@
 .first-text, .second-text {
   opacity: 0;
   transition: opacity 1s ease-in-out, transform 1s ease-in-out, font-size 1s ease-in-out;
-  font-size: 61px;
+  font-size: 3vw;
   margin: 10px 0;
   position: absolute;
 }
 
 .first-text.slide-up {
   opacity: 1;
-  transform: translateY(-100px);
+  transform: translateY(-7vw);
 }
 
 .first-text.slide-up-more {
-  font-size: 48px;
-  transform: translateY(-270px);
+  font-size: 2.3vw;
+  transform: translateY(-13.5vw);
 }
 
 .second-text {
-  margin-top: 25px;
-  font-size: 61px;
+  margin-top: 3.4vw;
+  font-size: 3.2vw;
 }
 
 .second-text.slide-up-normal {
   opacity: 1;
-  transform: translateY(-150px);
+  transform: translateY(-8.2vw);
 }
 
 .input-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px; 
+  margin-top: 10vw; 
 }
 
 .name-input {
-  padding: 15px;
-  font-size: 38px;
-  margin-top: 150px;
-  height: 90px;
+  font-size: 2vw;
+  height: 3.7vw;
   text-align: center;
   border-radius: 10px;
+  width: 40vw;
 }
 
 .looks-good-button {
-  margin-top: 70px;
-  padding: 10px 20px;
+  margin-top: 3.6vw;
   cursor: pointer;
   border: none;
-  width: 260px;
-  height: 75px;
-  font-size: 26px;
+  width: 17vw;
+  height: 3.5vw;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 
 .error-message{
-  margin-top: 20px;
+  margin-top: 0.5vw;
   color: red;
-  font-size: 28px;
+  font-size: 1.5vw;
 }

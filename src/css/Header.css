@@ -1,7 +1,7 @@
 .header {
     background-color: #7b5d9ab3;
     color: white; 
-    height: 84px; 
+    height: 9vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,12 +9,11 @@
 
 .header-content {
     width: 100%;
-    max-width: 1200px; 
     padding: 0 20px;
 }
 
 .header-title {
-    font-size: 45px;
+    font-size: 2.5vw;
     font-weight: bold;
     text-align: center;
 }

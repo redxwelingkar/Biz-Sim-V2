@@ -14,15 +14,14 @@
 }
 
 .btns {
-  font-size: 28px;
+  font-size: 1.5vw;
   font-weight: bold;
 }
 
 button {
-  font-size: 2rem; /* Adjust the size as needed */
   padding: 10px 20px; /* Adjust the padding as needed */
-  width: 200px; /* Set a specific width */
-  height: 60px; /* Set a specific height */
+  width: 10vw;
+  height: 3.5vw;
   color: purple;
   background-color: white;
   border: none;
@@ -62,5 +61,5 @@ button:hover {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 40%;
+  width: 18%;
 }

@@ -1,22 +1,27 @@
 import React from 'react';
-import Header from "../../components/Header"; 
+import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/TamCalculation.css";
-import MainTable from '../../components/MainTable';
+import { useNavigate } from "react-router-dom";
 
 const TAMCalc: React.FC = () => {
-  const handleNext = () => {
-    console.log("Next button clicked");
+  const navigate = useNavigate();
+
+  const handleNext = () => {};
+  const TowardsSAM = () => {
+    navigate("/Biz-Sim-V2/towards-sam");
   };
 
   return (
     <div className="tam-calculation">
       <Header />
       <div className="back-button-container">
-        <BackButton topOffset="90px" /> {/* Adjust the value as needed */}
+        <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
       </div>
-      <MainTable />
+      {/* <div className="">
+        <button className="btns" onClick={TowardsSAM}>next</button>
+      </div> */}
       <Footer onNext={handleNext} />
     </div>
   );
