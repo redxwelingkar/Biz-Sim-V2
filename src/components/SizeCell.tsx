@@ -1,5 +1,4 @@
 import React from 'react';
-import numberToWords from 'number-to-words';
 
 interface SizeProps {
   value: string;
@@ -11,10 +10,6 @@ const Size = ({ value, onChange }: SizeProps) => {
     onChange(e.target.value);
   };
 
-  const convertNumberToWords = (num: number): string => {
-    return numberToWords.toWords(num);
-  };
-
   return (
     <div className="size-cell">
       <input
@@ -24,7 +19,6 @@ const Size = ({ value, onChange }: SizeProps) => {
         onChange={handleInputChange}
         style={{ textAlign: value ? 'right' : 'left' }} // Align right when value is entered
       />
-      <span>{value ? convertNumberToWords(parseInt(value)) : ''}</span>
     </div>
   );
 };

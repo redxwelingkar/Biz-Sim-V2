@@ -1,76 +1,84 @@
-// import { useState } from 'react';
-// import CustomerSegment from './CustomerSegmentCell';
-// import Size from './SizeCell';
-// import '../css/MainTable.css'; // Ensure the path is correct
+import { useState } from 'react';
+import CustomerSegment from './CustomerSegmentCell'; // Make sure the path is correct
+import Size from './SizeCell'; // Make sure the path is correct
+import '../css/MainTable.css';
+import numberToWords from 'number-to-words';
 
-// const MainTable = () => {
-//   const [rows, setRows] = useState([
-//     { segment: '', size: '' },
-//     { segment: '', size: '' },
-//     { segment: '', size: '' }
-//   ]);
-//   const [total, setTotal] = useState(0);
+const TableComponent = () => {
+  const [rows, setRows] = useState([
+    { id: 1, customerSegment: '', size: '', sizeInWords: '' },
+    { id: 2, customerSegment: '', size: '', sizeInWords: '' },
+    { id: 3, customerSegment: '', size: '', sizeInWords: '' },
+  ]);
 
-//   const handleSegmentChange = (index: number, value: string) => {
-//     const newRows = [...rows];
-//     newRows[index].segment = value;
-//     setRows(newRows);
-//   };
+  const handleAddRow = () => {
+    const newRow = {
+      id: rows.length ? rows[rows.length - 1].id + 1 : 1,
+      customerSegment: '',
+      size: '',
+      sizeInWords: ''
+    };
+    setRows([...rows, newRow]);
+  };
 
-//   const handleSizeChange = (index: number, value: string) => {
-//     const newRows = [...rows];
-//     newRows[index].size = value;
-//     setRows(newRows);
-//   };
+  const handleDeleteRow = (id: number) => {
+    setRows(rows.filter(row => row.id !== id));
+  };
 
-//   const handleAddRow = () => {
-//     setRows([...rows, { segment: '', size: '' }]);
-//   };
+  const handleCustomerSegmentChange = (id: number, value: string) => {
+    const updatedRows = rows.map(row => 
+      row.id === id ? { ...row, customerSegment: value } : row
+    );
+    setRows(updatedRows);
+  };
 
-//   const handleDeleteRow = (index: number) => {
-//     const newRows = rows.filter((_, i) => i !== index);
-//     setRows(newRows);
-//   };
+  const handleSizeChange = (id: number, value: string) => {
+    const updatedRows = rows.map(row => {
+      const sizeInWords = value ? numberToWords.toWords(parseInt(value)) : '';
+      return row.id === id ? { ...row, size: value, sizeInWords } : row;
+    });
+    setRows(updatedRows);
+  };
 
-//   const calculateTotal = () => {
-//     const totalSum = rows.reduce((acc, row) => acc + (parseFloat(row.size) || 0), 0);
-//     setTotal(totalSum);
-//   };
+  return (
+    <div className="table-container">
+      <table className="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Customer Segment</th>
+            <th>Size</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr key={row.id}>
+              <td>
+                <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+              </td>
+              <td>
+                <CustomerSegment 
+                  value={row.customerSegment}
+                  onChange={(value) => handleCustomerSegmentChange(row.id, value)}
+                />
+              </td>
+              <td>
+                <Size 
+                  value={row.size}
+                  onChange={(value) => handleSizeChange(row.id, value)}
+                />
+              </td>
+              <td>
+                <span>{row.sizeInWords}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={handleAddRow}>Add Customer Segment</button>
+    </div>
+  );
+};
 
-//   return (
-//     <div className="tam-calc-table">
-//       <div className="table-container">
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>Customer Segment</th>
-//               <th>Size</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {rows.map((row, index) => (
-//               <tr key={index}>
-//                 <td>
-//                   <div className="cell-container">
-//                     <button className="delete-button" onClick={() => handleDeleteRow(index)}>-</button>
-//                     <CustomerSegment value={row.segment} onChange={(value) => handleSegmentChange(index, value)} />
-//                   </div>
-//                 </td>
-//                 <td className="size-cell">
-//                   <Size value={row.size} onChange={(value) => handleSizeChange(index, value)} />
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//       <button className='add-button' onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
-//       <button className='calculate-button' onClick={calculateTotal}>Calculate Total</button>
-//       <div className="total-display">
-//         <input type="text" value={total} readOnly />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MainTable;
+export default TableComponent;

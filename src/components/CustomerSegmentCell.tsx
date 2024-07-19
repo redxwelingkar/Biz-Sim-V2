@@ -6,6 +6,7 @@ interface CustomerSegmentProps {
 const CustomerSegment = ({ value, onChange }: CustomerSegmentProps) => {
   return (
     <input
+    className="customer-cell"
       type="text"
       placeholder="Enter Name"
       value={value}

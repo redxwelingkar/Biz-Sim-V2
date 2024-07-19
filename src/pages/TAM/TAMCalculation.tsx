@@ -4,6 +4,7 @@ import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/TamCalculation.css";
 import { useNavigate } from "react-router-dom";
+import TableComponent from '../../components/MainTable';
 
 const TAMCalc: React.FC = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const TAMCalc: React.FC = () => {
       <div className="back-button-container">
         <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
       </div>
+      <TableComponent/>
       {/* <div className="">
         <button className="btns" onClick={TowardsSAM}>next</button>
       </div> */}
