@@ -1,5 +1,5 @@
 .footer {
-    background-color: #7b5d9ab3;
+    background-color: #744c9b;
     color: white;
     position: fixed;
     bottom: 0;
@@ -31,14 +31,12 @@
 }
 
 .footer-right {
-    flex: 1; 
+    flex: 0.5; 
     display: flex;
     flex-direction: column; /* Arrange buttons vertically */
     justify-content: center; /* Center the buttons vertically */
     align-items: flex-end; /* Align buttons to the right */
-    height: 100%;
     font-weight: bold;
-    margin: 0;
 }
 
 .footer-text {
@@ -52,13 +50,18 @@
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.3s;
-    background: none; /* Remove white background */
-    width: 10vh; /* Adjust width for larger button size */
+    background: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7vh; 
+    height: 7vh; /* Ensure the button is square */
+    margin: 5px 10px; /* Space between buttons */
 }
 
 .footer-icon img {
-    width: 100%;
-    height: auto;
+    width: 28px; /* Ensure the image covers the entire button */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .footer-icon.disabled {

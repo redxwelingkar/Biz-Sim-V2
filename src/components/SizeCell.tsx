@@ -5,20 +5,44 @@ interface SizeProps {
   onChange: (value: string) => void;
 }
 
+const MAX_SIZE = 1e16; // Define a maximum size limit
+
 const Size = ({ value, onChange }: SizeProps) => {
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    // Prevent entering values larger than MAX_SIZE
+    if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
+      onChange(newValue);
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      e.target.classList.add('blurred');
+    }
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.classList.remove('blurred');
+  };
+
+  const handleClear = () => {
+    onChange('');
   };
 
   return (
-    <div className="size-cell">
+    <div className="cell">
       <input
         type="number"
         placeholder="Enter Value"
         value={value}
-        onChange={handleInputChange}
-        style={{ textAlign: value ? 'right' : 'left' }} // Align right when value is entered
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        className={value ? 'value-entered' : ''}
       />
+      {value && <span onClick={handleClear} className="clear-icon clear-icon-left">x</span>}
     </div>
   );
 };
