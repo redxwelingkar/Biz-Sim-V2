@@ -6,7 +6,13 @@ import NumberToWords from './NumberToWords';
 import TransitionWrapper from './TransitionWrapper'; // Import TransitionWrapper
 import '../css/MainTable.css';
 
-const TableComponent = () => {
+interface TableComponentProps {
+  hideTotalSum?: boolean; // Add prop to conditionally hide total sum
+  headingText?: string;
+  hideSaveDetailsButton?: boolean;
+}
+
+const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: TableComponentProps) => {
   const [rows, setRows] = useState([
     { id: 1, customerSegment: '', size: '' },
     { id: 2, customerSegment: '', size: '' },
@@ -99,7 +105,7 @@ const TableComponent = () => {
 
   return (
     <div className="table-container">
-      <h2>Total Addressable Market</h2>
+      <h2>{headingText}</h2>
       <table className="table">
         <thead>
           <tr>
@@ -137,7 +143,7 @@ const TableComponent = () => {
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="button-container">
         <button className="add-button" onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
-        <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>
+        {!hideSaveDetailsButton && <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
         {showNext && (
           <TransitionWrapper delays={[0, 2500, 5000]}>
             {(visibleStates) => (
@@ -156,7 +162,7 @@ const TableComponent = () => {
           </TransitionWrapper>
         )}
       </div>
-      {totalSize !== null && (
+      {!hideTotalSum && totalSize !== null && (
         <div className="total-size-container">
           <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span>
           <span className="total-size-words"><NumberToWords value={totalSize.toString()} /></span>

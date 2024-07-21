@@ -1,0 +1,82 @@
+.sam-icon {
+  display: flex;
+  height: 40px;
+  margin-left: 2vw;
+}
+
+.csp-container {
+  text-align: center;
+  margin-left: 22vw;
+  margin-top: 10vh;
+}
+
+.first-txt,
+.second-txt {
+  font-size: 1.7vw;
+  color: white; /* White text color */
+  transition: opacity 1s ease-in-out, transform 1s;
+  opacity: 1;
+  width: 75%;
+}
+
+.first-txt.hide {
+  opacity: 0;
+}
+
+.second-txt {
+  margin-top: 2.2vh;
+  font-size: 2.2vw;
+  transition: opacity 2s, transform 2s;
+  transform: translateY(0);
+}
+
+.second-txt.slide-up {
+  transform: translateY(-35vh);
+  opacity: 1;
+}
+
+.paragraphs {
+  width: 65vw;
+}
+
+.paragraphs p {
+  margin-right: 9vw;
+  font-size: 1.5vw;
+  color: white;
+  opacity: 0;
+}
+
+.first-para.appear {
+  opacity: 1;
+}
+
+.second-para.appear {
+  opacity: 1;
+  margin-top: 5vh;
+}
+
+.btns-container{
+    margin-left: 39vw;
+    top: 0px;
+}
+
+.bts-container.show {
+  opacity: 1;
+}
+
+.yes-button,
+.no-button {
+  font-weight: bold;
+  border: none;
+  font-size: 1.5vw;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-description {
+  font-size: 1vw;
+  color: white;
+  margin-top: 15px;
+}
+
+

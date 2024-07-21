@@ -42,4 +42,6 @@
 .choose-button {
     font-size: 1.5vw;
     font-weight: bold;
+    margin-left: 25px;
+    margin-right: 25px;
 }

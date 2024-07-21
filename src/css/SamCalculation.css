@@ -1,0 +1,24 @@
+.row-icon{
+    display: flex;
+}
+
+.title{
+    margin-left: 38%;
+    margin-top: 3vh;
+    font-size: 1.5vw;
+    color: white;
+}
+
+.table-container {
+    transition: transform 2s ease; /* Smooth transition for shifting */
+  }
+  
+  /* Class applied after 3 seconds to shift the table */
+  .table-container.shift-left {
+    transform: translateX(-20px); /* Adjust the value to your needs */
+  }
+  
+  /* Ensure that the fourth column remains unaffected */
+  .table-container .table td:nth-child(4) {
+    /* No transformation applied to the fourth column */
+  }

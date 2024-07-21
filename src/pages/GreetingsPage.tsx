@@ -18,7 +18,7 @@ function GreetingsPage() {
   return (
     <div className="greetingsPage">
       <BackButton />
-      <TransitionWrapper delays={[1000, 2000, 3000]}>
+      <TransitionWrapper delays={[1000, 2000, 3500]}>
         {([showFirstText, showSecondText, showButtonsAndImage]) => (
           <>
             <div className={`text ${showFirstText ? 'show' : ''}`}>Hi! Welcome to Business Simulation</div>
