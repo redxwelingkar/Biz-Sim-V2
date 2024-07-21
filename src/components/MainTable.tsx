@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import CustomerSegment from './CustomerSegmentCell';
 import Size from './SizeCell';
 import NumberToWords from './NumberToWords';
+import TransitionWrapper from './TransitionWrapper'; // Import TransitionWrapper
 import '../css/MainTable.css';
 
 const TableComponent = () => {
@@ -15,8 +17,15 @@ const TableComponent = () => {
   const [showNext, setShowNext] = useState(false);
   const [showText, setShowText] = useState(false);
 
+  const navigate = useNavigate(); // Initialize useNavigate
+
   useEffect(() => {
+    const storedRows = localStorage.getItem('rows');
     const storedTotalSize = localStorage.getItem('TAM');
+
+    if (storedRows) {
+      setRows(JSON.parse(storedRows));
+    }
     if (storedTotalSize) {
       setTotalSize(parseInt(storedTotalSize, 10));
     }
@@ -63,12 +72,14 @@ const TableComponent = () => {
     const total = rows.reduce((total, row) => total + parseInt(row.size), 0);
     setTotalSize(total);
     localStorage.setItem('TAM', total.toString());
+    localStorage.setItem('rows', JSON.stringify(rows));
     setShowNext(true); // Show Next button when details are saved
   };
 
   const handleClearTotal = () => {
     setTotalSize(null);
     localStorage.removeItem('TAM');
+    localStorage.removeItem('rows');
     setShowNext(false); // Hide Next button when total is cleared
   };
 
@@ -80,6 +91,10 @@ const TableComponent = () => {
     setTimeout(() => {
       setShowText(true); // Show text after image transition
     }, 2500);
+  };
+
+  const navigateToNextPage = () => {
+    navigate('/Biz-Sim-V2/towards-sam'); // Navigate to the next page after transitions
   };
 
   return (
@@ -124,7 +139,21 @@ const TableComponent = () => {
         <button className="add-button" onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
         <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>
         {showNext && (
-          <button className="next-button" onClick={handleNext}>NEXT</button>
+          <TransitionWrapper delays={[0, 2500, 5000]}>
+            {(visibleStates) => (
+              <>
+                <button
+                  className={`next-button ${visibleStates[2] ? 'visible' : ''}`}
+                  onClick={() => {
+                    handleNext();
+                    setTimeout(navigateToNextPage, 5000); // Navigate after transition
+                  }}
+                >
+                  NEXT
+                </button>
+              </>
+            )}
+          </TransitionWrapper>
         )}
       </div>
       {totalSize !== null && (
@@ -140,7 +169,7 @@ const TableComponent = () => {
         </div>
       )}
       <div className="image-container">
-        <img src="src\assets\img\tam-icon.png" alt="img" className="transition-image" />
+        <img src="src/assets/img/tam-icon.png" alt="img" className="transition-image" />
         {showText && <span className="transition-text">Total Addressable Market</span>}
       </div>
     </div>

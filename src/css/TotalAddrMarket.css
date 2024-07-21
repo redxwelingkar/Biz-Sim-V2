@@ -18,11 +18,11 @@
 .text.moved {
     opacity: 1;
     font-size: 2.2vw;
-    transform: translateY(-19vw);
+    transform: translateY(-18vw);
 }
 
 .tam-content {
-    margin-top: 5vw;
+    margin-top: 4vw;
     animation: fadeIn 1s forwards;
     max-width: 63vw;
 }
@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1vw; /* Adjust as needed */
+    margin-top: 1vw;
 }
 
 .action-button{
@@ -62,6 +62,7 @@
 }
 
 .action-button-next{
+    margin-top: 2vh;
     font-weight: bold;
     width: 15vw;
     font-size: 1.5vw;

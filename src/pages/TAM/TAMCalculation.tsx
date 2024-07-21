@@ -1,17 +1,15 @@
-import React from 'react';
+import { useState } from 'react';
 import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/TamCalculation.css";
-import { useNavigate } from "react-router-dom";
 import TableComponent from '../../components/MainTable';
 
-const TAMCalc: React.FC = () => {
-  const navigate = useNavigate();
+const TAMCalc = () => {
+  const [showTable, setShowTable] = useState(false); // State to control visibility of TableComponent
 
-  const handleNext = () => {};
-  const TowardsSAM = () => {
-    navigate("/Biz-Sim-V2/towards-sam");
+  const handleNext = () => {
+    setShowTable(true); // Show TableComponent
   };
 
   return (
@@ -20,11 +18,8 @@ const TAMCalc: React.FC = () => {
       <div className="back-button-container">
         <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
       </div>
-      <TableComponent/>
-      {/* <div className="">
-        <button className="btns" onClick={TowardsSAM}>next</button>
-      </div> */}
-      <Footer onNext={handleNext} />
+      {showTable && <TableComponent />} {/* Conditionally render TableComponent */}
+      <Footer onNext={handleNext} /> {/* Pass function to show TableComponent */}
     </div>
   );
 };
