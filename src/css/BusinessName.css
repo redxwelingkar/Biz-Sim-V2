@@ -1,0 +1,69 @@
+.businessName-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.first-text, .second-text {
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out, font-size 1s ease-in-out;
+  font-size: 3vw;
+  margin: 10px 0;
+  position: absolute;
+}
+
+.first-text.slide-up {
+  opacity: 1;
+  transform: translateY(-7vw);
+}
+
+.first-text.slide-up-more {
+  font-size: 2.3vw;
+  transform: translateY(-13.5vw);
+}
+
+.second-text {
+  margin-top: 3.4vw;
+  font-size: 3.2vw;
+}
+
+.second-text.slide-up-normal {
+  opacity: 1;
+  transform: translateY(-8.2vw);
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10vw; 
+}
+
+.name-input {
+  font-size: 2vw;
+  height: 3.7vw;
+  text-align: center;
+  border-radius: 10px;
+  width: 40vw;
+}
+
+.looks-good-button {
+  margin-top: 3.6vw;
+  cursor: pointer;
+  border: none;
+  width: 17vw;
+  height: 3.5vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+.error-msg{
+  margin-top: 0.5vw;
+  color: red;
+  font-size: 1.2vw;
+}

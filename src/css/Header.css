@@ -1,0 +1,19 @@
+.header {
+    background-color: #744c9b;
+    color: white; 
+    height: 9vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.header-title {
+    font-size: 2.5vw;
+    font-weight: bold;
+    text-align: center;
+}

@@ -1,0 +1,73 @@
+.tam-icon {
+  width: 2.8vw; 
+  margin-top: 4vw;
+  margin-left: 2vw;
+}
+
+.body-container {
+  text-align: center; 
+  margin-top: 14vh;
+  position: relative;
+}
+
+.texts-container {
+  position: absolute;
+  top: 15vh;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  color: white;
+  width: 62%;
+}
+
+.transition-items {
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Smooth transition */
+  font-size: 1.6vw;
+  margin: 10px 0; /* Space between texts */
+}
+
+.transition-items.visible {
+  opacity: 1; /* Make text visible */
+}
+
+.sam-heading{
+    font-size: 2.5vw;
+}
+
+.text-one{
+    width: 50%;
+    margin-left: 15vw;
+    font-size: 1.8vw;
+}
+
+.extra-text{
+    font-size: 1.5vw;
+}
+
+.buttons{
+    margin-top: 0;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20vw;
+  }
+
+  .button-wrapper {
+    text-align: center;
+  }
+  
+  button {
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+  
+  .button-description {
+    font-size: 1.3vw;
+    color: white;
+    margin: 5px;
+  }
+  

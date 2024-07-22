@@ -1,0 +1,47 @@
+.greetingsPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.text {
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    font-size: 3.6vw;
+    font-weight: 600;
+    margin: 10px 0;
+    position: absolute;
+}
+
+.text.second {
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    font-size: 2.5vw;
+    font-weight: bold;
+}
+
+.text.show {
+    opacity: 1;
+    transform: translateY(-21vh);
+}
+
+.text.second.show {
+    transform: translateY(-5vh);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10vw;
+}
+
+.choose-button {
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin-left: 25px;
+    margin-right: 25px;
+}

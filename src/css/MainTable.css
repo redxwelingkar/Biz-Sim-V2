@@ -1,0 +1,276 @@
+h2 {
+  color: white;
+  margin-top: 10px;
+  margin-right: 21vw;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 5vw;
+  max-height: 70vh; /* Set max height to contain rows */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.table-container::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #744c9b; /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Rounded edges for the scrollbar thumb */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track */
+}
+
+.table {
+  border-collapse: collapse; /* Ensures borders and spacing are handled correctly */
+}
+
+.table th,
+.table td {
+  padding: 4px 7px;
+}
+
+.table th {
+  font-size: 2.1vh;
+  text-align: center;
+  color: white;
+}
+
+.delete-button {
+  background-color: #b0b0b0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0; /* Smaller padding for the delete button */
+  font-size: 18px;
+  width: 2vw;
+  height: 3.5vh;
+}
+
+.delete-button:hover {
+  background-color: #e53935;
+}
+
+.size-in-words {
+  color: white;
+  padding-left: 10px;
+  word-wrap: break-word;
+}
+
+.cell {
+  position: relative;
+}
+
+.cell input {
+  font-size: 0.9vw;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  width: 12vw;
+  padding: 4px;
+  height: 3.3vh;
+  overflow: hidden; /* Prevents content from overflowing */
+  text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+  max-width: 100%;
+}
+
+.cell input.value-entered {
+  text-align: right;
+}
+
+.cell input.customer-cell {
+  text-align: left;
+}
+
+.cell input:focus {
+  border: 2px solid rgb(6, 188, 6); /* Green border on focus */
+  outline: none; /* Remove default outline */
+}
+
+.cell input:hover {
+  border-color: rgb(6, 188, 6);
+}
+
+.cell input.blurred {
+  background-color: #744c9b;
+  border: 1px solid rgb(226, 159, 253);
+  color: white;
+}
+
+.cell input.blurred:hover{
+  border: 2px solid red; /* Red border on hover */
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  display: none;
+}
+
+.cell:hover .clear-icon{
+  display: inline;
+}
+
+.clear-icon-right {
+  right: 0.5vw; /* Position on the right for customer segment */
+}
+
+.clear-icon-left {
+  left: 0.5vw; /* Position on the left for size */
+}
+
+.clear-icon:hover{
+  color: red;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.add-button,
+.save-button, 
+.next-button{
+  border: none;
+  cursor: pointer;
+  margin-top: 0;
+  margin-right: 21vw;
+  font-size: 0.9vw;
+  font-weight: bold;
+  width: 11vw;
+  height: 5.1vh;
+}
+
+.add-button {
+  width: 18vw;
+  margin-top: 1vh;
+}
+
+.save-button {
+  margin-top: 8vh;
+}
+
+.next-button{
+  display: none;
+}
+
+.button-container .next-button {
+  display: inline-block; 
+  margin-top: 2vh;
+  width: 7vw;
+}
+
+.error-message {
+  color: red;
+  font-size: 2.2vh;
+  margin-right: 21vw;
+}
+
+.table td:first-child {
+  width: 50px; /* Width for delete button column */
+}
+
+.table td:nth-child(2),
+.table td:nth-child(3) {
+  width: 150px; /* Width for customer segment and size columns */
+}
+
+.table td:nth-child(4) {
+  width: 380px; /* Width for size in words column */
+}
+
+.total-size-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 21vw;
+  position: relative;
+}
+
+.total-size-words {
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 0.5vh;
+  margin-top: 1vh;
+  color: white;
+}
+
+.total-size-field {
+  border-radius: 4px;
+  width: 23vw;
+  padding: 10px;
+  height: 2.3vh;
+  text-align: right;
+  font-size: large;
+  font-weight: bold;
+  margin-right: 0; 
+  position: relative;
+  color: white;
+  background-color: #744c9b;
+  border: none;
+}
+
+.total-size-clear-icon {
+  position: absolute;
+  top: 72%;
+  left: 10px; /* Adjust to place icon inside the input field */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  display: none; /* Hide by default */
+  z-index: 1;
+}
+
+.total-size-container:hover .total-size-clear-icon {
+  display: inline; /* Show on hover */
+}
+
+.image-container {
+  position: absolute;
+  top: 18vh;
+  left: -5vw; /* Start from outside the page */
+  transition: left 2s ease;
+  position: 'absolute',
+}
+
+.transition-image{
+  height: 40px;
+}
+
+.image-container.show-image {
+  left: 2.1vw; /* Move to a little further right */
+}
+
+.transition-text {
+  width: 20vw;
+  position: absolute;
+  top: 1.2vh;
+  left: 3.3vw;
+  transition: left 3s ease-in-out;
+  color: white;
+}
+
+.table td:nth-child(4) {
+  position: relative; /* Reset any relative positioning if necessary */
+}
+
+.saved-value {
+  background-color: #744c9b;
+  color: white;
+  border: 1px solid rgb(226, 159, 253);
+}

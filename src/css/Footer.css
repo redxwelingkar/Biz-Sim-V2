@@ -1,0 +1,85 @@
+.footer {
+    background-color: #744c9b;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    height: 20vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left {
+    flex: 1; 
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: flex-end; /* Align the image to the bottom of the footer */
+    height: 100%;
+}
+
+.footer-image {
+    max-height: 90%; /* Ensure the image does not overflow the footer */
+}
+
+.footer-middle {
+    flex: 8; 
+    display: flex;
+    justify-content: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
+    text-align: center;
+}
+
+.footer-right {
+    flex: 0.5; 
+    display: flex;
+    flex-direction: column; /* Arrange buttons vertically */
+    justify-content: center; /* Center the buttons vertically */
+    align-items: flex-end; /* Align buttons to the right */
+    font-weight: bold;
+}
+
+.footer-text {
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin: 0;
+}
+
+.footer-icon {
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.3s;
+    background: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7vh; 
+    height: 7vh; /* Ensure the button is square */
+    margin: 5px 10px; /* Space between buttons */
+}
+
+.footer-icon img {
+    width: 28px; /* Ensure the image covers the entire button */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.footer-icon.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.arrow-image:hover,
+.arrow-image:focus {
+    opacity: 0.5; /* Dim the opacity on hover/focus */
+}
+
+.blink {
+    animation: blink-animation 1.5s steps(3, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
