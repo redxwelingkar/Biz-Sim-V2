@@ -27,14 +27,12 @@ const SAMCalc = () => {
       <div className="back-button-container">
         <BackButton topOffset="10vh" />
       </div>
-      <div className="row-icon">
         <TamIcon />
         <TableComponent
           hideTotalSum={true}
           headingText="Serviceable Addressable Market"
           hideSaveDetailsButton={true}
         />{" "}
-      </div>
       <Footer onNext={() => {}} texts={footerTexts} />{" "}
       <button onClick={navigateNext}>NEXT</button>
     </div>

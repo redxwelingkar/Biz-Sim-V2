@@ -161,7 +161,7 @@ h2 {
 }
 
 .save-button {
-  margin-top: 6vh;
+  margin-top: 8vh;
 }
 
 .next-button{
@@ -170,7 +170,7 @@ h2 {
 
 .button-container .next-button {
   display: inline-block; 
-  margin-top: 1vh;
+  margin-top: 2vh;
   width: 7vw;
 }
 
@@ -218,7 +218,9 @@ h2 {
   font-weight: bold;
   margin-right: 0; 
   position: relative;
-  border: 4px solid rgb(23, 193, 57);
+  color: white;
+  background-color: #744c9b;
+  border: none;
 }
 
 .total-size-clear-icon {
@@ -227,7 +229,7 @@ h2 {
   left: 10px; /* Adjust to place icon inside the input field */
   transform: translateY(-50%);
   cursor: pointer;
-  color: black;
+  color: white;
   font-size: 20px;
   font-weight: bolder;
   display: none; /* Hide by default */
@@ -265,4 +267,10 @@ h2 {
 
 .table td:nth-child(4) {
   position: relative; /* Reset any relative positioning if necessary */
+}
+
+.saved-value {
+  background-color: #744c9b;
+  color: white;
+  border: 1px solid rgb(226, 159, 253);
 }
