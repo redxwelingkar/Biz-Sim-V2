@@ -55,7 +55,7 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
   };
 
   const handleCustomerSegmentChange = (id: number, value: string) => {
-    const updatedRows = rows.map(row => 
+    const updatedRows = rows.map(row =>
       row.id === id ? { ...row, customerSegment: value } : row
     );
     setRows(updatedRows);
@@ -122,13 +122,13 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
                 <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
               </td>
               <td>
-                <CustomerSegment 
+                <CustomerSegment
                   value={row.customerSegment}
                   onChange={(value) => handleCustomerSegmentChange(row.id, value)}
                 />
               </td>
               <td>
-                <Size 
+                <Size
                   value={row.size}
                   onChange={(value) => handleSizeChange(row.id, value)}
                 />
