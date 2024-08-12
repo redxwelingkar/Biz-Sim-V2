@@ -197,6 +197,7 @@ h2 {
   display: flex;
   flex-direction: column;
   margin-right: 21vw;
+  margin-bottom: 10vh;
   position: relative;
 }
 
