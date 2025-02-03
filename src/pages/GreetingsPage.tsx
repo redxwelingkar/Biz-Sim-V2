@@ -3,7 +3,7 @@ import '../css/GreetingsPage.css';
 import Avatar from '../components/Avatar'; 
 import BackButton from '../components/BackButton';
 import TransitionWrapper from '../components/TransitionWrapper'; // Import the new component
-import CustomButton from '../components/CustomButton';
+// import CustomButton from '../components/CustomButton';
 
 function GreetingsPage() {
   const navigate = useNavigate();

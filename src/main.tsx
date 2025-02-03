@@ -8,3 +8,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>,
 )
+
+// TODO: Reduce image sizes,less than 50 kb for big, less than 20 kb for small
