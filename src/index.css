@@ -41,12 +41,12 @@ body {
 
 button {
   margin: 0 10px;
-  border-radius: 12px;
+  border-radius: 16px;
   background-color: #ffffff;
   color: #12005A;
   cursor: pointer;
   transition: border-color 0.25s;
-  font-size: 1.5rem;
+  font-size: 4vmin;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-variant: small-caps;

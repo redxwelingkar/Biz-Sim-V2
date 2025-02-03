@@ -15,10 +15,10 @@ const BackButton: React.FC<BackButtonProps> = ({ topOffset }) => {
 
   const backButtonStyle: React.CSSProperties = {
     position: 'absolute',
-    top: topOffset || '1.75vw', 
-    left: '1.75vw',
+    top: topOffset || '3vmin', 
+    left: '3vmin',
     cursor: 'pointer',
-    width: '3.2vw', 
+    width: '6vmin', 
   };
 
   return (

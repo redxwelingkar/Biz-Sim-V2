@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    position: relative;
+    /* position: relative; */
     color: white;
     font-family: 'Open Sans', sans-serif;
 }
@@ -12,7 +12,8 @@
 .text {
     opacity: 0;
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    font-size: 3.6vw;
+    font-size: 6.1vmin;
+    /* font-size: 61px; */
     font-weight: 600;
     margin: 10px 0;
     position: absolute;
@@ -20,7 +21,7 @@
 
 .text.second {
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    font-size: 2.5vw;
+    font-size: 4.8vmin;
     font-weight: bold;
 }
 
@@ -36,12 +37,13 @@
 .buttons {
     display: flex;
     align-items: center;
-    margin-top: 10vw;
+    margin-top: 10em;
 }
 
 .choose-button {
-    font-size: 1.5vw;
+    /* font-size: 4.6vmin; */
     font-weight: bold;
-    margin-left: 25px;
-    margin-right: 25px;
+    /* margin-left: 25px; */
+    /* margin-right: 25px; */
+    /* margin: 2rem; */
 }
