@@ -22,10 +22,9 @@ const TAMCalc = () => {
   return (
     <div className="tam-calculation">
       <Header />
-      <div className="back-button-container">
-        <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
-      </div>
-      {showTable && <TableComponent headingText="Total Addressable Market"/>} {/* Conditionally render TableComponent */}
+      <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
+      {!showTable && <div className='table-placeholder'></div>}
+      {showTable && <TableComponent headingText="Total Addressable Market" />} {/* Conditionally render TableComponent */}
       <Footer onNext={handleNext} texts={footerTexts} /> {/* Pass function to show TableComponent */}
     </div>
   );
