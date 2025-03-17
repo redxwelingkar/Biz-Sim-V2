@@ -1,0 +1,11 @@
+.tamContainer {
+    display: flex;
+    align-items: center;
+    gap:5;
+    left: -10vw; /* start off-screen */
+    transition: left 2s ease;
+}
+
+.backbutton-container.slide-in {
+    left: 3vmin; /* slide to this position */
+  }

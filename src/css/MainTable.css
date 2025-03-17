@@ -251,11 +251,12 @@ h2 {
 }
 
 .transition-image{
-  height: 40px;
+  width: 4.5vmin;
+  cursor: pointer;
 }
 
 .image-container.show-image {
-  left: 2.1vw; /* Move to a little further right */
+  left: 1vw; /* Move to a little further right */
 }
 
 .transition-text {

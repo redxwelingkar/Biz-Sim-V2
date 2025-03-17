@@ -1,17 +1,25 @@
+.towards-sam{
+  height: 100vh;
+}
+
 .tam-icon {
-  width: 2.8vw; 
+  width: 6vmin; 
   margin-top: 4vw;
   margin-left: 2vw;
+  position: absolute;
+  top: 10vh;
+  left: 0;
+
 }
 
 .body-container {
   text-align: center; 
   margin-top: 14vh;
-  position: relative;
+  /* position: relative; */
 }
 
 .texts-container {
-  position: absolute;
+  position: relative;
   top: 15vh;
   left: 50%;
   transform: translate(-50%, -50%); 

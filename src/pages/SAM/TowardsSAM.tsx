@@ -19,34 +19,29 @@ const TowardsSAM = () => {
   return (
     <div className="towards-sam">
       <Header />
-      <div className="back-button-container">
-        <BackButton topOffset="10vh" />
-      </div>
-      <TamIcon />
+      <BackButton topOffset="10vh" showtam={true} />
+      {/* <TamIcon /> */}
       <Avatar />
       <div className="body-container">
         <TransitionWrapper delays={[1500, 3500, 5500]}>
           {(visibleStates) => (
             <div className="texts-container">
               <p
-                className={`transition-items text-one ${
-                  visibleStates[0] ? "visible" : ""
-                }`}
+                className={`transition-items text-one ${visibleStates[0] ? "visible" : ""
+                  }`}
               >
                 Now let’s move on to the next step of defining and calculating
                 the
               </p>
               <p
-                className={`transition-items sam-heading ${
-                  visibleStates[0] ? "visible" : ""
-                }`}
+                className={`transition-items sam-heading ${visibleStates[0] ? "visible" : ""
+                  }`}
               >
                 Serviceable Addressable Market (SAM)
               </p>
               <p
-                className={`transition-items ${
-                  visibleStates[1] ? "visible" : ""
-                }`}
+                className={`transition-items ${visibleStates[1] ? "visible" : ""
+                  }`}
               >
                 A business can't capture 100% of a given market. In the real
                 business world, a business targets a specific customer base,
@@ -55,9 +50,8 @@ const TowardsSAM = () => {
                 limited resources.
               </p>
               <button
-                className={`transition-items action-button ${
-                  visibleStates[1] ? "visible" : ""
-                }`}
+                className={`transition-items action-button ${visibleStates[1] ? "visible" : ""
+                  }`}
                 onClick={handleLearnMoreClick}
               >
                 {extraContentVisible ? "Read Less" : "Learn More"}
@@ -69,16 +63,14 @@ const TowardsSAM = () => {
                 </div>
               )}
               <p
-                className={`transition-items ${
-                  visibleStates[2] ? "visible" : ""
-                }`}
+                className={`transition-items ${visibleStates[2] ? "visible" : ""
+                  }`}
               >
                 Are you ready to move on to SAM?
               </p>
               <div className="buttons-container">
-                <div className={`button-wrapper transition-items ${
-                      visibleStates[2] ? "visible" : ""
-                    }`}>
+                <div className={`button-wrapper transition-items ${visibleStates[2] ? "visible" : ""
+                  }`}>
                   <button
                     onClick={handleNoClick}
                   >
@@ -86,9 +78,8 @@ const TowardsSAM = () => {
                   </button>
                   <p className="button-description">Go back to TAM</p>
                 </div>
-                <div className={`button-wrapper transition-items ${
-                      visibleStates[2] ? "visible" : ""
-                    }`}>
+                <div className={`button-wrapper transition-items ${visibleStates[2] ? "visible" : ""
+                  }`}>
                   <button
                     onClick={handleYesClick}
                   >
