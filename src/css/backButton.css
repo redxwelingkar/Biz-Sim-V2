@@ -1,9 +1,28 @@
+.backbutton_container{
+    position: absolute;
+    top: 10vmin;
+    left: 3vmin;
+    cursor: pointer;
+    display: grid;
+    gap: 4
+}
+
+.backButtonStyle{
+    left: 3vmin;
+    cursor: pointer;
+    width: 4.5vmin
+}
+
 .tamContainer {
     display: flex;
     align-items: center;
     gap:5;
     left: -10vw; /* start off-screen */
     transition: left 2s ease;
+}
+.tamButtonStyle{
+    cursor: pointer;
+    width: 4.5vmin
 }
 
 .backbutton-container.slide-in {

@@ -7,7 +7,7 @@ import TamIcon from "../../components/TamIcon";
 import { useNavigate } from "react-router-dom";
 
 const SAMCalc = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const navigateNext = () => {
     navigate("/Biz-Sim-V2/towards-csp"); // Navigate to the next page after transitions
@@ -24,16 +24,14 @@ const SAMCalc = () => {
   return (
     <div className="sam-calculation">
       <Header />
-      <div className="back-button-container">
-        <BackButton topOffset="10vh" />
-      </div>
-        <TamIcon />
-        <TableComponent
-          hideTotalSum={true}
-          headingText="Serviceable Addressable Market"
-          hideSaveDetailsButton={true}
-        />{" "}
-      <Footer onNext={() => {}} texts={footerTexts} />{" "}
+      <BackButton topOffset="10vh" />
+      {/* <TamIcon /> */}
+      <TableComponent
+        hideTotalSum={true}
+        headingText="Serviceable Addressable Market"
+        hideSaveDetailsButton={true}
+      />{" "}
+      <Footer onNext={() => { }} texts={footerTexts} />{" "}
       <button onClick={navigateNext}>NEXT</button>
     </div>
   );

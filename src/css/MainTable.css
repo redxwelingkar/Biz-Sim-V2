@@ -244,7 +244,8 @@ h2 {
 
 .image-container {
   position: absolute;
-  top: 18vh;
+  /* TODO: pixel perfect the animation start and end position */
+  top: 15vh;
   left: -5vw; /* Start from outside the page */
   transition: left 2s ease;
   position: 'absolute',
@@ -256,7 +257,7 @@ h2 {
 }
 
 .image-container.show-image {
-  left: 1vw; /* Move to a little further right */
+  left: 1.3vw; /* Move to a little further right */
 }
 
 .transition-text {
@@ -266,7 +267,31 @@ h2 {
   left: 3.3vw;
   transition: left 3s ease-in-out;
   color: white;
+  animation: slideText 2s ease-in-out forwards;
 }
+
+@keyframes slideText {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+
+  20% {
+      transform: translateX(0%);
+      opacity: 1;
+  }
+
+  80% {
+      transform: translateX(0%);
+      opacity: 1;
+  }
+
+  100% {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+}
+
 
 .table td:nth-child(4) {
   position: relative; /* Reset any relative positioning if necessary */

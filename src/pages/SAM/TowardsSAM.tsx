@@ -85,7 +85,7 @@ const TowardsSAM = () => {
                   >
                     YES
                   </button>
-                  <p className="button-description">Go to SAM</p>
+                  <p className="button-description">Proceed to SAM</p>
                 </div>
               </div>
             </div>
