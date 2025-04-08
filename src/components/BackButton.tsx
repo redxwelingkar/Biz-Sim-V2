@@ -53,7 +53,8 @@ const BackButton: React.FC<BackButtonProps> = (props) => {
 
   
   const buttonText: React.CSSProperties = {
-    color: 'white'
+    color: 'white',
+    visibility:'hidden'
   };
 
   return (
