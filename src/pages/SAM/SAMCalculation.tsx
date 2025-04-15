@@ -36,8 +36,8 @@ const SAMCalc = () => {
         NumbertoWordsCOL={true}
         PercentageConvCOL={true}
         SizeofSAMCOL={true}
-      />{" "}
-      <Footer onNext={() => { }} texts={footerTexts} />{" "}
+      />
+      <Footer onNext={() => { }} texts={footerTexts} />
       <button onClick={navigateNext}>NEXT</button>
     </div>
   );

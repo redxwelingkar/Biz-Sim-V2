@@ -6,7 +6,7 @@ interface SizeofSAMProps {
 
 // const MAX_SIZE = 1e16; // Define a maximum size limit
 
-const Size = ({ value }: SizeofSAMProps) => {
+const SizeofSAM = ({ value }: SizeofSAMProps) => {
     // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     const newValue = e.target.value;
 
@@ -33,7 +33,7 @@ const Size = ({ value }: SizeofSAMProps) => {
     return (
         <div className="cell">
             <input
-                contentEditable='false'
+                readOnly={true}
                 placeholder="Enter in Percentange Conversion Column "
                 value={value}
                 // onChange={handleChange}
@@ -48,4 +48,4 @@ const Size = ({ value }: SizeofSAMProps) => {
     );
 };
 
-export default Size;
+export default SizeofSAM;

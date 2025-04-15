@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { debounce } from 'lodash';
 import CustomerSegment from './CustomerSegmentCell';
 import Size from './SizeCell';
 import NumberToWords from './NumberToWords';
@@ -69,32 +70,40 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
   };
 
   const handleSizeChange = (id: number, value: string) => {
-    const updatedRows = rows.map(row => {
-      return row.id === id ? { ...row, size: value } : row;
-    });
-    setRows(updatedRows);
+    const row = rows.find(r => r.id === id);
+    const percentage = row?.percentage || '';
+    debouncedUpdateSizeofSAM(id, value, percentage);
   };
 
   const handlePercentageChange = (id: number, value: string) => {
-    const updatedRows = rows.map(row => {
-      return row.id === id ? { ...row, percentage: value } : row;
-    });
-    setRows(updatedRows);
-    calulateSizeofSAM(id, value)
+    const row = rows.find(r => r.id === id);
+    const size = row?.size || '';
+    debouncedUpdateSizeofSAM(id, size, value);
   };
 
-  const calulateSizeofSAM = (id: number, percentage?: string) => {
+  const updateSizeofSAM = (id: number, updatedSize: string, updatedPercentage: string) => {
     const updatedRows = rows.map(row => {
-      if (row.id === id && row.size && percentage) {
-        return {
-          ...row,
-          sizeofSAM: ((parseInt(row.size) * parseInt(percentage)) / 100).toString()
-        };
+      if (row.id === id) {
+        const size = updatedSize || row.size;
+        const percentage = updatedPercentage || row.percentage;
+
+        if (size && percentage && !isNaN(Number(size)) && !isNaN(Number(percentage))) {
+          const product = (parseFloat(size) * parseFloat(percentage)) / 100;
+          return { ...row, size, percentage, sizeofSAM: product.toFixed(2) };
+        }
+
+        return { ...row, size, percentage, sizeofSAM: '' };
       }
       return row;
     });
-    setRows(updatedRows)
-  }
+
+    setRows(updatedRows);
+  };
+
+  const debouncedUpdateSizeofSAM = debounce((id: number, size: string, percentage: string) => {
+    updateSizeofSAM(id, size, percentage);
+  }, 10); // 10ms debounce
+
 
   const handleSaveDetails = () => {
     const allFieldsFilled = rows.every(row => row.customerSegment !== '' && row.size !== '');
@@ -140,7 +149,7 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
             <th></th>
             <th>Customer Segment</th>
             <th>Size</th>
-            {NumbertoWordsCOL && <th></th>} {/* NumberToWords header */}
+            {NumbertoWordsCOL && <th></th>}{/* NumberToWords header */}
             {PercentageConvCOL && <th>Percent Conversion</th>}
             {SizeofSAMCOL && <th>Size of SAM</th>}
           </tr>

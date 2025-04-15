@@ -36,13 +36,13 @@ const Percentage = ({ value, onChange }: PercentageProps) => {
             <input
                 type="number"
                 placeholder="Enter Value"
-                value={value}
                 onChange={handleChange}
+                value={value}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 className={value ? 'value-entered' : ''}
             />
-            {value && <span onClick={handleClear} className="clear-icon clear-icon-left">%</span>}
+            {value && <span onClick={handleClear} className="clear-icon clear-icon-left">x</span>}
         </div>
     );
 };
