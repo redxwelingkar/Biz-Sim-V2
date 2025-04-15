@@ -1,20 +1,21 @@
 h2 {
   color: white;
-  margin-top: 10px;
-  margin-right: 21vw;
+  /* margin-top: 10px;
+  margin-right: 21vw; */
   font-size: xx-large;
+  text-align: center;
 }
 
 .table-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  /* width: 70%;
   margin-top: 10px;
   margin-left: auto;
-  margin-right: 5vw;
-  min-height: 69.8vh;
-  max-height: 69.8vh; /* Set max height to contain rows */
+  margin-right: 5vw; */
+  min-height: 71vh;
+  max-height: 71vh; /* Set max height to contain rows */
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
@@ -152,7 +153,7 @@ h2 {
   border: none;
   cursor: pointer;
   margin-top: 0;
-  margin-right: 21vw;
+  /* margin-right: 21vw; */
   font-size: 0.9vw;
   font-weight: bold;
   width: 11vw;
@@ -165,7 +166,7 @@ h2 {
 }
 
 .save-button {
-  margin-top: 8vh;
+  margin-top: 2vh;
 }
 
 .next-button{
@@ -200,7 +201,7 @@ h2 {
 .total-size-container {
   display: flex;
   flex-direction: column;
-  margin-right: 21vw;
+  /* margin-right: 21vw; */
   margin-bottom: 10vh;
   position: relative;
 }
