@@ -5,18 +5,23 @@ import Size from './SizeCell';
 import NumberToWords from './NumberToWords';
 import TransitionWrapper from './TransitionWrapper'; // Import TransitionWrapper
 import '../css/MainTable.css';
+import Percentage from './PercentageCell';
+import SizeofSAM from './SizeofSAM';
 
 interface TableComponentProps {
   hideTotalSum?: boolean; // Add prop to conditionally hide total sum
   headingText?: string;
   hideSaveDetailsButton?: boolean;
+  NumbertoWordsCOL?: boolean;
+  PercentageConvCOL?: boolean;
+  SizeofSAMCOL?: boolean;
 }
 
-const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: TableComponentProps) => {
+const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, NumbertoWordsCOL, PercentageConvCOL, SizeofSAMCOL }: TableComponentProps) => {
   const [rows, setRows] = useState([
-    { id: 1, customerSegment: '', size: '' },
-    { id: 2, customerSegment: '', size: '' },
-    { id: 3, customerSegment: '', size: '' },
+    { id: 1, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
+    { id: 2, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
+    { id: 3, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
   ]);
   const [errorMessage, setErrorMessage] = useState('');
   const [totalSize, setTotalSize] = useState<number | null>(null);
@@ -41,7 +46,9 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
     const newRow = {
       id: rows.length ? rows[rows.length - 1].id + 1 : 1,
       customerSegment: '',
-      size: ''
+      size: '',
+      percentage: '',
+      sizeofSAM: ''
     };
     setRows([...rows, newRow]);
   };
@@ -55,7 +62,7 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
   };
 
   const handleCustomerSegmentChange = (id: number, value: string) => {
-    const updatedRows = rows.map(row => 
+    const updatedRows = rows.map(row =>
       row.id === id ? { ...row, customerSegment: value } : row
     );
     setRows(updatedRows);
@@ -67,6 +74,27 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
     });
     setRows(updatedRows);
   };
+
+  const handlePercentageChange = (id: number, value: string) => {
+    const updatedRows = rows.map(row => {
+      return row.id === id ? { ...row, percentage: value } : row;
+    });
+    setRows(updatedRows);
+    calulateSizeofSAM(id, value)
+  };
+
+  const calulateSizeofSAM = (id: number, percentage?: string) => {
+    const updatedRows = rows.map(row => {
+      if (row.id === id && row.size && percentage) {
+        return {
+          ...row,
+          sizeofSAM: ((parseInt(row.size) * parseInt(percentage)) / 100).toString()
+        };
+      }
+      return row;
+    });
+    setRows(updatedRows)
+  }
 
   const handleSaveDetails = () => {
     const allFieldsFilled = rows.every(row => row.customerSegment !== '' && row.size !== '');
@@ -112,7 +140,9 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
             <th></th>
             <th>Customer Segment</th>
             <th>Size</th>
-            <th></th>
+            {NumbertoWordsCOL && <th></th>} {/* NumberToWords header */}
+            {PercentageConvCOL && <th>Percent Conversion</th>}
+            {SizeofSAMCOL && <th>Size of SAM</th>}
           </tr>
         </thead>
         <tbody>
@@ -122,20 +152,36 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton }: Ta
                 <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
               </td>
               <td>
-                <CustomerSegment 
+                <CustomerSegment
                   value={row.customerSegment}
                   onChange={(value) => handleCustomerSegmentChange(row.id, value)}
                 />
               </td>
               <td>
-                <Size 
+                <Size
                   value={row.size}
                   onChange={(value) => handleSizeChange(row.id, value)}
                 />
               </td>
-              <td className="size-in-words">
-                <NumberToWords value={row.size} />
-              </td>
+              {NumbertoWordsCOL &&
+                <td className="size-in-words">
+                  <NumberToWords value={row.size} />
+                </td>
+              }
+              {PercentageConvCOL &&
+                <td>
+                  <Percentage
+                    value={row.percentage}
+                    onChange={(value) => handlePercentageChange(row.id, value)} />
+                </td>
+              }
+              {SizeofSAMCOL &&
+                <td>
+                  <SizeofSAM
+                    value={row.sizeofSAM}
+                  />
+                </td>
+              }
             </tr>
           ))}
         </tbody>

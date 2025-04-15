@@ -24,7 +24,7 @@ const TAMCalc = () => {
       <Header />
       <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
       {!showTable && <div className='table-placeholder'></div>}
-      {showTable && <TableComponent headingText="Total Addressable Market" />} {/* Conditionally render TableComponent */}
+      {showTable && <TableComponent headingText="Total Addressable Market" NumbertoWordsCOL={true} />} {/* Conditionally render TableComponent */}
       <Footer onNext={handleNext} texts={footerTexts} /> {/* Pass function to show TableComponent */}
     </div>
   );

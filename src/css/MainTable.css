@@ -2,6 +2,7 @@ h2 {
   color: white;
   margin-top: 10px;
   margin-right: 21vw;
+  font-size: xx-large;
 }
 
 .table-container {
@@ -135,7 +136,9 @@ h2 {
 .clear-icon:hover{
   color: red;
 }
-
+.whitecross{
+  height: 2vh;
+}
 .button-container {
   display: flex;
   justify-content: flex-start;
@@ -191,7 +194,7 @@ h2 {
 }
 
 .table td:nth-child(4) {
-  width: 380px; /* Width for size in words column */
+  width: 150px; /* Width for size in words column */
 }
 
 .total-size-container {
