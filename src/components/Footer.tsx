@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import '../css/Footer.css'; 
+import '../css/Footer.css';
 
 interface FooterProps {
-  onNext: () => void;
+  onNext?: () => void;
+  onNextPercent?: () => void;
+  onNextsieofSAM?: () => void;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, texts }: FooterProps) => {
+const Footer = ({ onNext,onNextPercent,onNextsieofSAM, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
 
@@ -28,7 +30,17 @@ const Footer = ({ onNext, texts }: FooterProps) => {
     if (textIndex < texts.length - 1) {
       setTextIndex(prevIndex => prevIndex + 1);
       if (textIndex === 0) {
-        onNext(); // Call onNext when the first down arrow click occurs
+        if (onNext) {
+          onNext(); // Call onNext when the first down arrow click occurs
+        }
+        if (onNextPercent) {
+          onNextPercent(); // Call onNextPercent when dowm arrow click occurs
+        }
+      }
+      if (textIndex === 1) {
+        if (onNextsieofSAM) {
+          onNextsieofSAM(); // Call onNextsieofSAM when dowm arrow click occurs
+        }
       }
     }
     setBlink(false); // Stop blinking when the button is clicked

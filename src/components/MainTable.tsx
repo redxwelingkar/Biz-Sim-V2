@@ -8,6 +8,7 @@ import TransitionWrapper from './TransitionWrapper'; // Import TransitionWrapper
 import '../css/MainTable.css';
 import Percentage from './PercentageCell';
 import SizeofSAM from './SizeofSAM';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface TableComponentProps {
   hideTotalSum?: boolean; // Add prop to conditionally hide total sum
@@ -17,6 +18,35 @@ interface TableComponentProps {
   PercentageConvCOL?: boolean;
   SizeofSAMCOL?: boolean;
 }
+
+const AnimatedColumn = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+  <AnimatePresence mode="wait">
+    <motion.td
+      key={keyName}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.td>
+  </AnimatePresence>
+);
+
+const AnimatedHeader = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+  <AnimatePresence mode="wait">
+    <motion.th
+      key={keyName}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.th>
+  </AnimatePresence>
+);
+
 
 const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, NumbertoWordsCOL, PercentageConvCOL, SizeofSAMCOL }: TableComponentProps) => {
   const [rows, setRows] = useState([
@@ -150,8 +180,8 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
             <th>Customer Segment</th>
             <th>Size</th>
             {NumbertoWordsCOL && <th></th>}{/* NumberToWords header */}
-            {PercentageConvCOL && <th>Percent Conversion</th>}
-            {SizeofSAMCOL && <th>Size of SAM</th>}
+            {PercentageConvCOL && <AnimatedHeader keyName='precentConv'> Percentage Conversion</AnimatedHeader>}
+            {SizeofSAMCOL && <AnimatedHeader keyName='SizeofSAM'>Size of SAM</AnimatedHeader>}
           </tr>
         </thead>
         <tbody>
@@ -177,19 +207,18 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
                   <NumberToWords value={row.size} />
                 </td>
               }
-              {PercentageConvCOL &&
-                <td>
+              {PercentageConvCOL && <AnimatedColumn keyName={`percent-${row.id}`}>
                   <Percentage
                     value={row.percentage}
                     onChange={(value) => handlePercentageChange(row.id, value)} />
-                </td>
+                </AnimatedColumn>
               }
-              {SizeofSAMCOL &&
-                <td>
+              {SizeofSAMCOL && <AnimatedColumn keyName={`sizeofSAM-${row.id}`}>
                   <SizeofSAM
                     value={row.sizeofSAM}
                   />
-                </td>
+                </AnimatedColumn>
+
               }
             </tr>
           ))}
