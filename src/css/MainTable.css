@@ -6,6 +6,22 @@ h2 {
   text-align: center;
 }
 
+.indicatorIcon-container{
+  /* background-color: white; */
+  position: absolute;
+  top:15vh;
+  left: 1.5vw
+}
+
+.tamIcon-container{
+  display: flex;
+  align-items: center;
+}
+
+.Tam-Icon{
+  width: 4.5vh;
+}
+
 .table-container {
   display: flex;
   flex-direction: column;

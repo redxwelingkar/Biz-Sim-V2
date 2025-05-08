@@ -1,10 +1,10 @@
 .backbutton_container{
     position: absolute;
-    top: 10vmin;
-    left: 3vmin;
+    top: 10vh;
+    left: 1.5vw;
     /* cursor: pointer; */
-    display: grid;
-    gap: 4
+    /* display: grid;
+    gap: 4 */
 }
 
 .backButtonStyle{

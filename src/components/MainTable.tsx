@@ -10,6 +10,9 @@ import Percentage from './PercentageCell';
 import SizeofSAM from './SizeofSAM';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import tamIcon from "../assets/img/tam-icon.png";
+import samIcon from "../assets/img/sam-icon.png";
+
 interface TableComponentProps {
   hideTotalSum?: boolean; // Add prop to conditionally hide total sum
   headingText?: string;
@@ -178,6 +181,12 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
     localStorage.setItem('TAM', totalsize.toString());
     localStorage.setItem('SAM', totalSAM.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
+    setTimeout(() => {
+      showTAMicon()
+    }, 2500);
+  }
+
+  const showTAMicon=()=>{
   }
 
   const handleClearTotal = () => {
@@ -203,6 +212,18 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
 
   return (
     <div className="table-container">
+
+      <div className='indicatorIcon-container'>
+        <div className='tamIcon-container'>
+          <img src={tamIcon} alt="Tam-Icon" className='Tam-Icon' />
+          <span> Total Addressable Market</span>
+        </div>
+        <div className='tamIcon-container'>
+          <img src={tamIcon} alt="Tam-Icon" className='Tam-Icon' />
+          <span> Total Addressable Market</span>
+        </div>
+      </div>
+
       <h2>{headingText}</h2>
       <table className="table">
         <thead>
