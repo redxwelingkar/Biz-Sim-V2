@@ -12,6 +12,7 @@ const SAMCalc = () => {
 
   const [showpercent, setShowpercent] = useState(false);
   const [showsizeofSAM, setShowsizeofSAM] = useState(false);
+  const [showCalSAMBTN, setshowCalSAMBTN] = useState(false);
 
   const navigateNext = () => {
     navigate("/Biz-Sim-V2/towards-csp"); // Navigate to the next page after transitions
@@ -28,25 +29,28 @@ const SAMCalc = () => {
   const onNextPercent=()=>{
     setShowpercent(true);
   }
-  const onNextsieofSAM=()=>{
+  const onNextsizeofSAM=()=>{
     setShowsizeofSAM(true);
   }
-  
+  const onNextshowCalSAMBTN=()=>{
+    setshowCalSAMBTN(true);
+  }  
   return (
     <div className="sam-calculation">
       <Header />
-      <BackButton topOffset="10vh" />
+      <BackButton topOffset="10vh" showtam={true} showsam={true}/>
       {/* <TamIcon /> */}
       <TableComponent
         hideTotalSum={true}
         headingText="Serviceable Addressable Market"
         hideSaveDetailsButton={true}
-        NumbertoWordsCOL={true}
+        NumbertoWordsCOL={false}
         PercentageConvCOL={showpercent}
         SizeofSAMCOL={showsizeofSAM}
+        showCalSAMBTN={showCalSAMBTN}
       />
-      <Footer onNextPercent={onNextPercent} onNextsieofSAM={onNextsieofSAM} texts={footerTexts} />
-      <button onClick={navigateNext}>NEXT</button>
+      <Footer onNextPercent={onNextPercent} onNextsizeofSAM={onNextsizeofSAM} onNextshowCalSAMBTN={onNextshowCalSAMBTN} texts={footerTexts} />
+      {/* <button onClick={navigateNext}>NEXT</button> */}
     </div>
   );
 };

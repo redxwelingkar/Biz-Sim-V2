@@ -45,7 +45,11 @@ const Size = ({ value, onChange }: SizeProps) => {
         className={value ? 'value-entered' : ''}
       />
       {/* {value && <span onClick={handleClear} className="clear-icon clear-icon-left"><img className='whitecross' src={whiteCross} alt="X" /></span>} */}
-      {value && <span onClick={handleClear} className="clear-icon clear-icon-left">x</span>}
+      {value && (
+        <span onClick={handleClear} className="clear-icon clear-icon-left">
+          x
+          </span>
+        )}
 
     </div>
   );

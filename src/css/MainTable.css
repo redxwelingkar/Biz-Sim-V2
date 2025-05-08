@@ -205,31 +205,34 @@ h2 {
   display: flex;
   flex-direction: column;
   /* margin-right: 21vw; */
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+  margin-top: 5vh;
   position: relative;
+  max-width: 40%;
 }
 
 .total-size-words {
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
   margin-bottom: 0.5vh;
   margin-top: 1vh;
   color: white;
+  /* max-width: 20%; */
 }
 
 .total-size-field {
   border-radius: 4px;
-  width: 23vw;
   padding: 10px;
   height: 2.3vh;
   text-align: right;
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
   margin-right: 0; 
   position: relative;
-  color: white;
-  background-color: #744c9b;
-  border: none;
+  color: #12005A;
+  background-color: white;
+  border-color: #31AE0E;
+  border-width: 3px;
 }
 
 .total-size-clear-icon {

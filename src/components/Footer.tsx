@@ -4,11 +4,12 @@ import '../css/Footer.css';
 interface FooterProps {
   onNext?: () => void;
   onNextPercent?: () => void;
-  onNextsieofSAM?: () => void;
+  onNextsizeofSAM?: () => void;
+  onNextshowCalSAMBTN?: () => void;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext,onNextPercent,onNextsieofSAM, texts }: FooterProps) => {
+const Footer = ({ onNext,onNextPercent,onNextsizeofSAM,onNextshowCalSAMBTN, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
 
@@ -27,6 +28,8 @@ const Footer = ({ onNext,onNextPercent,onNextsieofSAM, texts }: FooterProps) => 
   };
 
   const handleDownArrowClick = () => {
+    console.log("Arrow Index",textIndex);
+    
     if (textIndex < texts.length - 1) {
       setTextIndex(prevIndex => prevIndex + 1);
       if (textIndex === 0) {
@@ -38,8 +41,13 @@ const Footer = ({ onNext,onNextPercent,onNextsieofSAM, texts }: FooterProps) => 
         }
       }
       if (textIndex === 1) {
-        if (onNextsieofSAM) {
-          onNextsieofSAM(); // Call onNextsieofSAM when dowm arrow click occurs
+        if (onNextsizeofSAM) {
+          onNextsizeofSAM(); // Call onNextsizeofSAM when dowm arrow click occurs on index 1
+        }
+      }
+      if (textIndex === 2) {
+        if (onNextshowCalSAMBTN) {
+          onNextshowCalSAMBTN(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
       }
     }

@@ -14,6 +14,7 @@ interface TableComponentProps {
   hideTotalSum?: boolean; // Add prop to conditionally hide total sum
   headingText?: string;
   hideSaveDetailsButton?: boolean;
+  showCalSAMBTN?: boolean;
   NumbertoWordsCOL?: boolean;
   PercentageConvCOL?: boolean;
   SizeofSAMCOL?: boolean;
@@ -47,15 +48,29 @@ const AnimatedHeader = ({ children, keyName }: { children: React.ReactNode; keyN
   </AnimatePresence>
 );
 
+const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={keyName}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      // exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  </AnimatePresence>
+);
 
-const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, NumbertoWordsCOL, PercentageConvCOL, SizeofSAMCOL }: TableComponentProps) => {
+const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, NumbertoWordsCOL, PercentageConvCOL, SizeofSAMCOL, showCalSAMBTN }: TableComponentProps) => {
   const [rows, setRows] = useState([
     { id: 1, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
     { id: 2, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
     { id: 3, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
   ]);
   const [errorMessage, setErrorMessage] = useState('');
-  const [totalSize, setTotalSize] = useState<number | null>(null);
+  const [totalSize, setTotalSize] = useState(0);
+  const [SAM, setSAM] = useState(0);
   const [showNext, setShowNext] = useState(false);
   const [showText, setShowText] = useState(false);
 
@@ -149,8 +164,24 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
     setShowNext(true); // Show Next button when details are saved
   };
 
+  const handleCalSAM = ()=>{
+    const allFieldsFilled = rows.every(row => row.customerSegment !== '' && row.size !== '' && row.percentage !== '');
+    if (!allFieldsFilled) {
+      setErrorMessage('Please enter details in all cells.');
+      return;
+    }
+    setErrorMessage('');
+    const totalsize = rows.reduce((total, row) => total + parseInt(row.size), 0);
+    setTotalSize(totalsize);
+    const totalSAM = rows.reduce((total, row) => total + parseInt(row.sizeofSAM), 0);
+    setSAM(totalSAM);
+    localStorage.setItem('TAM', totalsize.toString());
+    localStorage.setItem('SAM', totalSAM.toString());
+    localStorage.setItem('rows', JSON.stringify(rows));
+  }
+
   const handleClearTotal = () => {
-    setTotalSize(null);
+    setTotalSize(0);
     localStorage.removeItem('TAM');
     localStorage.removeItem('rows');
     setShowNext(false); // Hide Next button when total is cleared
@@ -228,6 +259,19 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
       <div className="button-container">
         <button className="add-button" onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
         {!hideSaveDetailsButton && <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+        {showCalSAMBTN && <PopUp keyName='CalSAMBTN'> <button className="save-button" onClick={handleCalSAM}>CALCULATE SAM</button></PopUp>}
+        {hideTotalSum && SAM !== 0 && (
+        <div className="total-size-container">
+          {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
+          <span className="total-size-words"><NumberToWords value={totalSize.toString()} /></span>
+          <input
+            type="text"
+            value={SAM}
+            readOnly
+            className="total-size-field"
+          />
+        </div>
+      )}
         {/* TODO: transition from Save details button th next screen after delay and not on click "NEXT button" */}
         {showNext && (
           <TransitionWrapper delays={[0, 2500, 5000]}>
@@ -249,7 +293,7 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
       </div>
       {!hideTotalSum && totalSize !== null && (
         <div className="total-size-container">
-          <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span>
+          {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
           <span className="total-size-words"><NumberToWords value={totalSize.toString()} /></span>
           <input
             type="text"
