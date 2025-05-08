@@ -228,6 +228,7 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
       <div className="button-container">
         <button className="add-button" onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
         {!hideSaveDetailsButton && <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+        {/* TODO: transition from Save details button th next screen after delay and not on click "NEXT button" */}
         {showNext && (
           <TransitionWrapper delays={[0, 2500, 5000]}>
             {(visibleStates) => (

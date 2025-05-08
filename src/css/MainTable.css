@@ -87,6 +87,9 @@ h2 {
 
 .cell input.value-entered {
   text-align: right;
+  background-color: #744c9b;
+  border: 1px solid rgb(226, 159, 253);
+  color: white;
 }
 
 .cell input.customer-cell {

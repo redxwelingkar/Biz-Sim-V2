@@ -20,6 +20,8 @@ const Size = ({ value, onChange }: SizeProps) => {
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.target.value) {
       e.target.classList.add('blurred');
+    } else{
+      e.target.classList.remove('blurred')
     }
   };
 
@@ -28,7 +30,7 @@ const Size = ({ value, onChange }: SizeProps) => {
   };
 
   const handleClear = () => {
-    onChange('');
+    onChange("");
   };
 
   return (
