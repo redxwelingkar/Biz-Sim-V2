@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import backButtonImage from '../assets/img/back_arrow.png'; // replace with the correct path to your image
-import tamButtonImage from '../assets/img/tam-icon.png'; // replace with the correct path to your image
+// import tamButtonImage from '../assets/img/tam-icon.png'; // replace with the correct path to your image
 import "../css/backButton.css"
 
 interface BackButtonProps {
@@ -22,16 +22,16 @@ const BackButton: React.FC<BackButtonProps> = (props) => {
         onClick={handleBackClick}
         className='backButtonStyle'
       />
-      {props.showtam ?
+      {/* {props.showtam ?
         <div className='tamContainer' >
           <img
             src={tamButtonImage}
             alt="Tam"
             className='tamButtonStyle'
           />
-          {/* <span className='buttonText'>Total Addressable Market</span> */}
+          <span className='buttonText'>Total Addressable Market</span>
         </div>
-        : <div></div>}
+        : <div></div>} */}
     </div>
   );
 };

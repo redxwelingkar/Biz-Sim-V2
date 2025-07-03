@@ -13,6 +13,7 @@ const SAMCalc = () => {
   const [showpercent, setShowpercent] = useState(false);
   const [showsizeofSAM, setShowsizeofSAM] = useState(false);
   const [showCalSAMBTN, setshowCalSAMBTN] = useState(false);
+  const [showSAMIcon, setshowSAMIcon] = useState(false);
 
   const navigateNext = () => {
     navigate("/Biz-Sim-V2/towards-csp"); // Navigate to the next page after transitions
@@ -26,19 +27,22 @@ const SAMCalc = () => {
     "Great! You have successfully defined and calculated the size of the Serviceable Addressable Market (SAM) for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to SAM if you want to make any changes later.",
   ];
 
-  const onNextPercent=()=>{
+  const onNextPercent = () => {
     setShowpercent(true);
   }
-  const onNextsizeofSAM=()=>{
+  const onNextsizeofSAM = () => {
     setShowsizeofSAM(true);
   }
-  const onNextshowCalSAMBTN=()=>{
+  const onNextshowCalSAMBTN = () => {
     setshowCalSAMBTN(true);
-  }  
+  }
+  const onNextshowSAMIcon = () => {
+    setshowSAMIcon(true);
+  }
   return (
     <div className="sam-calculation">
       <Header />
-      <BackButton topOffset="10vh" showtam={true} showsam={true}/>
+      <BackButton topOffset="10vh" />
       {/* <TamIcon /> */}
       <TableComponent
         hideTotalSum={true}
@@ -48,8 +52,15 @@ const SAMCalc = () => {
         PercentageConvCOL={showpercent}
         SizeofSAMCOL={showsizeofSAM}
         showCalSAMBTN={showCalSAMBTN}
+        holdTAMIcon={true}
+        showSAMIcon={showSAMIcon}
       />
-      <Footer onNextPercent={onNextPercent} onNextsizeofSAM={onNextsizeofSAM} onNextshowCalSAMBTN={onNextshowCalSAMBTN} texts={footerTexts} />
+      <Footer
+        onNextPercent={onNextPercent}
+        onNextsizeofSAM={onNextsizeofSAM}
+        onNextshowCalSAMBTN={onNextshowCalSAMBTN}
+        onNextshowSAMIcon={onNextshowSAMIcon}
+        texts={footerTexts} />
       {/* <button onClick={navigateNext}>NEXT</button> */}
     </div>
   );

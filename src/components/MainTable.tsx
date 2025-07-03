@@ -21,6 +21,10 @@ interface TableComponentProps {
   NumbertoWordsCOL?: boolean;
   PercentageConvCOL?: boolean;
   SizeofSAMCOL?: boolean;
+  showTAMIcon?: boolean;
+  holdTAMIcon?: boolean;
+  showSAMIcon?: boolean;
+  holdSAMIcon?: boolean;
 }
 
 const AnimatedColumn = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -65,7 +69,20 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
   </AnimatePresence>
 );
 
-const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, NumbertoWordsCOL, PercentageConvCOL, SizeofSAMCOL, showCalSAMBTN }: TableComponentProps) => {
+
+const TableComponent = ({
+  hideTotalSum,
+  headingText,
+  hideSaveDetailsButton,
+  NumbertoWordsCOL,
+  PercentageConvCOL,
+  SizeofSAMCOL,
+  showCalSAMBTN,
+  showSAMIcon,
+  showTAMIcon,
+  holdTAMIcon,
+  holdSAMIcon
+}: TableComponentProps) => {
   const [rows, setRows] = useState([
     { id: 1, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
     { id: 2, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
@@ -76,6 +93,10 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
   const [SAM, setSAM] = useState(0);
   const [showNext, setShowNext] = useState(false);
   const [showText, setShowText] = useState(false);
+  const [showTAMIcon1, setshowTAMIcon] = useState(showTAMIcon);
+  const [showSAMIcon1, setshowSAMIcon] = useState(showSAMIcon);
+  const [showTAMIconText, setshowTAMIconText] = useState(false);
+  const [showSAMIconText, setshowSAMIconText] = useState(false);
 
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -90,6 +111,44 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
       setTotalSize(parseInt(storedTotalSize, 10));
     }
   }, []);
+
+  // hide SAM text after 2 sec
+  useEffect(() => {
+    if (showTAMIcon) {
+      setTimeout(() => {
+        setshowTAMIcon(true)
+        setTimeout(() => {
+          // console.log("setshowTAMIconText(true)");
+          setshowTAMIconText(true)
+          setTimeout(() => {
+            // console.log("setshowTAMIconText(false)");
+            setshowTAMIconText(false)
+            setTimeout(() => {
+              // console.log("setshowTAMIconText(false)");
+              navigateToTowardsSam()
+            }, 1000 * 2);
+          }, 1000 * 2.5);
+        }, 1000);
+      }, 1000 * 2);
+    }
+    if (showSAMIcon) {
+      setTimeout(() => {
+        setshowSAMIcon(true)
+        setTimeout(() => {
+          // console.log("setshowSAMIconText(true)");
+          setshowSAMIconText(true)
+          setTimeout(() => {
+            // console.log("setshowSAMIconText(false)");
+            setshowSAMIconText(false)
+            setTimeout(() => {
+              // console.log("setshowSAMIconText(false)");
+              navigateToTowardsCSP()
+            }, 1000 * 2);
+          }, 1000 * 2.5);
+        }, 1000);
+      }, 1000 * 2);
+    }
+  }, [showSAMIcon, showTAMIcon])
 
   const handleAddRow = () => {
     const newRow = {
@@ -164,10 +223,10 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
     setTotalSize(total);
     localStorage.setItem('TAM', total.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
-    setShowNext(true); // Show Next button when details are saved
+    // setShowNext(true); // Show Next button when details are saved
   };
 
-  const handleCalSAM = ()=>{
+  const handleCalSAM = () => {
     const allFieldsFilled = rows.every(row => row.customerSegment !== '' && row.size !== '' && row.percentage !== '');
     if (!allFieldsFilled) {
       setErrorMessage('Please enter details in all cells.');
@@ -182,12 +241,10 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
     localStorage.setItem('SAM', totalSAM.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
     setTimeout(() => {
-      showTAMicon()
+
     }, 2500);
   }
 
-  const showTAMicon=()=>{
-  }
 
   const handleClearTotal = () => {
     setTotalSize(0);
@@ -196,33 +253,96 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
     setShowNext(false); // Hide Next button when total is cleared
   };
 
-  const handleNext = () => {
-    const image = document.querySelector('.image-container');
-    if (image) {
-      image.classList.add('show-image');
-    }
-    setTimeout(() => {
-      setShowText(true); // Show text after image transition
-    }, 2500);
-  };
+  // const handleNext = () => {
+  //   const image = document.querySelector('.image-container');
+  //   if (image) {
+  //     image.classList.add('show-image');
+  //   }
+  //   setTimeout(() => {
+  //     setShowText(true); // Show text after image transition
+  //   }, 2500);
+  // };
 
-  const navigateToNextPage = () => {
+  const navigateToTowardsSam = () => {
     navigate('/Biz-Sim-V2/towards-sam'); // Navigate to the next page after transitions
+  };
+  const navigateToTowardsCSP = () => {
+    navigate('/Biz-Sim-V2/towards-csp'); // Navigate to the next page after transitions
   };
 
   return (
     <div className="table-container">
-
       <div className='indicatorIcon-container'>
-        <div className='tamIcon-container'>
-          <img src={tamIcon} alt="Tam-Icon" className='Tam-Icon' />
-          <span> Total Addressable Market</span>
+        {/* TAM Icon */}
+        <div className='Icon-div'>
+
+          {/* Animate the icon entry */}
+          <AnimatePresence mode="wait">
+            {holdTAMIcon || showTAMIcon1 ? (
+              <motion.img
+                key="tam-img"
+                src={tamIcon}
+                alt="Tam-Icon"
+                className="Tam-Icon"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 1 }}
+              />
+            ) : <div></div>}
+          </AnimatePresence>
+
+          {/* Animate the text entry/exit */}
+          <AnimatePresence mode="wait">
+            {showTAMIconText && (
+              <motion.span
+                key="Tam-Icon-Text"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 1 }}
+              >
+                Total Addressable Market
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
-        <div className='tamIcon-container'>
-          <img src={tamIcon} alt="Tam-Icon" className='Tam-Icon' />
-          <span> Total Addressable Market</span>
+        {/* SAM Icon */}
+        <div className='Icon-div'>
+
+          {/* Animate the icon entry */}
+          <AnimatePresence mode="wait">
+            {holdSAMIcon || showSAMIcon1 ? (
+              <motion.img
+                key="sam-img"
+                src={samIcon}
+                alt="Sam-Icon"
+                className="Tam-Icon"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 1 }}
+              />
+            ) : <div></div>}
+          </AnimatePresence>
+
+          {/* Animate the text entry/exit */}
+          <AnimatePresence mode="wait">
+            {showSAMIconText && (
+              <motion.span
+                key="Sam-Icon-Text"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 1 }}
+              >
+                Serviceable Addressable Market
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
+
 
       <h2>{headingText}</h2>
       <table className="table">
@@ -260,16 +380,16 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
                 </td>
               }
               {PercentageConvCOL && <AnimatedColumn keyName={`percent-${row.id}`}>
-                  <Percentage
-                    value={row.percentage}
-                    onChange={(value) => handlePercentageChange(row.id, value)} />
-                </AnimatedColumn>
+                <Percentage
+                  value={row.percentage}
+                  onChange={(value) => handlePercentageChange(row.id, value)} />
+              </AnimatedColumn>
               }
               {SizeofSAMCOL && <AnimatedColumn keyName={`sizeofSAM-${row.id}`}>
-                  <SizeofSAM
-                    value={row.sizeofSAM}
-                  />
-                </AnimatedColumn>
+                <SizeofSAM
+                  value={row.sizeofSAM}
+                />
+              </AnimatedColumn>
 
               }
             </tr>
@@ -281,10 +401,11 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
         <button className="add-button" onClick={handleAddRow}>ADD CUSTOMER SEGMENT</button>
         {!hideSaveDetailsButton && <button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
         {showCalSAMBTN && <PopUp keyName='CalSAMBTN'> <button className="save-button" onClick={handleCalSAM}>CALCULATE SAM</button></PopUp>}
-        {hideTotalSum && SAM !== 0 && (
+      </div>
+      {hideTotalSum && SAM !== 0 && (
         <div className="total-size-container">
           {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
-          <span className="total-size-words"><NumberToWords value={totalSize.toString()} /></span>
+          <span className="total-size-words"><NumberToWords value={SAM.toString()} /></span>
           <input
             type="text"
             value={SAM}
@@ -293,25 +414,6 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
           />
         </div>
       )}
-        {/* TODO: transition from Save details button th next screen after delay and not on click "NEXT button" */}
-        {showNext && (
-          <TransitionWrapper delays={[0, 2500, 5000]}>
-            {(visibleStates) => (
-              <>
-                <button
-                  className={`next-button ${visibleStates[2] ? 'visible' : ''}`}
-                  onClick={() => {
-                    handleNext();
-                    setTimeout(navigateToNextPage, 5000); // Navigate after transition
-                  }}
-                >
-                  NEXT
-                </button>
-              </>
-            )}
-          </TransitionWrapper>
-        )}
-      </div>
       {!hideTotalSum && totalSize !== null && (
         <div className="total-size-container">
           {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
@@ -324,10 +426,6 @@ const TableComponent = ({ hideTotalSum, headingText, hideSaveDetailsButton, Numb
           />
         </div>
       )}
-      <div className="image-container">
-        <img src="src/assets/img/tam-icon.png" alt="img" className="transition-image" />
-        {showText && <span className="transition-text">Total Addressable Market</span>}
-      </div>
     </div>
   );
 };

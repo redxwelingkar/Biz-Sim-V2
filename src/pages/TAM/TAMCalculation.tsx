@@ -7,10 +7,14 @@ import TableComponent from '../../components/MainTable';
 
 const TAMCalc = () => {
   const [showTable, setShowTable] = useState(false); // State to control visibility of TableComponent
-
+  const [showTAMIcon, setshowTAMIcon] = useState(false)
   const handleNext = () => {
     setShowTable(true); // Show TableComponent
   };
+
+  const onNextshowTAMIcon = () => {
+    setshowTAMIcon(true)
+  }
 
   const footerTexts = [
     "Here in TAM, the first thing you need to mention are the different customer segments in the field given under the column of “Customer Segments”, and mention a near accurate approximation of the number of people in that customer segment in the field next to the specified customer segment under the column of 'Size'.",
@@ -24,8 +28,13 @@ const TAMCalc = () => {
       <Header />
       <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
       {!showTable && <div className='table-placeholder'></div>}
-      {showTable && <TableComponent headingText="Total Addressable Market" NumbertoWordsCOL={true} />} {/* Conditionally render TableComponent */}
-      <Footer onNext={handleNext} texts={footerTexts} /> {/* Pass function to show TableComponent */}
+      {showTable &&
+        <TableComponent
+          headingText="Total Addressable Market"
+          NumbertoWordsCOL={true}
+          showTAMIcon={showTAMIcon}
+        />} {/* Conditionally render TableComponent */}
+      <Footer onNext={handleNext} onNextshowTAMIcon={onNextshowTAMIcon} texts={footerTexts} /> {/* Pass function to show TableComponent */}
     </div>
   );
 };

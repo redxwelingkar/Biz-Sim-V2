@@ -6,19 +6,20 @@ h2 {
   text-align: center;
 }
 
-.indicatorIcon-container{
+.indicatorIcon-container {
   /* background-color: white; */
   position: absolute;
-  top:15vh;
+  top: 15vh;
   left: 1.5vw
 }
 
-.tamIcon-container{
+.Icon-div {
   display: flex;
   align-items: center;
+  padding-bottom: 5px;
 }
 
-.Tam-Icon{
+.Tam-Icon {
   width: 4.5vh;
 }
 
@@ -31,25 +32,32 @@ h2 {
   margin-left: auto;
   margin-right: 5vw; */
   min-height: 71vh;
-  max-height: 71vh; /* Set max height to contain rows */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 71vh;
+  /* Set max height to contain rows */
+  overflow-y: auto;
+  /* Enable vertical scrolling */
 }
 
 .table-container::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
+  width: 5px;
+  /* Width of the scrollbar */
 }
 
 .table-container::-webkit-scrollbar-thumb {
-  background-color: #744c9b; /* Color of the scrollbar thumb */
-  border-radius: 3px; /* Rounded edges for the scrollbar thumb */
+  background-color: #744c9b;
+  /* Color of the scrollbar thumb */
+  border-radius: 3px;
+  /* Rounded edges for the scrollbar thumb */
 }
 
 .table-container::-webkit-scrollbar-track {
-  background: transparent; /* Transparent track */
+  background: transparent;
+  /* Transparent track */
 }
 
 .table {
-  border-collapse: collapse; /* Ensures borders and spacing are handled correctly */
+  border-collapse: collapse;
+  /* Ensures borders and spacing are handled correctly */
 }
 
 .table th,
@@ -69,7 +77,8 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  padding: 0; /* Smaller padding for the delete button */
+  padding: 0;
+  /* Smaller padding for the delete button */
   font-size: 18px;
   width: 2vw;
   height: 3.5vh;
@@ -96,8 +105,10 @@ h2 {
   width: 12vw;
   padding: 4px;
   height: 3.3vh;
-  overflow: hidden; /* Prevents content from overflowing */
-  text-overflow: ellipsis; /* Adds ellipsis for overflowing text */
+  overflow: hidden;
+  /* Prevents content from overflowing */
+  text-overflow: ellipsis;
+  /* Adds ellipsis for overflowing text */
   max-width: 100%;
 }
 
@@ -113,8 +124,10 @@ h2 {
 }
 
 .cell input:focus {
-  border: 2px solid rgb(6, 188, 6); /* Green border on focus */
-  outline: none; /* Remove default outline */
+  border: 2px solid rgb(6, 188, 6);
+  /* Green border on focus */
+  outline: none;
+  /* Remove default outline */
 }
 
 .cell input:hover {
@@ -127,8 +140,9 @@ h2 {
   color: white;
 }
 
-.cell input.blurred:hover{
-  border: 2px solid red; /* Red border on hover */
+.cell input.blurred:hover {
+  border: 2px solid red;
+  /* Red border on hover */
 }
 
 .clear-icon {
@@ -141,24 +155,28 @@ h2 {
   display: none;
 }
 
-.cell:hover .clear-icon{
+.cell:hover .clear-icon {
   display: inline;
 }
 
 .clear-icon-right {
-  right: 0.5vw; /* Position on the right for customer segment */
+  right: 0.5vw;
+  /* Position on the right for customer segment */
 }
 
 .clear-icon-left {
-  left: 0.5vw; /* Position on the left for size */
+  left: 0.5vw;
+  /* Position on the left for size */
 }
 
-.clear-icon:hover{
+.clear-icon:hover {
   color: red;
 }
-.whitecross{
+
+.whitecross {
   height: 2vh;
 }
+
 .button-container {
   display: flex;
   justify-content: flex-start;
@@ -167,8 +185,8 @@ h2 {
 }
 
 .add-button,
-.save-button, 
-.next-button{
+.save-button,
+.next-button {
   border: none;
   cursor: pointer;
   margin-top: 0;
@@ -188,12 +206,12 @@ h2 {
   margin-top: 2vh;
 }
 
-.next-button{
+.next-button {
   display: none;
 }
 
 .button-container .next-button {
-  display: inline-block; 
+  display: inline-block;
   margin-top: 2vh;
   width: 7vw;
 }
@@ -205,16 +223,19 @@ h2 {
 }
 
 .table td:first-child {
-  width: 50px; /* Width for delete button column */
+  width: 50px;
+  /* Width for delete button column */
 }
 
 .table td:nth-child(2),
 .table td:nth-child(3) {
-  width: 150px; /* Width for customer segment and size columns */
+  width: 150px;
+  /* Width for customer segment and size columns */
 }
 
 .table td:nth-child(4) {
-  width: 150px; /* Width for size in words column */
+  width: 150px;
+  /* Width for size in words column */
 }
 
 .total-size-container {
@@ -224,7 +245,8 @@ h2 {
   margin-bottom: 5vh;
   margin-top: 5vh;
   position: relative;
-  max-width: 40%;
+  width: 50%;
+  /* max-width: 40%; */
 }
 
 .total-size-words {
@@ -233,6 +255,7 @@ h2 {
   margin-bottom: 0.5vh;
   margin-top: 1vh;
   color: white;
+  width: 50%;
   /* max-width: 20%; */
 }
 
@@ -243,7 +266,7 @@ h2 {
   text-align: right;
   font-size: x-large;
   font-weight: bold;
-  margin-right: 0; 
+  margin-right: 0;
   position: relative;
   color: #12005A;
   background-color: white;
@@ -254,36 +277,41 @@ h2 {
 .total-size-clear-icon {
   position: absolute;
   top: 72%;
-  left: 10px; /* Adjust to place icon inside the input field */
+  left: 10px;
+  /* Adjust to place icon inside the input field */
   transform: translateY(-50%);
   cursor: pointer;
   color: white;
   font-size: 20px;
   font-weight: bolder;
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
   z-index: 1;
 }
 
 .total-size-container:hover .total-size-clear-icon {
-  display: inline; /* Show on hover */
+  display: inline;
+  /* Show on hover */
 }
 
 .image-container {
   position: absolute;
   /* TODO: pixel perfect the animation start and end position */
   top: 15vh;
-  left: -5vw; /* Start from outside the page */
+  left: -5vw;
+  /* Start from outside the page */
   transition: left 2s ease;
   position: 'absolute',
 }
 
-.transition-image{
+.transition-image {
   width: 4.5vmin;
   cursor: pointer;
 }
 
 .image-container.show-image {
-  left: 1.3vw; /* Move to a little further right */
+  left: 1.3vw;
+  /* Move to a little further right */
 }
 
 .transition-text {
@@ -298,29 +326,30 @@ h2 {
 
 @keyframes slideText {
   0% {
-      transform: translateX(-100%);
-      opacity: 0;
+    transform: translateX(-100%);
+    opacity: 0;
   }
 
   20% {
-      transform: translateX(0%);
-      opacity: 1;
+    transform: translateX(0%);
+    opacity: 1;
   }
 
   80% {
-      transform: translateX(0%);
-      opacity: 1;
+    transform: translateX(0%);
+    opacity: 1;
   }
 
   100% {
-      transform: translateX(-100%);
-      opacity: 0;
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }
 
 
 .table td:nth-child(4) {
-  position: relative; /* Reset any relative positioning if necessary */
+  position: relative;
+  /* Reset any relative positioning if necessary */
 }
 
 .saved-value {
