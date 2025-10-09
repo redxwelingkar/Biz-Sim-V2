@@ -25,6 +25,8 @@ interface TableComponentProps {
   holdTAMIcon?: boolean;
   showSAMIcon?: boolean;
   holdSAMIcon?: boolean;
+
+  SAMCalBTNclick?: () => void;
 }
 
 const AnimatedColumn = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -81,7 +83,9 @@ const TableComponent = ({
   showSAMIcon,
   showTAMIcon,
   holdTAMIcon,
-  holdSAMIcon
+  holdSAMIcon,
+  SAMCalBTNclick
+
 }: TableComponentProps) => {
   const [rows, setRows] = useState([
     { id: 1, customerSegment: '', size: '', percentage: '', sizeofSAM: '' },
@@ -97,6 +101,7 @@ const TableComponent = ({
   const [showSAMIcon1, setshowSAMIcon] = useState(showSAMIcon);
   const [showTAMIconText, setshowTAMIconText] = useState(false);
   const [showSAMIconText, setshowSAMIconText] = useState(false);
+
 
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -240,9 +245,9 @@ const TableComponent = ({
     localStorage.setItem('TAM', totalsize.toString());
     localStorage.setItem('SAM', totalSAM.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
-    setTimeout(() => {
-
-    }, 2500);
+    if (SAMCalBTNclick) {
+      SAMCalBTNclick()
+    }
   }
 
 

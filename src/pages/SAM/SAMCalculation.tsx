@@ -13,6 +13,7 @@ const SAMCalc = () => {
   const [showpercent, setShowpercent] = useState(false);
   const [showsizeofSAM, setShowsizeofSAM] = useState(false);
   const [showCalSAMBTN, setshowCalSAMBTN] = useState(false);
+  const [CalSAMBTNclick, setCalSAMBTNclick] = useState(false);
   const [showSAMIcon, setshowSAMIcon] = useState(false);
 
   const navigateNext = () => {
@@ -39,6 +40,11 @@ const SAMCalc = () => {
   const onNextshowSAMIcon = () => {
     setshowSAMIcon(true);
   }
+
+  const onSAMCalBTNclick=()=>{
+    setCalSAMBTNclick(true)
+  }
+
   return (
     <div className="sam-calculation">
       <Header />
@@ -52,6 +58,7 @@ const SAMCalc = () => {
         PercentageConvCOL={showpercent}
         SizeofSAMCOL={showsizeofSAM}
         showCalSAMBTN={showCalSAMBTN}
+        SAMCalBTNclick={onSAMCalBTNclick}
         holdTAMIcon={true}
         showSAMIcon={showSAMIcon}
       />
@@ -60,6 +67,7 @@ const SAMCalc = () => {
         onNextsizeofSAM={onNextsizeofSAM}
         onNextshowCalSAMBTN={onNextshowCalSAMBTN}
         onNextshowSAMIcon={onNextshowSAMIcon}
+        CalSAMBTNclick={CalSAMBTNclick}
         texts={footerTexts} />
       {/* <button onClick={navigateNext}>NEXT</button> */}
     </div>

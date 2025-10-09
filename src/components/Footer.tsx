@@ -8,12 +8,14 @@ interface FooterProps {
   onNextshowCalSAMBTN?: () => void;
   onNextshowTAMIcon?: () => void;
   onNextshowSAMIcon?: () => void;
+  CalSAMBTNclick?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
+  const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,6 +24,12 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
+    // setdown_Arrow(CalSAMBTNclick)
+    if (CalSAMBTNclick) setdown_Arrow(false)
+  }, [CalSAMBTNclick])
 
   const handleUpArrowClick = () => {
     if (textIndex > 0) {
@@ -32,6 +40,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
 
   const handleDownArrowClick = () => {
     console.log("Arrow Index", textIndex);
+    // console.log("down_Arrow", down_Arrow);
 
     if (textIndex < texts.length - 1) {
       setTextIndex(prevIndex => prevIndex + 1);
@@ -53,14 +62,13 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
           onNextshowTAMIcon(); // Call onNextshowTAMIcon when dowm arrow click occurs on index 2
         }
         if (onNextshowCalSAMBTN) {
+          setdown_Arrow(true)
           onNextshowCalSAMBTN(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
       }
       if (textIndex === 3) {
-        if (onNextshowSAMIcon) {
+        if (onNextshowSAMIcon)
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
-        }
-
       }
     }
     setBlink(false); // Stop blinking when the button is clicked
@@ -83,9 +91,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
           <img src="./src/assets/img/upward_arrow.png" alt="Up Arrow" className="arrow-image" />
         </button>
         <button
-          className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${textIndex === texts.length - 1 ? 'disabled' : ''}`}
+          className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : ''}`}
           onClick={handleDownArrowClick}
-          disabled={textIndex === texts.length - 1}
+          disabled={down_Arrow || textIndex === texts.length - 1}
         >
           <img src="./src/assets/img/downward_arrow.png" alt="Down Arrow" className="arrow-image" />
         </button>
