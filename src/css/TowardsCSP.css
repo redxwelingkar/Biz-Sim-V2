@@ -6,9 +6,10 @@
 
 .csp-container {
   text-align: center;
-  margin-left: 18vw;
-  margin-top: 10vh;
-  height: 32vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vh;
+  /* height: 32vh; */
 }
 
 .first-txt,
@@ -19,7 +20,7 @@
   color: white; /* White text color */
   transition: opacity 1s ease-in-out, transform 1s;
   opacity: 1;
-  width: 78%;
+  /* width: 78%; */
 }
 
 .first-txt.slide-up-out {
@@ -35,17 +36,17 @@
 }
 
 .second-txt.slide-up {
-  transform: translateY(-23vw);
+  transform: translateY(-10vw);
   opacity: 1;
 }
 
 .third-txt.slide-up {
-  transform: translateY(-21.5vw);
+  transform: translateY(-9vw);
   opacity: 1;
 }
 
 .fourth-txt.slide-up {
-  transform: translateY(-19vw);
+  transform: translateY(-8vw);
   opacity: 1;
 }
 
@@ -65,7 +66,7 @@
 .btn {
   display: flex;
   justify-content: center;
-  margin-top: 2vh;
+  margin-top: -10vh;
 }
 
 .btn-section {

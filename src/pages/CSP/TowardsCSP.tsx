@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
-import TamIcon from "../../components/TamIcon";
-import SamIcon from "../../components/SamIcon";
 import Avatar from '../../components/Avatar';
 import "../../css/TowardsCSP.css";
+import { motion, AnimatePresence } from 'framer-motion';
+
+import tamIcon from "../../assets/img/tam-icon.png";
+import samIcon from "../../assets/img/sam-icon.png";
 
 const TowardsCSP = () => {
   const [showFirstText, setShowFirstText] = useState(true);
@@ -41,25 +43,34 @@ const TowardsCSP = () => {
     <div className='bg'>
       <Header />
       <BackButton topOffset="10vh" />
-      <TamIcon />
-      <SamIcon />
+      <div className='indicatorIcon-container'>
+        <div className='Icon-div'>
+          <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+        </div>
+        <div className='Icon-div'>
+          <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+        </div>
+      </div>
+
+
+      {/* <TamIcon /> */}
+      {/* <SamIcon /> */}
       <Avatar />
       <div>
         <div className="csp-container">
           <div className={`first-txt ${!showFirstText ? 'slide-up-out' : ''}`}>
-            Now let’s move on to the next step finding out how much money the customers in our Serviceable Addressable Market (SAM) are going to spend on our offering which we’ll call as
+            Now let's move on to the next step finding out how much money the customers in our Serviceable Addressable Market (SAM) are going to spend on our offering which we'll call as
           </div>
           <div className={`second-txt ${slideSecondText ? 'slide-up' : ''}`}>
             Customer Spending Power
           </div>
           <div className={`third-txt ${showThirdText ? 'fade-in slide-up' : ''}`}>
-            <p>Here you’ll have to make an informed, near accurate guess, as to how much money an individual customer is going to spend, on an average, on your offering, in a day.</p>
-            <p>That may be a lot of things to consider simultaneously so let’s take a breather here and you can continue when you are ready for this next step</p>
+            <p>Here you'll have to make an informed, near accurate guess, as to how much money an individual customer is going to spend, on an average, on your offering, in a day.</p>
+            <p>That may be a lot of things to consider simultaneously so let's take a breather here and you can continue when you are ready for this next step</p>
           </div>
           <div className={`fourth-txt ${showFourthText ? 'fade-in slide-up' : ''}`}>
             Are you ready to move on to CSP?
           </div>
-        </div>
         {showFourthText && (
           <div className="btn">
             <div className="btn-section">
@@ -72,6 +83,7 @@ const TowardsCSP = () => {
             </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );
