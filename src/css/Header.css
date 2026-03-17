@@ -1,8 +1,8 @@
 .header {
-    background-color: #744c9b;
-    color: white; 
-    height: 9vh; 
-    /* width: 10vw; */
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(50px);
+    height: 9vh;
     display: flex;
     align-items: center;
     justify-content: center;
