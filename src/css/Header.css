@@ -2,6 +2,7 @@
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(50px);
+    width: 100vw;
     height: 9vh;
     display: flex;
     align-items: center;
@@ -17,7 +18,15 @@
 }
 
 .header-title {
-    font-size: 2.5vw;
+    /* font-size: 2.5vw;
     font-weight: bold;
+    text-align: center; */
+    color: #FFF;
     text-align: center;
+    font-family: Montserrat;
+    font-size: 61px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-variant: all-small-caps;
 }

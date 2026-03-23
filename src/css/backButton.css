@@ -10,7 +10,8 @@
 .backButtonStyle{
     left: 3vmin;
     cursor: pointer;
-    width: 4.5vmin
+    width: 36px;
+    height: 36px;
 }
 
 .tamContainer {

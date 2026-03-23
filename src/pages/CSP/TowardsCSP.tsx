@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Avatar from '../../components/Avatar';
 import "../../css/TowardsCSP.css";
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import tamIcon from "../../assets/img/tam-icon.png";
@@ -13,6 +14,7 @@ const TowardsCSP = () => {
   const [slideSecondText, setSlideSecondText] = useState(false);
   const [showThirdText, setShowThirdText] = useState(false);
   const [showFourthText, setShowFourthText] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
@@ -39,6 +41,13 @@ const TowardsCSP = () => {
     };
   }, []);
 
+  const handleYesClick = () => {
+    navigate('/Biz-Sim-V2/csp');
+  };
+  const handleNoClick = () => {
+    navigate('/Biz-Sim-V2/sam-calculation');
+  };
+
   return (
     <div className='bg'>
       <Header />
@@ -57,7 +66,7 @@ const TowardsCSP = () => {
       {/* <SamIcon /> */}
       <Avatar />
       <div>
-        <div className="csp-container">
+        <div className="towards-csp-container">
           <div className={`first-txt ${!showFirstText ? 'slide-up-out' : ''}`}>
             Now let's move on to the next step finding out how much money the customers in our Serviceable Addressable Market (SAM) are going to spend on our offering which we'll call as
           </div>
@@ -71,18 +80,18 @@ const TowardsCSP = () => {
           <div className={`fourth-txt ${showFourthText ? 'fade-in slide-up' : ''}`}>
             Are you ready to move on to CSP?
           </div>
-        {showFourthText && (
-          <div className="btn">
-            <div className="btn-section">
-              <button >NO</button>
-              <p className="btn-description">Go Back to SAM</p>
+          {showFourthText && (
+            <div className="btn">
+              <div className="btn-section">
+                <button onClick={handleNoClick}>NO</button>
+                <p className="btn-description">Go Back to SAM</p>
+              </div>
+              <div className="btn-section">
+                <button onClick={handleYesClick} >YES</button>
+                <p className="btn-description">Proceed to CSP</p>
+              </div>
             </div>
-            <div className="btn-section">
-              <button >YES</button>
-              <p className="btn-description">Proceed to CSP</p>
-            </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
     </div>

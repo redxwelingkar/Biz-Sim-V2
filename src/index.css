@@ -78,6 +78,21 @@ button:focus-visible {
   line-height: normal;
 } */
 
+/* Custom Text Input field */
+.TextInputLabel {
+  margin-left: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #FCF5E8;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* Custom Text Input field */
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

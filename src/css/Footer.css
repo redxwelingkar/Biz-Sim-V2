@@ -5,9 +5,10 @@
     bottom: 0;
     display: flex;
     height: 20vh;
-    width: 100%;
+    width: 100vw;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
 }
 
 .footer-left {
@@ -43,6 +44,7 @@
     font-size: 1.2vw;
     font-weight: bold;
     margin: 0;
+    text-align: left;
 }
 
 .footer-icon {
