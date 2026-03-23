@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
+import { motion, AnimatePresence } from 'framer-motion';
 import "../../css/CSP.css";
 
 import tamIcon from "../../assets/img/tam-icon.png";
@@ -9,17 +10,60 @@ import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import CustomButton from '../../components/CustomButton';
+import { Simulate } from 'react-dom/test-utils';
+import TextDisplay from '../../components/TextDisplay';
 
+const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+    <AnimatePresence mode="wait">
+        <motion.div
+            key={keyName}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            // exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+        >
+            {children}
+        </motion.div>
+    </AnimatePresence>
+);
 function CSP() {
 
     const [CSPValue, setCSPValue] = useState("")
+    const [DailyExpbySAM, setDailyExpbySAM] = useState("")
+    const [OPDays, setOPDays] = useState("")
+    const [SAM, setSAM] = useState("")
+
+    useEffect(() => {
+        let sam = localStorage.getItem("SAM")
+        if (sam) {
+            setSAM(sam)
+        } else {
+            window.alert("SAM not calulated please Complete previous step")
+        }
+        console.log("SAM", sam)
+    }, []);
 
     function handleCSPChange(value: string) {
         setCSPValue(value)
     }
 
     function submitCSP() {
+        // Save / set CSPvalue in local storage
         localStorage.setItem("CSPValue", CSPValue)
+
+        // get SAM from localstorage and multiply it with CSPValue to get Daily Expenditure by SAM Value
+        setDailyExpbySAM((parseInt(SAM) * parseInt(CSPValue)).toString())
+
+        // display Daily Expenditure by SAM Value
+
+
+        // Autoclick down arrow to go to next step when submitting CSPValue
+        let downArrow = document.getElementById("downArrow")
+        Simulate.click(downArrow)
+    }
+
+    function submitOPdays() {
+
     }
 
     const footerTexts = [
@@ -53,29 +97,36 @@ function CSP() {
                                 <p>Customer Spending Power</p>
                             </td>
                             <td>
-                                <CustomTextField label='per customer/product' onChange={(value) => handleCSPChange(value)} />
+                                <CustomTextField value={CSPValue} label='per customer / product' onChange={(value) => handleCSPChange(value)} />
                             </td>
                             <td>
                                 <NumberToWords value={CSPValue} />
                             </td>
                         </tr>
+
+                        {DailyExpbySAM && 
                         <tr>
                             <td>
-                                <p>Daily Expenditure by SAM</p>
+                                <PopUp keyName='DailyExpbySAM'>
+                                    <p>Daily Expenditure by SAM</p>
+                                </PopUp>
                             </td>
                             <td>
-                                <CustomTextField label='per day' onChange={(value) => handleCSPChange(value)} />
+                                <PopUp keyName='DailyExpbySAM'>
+                                <TextDisplay label='per day' value={DailyExpbySAM} />
+                                </PopUp>
                             </td>
                             <td>
-                                <NumberToWords value={CSPValue} />
+                                <NumberToWords value={DailyExpbySAM} />
                             </td>
-                        </tr>
+                        </tr>}
+
                         <tr>
                             <td>
                                 <p>No of Operational Days</p>
                             </td>
                             <td>
-                                <CustomTextField label='days per month' onChange={(value) => handleCSPChange(value)} />
+                                <CustomTextField value={OPDays} label='days per month' onChange={(value) => handleCSPChange(value)} />
                             </td>
                             <td>
                                 <NumberToWords value={CSPValue} />
@@ -105,7 +156,8 @@ function CSP() {
                         </tr>
                     </tbody>
                 </table>
-                <button className='SubmitBTNCSP' onClick={submitCSP}>Submit</button>
+                <button id='submitCSP' className='SubmitBTNCSP' onClick={submitCSP}>Submit</button>
+                <button id='submitOPdays' className='SubmitBTNCSP' hidden onClick={submitOPdays}>Submit</button>
 
             </div>
 

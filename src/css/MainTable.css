@@ -146,6 +146,10 @@ h2 {
   /* Red border on hover */
 }
 
+.greenBorder{
+  border-color: rgb(6, 188, 6) !important;
+}
+
 .clear-icon {
   position: absolute;
   top: 50%;

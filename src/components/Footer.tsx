@@ -84,6 +84,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
       </div>
       <div className="footer-right">
         <button
+          id='upArrow'
           className={`footer-icon ${textIndex === 0 ? 'disabled' : ''}`}
           onClick={handleUpArrowClick}
           disabled={textIndex === 0}
@@ -91,6 +92,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
           <img src="./src/assets/img/upward_arrow.png" alt="Up Arrow" className="arrow-image" />
         </button>
         <button
+          id='downArrow'
           className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : ''}`}
           onClick={handleDownArrowClick}
           disabled={down_Arrow || textIndex === texts.length - 1}

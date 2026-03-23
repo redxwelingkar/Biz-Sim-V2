@@ -1,25 +1,28 @@
 interface CustomTextFieldProps {
-    value?: string;
+    value: string;
     onChange: (value: string) => void;
     label?: string;
 }
+const MAX_SIZE = 31; // Define a maximum size limit
 
-const CustomTextField = ({ value, onChange,label }: CustomTextFieldProps) => {
-    const handleChange = (e: { target: { value: string } }) => {
-        onChange(e.target.value);
+const CustomTextField = ({ value, onChange, label }: CustomTextFieldProps) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+
+        // Prevent entering values larger than MAX_SIZE
+        if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
+            onChange(newValue);
+        }
     };
 
-    const handleBlur = (e: {
-        target: { value: any; classList: { add: (arg0: string) => void } };
-    }) => {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         if (e.target.value) {
             e.target.classList.add("blurred");
         }
     };
 
-    const handleFocus = (e: {
-        target: { classList: { remove: (arg0: string) => void } };
-    }) => {
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         e.target.classList.remove("blurred");
     };
 
@@ -38,7 +41,7 @@ const CustomTextField = ({ value, onChange,label }: CustomTextFieldProps) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
-                className={value ? "value-entered customer-cell" : ""}
+                className={value ? 'value-entered' : ''}
             />
             {value && (
                 <span onClick={handleClear} className="clear-icon clear-icon-right">
