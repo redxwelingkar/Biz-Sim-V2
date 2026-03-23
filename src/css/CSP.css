@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: space-around;
 }
 
 .csp-container h1 {
@@ -16,15 +16,28 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-
-
 }
 
-p {
+.csp-container p {
     color: #FFF;
     font-family: "Open Sans";
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    margin: 0;
+    width: 492.258px;
+    text-align: left;
+}
+
+.csp-container td{
+    vertical-align: bottom;
+}
+
+.SubmitBTNCSP{
+    position: absolute;
+    bottom: 220px;
+    /* margin-top: 20px; */
+    /* right: 50%; */
+    /* left: 50%; */
 }

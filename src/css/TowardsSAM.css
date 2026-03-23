@@ -1,9 +1,9 @@
-.towards-sam{
+.towards-sam {
   height: 100vh;
 }
 
 .tam-icon {
-  width: 6vmin; 
+  width: 6vmin;
   margin-top: 4vw;
   margin-left: 2vw;
   position: absolute;
@@ -13,7 +13,7 @@
 }
 
 .body-container {
-  text-align: center; 
+  text-align: center;
   margin-top: 14vh;
   /* position: relative; */
 }
@@ -22,60 +22,62 @@
   position: relative;
   top: 30vh;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   color: white;
   width: 62%;
 }
 
 .transition-items {
   opacity: 0;
-  transition: opacity 1s ease-in-out; /* Smooth transition */
+  transition: opacity 1s ease-in-out;
+  /* Smooth transition */
   font-size: 1.6vw;
-  margin: 10px 0; /* Space between texts */
+  margin: 10px 0;
+  /* Space between texts */
 }
 
 .transition-items.visible {
-  opacity: 1; /* Make text visible */
+  opacity: 1;
+  /* Make text visible */
 }
 
-.sam-heading{
-    font-size: 2.5vw;
+.sam-heading {
+  font-size: 2.5vw;
 }
 
-.text-one{
-    width: 50%;
-    margin-left: 15vw;
-    font-size: 1.8vw;
+.text-one {
+  width: 50%;
+  margin-left: 15vw;
+  font-size: 1.8vw;
 }
 
-.extra-text{
-    font-size: 1.5vw;
+.extra-text {
+  font-size: 1.5vw;
 }
 
-.buttons{
-    margin-top: 0;
+.buttons {
+  margin-top: 0;
 }
 
 .buttons-container {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 20vw;
-  }
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 21vw;
+}
 
-  .button-wrapper {
-    text-align: center;
-  }
-  
-  button {
-    font-size: 1.2vw;
-    font-weight: bold;
-    margin-left: 20px;
-  }
-  
-  .button-description {
-    font-size: 1.3vw;
-    color: white;
-    margin: 5px;
-  }
-  
+.button-wrapper {
+  text-align: center;
+}
+
+button {
+  font-size: 1.2vw;
+  font-weight: bold;
+  /* margin-left: 20px; */
+}
+
+.button-description {
+  font-size: 1.3vw;
+  color: white;
+  margin: 5px;
+}

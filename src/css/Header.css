@@ -3,7 +3,8 @@
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(50px);
     width: 100vw;
-    height: 9vh;
+    /* height: 9vh; */
+    height: 84px;
     display: flex;
     align-items: center;
     justify-content: center;

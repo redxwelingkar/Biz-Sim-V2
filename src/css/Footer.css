@@ -4,7 +4,8 @@
     backdrop-filter: blur(50px);
     bottom: 0;
     display: flex;
-    height: 20vh;
+    /* height: 20vh; */
+    height: 186px;
     width: 100vw;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +42,7 @@
 }
 
 .footer-text {
-    font-size: 1.2vw;
+    font-size: 1.2rem;
     font-weight: bold;
     margin: 0;
     text-align: left;
