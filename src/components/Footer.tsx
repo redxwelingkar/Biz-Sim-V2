@@ -5,14 +5,16 @@ interface FooterProps {
   onNext?: () => void;
   onNextPercent?: () => void;
   onNextsizeofSAM?: () => void;
+  onNextOPDays?: () => void;
   onNextshowCalSAMBTN?: () => void;
   onNextshowTAMIcon?: () => void;
   onNextshowSAMIcon?: () => void;
+  onNextshowCSPIcon?: () => void;
   CalSAMBTNclick?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM,onNextOPDays,onNextshowCSPIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -56,6 +58,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
         if (onNextsizeofSAM) {
           onNextsizeofSAM(); // Call onNextsizeofSAM when dowm arrow click occurs on index 1
         }
+        if (onNextOPDays) {
+          onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 2
+        }
       }
       if (textIndex === 2) {
         if (onNextshowTAMIcon) {
@@ -65,11 +70,17 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextshowCalSAMBTN, o
           setdown_Arrow(true)
           onNextshowCalSAMBTN(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
+        
       }
       if (textIndex === 3) {
-        if (onNextshowSAMIcon)
+        if (onNextshowSAMIcon){
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
+        }
+        if(onNextshowCSPIcon){
+          onNextshowCSPIcon()// Call onNextshowCSPIcon when dowm arrow click occurs on index 3
+        }
       }
+
     }
     setBlink(false); // Stop blinking when the button is clicked
   };

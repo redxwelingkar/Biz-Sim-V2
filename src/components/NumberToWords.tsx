@@ -5,7 +5,7 @@ interface NumberToWordsProps {
 }
 
 const NumberToWords = ({ value }: NumberToWordsProps) => {
-  if (!value) return null;
+  if (!value) return "NIL";
 
   const words = numberToWords.toWords(parseInt(value, 10));
   const capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1);

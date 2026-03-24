@@ -40,10 +40,10 @@
     margin-top: 10em;
 }
 
-.choose-button {
+.buttons .choose-button {
     /* font-size: 4.6vmin; */
     font-weight: bold;
     /* margin-left: 25px; */
     /* margin-right: 25px; */
-    /* margin: 2rem; */
+    margin: 2rem;
 }

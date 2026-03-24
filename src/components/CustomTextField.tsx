@@ -2,10 +2,12 @@ interface CustomTextFieldProps {
     value: string;
     onChange: (value: string) => void;
     label?: string;
+    max?: number;
+    min?: number;
 }
 const MAX_SIZE = 31; // Define a maximum size limit
 
-const CustomTextField = ({ value, onChange, label }: CustomTextFieldProps) => {
+const CustomTextField = ({ value, onChange, max, min, label }: CustomTextFieldProps) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
@@ -35,7 +37,8 @@ const CustomTextField = ({ value, onChange, label }: CustomTextFieldProps) => {
             <div className="TextInputLabel">{label}</div>
             <input
                 type="number"
-                min="0"
+                min={min}
+                max={max}
                 placeholder="Enter Value"
                 value={value}
                 onChange={handleChange}
@@ -44,7 +47,7 @@ const CustomTextField = ({ value, onChange, label }: CustomTextFieldProps) => {
                 className={value ? 'value-entered' : ''}
             />
             {value && (
-                <span onClick={handleClear} className="clear-icon clear-icon-right">
+                <span onClick={handleClear} className="clear-icon clear-icon-left">
                     x
                 </span>
             )}

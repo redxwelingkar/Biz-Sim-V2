@@ -34,6 +34,10 @@
     vertical-align: bottom;
 }
 
+.csp-container .hidden{
+    display: none;
+}
+
 .SubmitBTNCSP{
     position: absolute;
     bottom: 220px;

@@ -103,7 +103,7 @@ h2 {
   font-size: 0.9vw;
   border: 2px solid transparent;
   border-radius: 8px;
-  width: 250px;
+  /* width: 250px; */
   padding: 4px;
   height: 3.3vh;
   overflow: hidden;
@@ -153,7 +153,7 @@ h2 {
 .clear-icon {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
   cursor: pointer;
   color: white;
   font-size: 18px;
@@ -196,19 +196,20 @@ h2 {
   cursor: pointer;
   margin-top: 0;
   /* margin-right: 21vw; */
-  font-size: 0.9vw;
+  /* font-size: 0.9vw;
   font-weight: bold;
   width: 11vw;
-  height: 5.1vh;
+  height: 5.1vh; */
 }
 
 .add-button {
-  width: 18vw;
-  margin-top: 1vh;
+  /* width: 18vw; */
+  font-size: 20px;
+  margin-top: 1rem;
 }
 
 .save-button {
-  margin-top: 2vh;
+  margin-top: 5rem;
 }
 
 .next-button {
@@ -250,7 +251,7 @@ h2 {
   margin-bottom: 5vh;
   margin-top: 5vh;
   position: relative;
-  width: 50%;
+  width: 40%;
   /* max-width: 40%; */
 }
 
