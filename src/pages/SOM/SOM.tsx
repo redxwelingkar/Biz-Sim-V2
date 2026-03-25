@@ -28,15 +28,16 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
         </motion.div>
     </AnimatePresence>
 );
-function CSP() {
+function SOM() {
 
-    const [CSPValue, setCSPValue] = useState("")
+    const [SOMValue, setSOMValue] = useState("")
     const [CSPMonthly, setCSPMonthly] = useState("")
     const [CSPYearly, setCSPYearly] = useState("")
     const [DailyExpbySAM, setDailyExpbySAM] = useState("")
     const [displayOPDays, setdisplayOPDays] = useState(false)
     const [OPDays, setOPDays] = useState("")
-    const [SAM, setSAM] = useState("")
+    const [SAM, setSAM] = useState("");
+    const [SAMPercent, setSAMPercent] = useState("");
     const [showCSPIcon, setshowCSPIcon] = useState(false);
     const [showCSPIconText, setshowCSPIconText] = useState(false);
 
@@ -49,8 +50,8 @@ function CSP() {
         } else {
             window.alert("SAM not calulated please Complete previous step")
         }
-        console.log("SAM", sam)
-        console.log("displayOPDays", displayOPDays)
+        // console.log("SAM", sam)
+        // console.log("displayOPDays", displayOPDays)
     }, []);
 
     function navigateToTowardsSOM() {
@@ -77,27 +78,30 @@ function CSP() {
         }
     }, [showCSPIcon])
 
-    function handleCSPChange(value: string) {
-        setCSPValue(value)
+    function handleSOMChange(value: string) {
+        setSOMValue(value)
     }
 
     function handleOPDaysChange(value: string) {
         setOPDays(value)
     }
+    function handleSAMPercentChange(value: string) {
+        setSAMPercent(value)
+    }
 
     function submitCSP() {
-        // Save / set CSPvalue in local storage
-        if (CSPValue || parseFloat(CSPValue) > 0) {
-            localStorage.setItem("CSPValue", CSPValue)
+        // Save / set SOMValue in local storage
+        if (SOMValue || parseFloat(SOMValue) > 0) {
+            localStorage.setItem("SOMValue", SOMValue)
 
-            // get SAM from localstorage and multiply it with CSPValue to get Daily Expenditure by SAM Value
-            setDailyExpbySAM((parseFloat(SAM) * parseFloat(CSPValue)).toString())
+            // get SAM from localstorage and multiply it with SOMValue to get Daily Expenditure by SAM Value
+            setDailyExpbySAM((parseFloat(SAM) * parseFloat(SOMValue)).toString())
 
             // hide submitCSP BTN
             let submitCSPBTN = document.getElementById("submitCSP")
             submitCSPBTN.hidden = true
 
-            // Autoclick down arrow to go to next step when submitting CSPValue
+            // Autoclick down arrow to go to next step when submitting SOMValue
             let downArrow = document.getElementById("downArrow")
             Simulate.click(downArrow)
         } else {
@@ -140,12 +144,10 @@ function CSP() {
         setshowCSPIcon(true)
     }
     const footerTexts = [
-        "Here in the section of Customer Spending Power (CSP), the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of CSP and click on “SUBMIT” or press “Enter”.",
-        "Voila! What just popped up on the screen is “Daily Expenditure by SAM”, which gets calculated automatically by multiplying the value of Customer Spending Power (CSP) with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at CSP value in one day.",
-        "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against “No. of Operational Days” and click on “SUBMIT” or press “Enter”.",
-        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
-        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to CSP if you want to make any changes later.",
-
+        "Here in the section of Serviceable Obtainable Market (SOM), the first thing you will see is that we have displayed the value of SAM which we had calculated in the earlier section. Now remember this is an estimate of customers that will be catered by your business without any competition and other market barriers.",
+        "Now, based on what you have learned about Serviceable Addressable Market, Serviceable Obtainable Market, the general ratio between the two, and on what kind of competitors and other market barriers you may face in your business, enter an educated estimate value in the field and press “Enter” or click on “SUBMIT”.",
+        "Now three values regarding the daily, monthly and yearly expenditure by customer has come up on the screen, which looks similar to what we had in the SAM section. The difference here is that the values presented above are a practical estimation of revenue generated by your business. So do you think with this revenue your business will be profitable?",
+        "Great! You have successfully defined and calculated the size of the Serviceable Obtainable Market (SOM) for your business and a practical estimate of the revenue generated. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to SOM if you want to make any changes later.",
     ];
 
 
@@ -159,6 +161,9 @@ function CSP() {
                 </div>
                 <div className='Icon-div'>
                     <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 {/* Animate the icon entry */}
                 <div className='Icon-div'>
@@ -195,36 +200,40 @@ function CSP() {
                 </div>
             </div>
             <div className="csp-container">
-                <h1>Customer Spending Power</h1>
+                <h1>Serviceable Obtainable Market</h1>
                 <table>
                     <tbody>
                         <tr>
                             <td>
-                                <p>Customer Spending Power</p>
+                                <PopUp keyName='SAMHeader'>
+                                    <p>Serviceable Addressable Market</p>
+                                </PopUp>
                             </td>
                             <td>
-                                <CustomTextField value={CSPValue} label='per customer / product' min={1} onChange={(value) => handleCSPChange(value)} />
+                                <PopUp keyName='SAM'>
+                                    <TextDisplay label='per day' value={SAM} />
+                                </PopUp>
                             </td>
                             <td>
-                                <NumberToWords value={CSPValue} />
+                                <NumberToWords value={SAM} />
                             </td>
                         </tr>
-                        {DailyExpbySAM &&
-                            <tr>
-                                <td>
-                                    <PopUp keyName='DailyExpbySAMHeader'>
-                                        <p>Daily Expenditure by SAM</p>
-                                    </PopUp>
-                                </td>
-                                <td>
-                                    <PopUp keyName='DailyExpbySAM'>
-                                        <TextDisplay label='per day' value={DailyExpbySAM} />
-                                    </PopUp>
-                                </td>
-                                <td>
-                                    <NumberToWords value={DailyExpbySAM} />
-                                </td>
-                            </tr>}
+
+                        <tr>
+                            <td>
+                                <PopUp keyName='SAMPercentHeader'>
+                                    <p>Percentage of SAM Captured by the business</p>
+                                </PopUp>
+                            </td>
+                            <td>
+                                <PopUp keyName='SAMPercent'>
+                                    <CustomTextField value={SAMPercent} label='percent' min={1} max={100} onChange={(value) => handleSAMPercentChange(value)} />
+                                </PopUp>
+                            </td>
+                            <td>
+                                <NumberToWords value={SAMPercent} />
+                            </td>
+                        </tr>
                         {displayOPDays &&
                             <tr>
                                 <td>
@@ -286,4 +295,4 @@ function CSP() {
     )
 }
 
-export default CSP
+export default SOM

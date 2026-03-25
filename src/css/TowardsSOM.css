@@ -1,0 +1,48 @@
+.towardsSOMHeaders {
+    color: #FFF;
+    font-family: "Open Sans";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    width: 70%;
+    margin-bottom: 2rem;
+}
+
+.towards-som-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 3rem;
+}
+
+.towardsSOM-NextBTN {
+    position: absolute;
+    bottom: 5rem;
+}
+
+.towardsSOM-yesno-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.no-div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.towardsSOMready {
+    color: #FFF;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 1rem;
+}

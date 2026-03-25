@@ -9,6 +9,8 @@ import GreetingsPage from "./pages/GreetingsPage";
 import SAMCalc from "./pages/SAM/SAMCalculation";
 import TowardsCSP from "./pages/CSP/TowardsCSP";
 import CSP from "./pages/CSP/CSP";
+import TowardsSOM from "./pages/SOM/TowardsSOM";
+import SOM from "./pages/SOM/SOM";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/Biz-Sim-V2/sam-calculation" element={<SAMCalc/>} /> 
           <Route path="/Biz-Sim-V2/towards-csp" element={<TowardsCSP/>} /> 
           <Route path="/Biz-Sim-V2/csp" element={<CSP/>} /> 
+          <Route path="/Biz-Sim-V2/towards-som" element={<TowardsSOM/>} /> 
+          <Route path="/Biz-Sim-V2/som" element={<SOM/>} /> 
         </Routes>
       </BrowserRouter>
     </>

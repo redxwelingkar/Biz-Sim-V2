@@ -17,6 +17,8 @@ h2 {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
+  justify-content: center;
+  
 }
 
 .Tam-Icon {
@@ -103,7 +105,7 @@ h2 {
   font-size: 0.9vw;
   border: 2px solid transparent;
   border-radius: 8px;
-  /* width: 250px; */
+  width: 200px;
   padding: 4px;
   height: 3.3vh;
   overflow: hidden;

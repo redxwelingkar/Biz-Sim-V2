@@ -95,6 +95,17 @@ button:focus-visible {
 
 /* Custom Text Input field */
 
+
+/* Nav - Icons */
+.CSP-Icon {
+  /* width: 52px; */
+  height: 36px;
+  
+}
+
+/* Nav - Icons */
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
