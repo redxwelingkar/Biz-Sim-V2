@@ -10,7 +10,6 @@ import cspIcon from "../../assets/img/csp-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
-import CustomButton from '../../components/CustomButton';
 import { Simulate } from 'react-dom/test-utils';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +27,21 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
         </motion.div>
     </AnimatePresence>
 );
+const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+    <AnimatePresence mode="wait">
+        <motion.div
+            key={keyName}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            // exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+        >
+            {children}
+        </motion.div>
+    </AnimatePresence>
+);
+
+
 function CSP() {
 
     const [CSPValue, setCSPValue] = useState("")
@@ -39,6 +53,7 @@ function CSP() {
     const [SAM, setSAM] = useState("")
     const [showCSPIcon, setshowCSPIcon] = useState(false);
     const [showCSPIconText, setshowCSPIconText] = useState(false);
+    const [isHoveredRow, setisHoveredRow] = useState("");
 
     const navigate = useNavigate()
 
@@ -54,7 +69,7 @@ function CSP() {
     }, []);
 
     function navigateToTowardsSOM() {
-        navigate("/Biz-Sim-V2/towardsSOM");
+        navigate("/Biz-Sim-V2/towards-som");
     }
 
     useEffect(() => {
@@ -95,11 +110,11 @@ function CSP() {
 
             // hide submitCSP BTN
             let submitCSPBTN = document.getElementById("submitCSP")
-            submitCSPBTN.hidden = true
+            if (submitCSPBTN) submitCSPBTN.hidden = true
 
             // Autoclick down arrow to go to next step when submitting CSPValue
             let downArrow = document.getElementById("downArrow")
-            Simulate.click(downArrow)
+            if (downArrow) Simulate.click(downArrow)
         } else {
             window.alert("Please enter Customer Spending power Value")
         }
@@ -111,7 +126,7 @@ function CSP() {
         console.log(displayOPDays)
         // show OPdays submitBTN
         let submitOPdaysPBTN = document.getElementById("submitOPdays")
-        submitOPdaysPBTN.hidden = false
+        if (submitOPdaysPBTN) submitOPdaysPBTN.hidden = false
     }
 
     function submitOPdays() {
@@ -130,7 +145,7 @@ function CSP() {
 
             // Autoclick down arrow to go to next step when submitting OPdays Value
             let downArrow = document.getElementById("downArrow")
-            Simulate.click(downArrow)
+            if (downArrow) Simulate.click(downArrow)
         } else {
             window.alert("Please enter No. of Operational Days Value")
         }
@@ -203,10 +218,19 @@ function CSP() {
                                 <p>Customer Spending Power</p>
                             </td>
                             <td>
-                                <CustomTextField value={CSPValue} label='per customer / product' min={1} onChange={(value) => handleCSPChange(value)} />
+                                <div
+                                    onMouseEnter={() => setisHoveredRow("CSPValueWords")}
+                                    onMouseLeave={() => setisHoveredRow("")}
+                                >
+                                    <CustomTextField value={CSPValue} min={0} label='per customer / product' onChange={(value) => handleCSPChange(value)} />
+                                </div>
                             </td>
                             <td>
-                                <NumberToWords value={CSPValue} />
+                                {isHoveredRow === "CSPValueWords" &&
+                                    <Slide keyName='CSPValueWords'>
+                                        <NumberToWords value={CSPValue} />
+                                    </Slide>
+                                }
                             </td>
                         </tr>
                         {DailyExpbySAM &&
@@ -218,11 +242,19 @@ function CSP() {
                                 </td>
                                 <td>
                                     <PopUp keyName='DailyExpbySAM'>
-                                        <TextDisplay label='per day' value={DailyExpbySAM} />
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("DailyExpbySAMWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay label='per day' value={DailyExpbySAM} />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={DailyExpbySAM} />
+                                    {isHoveredRow === "DailyExpbySAMWords" &&
+                                        <Slide keyName='DailyExpbySAMWords'>
+                                            <NumberToWords value={DailyExpbySAM} />
+                                        </Slide>}
                                 </td>
                             </tr>}
                         {displayOPDays &&
@@ -234,11 +266,19 @@ function CSP() {
                                 </td>
                                 <td>
                                     <PopUp keyName='OPDays'>
-                                        <CustomTextField value={OPDays} label='days per month' min={1} max={31} onChange={(value) => handleOPDaysChange(value)} />
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("OPDaysWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <CustomTextField value={OPDays} min={1} max={31} label='days per month' onChange={(value) => handleOPDaysChange(value)} />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={OPDays} />
+                                    {isHoveredRow === "OPDaysWords" &&
+                                        <Slide keyName='OPDaysWords'>
+                                            <NumberToWords value={OPDays} />
+                                        </Slide>}
                                 </td>
                             </tr>}
                         {CSPMonthly &&
@@ -250,11 +290,19 @@ function CSP() {
                                 </td>
                                 <td>
                                     <PopUp keyName='CSPMonthly'>
-                                        <TextDisplay value={CSPMonthly} label='per month' />
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("CSPMonthlyWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay value={CSPMonthly} label='per month' />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={CSPMonthly} />
+                                    {isHoveredRow === "CSPMonthlyWords" &&
+                                        <Slide keyName='CSPMonthlyWords'>
+                                            <NumberToWords value={CSPMonthly} />
+                                        </Slide>}
                                 </td>
                             </tr>}
                         {CSPYearly &&
@@ -266,11 +314,19 @@ function CSP() {
                                 </td>
                                 <td>
                                     <PopUp keyName='CSPYearly'>
-                                        <TextDisplay value={CSPYearly} label='per year' />
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("CSPYearlyWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay value={CSPYearly} label='per year' />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={CSPYearly} />
+                                    {isHoveredRow === "CSPYearlyWords" &&
+                                        <Slide keyName='CSPYearlyWords'>
+                                            <NumberToWords value={CSPYearly} />
+                                        </Slide>}
                                 </td>
                             </tr>}
                     </tbody>

@@ -5,8 +5,9 @@ interface FooterProps {
   onNext?: () => void;
   onNextPercent?: () => void;
   onNextsizeofSAM?: () => void;
-  onNextOPDays?: () => void;
   onNextshowCalSAMBTN?: () => void;
+  onNextOPDays?: () => void;
+  onNextSAMPercent?: () => void;
   onNextshowTAMIcon?: () => void;
   onNextshowSAMIcon?: () => void;
   onNextshowCSPIcon?: () => void;
@@ -14,7 +15,7 @@ interface FooterProps {
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM,onNextOPDays,onNextshowCSPIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -53,14 +54,18 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM,onNextOPDays,onNextshow
         if (onNextPercent) {
           onNextPercent(); // Call onNextPercent when dowm arrow click occurs
         }
+        if(onNextSAMPercent){
+          onNextSAMPercent(); //call onNextSAMPercent when down arror on index 0
+        }
       }
       if (textIndex === 1) {
         if (onNextsizeofSAM) {
           onNextsizeofSAM(); // Call onNextsizeofSAM when dowm arrow click occurs on index 1
         }
         if (onNextOPDays) {
-          onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 2
+          onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 1
         }
+        
       }
       if (textIndex === 2) {
         if (onNextshowTAMIcon) {
@@ -70,13 +75,13 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM,onNextOPDays,onNextshow
           setdown_Arrow(true)
           onNextshowCalSAMBTN(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
-        
+
       }
       if (textIndex === 3) {
-        if (onNextshowSAMIcon){
+        if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
-        if(onNextshowCSPIcon){
+        if (onNextshowCSPIcon) {
           onNextshowCSPIcon()// Call onNextshowCSPIcon when dowm arrow click occurs on index 3
         }
       }

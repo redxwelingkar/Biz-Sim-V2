@@ -30,15 +30,17 @@
     text-align: left;
 }
 
-.csp-container td{
+.csp-container td {
     vertical-align: bottom;
 }
 
-.csp-container .hidden{
-    display: none;
+.csp-container td:nth-child(3) {
+    width: 300px;
+    /* Width for size in words column */
 }
 
-.SubmitBTNCSP{
+
+.SubmitBTNCSP {
     position: absolute;
     bottom: 220px;
     /* margin-top: 20px; */

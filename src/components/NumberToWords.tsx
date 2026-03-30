@@ -6,11 +6,21 @@ interface NumberToWordsProps {
 
 const NumberToWords = ({ value }: NumberToWordsProps) => {
   if (!value) return "NIL";
+  let words, capitalizedWords
+  try {
+    words = numberToWords.toWords(parseInt(value, 10));
+  } catch (error) {
 
-  const words = numberToWords.toWords(parseInt(value, 10));
-  const capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1);
+    // window.alert(`Error in Numbers to Words`)
+    console.error(error);
 
-  return <span>{capitalizedWords}</span>;
+  }
+  if (words) {
+    capitalizedWords = words.charAt(0).toUpperCase() + words.slice(1);
+  }
+
+  return <span className='NumberToWords'>{capitalizedWords}</span>;
+
 };
 
 export default NumberToWords;

@@ -10,7 +10,6 @@ import cspIcon from "../../assets/img/csp-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
-import CustomButton from '../../components/CustomButton';
 import { Simulate } from 'react-dom/test-utils';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
@@ -28,18 +27,38 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
         </motion.div>
     </AnimatePresence>
 );
+
+const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+    <AnimatePresence mode="wait">
+        <motion.div
+            key={keyName}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            // exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+        >
+            {children}
+        </motion.div>
+    </AnimatePresence>
+);
+
+
+
 function SOM() {
 
     const [SOMValue, setSOMValue] = useState("")
-    const [CSPMonthly, setCSPMonthly] = useState("")
-    const [CSPYearly, setCSPYearly] = useState("")
-    const [DailyExpbySAM, setDailyExpbySAM] = useState("")
-    const [displayOPDays, setdisplayOPDays] = useState(false)
+    const [CSPValue, setCSPValue] = useState("")
+    const [DailyExpbySOM, setDailyExpbySOM] = useState("")
+    const [MonthlyExpbySOM, setMonthlyExpbySOM] = useState("")
+    const [YearlyExpbySOM, setYearlyExpbySOM] = useState("")
+    const [displayExpbySOM, setdisplayExpbySOM] = useState(false)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("");
     const [SAMPercent, setSAMPercent] = useState("");
     const [showCSPIcon, setshowCSPIcon] = useState(false);
     const [showCSPIconText, setshowCSPIconText] = useState(false);
+    const [showSAMPercentInput, setshowSAMPercentInput] = useState(false);
+    const [isHoveredRow, setisHoveredRow] = useState("");
 
     const navigate = useNavigate()
 
@@ -50,12 +69,24 @@ function SOM() {
         } else {
             window.alert("SAM not calulated please Complete previous step")
         }
-        // console.log("SAM", sam)
+        let csp = localStorage.getItem("CSPValue")
+        if (csp) {
+            setCSPValue(csp)
+        } else {
+            window.alert("CSP not calulated please Complete previous step")
+        }
+        let opdays = localStorage.getItem("OPdays")
+        if (opdays) {
+            setOPDays(opdays)
+        } else {
+            window.alert("Operational days not calulated please Complete previous step")
+        }
+        // console.log("opdays", opdays)
         // console.log("displayOPDays", displayOPDays)
     }, []);
 
     function navigateToTowardsSOM() {
-        navigate("/Biz-Sim-V2/towardsSOM");
+        navigate("/Biz-Sim-V2/towards-som");
     }
 
     useEffect(() => {
@@ -78,70 +109,42 @@ function SOM() {
         }
     }, [showCSPIcon])
 
-    function handleSOMChange(value: string) {
-        setSOMValue(value)
-    }
-
-    function handleOPDaysChange(value: string) {
-        setOPDays(value)
-    }
     function handleSAMPercentChange(value: string) {
         setSAMPercent(value)
     }
 
-    function submitCSP() {
-        // Save / set SOMValue in local storage
-        if (SOMValue || parseFloat(SOMValue) > 0) {
-            localStorage.setItem("SOMValue", SOMValue)
+    function submitSAMPercent() {
+        if (SAMPercent || parseFloat(SAMPercent) > 0) {
+            localStorage.setItem("SAMPercent", SAMPercent)
 
-            // get SAM from localstorage and multiply it with SOMValue to get Daily Expenditure by SAM Value
-            setDailyExpbySAM((parseFloat(SAM) * parseFloat(SOMValue)).toString())
+            // Calculate SOM values
+            let CSP = parseFloat(CSPValue)
+            let SOM = (parseFloat(SAMPercent) / 100) * parseFloat(SAM)
+            setSOMValue(SOM.toString())
 
-            // hide submitCSP BTN
-            let submitCSPBTN = document.getElementById("submitCSP")
-            submitCSPBTN.hidden = true
+            let DailyExpSOM =( SOM * CSP).toFixed(2)
+            setDailyExpbySOM(DailyExpSOM.toString())
+            let MonthlyExpSOM = (SOM * CSP * parseFloat(OPDays)).toFixed(2)
+            setMonthlyExpbySOM(MonthlyExpSOM.toString())
+            let YearlyExpSOM = (SOM * CSP * parseFloat(OPDays) * 12).toFixed(2)
+            setYearlyExpbySOM(YearlyExpSOM.toString())
+            setdisplayExpbySOM(true)
 
-            // Autoclick down arrow to go to next step when submitting SOMValue
+            // Autoclick down arrow to go to next step when submitting CSPValue
             let downArrow = document.getElementById("downArrow")
-            Simulate.click(downArrow)
+            if (downArrow) Simulate.click(downArrow)
+
         } else {
-            window.alert("Please enter Customer Spending power Value")
+            window.alert("Please enter Percentage of SAM Captured by the business")
         }
     }
 
-    function showOPDays() {
-        console.log("showOPDays", "exe")
-        setdisplayOPDays(true)
-        console.log(displayOPDays)
-        // show OPdays submitBTN
-        let submitOPdaysPBTN = document.getElementById("submitOPdays")
-        submitOPdaysPBTN.hidden = false
-    }
-
-    function submitOPdays() {
-        if (OPDays || parseFloat(OPDays) > 0) {
-            localStorage.setItem("OPdays", OPDays)
-
-            // calculate and save monthly expenditure by SAM
-            let SAMmonthlyExp = parseFloat(OPDays) * parseFloat(DailyExpbySAM)
-            setCSPMonthly(SAMmonthlyExp.toString())
-            localStorage.setItem("CSPMonthly", SAMmonthlyExp.toString())
-
-            // calculate and save Yearly expenditure by SAM
-            let SAMYearlyExp = SAMmonthlyExp * 12
-            setCSPYearly(SAMYearlyExp.toString())
-            localStorage.setItem("CSPYearly", SAMmonthlyExp.toString())
-
-            // Autoclick down arrow to go to next step when submitting OPdays Value
-            let downArrow = document.getElementById("downArrow")
-            Simulate.click(downArrow)
-        } else {
-            window.alert("Please enter No. of Operational Days Value")
-        }
-    }
 
     function onNextshowCSPIcon() {
         setshowCSPIcon(true)
+    }
+    function SAMPercentInput() {
+        setshowSAMPercentInput(true)
     }
     const footerTexts = [
         "Here in the section of Serviceable Obtainable Market (SOM), the first thing you will see is that we have displayed the value of SAM which we had calculated in the earlier section. Now remember this is an estimate of customers that will be catered by your business without any competition and other market barriers.",
@@ -211,86 +214,152 @@ function SOM() {
                             </td>
                             <td>
                                 <PopUp keyName='SAM'>
-                                    <TextDisplay label='per day' value={SAM} />
+                                    <div
+                                        onMouseEnter={() => setisHoveredRow("SAMWords")}
+                                        onMouseLeave={() => setisHoveredRow("")}
+                                    >
+                                        <TextDisplay label='per day' value={SAM} />
+                                    </div>
                                 </PopUp>
                             </td>
                             <td>
-                                <NumberToWords value={SAM} />
+                                {isHoveredRow === "SAMWords" &&
+                                    <Slide keyName='SAMWords'>
+                                        <NumberToWords value={SAM} />
+                                    </Slide>
+                                }
                             </td>
                         </tr>
 
-                        <tr>
-                            <td>
-                                <PopUp keyName='SAMPercentHeader'>
-                                    <p>Percentage of SAM Captured by the business</p>
-                                </PopUp>
-                            </td>
-                            <td>
-                                <PopUp keyName='SAMPercent'>
-                                    <CustomTextField value={SAMPercent} label='percent' min={1} max={100} onChange={(value) => handleSAMPercentChange(value)} />
-                                </PopUp>
-                            </td>
-                            <td>
-                                <NumberToWords value={SAMPercent} />
-                            </td>
-                        </tr>
-                        {displayOPDays &&
+                        {showSAMPercentInput &&
                             <tr>
                                 <td>
-                                    <PopUp keyName='OPDaysHeader'>
-                                        <p>No of Operational Days</p>
+                                    <PopUp keyName='SAMPercentHeader'>
+                                        <p>Percentage of SAM <br /> Captured by the business</p>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <PopUp keyName='OPDays'>
-                                        <CustomTextField value={OPDays} label='days per month' min={1} max={31} onChange={(value) => handleOPDaysChange(value)} />
+                                    <PopUp keyName='SAMPercent'>
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("SAMPercentWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <CustomTextField value={SAMPercent} label='percent' min={0} max={100} onChange={(value) => handleSAMPercentChange(value)} />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={OPDays} />
+                                    {isHoveredRow === "SAMPercentWords" &&
+                                        <Slide keyName='SAMPercentWords'>
+                                            <NumberToWords value={SAMPercent} />
+                                        </Slide>}
                                 </td>
                             </tr>}
-                        {CSPMonthly &&
+                        {displayExpbySOM &&
                             <tr>
                                 <td>
-                                    <PopUp keyName='CSPMonthlyHeader'>
-                                        <p>Monthly Expenditure by SAM</p>
+                                    <PopUp keyName='SOMHeader'>
+                                        <p>Serviceable Obtainable Market</p>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <PopUp keyName='CSPMonthly'>
-                                        <TextDisplay value={CSPMonthly} label='per month' />
+                                    <PopUp keyName='SOMValue'>
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("SOMValueWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay label='no. of Customers' value={SOMValue} />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={CSPMonthly} />
+                                    {isHoveredRow === "SOMValueWords" &&
+                                        <Slide keyName='SOMValueWords'>
+                                            <NumberToWords value={SOMValue} />
+                                        </Slide>}
                                 </td>
                             </tr>}
-                        {CSPYearly &&
+                        {displayExpbySOM &&
                             <tr>
                                 <td>
-                                    <PopUp keyName='CSPYearlyHeader'>
-                                        <p>Yearly Expenditure by SAM </p>
+                                    <PopUp keyName='DailySOMHeader'>
+                                        <p>Daily Expenditure by SOM</p>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <PopUp keyName='CSPYearly'>
-                                        <TextDisplay value={CSPYearly} label='per year' />
+                                    <PopUp keyName='DailySOMValue'>
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("DailyExpSOMWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay label='per day' value={DailyExpbySOM} />
+                                        </div>
                                     </PopUp>
                                 </td>
                                 <td>
-                                    <NumberToWords value={CSPYearly} />
+                                    {isHoveredRow === "DailyExpSOMWords" &&
+                                        <Slide keyName='DailyExpSOMWords'>
+                                            <NumberToWords value={DailyExpbySOM} />
+                                        </Slide>}
+                                </td>
+                            </tr>}
+                        {displayExpbySOM &&
+                            <tr>
+                                <td>
+                                    <PopUp keyName='MonthlySOMHeader'>
+                                        <p>Monthly Expenditure by SOM</p>
+                                    </PopUp>
+                                </td>
+                                <td>
+                                    <PopUp keyName='MonthlySOMValue'>
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("MonthlyExpSOMWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay label='per month' value={MonthlyExpbySOM} />
+                                        </div>
+                                    </PopUp>
+                                </td>
+                                <td>
+                                    {isHoveredRow === "MonthlyExpSOMWords" &&
+                                        <Slide keyName='MonthlyExpSOMWords'>
+                                            <NumberToWords value={MonthlyExpbySOM} />
+                                        </Slide>}
+                                </td>
+                            </tr>}
+                        {displayExpbySOM &&
+                            <tr>
+                                <td>
+                                    <PopUp keyName='YearlySOMHeader'>
+                                        <p>Monthly Expenditure by SOM</p>
+                                    </PopUp>
+                                </td>
+                                <td>
+                                    <PopUp keyName='YearlySOMValue'>
+                                        <div
+                                            onMouseEnter={() => setisHoveredRow("YearlyExpSOMWords")}
+                                            onMouseLeave={() => setisHoveredRow("")}
+                                        >
+                                            <TextDisplay label='per year' value={YearlyExpbySOM} />
+                                        </div>
+                                    </PopUp>
+                                </td>
+                                <td>
+                                    {isHoveredRow === "YearlyExpSOMWords" &&
+                                        <Slide keyName='YearlyExpSOMWords'>
+                                            <NumberToWords value={YearlyExpbySOM} />
+                                        </Slide>
+                                    }
                                 </td>
                             </tr>}
                     </tbody>
                 </table>
-                <button id='submitCSP' className='SubmitBTNCSP' onClick={submitCSP}>Submit CSP</button>
-                <button id='submitOPdays' className='SubmitBTNCSP' hidden onClick={submitOPdays}>Submit OP</button>
+                <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>
             </div>
 
 
 
-            <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowCSPIcon={onNextshowCSPIcon} />
+            <Footer texts={footerTexts} onNextSAMPercent={SAMPercentInput} onNextshowCSPIcon={onNextshowCSPIcon} />
         </div>
     )
 }

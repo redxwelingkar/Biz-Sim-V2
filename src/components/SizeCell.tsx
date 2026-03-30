@@ -5,7 +5,7 @@ interface SizeProps {
   onChange: (value: string) => void;
 }
 
-const MAX_SIZE = 1e16; // Define a maximum size limit
+const MAX_SIZE = 999999999999999; // Define a maximum size limit
 
 const Size = ({ value, onChange }: SizeProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

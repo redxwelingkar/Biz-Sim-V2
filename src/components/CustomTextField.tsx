@@ -5,7 +5,7 @@ interface CustomTextFieldProps {
     max?: number;
     min?: number;
 }
-const MAX_SIZE = 31; // Define a maximum size limit
+const MAX_SIZE = 999999999999999; // Define a maximum size limit
 
 const CustomTextField = ({ value, onChange, max, min, label }: CustomTextFieldProps) => {
 
@@ -13,7 +13,11 @@ const CustomTextField = ({ value, onChange, max, min, label }: CustomTextFieldPr
         const newValue = e.target.value;
 
         // Prevent entering values larger than MAX_SIZE
-        if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
+        if (max) {
+            if (parseFloat(newValue) <= max || MAX_SIZE || newValue === '') {
+                onChange(newValue);
+            }
+        } else if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
             onChange(newValue);
         }
     };

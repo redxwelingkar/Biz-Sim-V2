@@ -4,7 +4,6 @@ import { debounce } from 'lodash';
 import CustomerSegment from './CustomerSegmentCell';
 import Size from './SizeCell';
 import NumberToWords from './NumberToWords';
-import TransitionWrapper from './TransitionWrapper'; // Import TransitionWrapper
 import '../css/MainTable.css';
 import Percentage from './PercentageCell';
 import SizeofSAM from './SizeofSAM';
