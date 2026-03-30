@@ -34,6 +34,7 @@ const TAMCalc = () => {
           NumbertoWordsCOL={true}
           showTAMIcon={showTAMIcon}
         />} {/* Conditionally render TableComponent */}
+        {/* TODO: stop onNext if TAM final number not calculated */}
       <Footer onNext={handleNext} onNextshowTAMIcon={onNextshowTAMIcon} texts={footerTexts} /> {/* Pass function to show TableComponent */}
     </div>
   );
