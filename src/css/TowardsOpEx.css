@@ -1,0 +1,90 @@
+.towards-opex {
+    text-align: center;
+}
+
+.towards-opex .transition-items {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.towards-opex .transition-items.visible {
+    opacity: 1;
+}
+
+.towards-opex .learn-more-button:hover {
+    transform: translateY(-1px);
+}
+
+.towardsOpEx-link {
+    background: none;
+    border: none;
+    color: #ced7ff;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.towardsOpEx-link:hover {
+    color: #ffffff;
+}
+
+.towardsOpEx-question {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.towardsOpEx-yesno-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.towardsOpEx-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.towardsOpEx-choice {
+    background: #fff;
+    color: #2b1359;
+    border: none;
+    border-radius: 18px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.85rem 3.2rem;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.towardsOpEx-choice:hover {
+    transform: translateY(-1px);
+}
+
+.towardsOpEx-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .towards-opex .text-two {
+        font-size: 1rem;
+    }
+
+    .towardsOpEx-choice {
+        width: 100%;
+    }
+
+    .towards-opex .body-container {
+        padding: 0 1.25rem 4rem;
+    }
+}
