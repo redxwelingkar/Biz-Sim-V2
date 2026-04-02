@@ -1,0 +1,62 @@
+.expense-type-toggle {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    /* background: rgb(99, 84, 138); */
+    border: 1px solid rgba(255, 255, 255, 0.50);
+}
+
+.expense-type-btn {
+    flex: 1;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffffc7;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 600;
+    font-variant: small-caps;
+    transition: all 0.2s ease;
+    border-radius: 0;
+}
+
+.expense-type-btn.left {
+    border-right: 1px solid rgb(255, 255, 255);
+    border-radius: 8px 0 0 8px;
+}
+
+.expense-type-btn.right {
+    border-radius: 0 8px 8px 0;
+}
+
+.expense-type-btn.selected {
+    border: 2px solid #39d353;
+    color: #ffffff;
+}
+
+.expense-type-btn:focus,
+.expense-type-btn:focus-visible {
+    outline: 1px solid #39d353;
+    border: 1px solid #39d353;
+    color: #ffffff;
+}
+
+.error-text {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.table-container-opex{
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    left: 20%;
+    align-items: center;
+}
+
+.table-container-opex .table{
+    
+    /* width: 200%; */
+}

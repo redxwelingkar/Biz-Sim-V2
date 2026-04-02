@@ -222,7 +222,13 @@ function CSP() {
                                     onMouseEnter={() => setisHoveredRow("CSPValueWords")}
                                     onMouseLeave={() => setisHoveredRow("")}
                                 >
-                                    <CustomTextField value={CSPValue} min={0} label='per customer / product' onChange={(value) => handleCSPChange(value)} />
+                                    <CustomTextField
+                                        value={CSPValue}
+                                        type='number'
+                                        placeholder='Enter Value'
+                                        min={0}
+                                        label='per customer / product'
+                                        onChange={(value) => handleCSPChange(value)} />
                                 </div>
                             </td>
                             <td>
@@ -270,7 +276,14 @@ function CSP() {
                                             onMouseEnter={() => setisHoveredRow("OPDaysWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
-                                            <CustomTextField value={OPDays} min={1} max={31} label='days per month' onChange={(value) => handleOPDaysChange(value)} />
+                                            <CustomTextField
+                                                value={OPDays}
+                                                type='number'
+                                                placeholder='Enter Value'
+                                                min={1}
+                                                max={31}
+                                                label='days per month'
+                                                onChange={(value) => handleOPDaysChange(value)} />
                                         </div>
                                     </PopUp>
                                 </td>

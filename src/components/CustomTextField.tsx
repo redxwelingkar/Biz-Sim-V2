@@ -1,5 +1,7 @@
 interface CustomTextFieldProps {
     value: string;
+    type: string;
+    placeholder: string;
     onChange: (value: string) => void;
     label?: string;
     max?: number;
@@ -7,18 +9,22 @@ interface CustomTextFieldProps {
 }
 const MAX_SIZE = 999999999999999; // Define a maximum size limit
 
-const CustomTextField = ({ value, onChange, max, min, label }: CustomTextFieldProps) => {
+const CustomTextField = ({ value, onChange, max, min, label, type, placeholder }: CustomTextFieldProps) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
+        if (type == "number") {
+            const newValue = e.target.value;
 
-        // Prevent entering values larger than MAX_SIZE
-        if (max) {
-            if (parseFloat(newValue) <= max || MAX_SIZE || newValue === '') {
+            // Prevent entering values larger than MAX_SIZE
+            if (max) {
+                if (parseFloat(newValue) <= max || MAX_SIZE || newValue === '') {
+                    onChange(newValue);
+                }
+            } else if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
                 onChange(newValue);
             }
-        } else if (parseFloat(newValue) <= MAX_SIZE || newValue === '') {
-            onChange(newValue);
+        } else {
+            onChange(e.target.value)
         }
     };
 
@@ -40,10 +46,10 @@ const CustomTextField = ({ value, onChange, max, min, label }: CustomTextFieldPr
         <div className="cell">
             <div className="TextInputLabel">{label}</div>
             <input
-                type="number"
+                type={type}
                 min={min}
                 max={max}
-                placeholder="Enter Value"
+                placeholder={placeholder}
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}

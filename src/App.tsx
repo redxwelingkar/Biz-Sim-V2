@@ -12,6 +12,7 @@ import CSP from "./pages/CSP/CSP";
 import TowardsSOM from "./pages/SOM/TowardsSOM";
 import SOM from "./pages/SOM/SOM";
 import TowardsOpEx from "./pages/OpEx/TowardsOpEx";
+import OpEx from "./pages/OpEx/OpEx-Calulation";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/Biz-Sim-V2/towards-som" element={<TowardsSOM/>} /> 
           <Route path="/Biz-Sim-V2/som" element={<SOM/>} /> 
           <Route path="/Biz-Sim-V2/towards-opex" element={<TowardsOpEx/>} /> 
+          <Route path="/Biz-Sim-V2/opex-calculation" element={<OpEx/>} /> 
         </Routes>
       </BrowserRouter>
     </>

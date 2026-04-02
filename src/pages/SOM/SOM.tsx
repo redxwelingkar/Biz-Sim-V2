@@ -7,6 +7,7 @@ import "../../css/CSP.css";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import cspIcon from "../../assets/img/csp-icon.png";
+import somIcon from "../../assets/img/som-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
@@ -55,8 +56,8 @@ function SOM() {
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("");
     const [SAMPercent, setSAMPercent] = useState("");
-    const [showCSPIcon, setshowCSPIcon] = useState(false);
-    const [showCSPIconText, setshowCSPIconText] = useState(false);
+    const [showSOMIcon, setshowSOMIcon] = useState(false);
+    const [showSOMIconText, setshowSOMIconText] = useState(false);
     const [showSAMPercentInput, setshowSAMPercentInput] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
@@ -86,28 +87,28 @@ function SOM() {
     }, []);
 
     function navigateToTowardsSOM() {
-        navigate("/Biz-Sim-V2/towards-som");
+        navigate("/Biz-Sim-V2/towards-opex");
     }
 
     useEffect(() => {
-        if (showCSPIcon) {
+        if (showSOMIcon) {
             setTimeout(() => {
-                setshowCSPIcon(true)
+                setshowSOMIcon(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
-                    setshowCSPIconText(true)
+                    console.log("setshowSOMIconText(true)");
+                    setshowSOMIconText(true)
                     setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
-                        setshowCSPIconText(false)
+                        console.log("setshowSOMIconText(false)");
+                        setshowSOMIconText(false)
                         setTimeout(() => {
-                            console.log("setshowCSPIconText(false)");
+                            console.log("setshowSOMIconText(false)");
                             navigateToTowardsSOM()
                         }, 1000 * 2);
                     }, 1000 * 2.5);
                 }, 1000);
             }, 1000 * 2);
         }
-    }, [showCSPIcon])
+    }, [showSOMIcon])
 
     function handleSAMPercentChange(value: string) {
         setSAMPercent(value)
@@ -122,7 +123,7 @@ function SOM() {
             let SOM = (parseFloat(SAMPercent) / 100) * parseFloat(SAM)
             setSOMValue(SOM.toString())
 
-            let DailyExpSOM =( SOM * CSP).toFixed(2)
+            let DailyExpSOM = (SOM * CSP).toFixed(2)
             setDailyExpbySOM(DailyExpSOM.toString())
             let MonthlyExpSOM = (SOM * CSP * parseFloat(OPDays)).toFixed(2)
             setMonthlyExpbySOM(MonthlyExpSOM.toString())
@@ -140,8 +141,8 @@ function SOM() {
     }
 
 
-    function onNextshowCSPIcon() {
-        setshowCSPIcon(true)
+    function onNextshowSOMIcon() {
+        setshowSOMIcon(true)
     }
     function SAMPercentInput() {
         setshowSAMPercentInput(true)
@@ -171,13 +172,13 @@ function SOM() {
                 {/* Animate the icon entry */}
                 <div className='Icon-div'>
                     <AnimatePresence mode="wait">
-                        {showCSPIcon ? (
+                        {showSOMIcon ? (
 
                             <motion.img
-                                key="CSP-img"
-                                src={cspIcon}
-                                alt="CSP-Icon"
-                                className="CSP-Icon"
+                                key="SOM-img"
+                                src={somIcon}
+                                alt="SOM-Icon"
+                                className="SOM-Icon"
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -50 }}
@@ -188,15 +189,15 @@ function SOM() {
                     </AnimatePresence>
                     {/* Animate the text entry/exit */}
                     <AnimatePresence mode="wait">
-                        {showCSPIconText && (
+                        {showSOMIconText && (
                             <motion.span
-                                key="CSP-Icon-Text"
+                                key="SOM-Icon-Text"
                                 initial={{ opacity: 0, x: -100 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -100 }}
                                 transition={{ duration: 1 }}
                             >
-                                Customer Spending Power
+                                Serviceable Obtainable Market
                             </motion.span>
                         )}
                     </AnimatePresence>
@@ -244,7 +245,14 @@ function SOM() {
                                             onMouseEnter={() => setisHoveredRow("SAMPercentWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
-                                            <CustomTextField value={SAMPercent} label='percent' min={0} max={100} onChange={(value) => handleSAMPercentChange(value)} />
+                                            <CustomTextField
+                                                value={SAMPercent}
+                                                type='number'
+                                                placeholder='Enter Value'
+                                                label='percent'
+                                                min={0}
+                                                max={100}
+                                                onChange={(value) => handleSAMPercentChange(value)} />
                                         </div>
                                     </PopUp>
                                 </td>
@@ -359,7 +367,7 @@ function SOM() {
 
 
 
-            <Footer texts={footerTexts} onNextSAMPercent={SAMPercentInput} onNextshowCSPIcon={onNextshowCSPIcon} />
+            <Footer texts={footerTexts} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
         </div>
     )
 }

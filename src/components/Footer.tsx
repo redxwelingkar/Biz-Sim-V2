@@ -11,11 +11,12 @@ interface FooterProps {
   onNextshowTAMIcon?: () => void;
   onNextshowSAMIcon?: () => void;
   onNextshowCSPIcon?: () => void;
+  onNextshowSOMIcon?: () => void;
   CalSAMBTNclick?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon,onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -74,6 +75,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextshowCalSAMBTN) {
           setdown_Arrow(true)
           onNextshowCalSAMBTN(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
+        }
+        if (onNextshowSOMIcon) {
+          onNextshowSOMIcon(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
 
       }
