@@ -1,0 +1,16 @@
+.capex-table-container .table{
+    position: relative;
+    left: 18rem;
+}
+
+.NumberToWords-capex {
+    /* display: flex; */
+    flex: 1;
+    width: 40rem !important;
+    max-width: 40rem !important;
+    
+}
+
+.NumberToWords-capex :first-child {
+    scrollbar-width: none;
+}

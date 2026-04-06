@@ -44,8 +44,8 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
   };
 
   const handleDownArrowClick = () => {
-    console.log("Arrow Index:", textIndex);
-    console.log("Index Text:", texts[textIndex]);
+    // console.log("Arrow Index:", textIndex);
+    // console.log("Index Text:", texts[textIndex]);
     // console.log("down_Arrow", down_Arrow);
 
     if (textIndex < texts.length - 1) {
