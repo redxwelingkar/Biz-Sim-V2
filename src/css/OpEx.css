@@ -47,16 +47,36 @@
     margin-bottom: 10px;
 }
 
-.table-container-opex{
-    /* position: absolute; */
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    left: 20%;
-    align-items: center;
+.table-container .table{
+    position: relative;
+    left: 13rem;
 }
 
-.table-container-opex .table{
+/*  needs overflow fixes when adding multiple expense rows
+.table-container-opex {
     
-    /* width: 200%; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    justify-items: center;
+}
+
+.table-container-opex .table {
+    position: relative;
+    left: 13.5rem;
+}
+ */
+
+.NumberToWords-opex {
+    /* display: flex; */
+    flex: 1;
+    width: 30rem;
+    max-width: 30rem;
+    
+}
+
+.NumberToWords-opex :first-child {
+    scrollbar-width: none;
 }

@@ -16,9 +16,10 @@ h2 {
 .Icon-div {
   display: flex;
   align-items: center;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   /* justify-content: center; */
   color: white;
+  cursor: pointer;
 }
 
 .Tam-Icon {

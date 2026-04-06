@@ -12,11 +12,12 @@ interface FooterProps {
   onNextshowSAMIcon?: () => void;
   onNextshowCSPIcon?: () => void;
   onNextshowSOMIcon?: () => void;
+  onNextNavtoCapEx?: () => void;
   CalSAMBTNclick?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon,onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -43,7 +44,8 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
   };
 
   const handleDownArrowClick = () => {
-    console.log("Arrow Index", textIndex);
+    console.log("Arrow Index:", textIndex);
+    console.log("Index Text:", texts[textIndex]);
     // console.log("down_Arrow", down_Arrow);
 
     if (textIndex < texts.length - 1) {
@@ -55,7 +57,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextPercent) {
           onNextPercent(); // Call onNextPercent when dowm arrow click occurs
         }
-        if(onNextSAMPercent){
+        if (onNextSAMPercent) {
           onNextSAMPercent(); //call onNextSAMPercent when down arror on index 0
         }
       }
@@ -66,7 +68,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextOPDays) {
           onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 1
         }
-        
+
       }
       if (textIndex === 2) {
         if (onNextshowTAMIcon) {
@@ -87,6 +89,12 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         }
         if (onNextshowCSPIcon) {
           onNextshowCSPIcon()// Call onNextshowCSPIcon when dowm arrow click occurs on index 3
+        }
+      }
+      if (textIndex === 4) {
+        // move to CapEx
+        if (onNextNavtoCapEx) {
+          onNextNavtoCapEx()
         }
       }
 
