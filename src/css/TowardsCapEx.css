@@ -1,0 +1,124 @@
+.towards-capex {
+    text-align: center;
+}
+
+.header-name{
+    font-family: "Open Sans";
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #fff;
+}
+
+.towards-capex .transition-items {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.towards-capex .transition-items.visible {
+    opacity: 1;
+}
+
+.towardsCapEx-intro {
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 1;
+}
+
+.towardsCapEx-intro.fade-away {
+    opacity: 0;
+    /* transform: translateY(-2vh); */
+}
+
+.towards-capex .learn-more-button:hover {
+    transform: translateY(-1px);
+}
+
+.towards-capex .learn-more-button {
+    background: none;
+    border: none;
+    color: #ced7ff;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.towards-capex .learn-more-button:hover {
+    color: #ffffff;
+}
+
+.towardsCapEx-link {
+    background: none;
+    border: none;
+    color: #ced7ff;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.towardsCapEx-link:hover {
+    color: #ffffff;
+}
+
+.towardsCapEx-question {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.towardsCapEx-yesno-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.towardsCapEx-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.towardsCapEx-choice {
+    background: #fff;
+    color: #2b1359;
+    border: none;
+    border-radius: 18px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.85rem 3.2rem;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.towardsCapEx-choice:hover {
+    transform: translateY(-1px);
+}
+
+.towardsCapEx-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .towards-capex .text-two {
+        font-size: 1rem;
+    }
+
+    .towardsCapEx-choice {
+        width: 100%;
+    }
+
+    .towards-capex .body-container {
+        padding: 0 1.25rem 4rem;
+    }
+}

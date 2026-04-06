@@ -28,7 +28,7 @@ const TowardsOpEx = () => {
                     <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
                 <div className="Icon-div">
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+                    <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 </div>
                 <div className="Icon-div">
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />

@@ -13,6 +13,7 @@ import TowardsSOM from "./pages/SOM/TowardsSOM";
 import SOM from "./pages/SOM/SOM";
 import TowardsOpEx from "./pages/OpEx/TowardsOpEx";
 import OpEx from "./pages/OpEx/OpEx-Calulation";
+import TowardsCapEx from "./pages/CapEx/TowardsCapEx";
 import CapEx from "./pages/CapEx/CapExCalculation";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/Biz-Sim-V2/som" element={<SOM/>} /> 
           <Route path="/Biz-Sim-V2/towards-opex" element={<TowardsOpEx/>} /> 
           <Route path="/Biz-Sim-V2/opex-calculation" element={<OpEx/>} /> 
+          <Route path="/Biz-Sim-V2/towards-capex" element={<TowardsCapEx/>} /> 
           <Route path="/Biz-Sim-V2/capex-calculation" element={<CapEx/>} /> 
         </Routes>
       </BrowserRouter>

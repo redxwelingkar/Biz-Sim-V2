@@ -48,8 +48,18 @@
     /* left: 50%; */
 }
 
-.SOM-Icon {
-    width: 34px;
-    height: 34px;
+.SAM-Icon {
+    width: 36px;
+    height: 36px;
+}
 
+.SOM-Icon {
+    width: 36px;
+    height: 36px;
+
+}
+
+.OpEx-Icon {
+    width: 36px;
+    height: 36px;
 }
