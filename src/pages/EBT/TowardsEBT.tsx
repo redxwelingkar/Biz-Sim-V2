@@ -16,7 +16,7 @@ const TowardsEBT = () => {
 
     const handleYesClick = () => navigate("/Biz-Sim-V2/ebt-calculation");
     const handleNoClick = () => navigate("/Biz-Sim-V2/towards-capex");
-    
+
     return (
         <div className="towards-ebt">
             <Header />
@@ -61,29 +61,29 @@ const TowardsEBT = () => {
                             >
                                 Are you ready to move on to the next section?
                             </p>
-                                <div
-                                    className={`transition-items towardsEBT-yesno-container ${visibleStates[4] ? "visible" : ""}`}
-                                >
-                                    <div className="towardsEBT-option">
-                                        <button type="button" className="towardsEBT-choice" onClick={handleNoClick}>
-                                            NO
-                                        </button>
-                                        <div className="towardsEBT-label">Go Back to CapEx</div>
-                                    </div>
-                                    <div className="towardsEBT-option">
-                                        <button type="button" className="towardsEBT-choice" onClick={handleYesClick}>
-                                            YES
-                                        </button>
-                                        <div className="towardsEBT-label">Proceed to EBT</div>
-                                    </div>
+                            <div
+                                className={`transition-items towardsEBT-yesno-container ${visibleStates[4] ? "visible" : ""}`}
+                            >
+                                <div className="towardsEBT-option">
+                                    <button type="button" className="towardsEBT-choice" onClick={handleNoClick}>
+                                        NO
+                                    </button>
+                                    <div className="towardsEBT-label">Go Back to CapEx</div>
                                 </div>
-                                <button
-                                    type="button"
-                                    className={`transition-items towardsEBT-link ${visibleStates[5] ? "visible" : ""}`}
-                                    onClick={handleYesClick}
-                                >
-                                    Click here to learn more about EBT and Working Capital
-                                </button>
+                                <div className="towardsEBT-option">
+                                    <button type="button" className="towardsEBT-choice" onClick={handleYesClick}>
+                                        YES
+                                    </button>
+                                    <div className="towardsEBT-label">Proceed to EBT</div>
+                                </div>
+                            </div>
+                            <button
+                                type="button"
+                                className={`transition-items towardsEBT-link ${visibleStates[5] ? "visible" : ""}`}
+                                onClick={handleYesClick}
+                            >
+                                Click here to learn more about EBT and Working Capital
+                            </button>
                         </div>
                     )}
                 </TransitionWrapper>

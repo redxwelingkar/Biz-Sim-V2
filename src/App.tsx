@@ -17,6 +17,8 @@ import TowardsCapEx from "./pages/CapEx/TowardsCapEx";
 import CapEx from "./pages/CapEx/CapExCalculation";
 import TowardsEBT from "./pages/EBT_WC/TowardsEBT";
 import EBT_WC from "./pages/EBT_WC/EBT_WC";
+import TowardsFunding from "./pages/Funding/TowardsFunding";
+import Funding from "./pages/Funding/Funding";
 
 function App() {
   return (
@@ -40,8 +42,8 @@ function App() {
           <Route path="/Biz-Sim-V2/capex-calculation" element={<CapEx/>} /> 
           <Route path="/Biz-Sim-V2/towards-ebt-wc" element={<TowardsEBT/>} /> 
           <Route path="/Biz-Sim-V2/EBT_WC-calculation" element={<EBT_WC/>} /> 
-          <Route path="/Biz-Sim-V2/towards-funding" element={<EBT_WC/>} /> 
-          <Route path="/Biz-Sim-V2/funding" element={<EBT_WC/>} /> 
+          <Route path="/Biz-Sim-V2/towards-funding" element={<TowardsFunding/>} /> 
+          <Route path="/Biz-Sim-V2/funding" element={<Funding/>} /> 
         </Routes>
       </BrowserRouter>
     </>
