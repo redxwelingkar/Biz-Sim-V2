@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Header from '../../components/Header';
 import Avatar from '../../components/Avatar';
 import BackButton from '../../components/BackButton';
@@ -20,10 +20,10 @@ function TowardsSOM() {
         setOnNext(true)
     }
 
-    function handleNoClick(){
+    function handleNoClick() {
         navigate("/Biz-Sim-V2/CSP")
     }
-    function handleYesClick(){
+    function handleYesClick() {
         navigate("/Biz-Sim-V2/SOM")
     }
     return (
@@ -37,7 +37,7 @@ function TowardsSOM() {
                     <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
                 <div className='Icon-div'>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+                    <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 </div>
                 <div className='Icon-div'>
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />

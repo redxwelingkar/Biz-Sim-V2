@@ -4,7 +4,7 @@ import BackButton from "../../components/BackButton";
 import Avatar from '../../components/Avatar';
 import "../../css/TowardsCSP.css";
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+
 
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
@@ -57,7 +57,7 @@ const TowardsCSP = () => {
           <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
         </div>
         <div className='Icon-div'>
-          <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+          <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
         </div>
       </div>
 

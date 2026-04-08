@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import "../../css/TowardsSAM.css";
-import TamIcon from "../../components/TamIcon";
+
 import Avatar from "../../components/Avatar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,6 @@ const TowardsSAM = () => {
     <div className="towards-sam">
       <Header />
       <BackButton topOffset="10vh" showtam={true} />
-      {/* <TamIcon /> */}
       <Avatar />
       <div className="body-container">
         <TransitionWrapper delays={[1500, 3500, 5500]}>
