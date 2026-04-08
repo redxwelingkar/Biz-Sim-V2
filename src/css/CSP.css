@@ -63,3 +63,9 @@
     width: 36px;
     height: 36px;
 }
+
+.CapEx-Icon {
+    width: 36px;
+    height: 35px;
+    aspect-ratio: 36/35;
+}

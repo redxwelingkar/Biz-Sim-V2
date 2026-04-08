@@ -1,0 +1,110 @@
+.towards-ebt {
+    text-align: center;
+}
+
+.towards-ebt .transition-items {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.towards-ebt .transition-items.visible {
+    opacity: 1;
+}
+
+.towardsEBT-intro {
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 1;
+}
+
+.towards-ebt .learn-more-button:hover {
+    transform: translateY(-1px);
+}
+
+.towards-ebt .learn-more-button {
+    background: none;
+    border: none;
+    color: #ced7ff;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.towards-ebt .learn-more-button:hover {
+    color: #ffffff;
+}
+
+.towardsEBT-link {
+    background: none;
+    border: none;
+    color: #ced7ff;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.towardsEBT-link:hover {
+    color: #ffffff;
+}
+
+.towardsEBT-question {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.towardsEBT-yesno-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.towardsEBT-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.towardsEBT-choice {
+    background: #fff;
+    color: #2b1359;
+    border: none;
+    border-radius: 18px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.85rem 3.2rem;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.towardsEBT-choice:hover {
+    transform: translateY(-1px);
+}
+
+.towardsEBT-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .towards-ebt .text-two {
+        font-size: 1rem;
+    }
+
+    .towardsEBT-choice {
+        width: 100%;
+    }
+
+    .towards-ebt .body-container {
+        padding: 0 1.25rem 4rem;
+    }
+}

@@ -15,6 +15,7 @@ import TowardsOpEx from "./pages/OpEx/TowardsOpEx";
 import OpEx from "./pages/OpEx/OpEx-Calulation";
 import TowardsCapEx from "./pages/CapEx/TowardsCapEx";
 import CapEx from "./pages/CapEx/CapExCalculation";
+import TowardsEBT from "./pages/EBT/TowardsEBT";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/Biz-Sim-V2/opex-calculation" element={<OpEx/>} /> 
           <Route path="/Biz-Sim-V2/towards-capex" element={<TowardsCapEx/>} /> 
           <Route path="/Biz-Sim-V2/capex-calculation" element={<CapEx/>} /> 
+          <Route path="/Biz-Sim-V2/towards-ebt" element={<TowardsEBT/>} /> 
         </Routes>
       </BrowserRouter>
     </>
