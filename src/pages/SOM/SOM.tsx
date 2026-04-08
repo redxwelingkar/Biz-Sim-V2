@@ -84,6 +84,19 @@ function SOM() {
         }
         // console.log("opdays", opdays)
         // console.log("displayOPDays", displayOPDays)
+
+        
+        // check if values already exist and populate them
+        let SAMPercentLS = localStorage.getItem("SAMPercent")
+        // let OPdaysLS = localStorage.getItem("OPdays")
+        // let CSPMonthlyLS = localStorage.getItem("CSPMonthly")
+        // let CSPYearlyLS = localStorage.getItem("CSPYearly")
+
+        if(SAMPercentLS != null) setSAMPercent(SAMPercentLS)
+        // if(OPdaysLS != null) setOPDays(OPdaysLS)
+        // if(CSPMonthlyLS != null) setCSPMonthly(CSPMonthlyLS)
+        // if(CSPYearlyLS != null) setCSPYearly(CSPYearlyLS)
+       
     }, []);
 
     function navigateToTowardsSOM() {
@@ -114,6 +127,20 @@ function SOM() {
         setSAMPercent(value)
     }
 
+    const savetoLocalStorage=()=>{
+        try {
+            console.log("savetoLocalStorage SOMValue",SOMValue);
+            
+            localStorage.setItem("SOM",SOMValue)
+            localStorage.setItem("SOMDaily",DailyExpbySOM)
+            localStorage.setItem("SOMMonthly",MonthlyExpbySOM)
+            localStorage.setItem("SOMYearly",YearlyExpbySOM)
+        } catch (error) {
+            console.error("SOM - savetoLocalStorage",error);
+            
+        }
+    }
+
     function submitSAMPercent() {
         if (SAMPercent || parseFloat(SAMPercent) > 0) {
             localStorage.setItem("SAMPercent", SAMPercent)
@@ -122,14 +149,22 @@ function SOM() {
             let CSP = parseFloat(CSPValue)
             let SOM = (parseFloat(SAMPercent) / 100) * parseFloat(SAM)
             setSOMValue(SOM.toString())
+            localStorage.setItem("SOM",SOM.toString())
 
             let DailyExpSOM = (SOM * CSP).toFixed(2)
             setDailyExpbySOM(DailyExpSOM.toString())
+            localStorage.setItem("SOMDaily",DailyExpSOM)
+
             let MonthlyExpSOM = (SOM * CSP * parseFloat(OPDays)).toFixed(2)
             setMonthlyExpbySOM(MonthlyExpSOM.toString())
+            localStorage.setItem("SOMMonthly",MonthlyExpSOM)
+
             let YearlyExpSOM = (SOM * CSP * parseFloat(OPDays) * 12).toFixed(2)
             setYearlyExpbySOM(YearlyExpSOM.toString())
+            localStorage.setItem("SOMYearly",YearlyExpSOM)
+            
             setdisplayExpbySOM(true)
+            // savetoLocalStorage()
 
             // Autoclick down arrow to go to next step when submitting CSPValue
             let downArrow = document.getElementById("downArrow")
@@ -362,7 +397,8 @@ function SOM() {
                             </tr>}
                     </tbody>
                 </table>
-                <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>
+                {showSAMPercentInput &&
+                    <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>}
             </div>
 
 

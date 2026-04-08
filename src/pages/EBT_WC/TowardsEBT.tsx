@@ -14,7 +14,7 @@ import capexIcon from "../../assets/img/CapEx-icon.png";
 const TowardsEBT = () => {
     const navigate = useNavigate();
 
-    const handleYesClick = () => navigate("/Biz-Sim-V2/ebt-calculation");
+    const handleYesClick = () => navigate("/Biz-Sim-V2/EBT_WC-calculation");
     const handleNoClick = () => navigate("/Biz-Sim-V2/towards-capex");
     
     return (

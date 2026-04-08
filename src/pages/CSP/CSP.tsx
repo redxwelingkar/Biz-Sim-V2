@@ -66,6 +66,18 @@ function CSP() {
         }
         console.log("SAM", sam)
         console.log("displayOPDays", displayOPDays)
+
+        // check if values already exist and populate them
+        let CSPValueLS = localStorage.getItem("CSPValue")
+        let OPdaysLS = localStorage.getItem("OPdays")
+        let CSPMonthlyLS = localStorage.getItem("CSPMonthly")
+        let CSPYearlyLS = localStorage.getItem("CSPYearly")
+
+        if(CSPValueLS != null) setCSPValue(CSPValueLS)
+        if(OPdaysLS != null) setOPDays(OPdaysLS)
+        if(CSPMonthlyLS != null) setCSPMonthly(CSPMonthlyLS)
+        if(CSPYearlyLS != null) setCSPYearly(CSPYearlyLS)
+
     }, []);
 
     function navigateToTowardsSOM() {

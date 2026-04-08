@@ -95,9 +95,8 @@ function CapEx() {
     }
 
     // navigate to working-capital page
-    const navigateToCapEx=()=>{
-        // todo: change to towards working-capital pages
-        navigate("/Biz-Sim-V2/working-capital")
+    const navigateTowardsEBT_WC = () => {
+        navigate("/Biz-Sim-V2/towards-ebt-wc")
     }
     // helper Functions End
 
@@ -156,15 +155,6 @@ function CapEx() {
 
     // Table functions end
 
-
-    /* const footerTexts = [
-        "Here in this section, the system will automatically calculate your monthly Earnings Before Tax (EBT) based on the earlier data,  by subtracting monthly operational expenses (OpEx) from the monthly sales obtained from the Serviceable Obtainable Market (SOM). The field is uneditable and will only change if there's a change in the operational expenditure or sales from SOM.",
-        "Now to calculate the working capital the system will use the earlier calculated data on Capital Expenditure (CapEx) and Operational Expenditure (OpEx) the you wil have to enter the number of months for which those values should be considered, this represents the assumption that your business needs to sustain itself for that duration, after which it’ll start making actual profit over the investment.",
-        "Now enter the number of months in the provided field and press “Enter”, the system will immediately calculate the working capital for the entered number of months.",
-        "Click on “SAVE DETAILS” to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
-        "Click on the downward arrow here to move on to the next section.",
-        ""
-    ]; */
     const footerTexts = [
         "Here in the section of Capital Expenditure (OpEx), similar to what we did in the section of  OpEx, you will have to list down each expense that you are going to invest in to start your business. You will first have to enter the name of the expense, and then mention a value - amount of money which is going to be spent on that particular expense.",
         "You can add more rows for adding more expenses by clicking on “ADD EXPENSE” button, you may edit each expense and its value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total capital expenditure will keep getting updated at the bottom field of “Total CapEx”.",
@@ -302,7 +292,7 @@ function CapEx() {
 
 
 
-            <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />
+            <Footer texts={footerTexts} onNextNavtowardsEBT_WC={navigateTowardsEBT_WC} />
         </div>
     )
 }

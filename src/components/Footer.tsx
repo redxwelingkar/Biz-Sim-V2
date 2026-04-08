@@ -13,11 +13,13 @@ interface FooterProps {
   onNextshowCSPIcon?: () => void;
   onNextshowSOMIcon?: () => void;
   onNextNavtoCapEx?: () => void;
+  onNextNavtowardsEBT_WC?: () => void;
+  onNextShowWC?: () => void;
   CalSAMBTNclick?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, onNextShowWC, onNextNavtowardsEBT_WC, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -44,9 +46,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
   };
 
   const handleDownArrowClick = () => {
-    // console.log("Arrow Index:", textIndex);
-    // console.log("Index Text:", texts[textIndex]);
-    // console.log("down_Arrow", down_Arrow);
+    console.log("Arrow Index:", textIndex);
+    console.log("Index Text:", texts[textIndex]);
+    console.log("down_Arrow", down_Arrow);
 
     if (textIndex < texts.length - 1) {
       setTextIndex(prevIndex => prevIndex + 1);
@@ -67,6 +69,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         }
         if (onNextOPDays) {
           onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 1
+        }
+        if (onNextShowWC) {
+          onNextShowWC(); // Call onNextShowWC when dowm arrow click occurs on index 1
         }
 
       }
@@ -90,12 +95,17 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextshowCSPIcon) {
           onNextshowCSPIcon()// Call onNextshowCSPIcon when dowm arrow click occurs on index 3
         }
+        // move to Towards EBT_WC
+        if (onNextNavtowardsEBT_WC) {
+          onNextNavtowardsEBT_WC()
+        }
       }
       if (textIndex === 4) {
         // move to CapEx
         if (onNextNavtoCapEx) {
           onNextNavtoCapEx()
         }
+        
       }
 
     }

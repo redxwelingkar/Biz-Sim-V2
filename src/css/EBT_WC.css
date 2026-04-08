@@ -1,0 +1,10 @@
+.WC-words {
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+    margin-top: 1vh;
+    color: white;
+    width: 50%;
+    display: flex;
+    justify-self: center;
+}
