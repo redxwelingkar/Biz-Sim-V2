@@ -1,13 +1,411 @@
-import Header from "../../components/Header";
-import BackButton from "../../components/BackButton";
+import React, { useEffect, useState } from 'react'
+import Header from '../../components/Header'
+import BackButton from '../../components/BackButton'
+import { motion, AnimatePresence } from 'framer-motion';
+
+import '../../css/Funding.css'
+
+import tamIcon from "../../assets/img/tam-icon.png";
+import samIcon from "../../assets/img/sam-icon.png";
+import cspIcon from "../../assets/img/csp-icon.png";
+import somIcon from "../../assets/img/som-icon.png";
+import OpExIcon from "../../assets/img/OpEx-icon.png";
+import CapExIcon from "../../assets/img/CapEx-icon.png";
+import EBTWCIcon from "../../assets/img/EBT_WC.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
+import Footer from '../../components/Footer';
+import NumberToWords from '../../components/NumberToWords';
+import CustomTextField from '../../components/CustomTextField';
+import { useNavigate } from 'react-router-dom';
+import TextDisplay from '../../components/TextDisplay';
+
+
+const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+    <AnimatePresence mode="wait">
+        <motion.div
+            key={keyName}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            // exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+            style={{ overflowX: "auto", whiteSpace: "nowrap" }}
+        >
+            {children}
+        </motion.div>
+    </AnimatePresence>
+);
 
 const Funding = () => {
+    // always run at start
+    useEffect(() => {
+        loadFundingRowsfromLocalStorage()
+    }, [])
+
+
+    const [rows, setRows] = useState([
+        { id: 1, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
+        { id: 2, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
+        { id: 3, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
+    ]);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showFundingIcon, setshowFundingIcon] = useState(false);
+    const [showFundingIconText, setshowFundingIconText] = useState(false);
+    const [isHoveredRow, setisHoveredRow] = useState("");
+    const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
+    const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
+    const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
+
+    const navigate = useNavigate()
+
+
+
+    // helper Functions
+
+    // if data in DB overwrite rows useState
+    const loadFundingRowsfromLocalStorage = () => {
+        try {
+            let FundingDB = localStorage.getItem('FundingDB')
+            let TotalAmountBorrowed = localStorage.getItem('TotalAmountBorrowed')
+            let TotalMonthlyInterest = localStorage.getItem('TotalMonthlyInterest')
+            let TotalMonthlyPrincipalRepayment = localStorage.getItem('TotalMonthlyPrincipalRepayment')
+            // console.log("FundingDB start:", FundingDB);
+            // console.log("FundingTotal start:", FundingTotal);
+
+            if (FundingDB !=null 
+                && TotalAmountBorrowed!= null 
+                && TotalMonthlyPrincipalRepayment!= null 
+                && TotalMonthlyInterest!= null) {
+                setRows(JSON.parse(FundingDB))
+                setTotalAmountBorrowed(TotalAmountBorrowed)
+                setTotalMonthlyInterest(TotalMonthlyInterest)
+                setTotalMonthlyPrincipalRepayment(TotalMonthlyPrincipalRepayment)
+            }
+
+        } catch (error) {
+            console.error("loadFundingRowsfromLocalStorage", error);
+
+        }
+    }
+
+    // show Funding indicator Icon and Text
+    const showFundingIconAndText = () => {
+        if (!showFundingIcon) {
+
+            setTimeout(() => {
+                setshowFundingIcon(true)
+                setTimeout(() => {
+                    console.log("setshowCSPIconText(true)");
+                    setshowFundingIconText(true)
+                    setTimeout(() => {
+                        console.log("setshowCSPIconText(false)");
+                        setshowFundingIconText(false)
+                    }, 1000 * 2.5);
+                }, 1000);
+            }, 1000 * 2);
+        }
+
+    }
+
+    // navigate to CapEx page
+    const navigateToCapEx = () => {
+        // todo: change to towards capex pages
+        navigate("/Biz-Sim-V2/capex-calculation")
+    }
+    // helper Functions End
+
+    // Table functions
+    const handleDeleteRow = (id: number) => {
+        if (rows.length === 1) {
+            setErrorMessage('Please enter at least one segment.');
+            return;
+        }
+        setRows(rows.filter(row => row.id !== id));
+    };
+
+    const handleSourceOfFundsChange = (id: number, value: string) => {
+        const updatedRows = rows.map(row =>
+            row.id === id ? { ...row, SourceofFunds: value } : row
+        );
+        setRows(updatedRows);
+    };
+    const handleBorrowedAmountChange = (id: number, value: string) => {
+        const updatedRows = rows.map(row =>
+            row.id === id ? { ...row, BorrowedAmount: value } : row
+        );
+        setRows(updatedRows);
+    };
+    const handleInterestChange = (id: number, value: string) => {
+        const updatedRows = rows.map(row =>
+            row.id === id ? { ...row, interest: value } : row
+        );
+        setRows(updatedRows);
+    };
+    const handleRepaymentPeriodChange = (id: number, value: string) => {
+        const updatedRows = rows.map(row => {
+            if (row.id === id) {
+                const borrowed = parseFloat(row.BorrowedAmount || "0");
+                const interest = parseFloat(row.interest || "0");
+                // Interest = (P × R × T) / 100
+                const interestPayable = (borrowed * interest * parseFloat(value)) / 100;
+
+                const monthlyPrincipal = borrowed / (parseFloat(value) * 12);
+                
+                const totalMonths = parseFloat(value) * 12;
+                const monthlyInterest = interestPayable / totalMonths
+                // console.log("borrowed", borrowed, "interest", interest, "period", parseFloat(value));
+                // console.log("row", row);
+
+                return {
+                    ...row,
+                    RepaymentPeriod: value,
+                    interestPayable: interestPayable.toFixed(2),
+                    MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
+                    MonthlyInterestPayment:monthlyInterest.toFixed(2)
+                };
+            }
+            return row;
+        });
+        // console.log(updatedRows);
+
+        setRows(updatedRows);
+    };
+
+    const handleAddRow = () => {
+        const newRow = {
+            id: rows.length ? rows[rows.length - 1].id + 1 : 1,
+            SourceofFunds: '',
+            BorrowedAmount: '',
+            interest: '',
+            interestPayable: '',
+            RepaymentPeriod: '',
+            MonthlyPrincipalPayment: '',
+            MonthlyInterestPayment:''
+        };
+        setRows([...rows, newRow]);
+    };
+
+    const handleSaveDetails = () => {
+        const allFieldsFilled = rows.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
+        if (!allFieldsFilled) {
+            setErrorMessage('Please enter details in all cells.');
+            return;
+        }
+        setErrorMessage('');
+        // TODO: Fix EMI formulas
+        //Total Amount borrowed
+        const TAB = rows.reduce((total, row) => total + parseInt(row.BorrowedAmount), 0);
+        //Total Monthly interest
+        const TMI = rows.reduce((total, row) => total + parseInt(row.interestPayable), 0);
+        //Total Monthly Principal
+        const TMP = rows.reduce((total, row) => total + parseInt(row.MonthlyPrincipalPayment), 0);
+        // Monthly EMI 
+        const EMI = TMP + TMI
+        setTotalAmountBorrowed(TAB.toString());
+        setTotalMonthlyInterest(TMI.toString());
+        setTotalMonthlyPrincipalRepayment(TMP.toString());
+        localStorage.setItem('TotalAmountBorrowed', TAB.toString());
+        localStorage.setItem('TotalMonthlyInterest', TMI.toString());
+        localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toString());
+        localStorage.setItem('EMI', EMI.toString());
+        localStorage.setItem('FundingDB', JSON.stringify(rows));
+        showFundingIconAndText()
+
+        // console.log("FundingDB: ", JSON.stringify(rows));
+        // console.log("Funding Total: ", total.toString());
+
+    };
+
+
+
+    // Table functions end
+
+
+    const footerTexts = [
+        "You must be thinking, that's a lot or rows and columns, but don't be intimidated by them, we'll take on each column and then row, one at a time. So in the first column you have to enter the name of the source of your funds, for example, you may use your own funds, or borrow from a bank or from some friends.",
+        "In the second column you have to enter the amount of funds that you will be borrowing from that source, for example, you borrow 10 lacs from a bank, mention the same in the field as a numerical value. In the third column you have to enter the annual rate of interest at which you have borrowed the money, this is required to calculate the repayment amount which will include the interest accrued.",
+        "As you press “Enter” after entering the annual rate of interest, the system will automatically give you the value of the total interest payable in the fourth column. The values in this column are not editable and will only change if you change the values of the borrowed amount or the annual rate of interest.",
+        "In the fifth column named “Repayment Period”, you have to enter the number of years that you will have agreed to repay the borrowed amount along with the accrued interest. As you press “Enter” after entering that value the system will automatically calculate the monthly amount of the principal borrowed amount that you will have to repay.",
+        "You can also use the “Add a Source of Funds” button to add another row, or click the “-” sign against each row to delete a row as well.",
+        "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment",
+        "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment. this will also create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        "Now let me remind you that the combined monthly repayment value of principal amount plus interest is going to be added as a monthly EMI to your operational costs, as it is going to be a monthly expense that you'll have to incur, and it's going to be a variable expenditure.",
+        "Now all this additional operational expenditure will also affect your EBT and Working Capital. We can see such changes to each of the sectional at a glance in the home dashboard, click the downward arrow to go to it, an icon will also be added in the left navigation bar for the same.  ",
+        // "",
+    ];
+
+
     return (
         <div>
             <Header />
-            <BackButton topOffset="10vh" />
+            <BackButton topOffset='10vh' />
+            <div className='indicatorIcon-container'>
+                <div className='Icon-div'>
+                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
+                </div>
+                {/* Animate the icon entry */}
+                <div className='Icon-div'>
+                    <AnimatePresence mode="wait">
+                        {showFundingIcon ? (
+
+                            <motion.img
+                                key="Funding-img"
+                                src={FundingIcon}
+                                alt="Funding-Icon"
+                                className="SOM-Icon"
+                                initial={{ opacity: 0, x: -50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -50 }}
+                                transition={{ duration: 1 }}
+                            />
+
+                        ) : <div></div>}
+                    </AnimatePresence>
+                    {/* Animate the text entry/exit */}
+                    <AnimatePresence mode="wait">
+                        {showFundingIconText && (
+                            <motion.span
+                                key="Funding-Icon-Text"
+                                initial={{ opacity: 0, x: -100 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -100 }}
+                                transition={{ duration: 1 }}
+                            >
+                                Operational Expenditure
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
+            <div className="table-container">
+                <h1>Funding</h1>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th></th>{/* Delete row column */}
+                            <th>Source of funds</th>
+                            <th>Borrowed Amount</th>
+                            <th>Interest</th>
+                            <th>Repayment Period</th>
+                            <th>Interest Payable</th>
+                            <th>Monthly Principal Repayment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows.map(row => (
+                            <tr key={row.id}>
+                                <td>
+                                    <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                </td>
+                                <td>
+                                    <CustomTextField
+                                        value={row.SourceofFunds}
+                                        type='text'
+                                        placeholder='Enter Name'
+                                        onChange={(value) => handleSourceOfFundsChange(row.id, value)}
+                                    />
+                                </td>
+                                <td>
+                                    <CustomTextField
+                                        value={row.BorrowedAmount}
+                                        type='number'
+                                        min={0}
+                                        placeholder='Enter Value'
+                                        onChange={(value) => handleBorrowedAmountChange(row.id, value)}
+                                    />
+                                </td>
+                                <td>
+                                    <CustomTextField
+                                        value={row.interest}
+                                        type='number'
+                                        min={0}
+                                        placeholder='Enter %'
+                                        onChange={(value) => handleInterestChange(row.id, value)}
+                                    />
+                                </td>
+                                <td>
+                                    <CustomTextField
+                                        value={row.RepaymentPeriod}
+                                        type='number'
+                                        min={0}
+                                        placeholder='Enter No. of Years'
+                                        onChange={(value) => handleRepaymentPeriodChange(row.id, value)}
+                                    />
+                                </td>
+                                <td>
+                                    <TextDisplay
+                                        value={row.interestPayable}
+                                    />
+                                </td>
+
+                                <td>
+                                    <TextDisplay
+                                        value={row.MonthlyPrincipalPayment}
+                                    />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
+                <div className="button-container">
+                    <button className="add-button" onClick={handleAddRow}>ADD A SOURCE OF FUNDS</button>
+                    {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                </div>
+
+                <div className="FundingTotals-container">
+                    <div>
+                        <span className="total-funding-words">Total Amount Borrowed</span>
+                        <input
+                            type="text"
+                            value={TotalAmountBorrowed}
+                            readOnly
+                            className="total-size-field"
+                        />
+                    </div>
+                    <div>
+                        <span className="total-funding-words">Monthly Interest</span>
+                        <input
+                            type="text"
+                            value={TotalMonthlyInterest}
+                            readOnly
+                            className="total-size-field"
+                        />
+                    </div>
+                    <div>
+                        <span className="total-funding-words">Total Monthly Principal Repayment</span>
+                        <input
+                            type="text"
+                            value={TotalMonthlyPrincipalRepayment}
+                            readOnly
+                            className="total-size-field"
+                        />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />
         </div>
-    );
+    )
 };
 
 export default Funding;

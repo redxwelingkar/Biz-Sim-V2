@@ -99,9 +99,13 @@ button:focus-visible {
 
 /* Nav - Icons */
 .CSP-Icon {
-  /* width: 52px; */
+  /* width: 36px; */
   height: 36px;
   
+}
+
+.EBT-Icon{
+  width: 36px;
 }
 
 /* Nav - Icons */

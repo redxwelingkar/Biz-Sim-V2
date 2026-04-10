@@ -1,0 +1,22 @@
+.FundingTotals-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    margin-top: 2rem;
+}
+
+.FundingTotals-container div {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+}
+
+.total-funding-words {
+    color: #FFF;
+    font-family: "Open Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-variant: small-caps;
+}

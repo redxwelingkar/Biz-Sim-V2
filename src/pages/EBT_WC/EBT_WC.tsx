@@ -12,6 +12,7 @@ import cspIcon from "../../assets/img/csp-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
 import OpExIcon from "../../assets/img/OpEx-icon.png";
 import CapExIcon from "../../assets/img/CapEx-icon.png";
+import EBTWCIcon from "../../assets/img/EBT_WC.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
@@ -51,13 +52,13 @@ function EBT_WC() {
     const [OpExrows, setOpExrows] = useState([
         { id: 1, ExpenseName: '', TypeOfExpense: "", ValueOfExpense: '' }
     ]);
-    const [errorMessage, setErrorMessage] = useState('');
+    // const [errorMessage, setErrorMessage] = useState('');
     const [EBT, setEBT] = useState('');
     const [SOMMonthly, setSOMMonthly] = useState('');
     const [WCMonths, setWCMonths] = useState('');
     const [WC, setWC] = useState('');
-    const [showCapExIcon, setshowCapExIcon] = useState(false);
-    const [showCapExIconText, setshowCapExIconText] = useState(false);
+    const [showEBTWC, setshowEBTWC] = useState(false);
+    const [showEBTWCText, setshowEBTWCText] = useState(false);
     const [showWorkingCapital, setshowWorkingCapital] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [successloadDataFromLocalStorage, setsuccessloadDataFromLocalStorage] = useState(false);
@@ -101,7 +102,7 @@ function EBT_WC() {
 
     const getOpExVariableTotal = () => {
         let data = OpExrows
-        console.log("data 1", data);
+        // console.log("data 1", data);
         let res = 0
         data.forEach((row) => {
             if (row.TypeOfExpense == "variable") {
@@ -156,31 +157,35 @@ function EBT_WC() {
     }
 
     // show CapEx indicator Icon and Text
-    const showCapExIconAndText = () => {
-        if (!showCapExIcon) {
+    const showEBT_WCIcon = () => {
+        setTimeout(() => {
+            setshowEBTWC(true)
             setTimeout(() => {
-                setshowCapExIcon(true)
+                console.log("setshowCSPIconText(true)");
+                setshowEBTWCText(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
-                    setshowCapExIconText(true)
-                    setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
-                        setshowCapExIconText(false)
-                    }, 1000 * 2.5);
-                }, 1000);
-            }, 1000 * 2);
-        }
-
+                    console.log("setshowCSPIconText(false)");
+                    setshowEBTWCText(false)
+                }, 1000 * 2.5);
+            }, 1000);
+        }, 1000 * 2);
     }
 
     // navigate to working-capital page
-    const navigateTowardsEBT_WC = () => {
-        navigate("/Biz-Sim-V2/towards-ebt-wc")
+    const onNextNavtowardsFunding = () => {
+        navigate("/Biz-Sim-V2/towards-funding")
     }
 
     const handleWCMonthsChange = (value: string) => {
         setWCMonths(value)
         if (parseInt(value) > 0) calculateWC(value)
+    }
+
+    const handleSaveWC = () => {
+        // save no. of months and WC 
+        localStorage.setItem("WC", WC)
+        localStorage.setItem("WCMonths", WCMonths)
+        showEBT_WCIcon()
     }
     // helper Functions End
 
@@ -211,21 +216,24 @@ function EBT_WC() {
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 <div className='Icon-div'>
-                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
                 </div>
                 <div className='Icon-div'>
-                    <img src={OpExIcon} alt="OpEx-Icon" className="SOM-Icon" />
+                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
                 </div>
                 {/* Animate the icon entry */}
                 <div className='Icon-div'>
                     <AnimatePresence mode="wait">
-                        {showCapExIcon ? (
+                        {showEBTWC ? (
 
                             <motion.img
-                                key="CapEx-img"
-                                src={CapExIcon}
+                                key="EBTWCIcon-img"
+                                src={EBTWCIcon}
                                 alt="CapEx-Icon"
-                                className="SOM-Icon"
+                                className="EBT-Icon"
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -50 }}
@@ -236,15 +244,15 @@ function EBT_WC() {
                     </AnimatePresence>
                     {/* Animate the text entry/exit */}
                     <AnimatePresence mode="wait">
-                        {showCapExIconText && (
+                        {showEBTWCText && (
                             <motion.span
-                                key="CapEx-Icon-Text"
+                                key="EBTWC-Icon-Text"
                                 initial={{ opacity: 0, x: -100 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -100 }}
                                 transition={{ duration: 1 }}
                             >
-                                Capital Expenditure
+                                EBT & Working Capital
                             </motion.span>
                         )}
                     </AnimatePresence>
@@ -281,8 +289,9 @@ function EBT_WC() {
                         </tr>
                     </tbody>
                 </table>
+
                 {showWorkingCapital &&
-                    <div >
+                    <div className="csp-container" >
                         <PopUp keyName='WCHeader'>
                             <h1>Working Capital</h1>
                         </PopUp>
@@ -313,7 +322,8 @@ function EBT_WC() {
                                         {isHoveredRow === "WCMonthsWords" &&
                                             <Slide keyName='WCMonthsWords'>
                                                 <NumberToWords value={WCMonths} />
-                                            </Slide>}
+                                            </Slide>
+                                        }
                                     </td>
                                 </tr>
                             </tbody>
@@ -332,13 +342,18 @@ function EBT_WC() {
                                 </div>
                             </div>
                         </PopUp>
+                        <button className="save-button" onClick={handleSaveWC}>SAVE DETAILS</button>
                     </div>
+
                 }
             </div>
 
+            <div className="button-container">
 
+                { }
+            </div>
 
-            <Footer texts={footerTexts} onNextShowWC={() => setshowWorkingCapital(true)} onNextNavtowardsEBT_WC={navigateTowardsEBT_WC} />
+            <Footer texts={footerTexts} onNextShowWC={() => setshowWorkingCapital(true)} onNextNavtowardsFunding={onNextNavtowardsFunding} />
         </div>
     )
 }
