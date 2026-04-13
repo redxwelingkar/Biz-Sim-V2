@@ -13,6 +13,7 @@ interface FooterProps {
   onNextshowCSPIcon?: () => void;
   onNextshowSOMIcon?: () => void;
   onNextNavtoCapEx?: () => void;
+  onNextNavtoOpEx?: () => void;
   onNextNavtowardsEBT_WC?: () => void;
   onNextNavtowardsFunding?: () => void;
   onNextShowWC?: () => void;
@@ -20,7 +21,7 @@ interface FooterProps {
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, onNextShowWC, onNextNavtowardsEBT_WC, onNextNavtowardsFunding, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, onNextShowWC, onNextNavtowardsEBT_WC, onNextNavtowardsFunding,onNextNavtoOpEx, CalSAMBTNclick, texts }: FooterProps) => {
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
@@ -105,6 +106,10 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         // move to CapEx
         if (onNextNavtoCapEx) {
           onNextNavtoCapEx()
+        }
+        // move to OpEx
+        if (onNextNavtoOpEx) {
+          onNextNavtoOpEx()
         }
         // move towards funding
         if (onNextNavtowardsFunding) {

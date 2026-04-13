@@ -22,6 +22,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -101,10 +105,10 @@ button:focus-visible {
 .CSP-Icon {
   /* width: 36px; */
   height: 36px;
-  
+
 }
 
-.EBT-Icon{
+.EBT-Icon {
   width: 36px;
 }
 

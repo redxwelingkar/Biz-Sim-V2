@@ -107,9 +107,9 @@ const Funding = () => {
     }
 
     // navigate to CapEx page
-    const navigateToCapEx = () => {
+    const navigateToOpEx = () => {
         // todo: change to towards capex pages
-        navigate("/Biz-Sim-V2/capex-calculation")
+        navigate("/Biz-Sim-V2/opex-calculation#MonthlyRepaymentRow")
     }
     // helper Functions End
 
@@ -401,7 +401,7 @@ const Funding = () => {
 
 
 
-            <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />
+            <Footer texts={footerTexts} onNextNavtoOpEx={navigateToOpEx} />
         </div>
     )
 };
