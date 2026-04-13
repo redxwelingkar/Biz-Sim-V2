@@ -11,7 +11,7 @@ import cspIcon from "../../assets/img/csp-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/Funding-icon.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
 import SalesIcon from "../../assets/img/Sales-icon.png";
 
 const Dashboard = () => {

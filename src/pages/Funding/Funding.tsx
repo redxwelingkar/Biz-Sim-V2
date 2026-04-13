@@ -120,8 +120,20 @@ const Funding = () => {
             return;
         }
         setRows(rows.filter(row => row.id !== id));
+    };  
+    const handleAddRow = () => {
+        const newRow = {
+            id: rows.length ? rows[rows.length - 1].id + 1 : 1,
+            SourceofFunds: '',
+            BorrowedAmount: '',
+            interest: '',
+            interestPayable: '',
+            RepaymentPeriod: '',
+            MonthlyPrincipalPayment: '',
+            MonthlyInterestPayment:''
+        };
+        setRows([...rows, newRow]);
     };
-
     const handleSourceOfFundsChange = (id: number, value: string) => {
         const updatedRows = rows.map(row =>
             row.id === id ? { ...row, SourceofFunds: value } : row
@@ -170,19 +182,6 @@ const Funding = () => {
         setRows(updatedRows);
     };
 
-    const handleAddRow = () => {
-        const newRow = {
-            id: rows.length ? rows[rows.length - 1].id + 1 : 1,
-            SourceofFunds: '',
-            BorrowedAmount: '',
-            interest: '',
-            interestPayable: '',
-            RepaymentPeriod: '',
-            MonthlyPrincipalPayment: '',
-            MonthlyInterestPayment:''
-        };
-        setRows([...rows, newRow]);
-    };
 
     const handleSaveDetails = () => {
         const allFieldsFilled = rows.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
@@ -191,22 +190,21 @@ const Funding = () => {
             return;
         }
         setErrorMessage('');
-        // TODO: Fix EMI formulas
         //Total Amount borrowed
-        const TAB = rows.reduce((total, row) => total + parseInt(row.BorrowedAmount), 0);
+        const TAB = rows.reduce((total, row) => total + parseFloat(row.BorrowedAmount), 0);
         //Total Monthly interest
-        const TMI = rows.reduce((total, row) => total + parseInt(row.interestPayable), 0);
+        const TMI = rows.reduce((total, row) => total + parseFloat(row.MonthlyInterestPayment), 0);
         //Total Monthly Principal
-        const TMP = rows.reduce((total, row) => total + parseInt(row.MonthlyPrincipalPayment), 0);
+        const TMP = rows.reduce((total, row) => total + parseFloat(row.MonthlyPrincipalPayment), 0);
         // Monthly EMI 
         const EMI = TMP + TMI
-        setTotalAmountBorrowed(TAB.toString());
-        setTotalMonthlyInterest(TMI.toString());
-        setTotalMonthlyPrincipalRepayment(TMP.toString());
-        localStorage.setItem('TotalAmountBorrowed', TAB.toString());
-        localStorage.setItem('TotalMonthlyInterest', TMI.toString());
-        localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toString());
-        localStorage.setItem('EMI', EMI.toString());
+        setTotalAmountBorrowed(TAB.toFixed(2));
+        setTotalMonthlyInterest(TMI.toFixed(2));
+        setTotalMonthlyPrincipalRepayment(TMP.toFixed(2));
+        localStorage.setItem('TotalAmountBorrowed', TAB.toFixed(2));
+        localStorage.setItem('TotalMonthlyInterest', TMI.toFixed(2));
+        localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toFixed(2));
+        localStorage.setItem('EMI', EMI.toFixed(2));
         localStorage.setItem('FundingDB', JSON.stringify(rows));
         showFundingIconAndText()
 
