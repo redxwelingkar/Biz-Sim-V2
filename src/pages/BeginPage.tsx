@@ -10,6 +10,7 @@ const BeginPage = () => {
         <>
             <div className="begin-bg-cover center">
                 <button className="btns" onClick={tutorialpage}>START</button>
+                {/* <button className="btns" onClick={tutorialpage}>CONTINUE</button> */}
             </div>
         </>
     );

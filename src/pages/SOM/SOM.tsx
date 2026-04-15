@@ -108,13 +108,13 @@ function SOM() {
             setTimeout(() => {
                 setshowSOMIcon(true)
                 setTimeout(() => {
-                    console.log("setshowSOMIconText(true)");
+                    // console.log("setshowSOMIconText(true)");
                     setshowSOMIconText(true)
                     setTimeout(() => {
-                        console.log("setshowSOMIconText(false)");
+                        // console.log("setshowSOMIconText(false)");
                         setshowSOMIconText(false)
                         setTimeout(() => {
-                            console.log("setshowSOMIconText(false)");
+                            // console.log("setshowSOMIconText(false)");
                             navigateToTowardsSOM()
                         }, 1000 * 2);
                     }, 1000 * 2.5);
@@ -127,19 +127,19 @@ function SOM() {
         setSAMPercent(value)
     }
 
-    const savetoLocalStorage=()=>{
-        try {
-            console.log("savetoLocalStorage SOMValue",SOMValue);
+    // const savetoLocalStorage=()=>{
+    //     try {
+    //         console.log("savetoLocalStorage SOMValue",SOMValue);
             
-            localStorage.setItem("SOM",SOMValue)
-            localStorage.setItem("SOMDaily",DailyExpbySOM)
-            localStorage.setItem("SOMMonthly",MonthlyExpbySOM)
-            localStorage.setItem("SOMYearly",YearlyExpbySOM)
-        } catch (error) {
-            console.error("SOM - savetoLocalStorage",error);
+    //         localStorage.setItem("SOM",SOMValue)
+    //         localStorage.setItem("SOMDaily",DailyExpbySOM)
+    //         localStorage.setItem("SOMMonthly",MonthlyExpbySOM)
+    //         localStorage.setItem("SOMYearly",YearlyExpbySOM)
+    //     } catch (error) {
+    //         console.error("SOM - savetoLocalStorage",error);
             
-        }
-    }
+    //     }
+    // }
 
     function submitSAMPercent() {
         if (SAMPercent || parseFloat(SAMPercent) > 0) {

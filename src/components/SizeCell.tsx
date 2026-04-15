@@ -1,5 +1,5 @@
 import React from 'react';
-import whiteCross from "../assets/img/white_cross.png";
+// import whiteCross from "../assets/img/white_cross.png";
 interface SizeProps {
   value: string;
   onChange: (value: string) => void;

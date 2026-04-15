@@ -113,7 +113,7 @@ function EBT_WC() {
     }
     const getOpExFixedTotal = () => {
         let data = OpExrows
-        console.log("data 1", data);
+        // console.log("data 1", data);
         let res = 0
         data.forEach((row) => {
             if (row.TypeOfExpense == "fixed") {
@@ -149,7 +149,7 @@ function EBT_WC() {
         OpExV = getOpExVariableTotal()
 
         if (CapExT != null && CapExT != undefined) {
-            console.log("WC: ", "CapExT", CapExT, "OpExF", OpExF, "OpExV", OpExV, "value", value);
+            // console.log("WC: ", "CapExT", CapExT, "OpExF", OpExF, "OpExV", OpExV, "value", value);
 
             WC = (parseInt(CapExT) + OpExF) + (OpExV * parseInt(value))
             setWC(WC.toString())
@@ -161,10 +161,10 @@ function EBT_WC() {
         setTimeout(() => {
             setshowEBTWC(true)
             setTimeout(() => {
-                console.log("setshowCSPIconText(true)");
+                // console.log("setshowCSPIconText(true)");
                 setshowEBTWCText(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(false)");
+                    // console.log("setshowCSPIconText(false)");
                     setshowEBTWCText(false)
                 }, 1000 * 2.5);
             }, 1000);

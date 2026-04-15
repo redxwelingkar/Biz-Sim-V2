@@ -1,8 +1,10 @@
+import avatar from '../assets/img/avatar.png'
+
 function Avatar() {
   return (
     <img
       className="avatar"
-      src="./src/assets/img/avatar.png"
+      src={avatar}
     />
   );
 }

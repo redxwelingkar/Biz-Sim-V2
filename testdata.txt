@@ -1,0 +1,19 @@
+FundingDB	[{"id":1,"SourceofFunds":"Own Funds","BorrowedAmount":"1000000","interest":"7.5","interestPayable":"75000.00","RepaymentPeriod":"1","MonthlyPrincipalPayment":"83333.33","MonthlyInterestPayment":"6250.00"},{"id":2,"SourceofFunds":"Bank","BorrowedAmount":"600000","interest":"14","interestPayable":"336000.00","RepaymentPeriod":"4","MonthlyPrincipalPayment":"12500.00","MonthlyInterestPayment":"7000.00"},{"id":3,"SourceofFunds":"Friends","BorrowedAmount":"900000","interest":"20","interestPayable":"360000.00","RepaymentPeriod":"2","MonthlyPrincipalPayment":"37500.00","MonthlyInterestPayment":"15000.00"}]	
+OPdays	25	
+OpExDB	[{"id":1,"SourceofFunds":"awd","BorrowedAmount":"1000000","interest":"7.5","interestPayable":"NaN","RepaymentPeriod":"","MonthlyPrincipalPayment":"NaN","ExpenseName":"raw Materials","TypeOfExpense":"variable","ValueOfExpense":"222463"},{"id":2,"SourceofFunds":"","BorrowedAmount":"","interest":"","interestPayable":"","RepaymentPeriod":"","MonthlyPrincipalPayment":"","ExpenseName":"two cooks","TypeOfExpense":"variable","ValueOfExpense":"22000"},{"id":3,"SourceofFunds":"","BorrowedAmount":"","interest":"","interestPayable":"","RepaymentPeriod":"","MonthlyPrincipalPayment":"","ExpenseName":"3 helpers","ValueOfExpense":"12000","TypeOfExpense":"variable"},{"id":4,"ExpenseName":"manager cashier","TypeOfExpense":"variable","ValueOfExpense":"10000"},{"id":5,"ExpenseName":"rent","TypeOfExpense":"variable","ValueOfExpense":"80000"},{"id":6,"ExpenseName":"ELECTRICITY\t","TypeOfExpense":"variable","ValueOfExpense":"8000"},{"id":7,"ExpenseName":"COOKING GAS\t","TypeOfExpense":"variable","ValueOfExpense":"9000"},{"id":8,"ExpenseName":"WATER\t","TypeOfExpense":"variable","ValueOfExpense":"4000"},{"id":9,"ExpenseName":"DELIVERY\t","TypeOfExpense":"variable","ValueOfExpense":"1000"},{"id":10,"ExpenseName":"LOGISTICS\t","TypeOfExpense":"variable","ValueOfExpense":"6000"},{"id":11,"ExpenseName":"EMI\t","TypeOfExpense":"variable","ValueOfExpense":"78250"},{"id":12,"ExpenseName":"Monthly Repayment [Auto Cal]","TypeOfExpense":"variable","ValueOfExpense":"161583.33"}]	
+OpExTotal	614296	
+SAM	24050	
+SAMPercent	1	
+SOM	240.5	
+SOMDaily	24050.00	
+SOMMonthly	601250.00	
+SOMYearly	7215000.00	
+TAM	441000	
+TotalAmountBorrowed	2500000.00	
+TotalMonthlyInterest	28250.00	
+TotalMonthlyPrincipalRepayment	133333.33	
+WC	2658139	
+WCMonths	3	
+businessName	Chai Wala	
+ebt	148537	
+rows	[{"id":1,"customerSegment":"Students","size":"25000","percentage":"40","sizeofSAM":"10000.00"},{"id":2,"customerSegment":"Taxi Drivers","size":"500","percentage":"0","sizeofSAM":"0.00"},{"id":3,"customerSegment":"Office Goers","size":"10000","percentage":"20","sizeofSAM":"2000.00"},{"id":4,"customerSegment":"Residents","size":"400000","percentage":"2","sizeofSAM":"8000.00"},{"id":5,"customerSegment":"Tourist","size":"5000","percentage":"80","sizeofSAM":"4000.00"},{"id":6,"customerSegment":"Shopkeepers","size":"500","percentage":"10","sizeofSAM":"50.00"}]	

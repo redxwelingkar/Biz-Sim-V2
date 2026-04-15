@@ -26,6 +26,10 @@ html {
   scroll-behavior: smooth;
 }
 
+h1{
+  color: rgb(255, 255, 255);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -136,4 +140,8 @@ button:focus-visible {
   z-index: 99;
   width: 100%;
   height: 80%;
+}
+
+.NumberToWords{
+  color: rgb(255, 255, 255);
 }

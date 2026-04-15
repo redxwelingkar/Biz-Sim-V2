@@ -66,7 +66,7 @@ const Dashboard = () => {
     const footerTexts = [
         "Now all this additional operational expenditure will also affect your EBT and Working Capital. We can see such changes to each of the sectional at a glance in the home dashboard, click the downward arrow to go to it, an icon will also be added in the left navigation bar for the same.",
         "Now after looking at the dashboard you can ask yourself the question if you will be able to run your business with such an overview of your revenue and expenses. If you feel so, then you can go back to each of the sections and adjust the values to see how the dashboard changes. Have fun...",
-        "You can also download the whole simulation as an excel sheet by clicking on the excel download button at the top right corner",
+        // "You can also download the whole simulation as an excel sheet by clicking on the excel download button at the top right corner",
         "This is the end of the simulation, we hope you had fun and learned a lot. We will be soon adding more features to the simulation, so stay tuned for that. If you have any feedback or suggestions, please feel free to reach out to us."
     ];
 

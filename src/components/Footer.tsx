@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../css/Footer.css';
+import avatar from '../assets/img/avatar.png'
+import upArrow from '../assets/img/upward_arrow.png'
+import downArrow from '../assets/img/downward_arrow.png'
 
 interface FooterProps {
   onNext?: () => void;
@@ -66,14 +69,14 @@ const Footer = ({ onNext,
   const handleUpArrowClick = () => {
     if (textIndex > 0) {
       setTextIndex(prevIndex => prevIndex - 1);
-      console.log("Arrow Index", textIndex);
+      // console.log("Arrow Index", textIndex);
     }
   };
 
   const handleDownArrowClick = () => {
-    console.log("Arrow Index:", textIndex);
-    console.log("Index Text:", texts[textIndex]);
-    console.log("down_Arrow", down_Arrow);
+    // console.log("Arrow Index:", textIndex);
+    // console.log("Index Text:", texts[textIndex]);
+    // console.log("down_Arrow", down_Arrow);
 
     if (textIndex < texts.length - 1) {
       setTextIndex(prevIndex => prevIndex + 1);
@@ -156,7 +159,7 @@ const Footer = ({ onNext,
   return (
     <footer className="footer">
       <div className="footer-left">
-        <img src="./src/assets/img/avatar.png" alt="Image" className="footer-image" />
+        <img src={avatar} alt="Image" className="footer-image" />
       </div>
       <div className="footer-middle">
         <p className="footer-text">{texts[textIndex]}</p>
@@ -168,7 +171,7 @@ const Footer = ({ onNext,
           onClick={handleUpArrowClick}
           disabled={textIndex === 0}
         >
-          <img src="./src/assets/img/upward_arrow.png" alt="Up Arrow" className="arrow-image" />
+          <img src={upArrow} alt="Up Arrow" className="arrow-image" />
         </button>
         <button
           id='downArrow'
@@ -176,7 +179,7 @@ const Footer = ({ onNext,
           onClick={handleDownArrowClick}
           disabled={down_Arrow || textIndex === texts.length - 1}
         >
-          <img src="./src/assets/img/downward_arrow.png" alt="Down Arrow" className="arrow-image" />
+          <img src={downArrow} alt="Down Arrow" className="arrow-image" />
         </button>
       </div>
     </footer>

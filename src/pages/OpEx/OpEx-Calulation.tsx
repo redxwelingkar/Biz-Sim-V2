@@ -117,10 +117,10 @@ function OpEx() {
             setTimeout(() => {
                 setshowOpExIcon(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
+                    // console.log("setshowCSPIconText(true)");
                     setshowOpExIconText(true)
                     setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
+                        // console.log("setshowCSPIconText(false)");
                         setshowOpExIconText(false)
                     }, 1000 * 2.5);
                 }, 1000);
@@ -177,7 +177,7 @@ function OpEx() {
     };
 
     const AddEMIRow = () => {
-        console.log('AddEMIRow called');
+        // console.log('AddEMIRow called');
 
         const anchor = document.querySelector('#AddExpenseBTN_ID')
         if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -190,7 +190,7 @@ function OpEx() {
                 let IsEMI = false
                 const updatedRows = rows.map(row => {
                     if (row.ExpenseName === "Monthly Repayment [Auto Cal]") {
-                        console.log('AddEMIRow update', row);
+                        // console.log('AddEMIRow update', row);
                         IsEMI = true
                         return {
                             ...row,
@@ -210,7 +210,7 @@ function OpEx() {
                         TypeOfExpense: 'variable',
                         ValueOfExpense: EMI,
                     };
-                    console.log('AddEMIRow newRow', newRow);
+                    // console.log('AddEMIRow newRow', newRow);
                     setRows([...rows, newRow]);
                 }
             }

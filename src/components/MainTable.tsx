@@ -94,8 +94,8 @@ const TableComponent = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [totalSize, setTotalSize] = useState(0);
   const [SAM, setSAM] = useState(0);
-  const [showNext, setShowNext] = useState(false);
-  const [showText, setShowText] = useState(false);
+  // const [showNext, setShowNext] = useState(false);
+  // const [showText, setShowText] = useState(false);
   const [showTAMIcon1, setshowTAMIcon] = useState(showTAMIcon);
   const [showSAMIcon1, setshowSAMIcon] = useState(showSAMIcon);
   const [showTAMIconText, setshowTAMIconText] = useState(false);
@@ -250,12 +250,12 @@ const TableComponent = ({
   }
 
 
-  const handleClearTotal = () => {
-    setTotalSize(0);
-    localStorage.removeItem('TAM');
-    localStorage.removeItem('rows');
-    setShowNext(false); // Hide Next button when total is cleared
-  };
+  // const handleClearTotal = () => {
+  //   setTotalSize(0);
+  //   localStorage.removeItem('TAM');
+  //   localStorage.removeItem('rows');
+  //   setShowNext(false); // Hide Next button when total is cleared
+  // };
 
   // const handleNext = () => {
   //   const image = document.querySelector('.image-container');

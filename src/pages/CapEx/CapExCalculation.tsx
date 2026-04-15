@@ -82,10 +82,10 @@ function CapEx() {
             setTimeout(() => {
                 setshowCapExIcon(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
+                    // console.log("setshowCSPIconText(true)");
                     setshowCapExIconText(true)
                     setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
+                        // console.log("setshowCSPIconText(false)");
                         setshowCapExIconText(false)
                     }, 1000 * 2.5);
                 }, 1000);
@@ -146,8 +146,8 @@ function CapEx() {
         localStorage.setItem('CapExDB', JSON.stringify(rows));
         showCapExIconAndText()
 
-        console.log("CapExDB: ", JSON.stringify(rows));
-        console.log("CapExTotal: ", total.toString());
+        // console.log("CapExDB: ", JSON.stringify(rows));
+        // console.log("CapExTotal: ", total.toString());
 
     };
 

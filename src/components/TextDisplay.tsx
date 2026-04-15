@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 interface TextDisplayProps {
     value: string;
@@ -8,15 +8,15 @@ interface TextDisplayProps {
 
 const TextDisplay = ({ value, label }: TextDisplayProps) => {
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (e.target.value) {
-            e.target.classList.add('blurred');
-        }
-    };
+    // const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    //     if (e.target.value) {
+    //         e.target.classList.add('blurred');
+    //     }
+    // };
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        e.target.classList.remove('blurred');
-    };
+    // const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    //     e.target.classList.remove('blurred');
+    // };
 
     return (
         <div className="cell">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,26 +14,26 @@ import CapExIcon from "../../assets/img/CapEx-icon.png";
 import EBTWCIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
 import Footer from '../../components/Footer';
-import NumberToWords from '../../components/NumberToWords';
+// import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
 import TextDisplay from '../../components/TextDisplay';
 
 
-const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
-    <AnimatePresence mode="wait">
-        <motion.div
-            key={keyName}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            // exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5 }}
-            style={{ overflowX: "auto", whiteSpace: "nowrap" }}
-        >
-            {children}
-        </motion.div>
-    </AnimatePresence>
-);
+// const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
+//     <AnimatePresence mode="wait">
+//         <motion.div
+//             key={keyName}
+//             initial={{ opacity: 0, x: -50 }}
+//             animate={{ opacity: 1, x: 0 }}
+//             // exit={{ opacity: 0, x: -20 }}
+//             transition={{ duration: 0.5 }}
+//             style={{ overflowX: "auto", whiteSpace: "nowrap" }}
+//         >
+//             {children}
+//         </motion.div>
+//     </AnimatePresence>
+// );
 
 const Funding = () => {
     // always run at start
@@ -51,7 +51,6 @@ const Funding = () => {
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showFundingIconText, setshowFundingIconText] = useState(false);
     const [isSaveFundingSaved, setisSaveFundingSaved] = useState(false);
-    const [isHoveredRow, setisHoveredRow] = useState("");
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
@@ -95,10 +94,10 @@ const Funding = () => {
             setTimeout(() => {
                 setshowFundingIcon(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
+                    // console.log("setshowCSPIconText(true)");
                     setshowFundingIconText(true)
                     setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
+                        // console.log("setshowCSPIconText(false)");
                         setshowFundingIconText(false)
                     }, 1000 * 2.5);
                 }, 1000);

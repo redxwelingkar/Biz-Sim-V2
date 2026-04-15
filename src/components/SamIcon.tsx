@@ -1,8 +1,9 @@
+import samIcon from '../assets/img/sam-icon.png'
 function SamIcon() {
     return (
       <img
         className="sam-icon"
-        src="./src/assets/img/sam-icon.png"
+        src={samIcon}
         alt="SAM Icon"
       />
     );

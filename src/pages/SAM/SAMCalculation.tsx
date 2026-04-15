@@ -3,12 +3,11 @@ import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/SamCalculation.css";
 import TableComponent from "../../components/MainTable";
-import TamIcon from "../../components/TamIcon";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const SAMCalc = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [showpercent, setShowpercent] = useState(false);
   const [showsizeofSAM, setShowsizeofSAM] = useState(false);
@@ -16,9 +15,9 @@ const SAMCalc = () => {
   const [CalSAMBTNclick, setCalSAMBTNclick] = useState(false);
   const [showSAMIcon, setshowSAMIcon] = useState(false);
 
-  const navigateNext = () => {
-    navigate("/Biz-Sim-V2/towards-csp"); // Navigate to the next page after transitions
-  };
+  // const navigateNext = () => {
+  //   navigate("/Biz-Sim-V2/towards-csp"); // Navigate to the next page after transitions
+  // };
 
   const footerTexts = [
     "Here in SAM, you must be seeing the same details that you just submitted in TAM. Confused? Why are they back? Don’t worry... For calculating the Serviceable Addressable Market, we need the TAM data. ",

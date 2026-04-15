@@ -64,19 +64,19 @@ function CSP() {
         } else {
             window.alert("SAM not calulated please Complete previous step")
         }
-        console.log("SAM", sam)
-        console.log("displayOPDays", displayOPDays)
+        // console.log("SAM", sam)
+        // console.log("displayOPDays", displayOPDays)
 
         // check if values already exist and populate them
         let CSPValueLS = localStorage.getItem("CSPValue")
         let OPdaysLS = localStorage.getItem("OPdays")
-        let CSPMonthlyLS = localStorage.getItem("CSPMonthly")
-        let CSPYearlyLS = localStorage.getItem("CSPYearly")
+        // let CSPMonthlyLS = localStorage.getItem("CSPMonthly")
+        // let CSPYearlyLS = localStorage.getItem("CSPYearly")
 
         if(CSPValueLS != null) setCSPValue(CSPValueLS)
         if(OPdaysLS != null) setOPDays(OPdaysLS)
-        if(CSPMonthlyLS != null) setCSPMonthly(CSPMonthlyLS)
-        if(CSPYearlyLS != null) setCSPYearly(CSPYearlyLS)
+        // if(CSPMonthlyLS != null) setCSPMonthly(CSPMonthlyLS)
+        // if(CSPYearlyLS != null) setCSPYearly(CSPYearlyLS)
 
     }, []);
 
@@ -89,13 +89,13 @@ function CSP() {
             setTimeout(() => {
                 setshowCSPIcon(true)
                 setTimeout(() => {
-                    console.log("setshowCSPIconText(true)");
+                    // console.log("setshowCSPIconText(true)");
                     setshowCSPIconText(true)
                     setTimeout(() => {
-                        console.log("setshowCSPIconText(false)");
+                        // console.log("setshowCSPIconText(false)");
                         setshowCSPIconText(false)
                         setTimeout(() => {
-                            console.log("setshowCSPIconText(false)");
+                            // console.log("setshowCSPIconText(false)");
                             navigateToTowardsSOM()
                         }, 1000 * 2);
                     }, 1000 * 2.5);
@@ -133,9 +133,9 @@ function CSP() {
     }
 
     function showOPDays() {
-        console.log("showOPDays", "exe")
+        // console.log("showOPDays", "exe")
         setdisplayOPDays(true)
-        console.log(displayOPDays)
+        // console.log(displayOPDays)
         // show OPdays submitBTN
         let submitOPdaysPBTN = document.getElementById("submitOPdays")
         if (submitOPdaysPBTN) submitOPdaysPBTN.hidden = false

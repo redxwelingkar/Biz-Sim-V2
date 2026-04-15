@@ -8,7 +8,7 @@ interface BackButtonProps {
   showtam?: boolean;
 }
 
-const BackButton: React.FC<BackButtonProps> = (props) => {
+const BackButton: React.FC<BackButtonProps> = () => {
   const navigate = useNavigate();
   const handleBackClick = () => {
     navigate(-1); // -1 navigates to the previous page
