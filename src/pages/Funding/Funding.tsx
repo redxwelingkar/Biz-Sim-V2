@@ -50,6 +50,7 @@ const Funding = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showFundingIconText, setshowFundingIconText] = useState(false);
+    const [isSaveFundingSaved, setisSaveFundingSaved] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
@@ -108,8 +109,7 @@ const Funding = () => {
 
     // navigate to CapEx page
     const navigateToOpEx = () => {
-        // todo: change to towards capex pages
-        navigate("/Biz-Sim-V2/opex-calculation#MonthlyRepaymentRow")
+        navigate("/Biz-Sim-V2/opex-EMIdisplay")
     }
     // helper Functions End
 
@@ -206,6 +206,7 @@ const Funding = () => {
         localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toFixed(2));
         localStorage.setItem('EMI', EMI.toFixed(2));
         localStorage.setItem('FundingDB', JSON.stringify(rows));
+        setisSaveFundingSaved(true)
         showFundingIconAndText()
 
         // console.log("FundingDB: ", JSON.stringify(rows));
@@ -226,8 +227,10 @@ const Funding = () => {
         "You can also use the “Add a Source of Funds” button to add another row, or click the “-” sign against each row to delete a row as well.",
         "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment",
         "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment. this will also create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        // show OpEx Emi screen when on below line
         "Now let me remind you that the combined monthly repayment value of principal amount plus interest is going to be added as a monthly EMI to your operational costs, as it is going to be a monthly expense that you'll have to incur, and it's going to be a variable expenditure.",
         "Now all this additional operational expenditure will also affect your EBT and Working Capital. We can see such changes to each of the sectional at a glance in the home dashboard, click the downward arrow to go to it, an icon will also be added in the left navigation bar for the same.  ",
+        // show dashboard after above line
         // "",
     ];
 
@@ -401,7 +404,7 @@ const Funding = () => {
 
 
 
-            <Footer texts={footerTexts} onNextNavtoOpEx={navigateToOpEx} />
+            <Footer texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoOpEx={navigateToOpEx} />
         </div>
     )
 };

@@ -20,6 +20,7 @@ import EBT_WC from "./pages/EBT_WC/EBT_WC";
 import TowardsFunding from "./pages/Funding/TowardsFunding";
 import Funding from "./pages/Funding/Funding";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import OpEx_EMIDisplay from "./pages/OpEx/OpEx-EMIDisplay";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/Biz-Sim-V2/EBT_WC-calculation" element={<EBT_WC />} />
           <Route path="/Biz-Sim-V2/towards-funding" element={<TowardsFunding />} />
           <Route path="/Biz-Sim-V2/funding" element={<Funding />} />
+          <Route path="/Biz-Sim-V2/opex-EMIdisplay" element={<OpEx_EMIDisplay />} />
           <Route path="/Biz-Sim-V2/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>

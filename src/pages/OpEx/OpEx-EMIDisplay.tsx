@@ -11,6 +11,9 @@ import samIcon from "../../assets/img/sam-icon.png";
 import cspIcon from "../../assets/img/csp-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
 import OpExIcon from "../../assets/img/OpEx-icon.png";
+import CapExIcon from "../../assets/img/CapEx-icon.png";
+import EBTWCIcon from "../../assets/img/EBT_WC.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
@@ -39,14 +42,14 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             // exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
         >
             {children}
         </motion.div>
     </AnimatePresence>
 );
 
-function OpEx() {
+function OpEx_EMIDisplay() {
     // always run at start
     useEffect(() => {
         loadOpExRowsfromLocalStorage()
@@ -76,9 +79,9 @@ function OpEx() {
             if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
             setTimeout(() => { // move to OpExTotal
                 SaveAfterEMI()
-
+                
             }, 1500);
-        }, 2000);
+        }, 3000);
     }, [EMI])
 
 
@@ -130,9 +133,9 @@ function OpEx() {
     }
 
     // navigate to CapEx page
-    const navigateToCapEx = () => {
+    const navigateToDashboard = () => {
         // todo: change to towards capex pages
-        navigate("/Biz-Sim-V2/capex-calculation")
+        navigate("/Biz-Sim-V2/dashboard")
     }
     // helper Functions End
 
@@ -220,8 +223,8 @@ function OpEx() {
     const SaveAfterEMI = () => {
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
         setTotalOpEx(total.toString());
-        // localStorage.setItem('OpExTotal', total.toString());
-        // localStorage.setItem('OpExDB', JSON.stringify(rows));
+        localStorage.setItem('OpExTotal', total.toString());
+        localStorage.setItem('OpExDB', JSON.stringify(rows));
     }
 
     const handleSaveDetails = () => {
@@ -248,17 +251,17 @@ function OpEx() {
 
 
     const footerTexts = [
-        "Here in the section of Operational Expenditure (OpEx), you will have to list down each expense that your business is going to incur while in operation. You will first have to enter the name of the expense, then select its type, whether it is fixed or variable, and then mention a value - amount of money which is going to be spent on that particular expense.",
-        "Fixed operating expenses are those which remain constant regardless of business activity (e.g., rent, insurance, salaried wages), while variable operating expenses are those that fluctuate with business activity (e.g., raw materials, commissions, utilities). It is ideal to be thorough when listing down the expenses and an estimate value for them.",
-        "You can add more rows for adding more expenses by clicking on “ADD EXPENSE” button, you may edit each expense, their type and value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total operational expenditure will keep getting updated at the bottom field of “Total OpEx”.",
-        "When you have completed with filling all the details of operational expenditure click on “SAVE DETAILS” to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
-        "Click on the downward arrow here to move on to the next section.",
+        "Now let me remind you that the combined monthly repayment value of principal amount plus interest is going to be added as a monthly EMI to your operational costs, as it is going to be a monthly expense that you'll have to incur, and it's going to be a variable expenditure.",
+        "Now all this additional operational expenditure will also affect your EBT and Working Capital. We can see such changes to each of the sectional at a glance in the home dashboard, click the downward arrow to go to it, an icon will also be added in the left navigation bar for the same.  ",
+        // show dashboard after above line
+        // "",
         ""
     ];
 
 
     return (
         <div>
+            <div id='screen-cover'></div>
             <Header />
             <BackButton topOffset='10vh' />
             <div className='indicatorIcon-container'>
@@ -272,7 +275,19 @@ function OpEx() {
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 <div className='Icon-div'>
-                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
+                </div>
+                <div className='Icon-div'>
+                    <img src={FundingIcon} alt="CapEx-Icon" className="EBT-Icon" />
                 </div>
                 {/* Animate the icon entry */}
                 <div className='Icon-div'>
@@ -474,9 +489,9 @@ function OpEx() {
 
 
 
-            <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />
+            <Footer texts={footerTexts} onNextNavtoDashboard={navigateToDashboard} />
         </div>
     )
 }
 
-export default OpEx
+export default OpEx_EMIDisplay

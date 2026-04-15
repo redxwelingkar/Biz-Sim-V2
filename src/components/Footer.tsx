@@ -14,17 +14,39 @@ interface FooterProps {
   onNextshowSOMIcon?: () => void;
   onNextNavtoCapEx?: () => void;
   onNextNavtoOpEx?: () => void;
+  onNextNavtoDashboard?: () => void;
   onNextNavtowardsEBT_WC?: () => void;
   onNextNavtowardsFunding?: () => void;
   onNextShowWC?: () => void;
   CalSAMBTNclick?: boolean;
+  SaveFundingSaved?: boolean;
   texts: string[]; // Add texts prop
 }
 
-const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSAMPercent, onNextshowCSPIcon, onNextshowSOMIcon, onNextshowCalSAMBTN, onNextshowSAMIcon, onNextshowTAMIcon, onNextNavtoCapEx, onNextShowWC, onNextNavtowardsEBT_WC, onNextNavtowardsFunding,onNextNavtoOpEx, CalSAMBTNclick, texts }: FooterProps) => {
+const Footer = ({ onNext,
+  onNextPercent,
+  onNextsizeofSAM,
+  onNextOPDays,
+  onNextSAMPercent,
+  onNextshowCSPIcon,
+  onNextshowSOMIcon,
+  onNextshowCalSAMBTN,
+  onNextshowSAMIcon,
+  onNextshowTAMIcon,
+  onNextNavtoCapEx,
+  onNextShowWC,
+  onNextNavtowardsEBT_WC,
+  onNextNavtowardsFunding,
+  onNextNavtoOpEx,
+  onNextNavtoDashboard,
+  CalSAMBTNclick,
+  SaveFundingSaved,
+  texts }: FooterProps) => {
+
+
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
-  const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick);
+  const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || SaveFundingSaved);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,6 +60,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
     // setdown_Arrow(CalSAMBTNclick)
     if (CalSAMBTNclick) setdown_Arrow(false)
+    // if (SaveFundingSaved) setdown_Arrow(false)
   }, [CalSAMBTNclick])
 
   const handleUpArrowClick = () => {
@@ -75,6 +98,9 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextShowWC) {
           onNextShowWC(); // Call onNextShowWC when dowm arrow click occurs on index 1
         }
+        if(onNextNavtoDashboard){
+          onNextNavtoDashboard()
+        }
 
       }
       if (textIndex === 2) {
@@ -88,6 +114,7 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextshowSOMIcon) {
           onNextshowSOMIcon(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
+        
 
       }
       if (textIndex === 3) {
@@ -107,15 +134,19 @@ const Footer = ({ onNext, onNextPercent, onNextsizeofSAM, onNextOPDays, onNextSA
         if (onNextNavtoCapEx) {
           onNextNavtoCapEx()
         }
-        // move to OpEx
-        if (onNextNavtoOpEx) {
-          onNextNavtoOpEx()
-        }
+
         // move towards funding
         if (onNextNavtowardsFunding) {
           onNextNavtowardsFunding()
         }
 
+      }
+
+      if (textIndex === 6) {
+        // move to OpEx
+        if (onNextNavtoOpEx) {
+          onNextNavtoOpEx()
+        }
       }
 
     }
