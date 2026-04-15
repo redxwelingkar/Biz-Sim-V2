@@ -90,7 +90,7 @@ const Dashboard = () => {
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
-                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
                     <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>

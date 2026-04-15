@@ -2,6 +2,7 @@
     position: absolute;
     top: 10vh;
     left: 1.5vw;
+    z-index: 100;
     /* cursor: pointer; */
     /* display: grid;
     gap: 4 */

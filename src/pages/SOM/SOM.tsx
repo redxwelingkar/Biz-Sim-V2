@@ -195,13 +195,13 @@ function SOM() {
             <Header />
             <BackButton topOffset='10vh' />
             <div className='indicatorIcon-container'>
-                <div className='Icon-div'>
+                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
                     <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div'>
+                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                     <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div'>
+                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/csp')}>
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 {/* Animate the icon entry */}

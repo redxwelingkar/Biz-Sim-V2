@@ -278,7 +278,7 @@ const TableComponent = ({
     <div className="table-container">
       <div className='indicatorIcon-container'>
         {/* TAM Icon */}
-        <div className='Icon-div'>
+        <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
 
           {/* Animate the icon entry */}
           <AnimatePresence mode="wait">
@@ -312,7 +312,7 @@ const TableComponent = ({
           </AnimatePresence>
         </div>
         {/* SAM Icon */}
-        <div className='Icon-div'>
+        <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
 
           {/* Animate the icon entry */}
           <AnimatePresence mode="wait">
