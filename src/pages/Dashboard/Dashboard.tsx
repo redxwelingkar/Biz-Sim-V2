@@ -3,6 +3,7 @@ import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/Dashboard.css";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
@@ -17,6 +18,7 @@ import SalesIcon from "../../assets/img/Sales-icon.png";
 
 const Dashboard = () => {
     const [isMonthly, setIsMonthly] = useState(true);
+      const navigate = useNavigate(); // Initialize useNavigate
 
     // Get values from localStorage
     const tam = parseFloat(localStorage.getItem("TAM") || "0");
@@ -76,31 +78,31 @@ const Dashboard = () => {
             <BackButton topOffset="10vh" />
 
             <div className="indicatorIcon-container">
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
                     <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
                     <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                     <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
                     <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
                     <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
                     <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
                     <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
                     <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
                     <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
                 </div>
             </div>
