@@ -18,7 +18,7 @@ import SalesIcon from "../../assets/img/Sales-icon.png";
 
 const Dashboard = () => {
     const [isMonthly, setIsMonthly] = useState(true);
-      const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); // Initialize useNavigate
 
     // Get values from localStorage
     const tam = parseFloat(localStorage.getItem("TAM") || "0");
@@ -111,7 +111,7 @@ const Dashboard = () => {
                 <h1 className="dashboard-title">Dashboard</h1>
 
                 <section className="dashboard-top-cards" aria-label="Market summary">
-                    <article className="dash-card summary-card">
+                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
                         <div>
                             <p className="card-label">TAM</p>
                             <p className="card-value">{formatNumber(tam)}</p>
@@ -122,7 +122,7 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card summary-card">
+                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                         <div>
                             <p className="card-label">SAM</p>
                             <p className="card-value">{formatNumber(sam)}</p>
@@ -133,7 +133,7 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card summary-card">
+                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/som')}>
                         <div>
                             <p className="card-label">SOM</p>
                             <p className="card-value">{formatDecimal(som)}</p>
@@ -144,7 +144,7 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card summary-card">
+                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/csp')}>
                         <div>
                             <p className="card-label">CSP</p>
                             <p className="card-value">Rs {formatNumber(cspValue)}</p>
@@ -217,7 +217,7 @@ const Dashboard = () => {
                     </article>
 
                     <div className="dashboard-right-column">
-                        <article className="dash-card metric-card">
+                        <article className="dash-card metric-card" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
                             <div>
                                 <p className="card-label">Operational Expenditure</p>
                                 <p className="card-value">Rs {formatNumber(opExValue)}</p>
@@ -228,7 +228,7 @@ const Dashboard = () => {
                             </div>
                         </article>
 
-                        <article className="dash-card metric-card">
+                        <article className="dash-card metric-card" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
                             <div>
                                 <p className="card-label">Capital Expenditure</p>
                                 <p className="card-value">Rs {formatNumber(capExTotal)}</p>
@@ -242,7 +242,7 @@ const Dashboard = () => {
                 </section>
 
                 <section className="dashboard-bottom-cards" aria-label="Financial summary">
-                    <article className="dash-card metric-card">
+                    <article className="dash-card metric-card" onClick={() => navigate('/Biz-Sim-V2/som')}>
                         <div>
                             <p className="card-label">Sales</p>
                             <p className="card-value">Rs {formatNumber(salesValue)}</p>
@@ -253,7 +253,7 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card metric-card">
+                    <article className="dash-card metric-card" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
                         <div>
                             <p className="card-label">Earnings Before Tax</p>
                             <p className="card-value">Rs {formatNumber(ebtValue)}</p>
@@ -264,7 +264,7 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card metric-card">
+                    <article className="dash-card metric-card" onClick={() => navigate('/Biz-Sim-V2/funding')}>
                         <div>
                             <p className="card-label">Working Capital</p>
                             <p className="card-value">Rs {formatNumber(workingCapital)}</p>
