@@ -25,6 +25,7 @@ const SAMCalc = () => {
     "You can still add more customer segments here, by clicking on the “ADD CUSTOMER SEGMENT” button and adding their names and vales for TAM and then their Percentage Conversion values. Go ahead try and try adding one, you can always delete it later... ",
     "Alright! Now that you have calculated the SAM for each customer segment, it is time to calculate the total value of SAM. For this, just click on the “CALCULATE SAM” button and the total size of SAM will be calculated and displayed.",
     "Great! You have successfully defined and calculated the size of the Serviceable Addressable Market (SAM) for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to SAM if you want to make any changes later.",
+    "Click on the downward arrow here to move on to the next section.",
   ];
 
   const onNextPercent = () => {

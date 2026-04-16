@@ -172,6 +172,7 @@ function CSP() {
         "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against “No. of Operational Days” and click on “SUBMIT” or press “Enter”.",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to CSP if you want to make any changes later.",
+        "Click on the downward arrow here to move on to the next section.",
 
     ];
 
