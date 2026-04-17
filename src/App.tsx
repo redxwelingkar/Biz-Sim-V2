@@ -55,3 +55,17 @@ function App() {
 }
 
 export default App;
+
+
+/* 
+TODO: Delete below
+<div>
+{TutorialMode ?
+  // TutorialMode=True
+  <div></div>
+  :
+  // TutorialMode=False
+  <div></div>}
+</div>
+
+*/

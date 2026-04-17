@@ -15,6 +15,8 @@ interface FooterProps {
   onNextshowSAMIcon?: () => void;
   onNextshowCSPIcon?: () => void;
   onNextshowSOMIcon?: () => void;
+  onNextNavtoSAM?: () => void;
+  onNextNavtoCSP?: () => void;
   onNextNavtoCapEx?: () => void;
   onNextNavtoOpEx?: () => void;
   onNextNavtoDashboard?: () => void;
@@ -34,6 +36,8 @@ const Footer = ({ onNext,
   onNextshowCSPIcon,
   onNextshowSOMIcon,
   onNextshowCalSAMBTN,
+  onNextNavtoSAM,
+  onNextNavtoCSP,
   onNextshowSAMIcon,
   onNextshowTAMIcon,
   onNextNavtoCapEx,
@@ -121,6 +125,7 @@ const Footer = ({ onNext,
 
       }
       if (textIndex === 3) {
+        if(onNextNavtoSAM) onNextNavtoSAM() // navigate to SAM Pages
         if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
@@ -133,6 +138,7 @@ const Footer = ({ onNext,
         }
       }
       if (textIndex === 4) {
+        
         // move to CapEx
         if (onNextNavtoCapEx) {
           onNextNavtoCapEx()
@@ -143,6 +149,9 @@ const Footer = ({ onNext,
           onNextNavtowardsFunding()
         }
 
+      }
+      if(textIndex === 5){
+        if(onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
       }
 
       if (textIndex === 6) {
