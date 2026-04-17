@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import '../css/GreetingsPage.css';
-import Avatar from '../components/Avatar'; 
+import Avatar from '../components/Avatar';
 import BackButton from '../components/BackButton';
 import TransitionWrapper from '../components/TransitionWrapper'; // Import the new component
 // import CustomButton from '../components/CustomButton';
@@ -9,11 +9,21 @@ function GreetingsPage() {
   const navigate = useNavigate();
 
   const handleYesClick = () => {
-    navigate('/Biz-Sim-V2/business-name'); 
+    try {
+      localStorage.setItem("TutorialMode", "true")
+    } catch (error) {
+      console.log("TutorialMode Save Error", error);
+    }
+    navigate('/Biz-Sim-V2/business-name');
   };
 
   const handleNoClick = () => {
-    navigate('/Biz-Sim-V2/'); 
+    try {
+      localStorage.setItem("TutorialMode", "false")
+    } catch (error) {
+      console.log("TutorialMode Save Error", error);
+    }
+    navigate('/Biz-Sim-V2/business-name');
   };
 
   return (

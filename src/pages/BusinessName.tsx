@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/BusinessName.css';
 import Avatar from '../components/Avatar';
@@ -6,9 +6,22 @@ import BackButton from '../components/BackButton';
 import TransitionWrapper from '../components/TransitionWrapper'; // Import the new component
 
 function BusinessName() {
-  const [businessName, setBusinessName] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [businessName, setBusinessName] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [TutorialMode, setTutorialMode] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      let bname = localStorage.getItem("businessName")
+      let TutorialMode = localStorage.getItem("TutorialMode")
+
+      if (TutorialMode) setTutorialMode(TutorialMode)
+      if (bname) setBusinessName(bname)
+    } catch (error) {
+      console.log("Business Name Error", error);
+    }
+  }, [])
 
   const handleButtonClick = () => {
     if (businessName.trim() === '') {
@@ -16,7 +29,7 @@ function BusinessName() {
     } else {
       localStorage.setItem('businessName', businessName);
       setErrorMessage('');
-      navigate('/Biz-Sim-V2/towards-tam'); 
+      navigate('/Biz-Sim-V2/towards-tam');
     }
   };
 

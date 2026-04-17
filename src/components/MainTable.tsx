@@ -24,7 +24,7 @@ interface TableComponentProps {
   holdTAMIcon?: boolean;
   showSAMIcon?: boolean;
   holdSAMIcon?: boolean;
-
+  TutorialMode?: boolean;
   SAMCalBTNclick?: () => void;
 }
 
@@ -83,6 +83,7 @@ const TableComponent = ({
   showTAMIcon,
   holdTAMIcon,
   holdSAMIcon,
+  TutorialMode,
   SAMCalBTNclick
 
 }: TableComponentProps) => {
@@ -101,12 +102,13 @@ const TableComponent = ({
   const [showTAMIconText, setshowTAMIconText] = useState(false);
   const [showSAMIconText, setshowSAMIconText] = useState(false);
 
-
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const storedRows = localStorage.getItem('rows');
     const storedTotalSize = localStorage.getItem('TAM');
+
+    console.log("TutorialMode", TutorialMode)
 
     if (storedRows) {
       setRows(JSON.parse(storedRows));
@@ -275,7 +277,7 @@ const TableComponent = ({
   };
 
   return (
-    <div className="table-container">
+    <div className={TutorialMode ? "table-container" : "table-container vh-90"}>
       <div className='indicatorIcon-container'>
         {/* TAM Icon */}
         <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>

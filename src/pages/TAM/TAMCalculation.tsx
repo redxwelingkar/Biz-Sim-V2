@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
@@ -8,6 +8,7 @@ import TableComponent from '../../components/MainTable';
 const TAMCalc = () => {
   const [showTable, setShowTable] = useState(false); // State to control visibility of TableComponent
   const [showTAMIcon, setshowTAMIcon] = useState(false)
+  const [TutorialMode, setTutorialMode] = useState(false);
   const handleNext = () => {
     setShowTable(true); // Show TableComponent
   };
@@ -15,6 +16,17 @@ const TAMCalc = () => {
   const onNextshowTAMIcon = () => {
     setshowTAMIcon(true)
   }
+
+  useEffect(() => {
+    try {
+      let TutorialMode = localStorage.getItem("TutorialMode")
+
+      if (TutorialMode === 'true') setTutorialMode(true)
+      else setTutorialMode(false)
+    } catch (error) {
+      console.log("Business Name Error", error);
+    }
+  }, [])
 
   const footerTexts = [
     "Here in TAM, the first thing you need to mention are the different customer segments in the field given under the column of “Customer Segments”, and mention a near accurate approximation of the number of people in that customer segment in the field next to the specified customer segment under the column of 'Size'.",
@@ -25,20 +37,44 @@ const TAMCalc = () => {
   ];
 
   return (
-    <div className="tam-calculation">
-      <Header />
-      <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
-      {!showTable && <div className='table-placeholder'></div>}
-      {showTable &&
-        <TableComponent
-          headingText="Total Addressable Market"
-          NumbertoWordsCOL={true}
-          showTAMIcon={showTAMIcon}
-        />} {/* Conditionally render TableComponent */}
-        {/* TODO: stop onNext if TAM final number not calculated */}
-      <Footer onNext={handleNext} onNextshowTAMIcon={onNextshowTAMIcon} texts={footerTexts} /> {/* Pass function to show TableComponent */}
+
+    <div>
+      {TutorialMode ?
+        // TutorialMode=true
+        <div className="tam-calculation">
+          <Header />
+          <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
+          {!showTable && <div className='table-placeholder'></div>}
+          {showTable &&
+            <TableComponent
+              headingText="Total Addressable Market"
+              NumbertoWordsCOL={true}
+              showTAMIcon={showTAMIcon}
+              TutorialMode={TutorialMode}
+            />}
+
+          <Footer onNext={handleNext} onNextshowTAMIcon={onNextshowTAMIcon} texts={footerTexts} />
+        </div>
+        :
+        // TutorialMode=false
+        <div className="tam-calculation">
+          <Header />
+          <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
+          <TableComponent
+            headingText="Total Addressable Market"
+            NumbertoWordsCOL={true}
+            showTAMIcon={showTAMIcon}
+            TutorialMode={TutorialMode}
+          />
+        </div>
+      }
     </div>
+
   );
+
+
 };
 
 export default TAMCalc;
+
+

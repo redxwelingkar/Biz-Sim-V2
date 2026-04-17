@@ -42,6 +42,10 @@ h2 {
   /* Enable vertical scrolling */
 }
 
+.vh-90{
+  max-height: 90vh;
+}
+
 .table-container::-webkit-scrollbar {
   width: 5px;
   /* Width of the scrollbar */
