@@ -20,3 +20,7 @@
     line-height: normal;
     font-variant: small-caps;
 }
+
+.height {
+    max-height: none;
+}

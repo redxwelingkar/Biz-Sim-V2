@@ -36,8 +36,21 @@ import TextDisplay from '../../components/TextDisplay';
 // );
 
 const Funding = () => {
+    const [showTable, setShowTable] = useState(false);
+    const [TutorialMode, setTutorialMode] = useState(false);
+
     // always run at start
     useEffect(() => {
+        try {
+            const tutorialMode = localStorage.getItem('TutorialMode');
+            setTutorialMode(tutorialMode === 'true');
+            setShowTable(tutorialMode !== 'true');
+        } catch (error) {
+            console.error('Error reading TutorialMode from localStorage:', error);
+            setTutorialMode(false);
+            setShowTable(true);
+        }
+
         loadFundingRowsfromLocalStorage()
     }, [])
 
@@ -64,10 +77,10 @@ const Funding = () => {
     // if data in DB overwrite rows useState
     const loadFundingRowsfromLocalStorage = () => {
         try {
-            let FundingDB = localStorage.getItem('FundingDB')
-            let TotalAmountBorrowed = localStorage.getItem('TotalAmountBorrowed')
-            let TotalMonthlyInterest = localStorage.getItem('TotalMonthlyInterest')
-            let TotalMonthlyPrincipalRepayment = localStorage.getItem('TotalMonthlyPrincipalRepayment')
+            const FundingDB = localStorage.getItem('FundingDB')
+            const TotalAmountBorrowed = localStorage.getItem('TotalAmountBorrowed')
+            const TotalMonthlyInterest = localStorage.getItem('TotalMonthlyInterest')
+            const TotalMonthlyPrincipalRepayment = localStorage.getItem('TotalMonthlyPrincipalRepayment')
             // console.log("FundingDB start:", FundingDB);
             // console.log("FundingTotal start:", FundingTotal);
 
@@ -75,7 +88,10 @@ const Funding = () => {
                 && TotalAmountBorrowed!= null 
                 && TotalMonthlyPrincipalRepayment!= null 
                 && TotalMonthlyInterest!= null) {
-                setRows(JSON.parse(FundingDB))
+                const parsedRows = JSON.parse(FundingDB)
+                if (Array.isArray(parsedRows)) {
+                    setRows(parsedRows)
+                }
                 setTotalAmountBorrowed(TotalAmountBorrowed)
                 setTotalMonthlyInterest(TotalMonthlyInterest)
                 setTotalMonthlyPrincipalRepayment(TotalMonthlyPrincipalRepayment)
@@ -109,6 +125,10 @@ const Funding = () => {
     // navigate to CapEx page
     const navigateToOpEx = () => {
         navigate("/Biz-Sim-V2/opex-EMIdisplay")
+    }
+
+    const handleNext = () => {
+        setShowTable(true);
     }
     // helper Functions End
 
@@ -207,6 +227,9 @@ const Funding = () => {
         localStorage.setItem('FundingDB', JSON.stringify(rows));
         setisSaveFundingSaved(true)
         showFundingIconAndText()
+        setTimeout(() => {
+            navigateToOpEx();
+        }, 1000);
 
         // console.log("FundingDB: ", JSON.stringify(rows));
         // console.log("Funding Total: ", total.toString());
@@ -294,7 +317,7 @@ const Funding = () => {
                     </AnimatePresence>
                 </div>
             </div>
-            <div className="table-container">
+            {showTable && <div className="table-container height">
                 <h1>Funding</h1>
                 <table className="table">
                     <thead>
@@ -399,11 +422,11 @@ const Funding = () => {
                         />
                     </div>
                 </div>
-            </div>
+            </div>}
 
 
 
-            <Footer texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoOpEx={navigateToOpEx} />
+            {TutorialMode && <Footer onNext={handleNext} texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoOpEx={navigateToOpEx} />}
         </div>
     )
 };
