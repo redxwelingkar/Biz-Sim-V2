@@ -2,7 +2,7 @@ import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/Dashboard.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import DashboardIcon from "../../assets/img/DashB-Icon.png";
@@ -18,20 +18,71 @@ import SalesIcon from "../../assets/img/Sales-icon.png";
 
 const Dashboard = () => {
     const [isMonthly, setIsMonthly] = useState(true);
+    const [TutorialMode, setTutorialMode] = useState(false);
+    const [loadError, setLoadError] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
 
-    // Get values from localStorage
-    const tam = parseFloat(localStorage.getItem("TAM") || "0");
-    const sam = parseFloat(localStorage.getItem("SAM") || "0");
-    const som = parseFloat(localStorage.getItem("SOM") || "0");
-    const cspValue = parseFloat(localStorage.getItem("CSPValue") || "0");
-    const somMonthly = parseFloat(localStorage.getItem("SOMMonthly") || "0");
-    const somYearly = parseFloat(localStorage.getItem("SOMYearly") || "0");
-    // const cspMonthly = parseFloat(localStorage.getItem("CSPMonthly") || "0");
-    const opExTotal = parseFloat(localStorage.getItem("OpExTotal") || "0");
-    const capExTotal = parseFloat(localStorage.getItem("CapExTotal") || "0");
-    const ebt = parseFloat(localStorage.getItem("ebt") || "0");
-    const totalAmountBorrowed = parseFloat(localStorage.getItem("TotalAmountBorrowed") || "0");
+    const [dashboardValues, setDashboardValues] = useState({
+        tam: 0,
+        sam: 0,
+        som: 0,
+        cspValue: 0,
+        somMonthly: 0,
+        somYearly: 0,
+        opExTotal: 0,
+        capExTotal: 0,
+        ebt: 0,
+        totalAmountBorrowed: 0,
+    });
+
+    useEffect(() => {
+        try {
+            const tutorialMode = localStorage.getItem("TutorialMode");
+            setTutorialMode(tutorialMode === "true");
+
+            setDashboardValues({
+                tam: parseFloat(localStorage.getItem("TAM") || "0"),
+                sam: parseFloat(localStorage.getItem("SAM") || "0"),
+                som: parseFloat(localStorage.getItem("SOM") || "0"),
+                cspValue: parseFloat(localStorage.getItem("CSPValue") || "0"),
+                somMonthly: parseFloat(localStorage.getItem("SOMMonthly") || "0"),
+                somYearly: parseFloat(localStorage.getItem("SOMYearly") || "0"),
+                opExTotal: parseFloat(localStorage.getItem("OpExTotal") || "0"),
+                capExTotal: parseFloat(localStorage.getItem("CapExTotal") || "0"),
+                ebt: parseFloat(localStorage.getItem("ebt") || "0"),
+                totalAmountBorrowed: parseFloat(localStorage.getItem("TotalAmountBorrowed") || "0"),
+            });
+            setLoadError("");
+        } catch (error) {
+            console.error("Dashboard load error", error);
+            setLoadError("Unable to load dashboard data right now.");
+            setDashboardValues({
+                tam: 0,
+                sam: 0,
+                som: 0,
+                cspValue: 0,
+                somMonthly: 0,
+                somYearly: 0,
+                opExTotal: 0,
+                capExTotal: 0,
+                ebt: 0,
+                totalAmountBorrowed: 0,
+            });
+        }
+    }, []);
+
+    const {
+        tam,
+        sam,
+        som,
+        cspValue,
+        somMonthly,
+        somYearly,
+        opExTotal,
+        capExTotal,
+        ebt,
+        totalAmountBorrowed,
+    } = dashboardValues;
 
     // Calculate monthly values
     const opExMonthly = opExTotal;
@@ -109,6 +160,7 @@ const Dashboard = () => {
 
             <main className="dashboard-content">
                 <h1 className="dashboard-title">Dashboard</h1>
+                {loadError && <p className="dashboard-error">{loadError}</p>}
 
                 <section className="dashboard-top-cards" aria-label="Market summary">
                     <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
@@ -278,7 +330,7 @@ const Dashboard = () => {
 
             </main>
 
-            <Footer texts={footerTexts} />
+            {TutorialMode && <Footer texts={footerTexts} />}
         </div>
     );
 };
