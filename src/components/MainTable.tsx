@@ -165,6 +165,7 @@ const TableComponent = ({
       // if SAM Calculated show all col in TutorialMode
       if (SAMtotal && window.location.href.split("/").includes("sam-calculation")) {
         console.log("SAMtotal", SAMtotal);
+        setSAM(parseInt(SAMtotal))
         setfullscreen(true)
         setPercentageConvCOL(true)
         setSizeofSAMCOL(true)
@@ -199,8 +200,8 @@ const TableComponent = ({
 
       // show dashboard ICON
       if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
-      
 
+        
     } catch (error) {
       console.log("showNavIconIfData Error", error)
     }

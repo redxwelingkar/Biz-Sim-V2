@@ -32,7 +32,6 @@ const SAMCalc = () => {
         setShowpercent(true)
         setShowsizeofSAM(true)
         setshowCalSAMBTN(true)
-        // onSAMCalBTNclick()
       }
 
 
@@ -46,7 +45,7 @@ const SAMCalc = () => {
     }
   }, [])
 
-  const handleNavToCSP = () =>{
+  const handleNavToCSP = () => {
     let CSPMonthly = localStorage.getItem("CSPMonthly")
     if (CSPMonthly) navigate('/Biz-Sim-V2/csp');
     else navigate('/Biz-Sim-V2/towards-csp');
