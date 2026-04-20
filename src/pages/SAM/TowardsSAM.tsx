@@ -47,7 +47,35 @@ const TowardsSAM = () => {
       // show SAM ICON
       const SAMtotal = localStorage.getItem('SAM');
       if (SAMtotal) setshowSAMIcon(true)
-      // }
+
+      // show CSP ICON
+      const CSPMonthly = localStorage.getItem('CSPMonthly')
+      const OPdays = localStorage.getItem('OPdays')
+      if (CSPMonthly && OPdays) setshowCSPIcon(true)
+
+      // show SOM ICON
+      const SOM = localStorage.getItem('SOM')
+      if (SOM) setshowSOMIcon(true)
+
+      // show OpEx ICON
+      const OpExTotal = localStorage.getItem('OpExTotal')
+      if (OpExTotal) setshowOpExIcon(true)
+
+      // show CapEx ICON
+      const CapExTotal = localStorage.getItem('CapExTotal')
+      if (CapExTotal) setshowCapExIcon(true)
+
+      // show EBT_WC ICON
+      const EBT = localStorage.getItem('ebt')
+      const WC = localStorage.getItem('WC')
+      if (EBT && WC) setshowEBTWCIcon(true)
+
+      // show Funding ICON
+      const EMI = localStorage.getItem('EMI')
+      if (EMI) setshowFundingIcon(true)
+
+      // show dashboard ICON
+      if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
     } catch (error) {
       console.log("showNavIconIfData Error", error)

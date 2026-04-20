@@ -171,6 +171,36 @@ const TableComponent = ({
         setshowCalSAMBTN(true)
       }
 
+      // show CSP ICON
+      const CSPMonthly = localStorage.getItem('CSPMonthly')
+      const OPdays = localStorage.getItem('OPdays')
+      if (CSPMonthly && OPdays) setshowCSPIcon(true)
+
+      // show SOM ICON
+      const SOM = localStorage.getItem('SOM')
+      if (SOM) setshowSOMIcon(true)
+
+      // show OpEx ICON
+      const OpExTotal = localStorage.getItem('OpExTotal')
+      if (OpExTotal) setshowOpExIcon(true)
+
+      // show CapEx ICON
+      const CapExTotal = localStorage.getItem('CapExTotal')
+      if (CapExTotal) setshowCapExIcon(true)
+
+      // show EBT_WC ICON
+      const EBT = localStorage.getItem('ebt')
+      const WC = localStorage.getItem('WC')
+      if (EBT && WC) setshowEBTWCIcon(true)
+
+      // show Funding ICON
+      const EMI = localStorage.getItem('EMI')
+      if (EMI) setshowFundingIcon(true)
+
+      // show dashboard ICON
+      if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+      
+
     } catch (error) {
       console.log("showNavIconIfData Error", error)
     }
@@ -409,6 +439,27 @@ const TableComponent = ({
                 )}
               </AnimatePresence>
             </div>
+            {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+              <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+            </div>}
+            {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+              <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+            </div>}
+            {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+              <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+            </div>}
+            {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+              <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+            </div>}
+            {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+              <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+            </div>}
+            {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+              <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+            </div>}
+            {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+              <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+            </div>}
           </div>
 
           <h2>{headingText}</h2>

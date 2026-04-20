@@ -28,7 +28,7 @@ function TotalAddrMarket() {
             </div>
             {textMoved && contentVisible && (
               <div className="tam-content">
-                <div className='p1'>We’ll start with defining and calculating the
+                <div className='p1'>We'll start with defining and calculating the
                   Total Addressable Market (TAM)</div>
                 <div className='p2'>It refers to the maximum size of the opportunity
                   for a particular product or solution. In other words, if every single person who could potentially find value in a product or solution purchased/started using it (i.e. 100% market share), how big would that market be?</div>

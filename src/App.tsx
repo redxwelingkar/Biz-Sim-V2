@@ -58,7 +58,7 @@ export default App;
 
 
 /* 
-TODO: Delete below
+TODO: Delete below Template
 <div>
 {TutorialMode ?
   // TutorialMode=True
@@ -67,5 +67,7 @@ TODO: Delete below
   // TutorialMode=False
   <div></div>}
 </div>
+
+TODO Fix: after you click continue on begin page you cannot move forward in tutorial mode
 
 */

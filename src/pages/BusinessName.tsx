@@ -40,10 +40,10 @@ function BusinessName() {
         {([showFirstText, showSecondText, showInput]) => (
           <>
             <div className={`first-text ${showFirstText ? 'slide-up' : ''} ${showSecondText ? 'slide-up-more' : ''}`}>
-              Alright! I’ll be your guide through the simulation
+              Alright! I'll be your guide through the simulation
             </div>
             <div className={`second-text ${showSecondText ? 'slide-up-normal' : ''}`}>
-              Let’s start by naming your business
+              Let's start by naming your business
             </div>
             {showInput && (
               <div className="input-section">

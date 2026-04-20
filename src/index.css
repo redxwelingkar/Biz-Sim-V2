@@ -48,6 +48,9 @@ body {
   /* min-width: 320px; */
   /* min-height: 100vh; */
 }
+.vh-90{
+  max-height: 90vh !important;
+}
 
 button {
   border: none;
