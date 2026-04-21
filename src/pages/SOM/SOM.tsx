@@ -281,18 +281,6 @@ function SOM() {
                         {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
                             <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                         </div>}
-                        {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
-                        </div>}
-                        {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
-                        </div>}
-                        {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
-                        </div>}
-                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
-                        </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div'>
                             <AnimatePresence mode="wait">
@@ -326,6 +314,20 @@ function SOM() {
                                 )}
                             </AnimatePresence>
                         </div>
+
+                        {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>}
+                        {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>}
+                        {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>}
+                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>}
+
                     </div>
                     <div className="csp-container">
                         <h1>Serviceable Obtainable Market</h1>
@@ -490,7 +492,7 @@ function SOM() {
                             <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>}
                     </div>
                     {FooterVisible &&
-                    <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
+                        <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
                     }
                 </div>
                 :

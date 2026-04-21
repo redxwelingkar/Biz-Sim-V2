@@ -3,19 +3,21 @@ import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../css/OpEx.css'
-
-
-
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import OpExIcon from "../../assets/img/OpEx-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
 import TextDisplay from '../../components/TextDisplay';
+
+import DashboardIcon from "../../assets/img/DashB-Icon.png";
+import tamIcon from "../../assets/img/tam-icon.png";
+import samIcon from "../../assets/img/sam-icon.png";
+import somIcon from "../../assets/img/som-icon.png";
+import cspIcon from "../../assets/img/csp-icon.png";
+import opexIcon from "../../assets/img/OpEx-icon.png";
+import capexIcon from "../../assets/img/CapEx-icon.png";
+import ebtwcIcon from "../../assets/img/EBT_WC.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
 
 const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
     <AnimatePresence mode="wait">
@@ -50,6 +52,7 @@ function OpEx() {
     // always run at start
     useEffect(() => {
         loadOpExRowsfromLocalStorage()
+        showNavIconIfData()
     }, [])
 
 
@@ -62,25 +65,22 @@ function OpEx() {
     const [errorMessage, setErrorMessage] = useState('');
     const [TotalOpEx, setTotalOpEx] = useState('');
     const [EMI, setEMI] = useState('');
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
     const [showOpExIconText, setshowOpExIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
+    const [showTAMIcon, setshowTAMIcon] = useState(false);
+    const [showSAMIcon, setshowSAMIcon] = useState(false);
+    const [showCSPIcon, setshowCSPIcon] = useState(false);
+    const [showSOMIcon, setshowSOMIcon] = useState(false);
+    const [showOpExIcon, setshowOpExIcon] = useState(false);
+    const [showCapExIcon, setshowCapExIcon] = useState(false);
+    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
+    const [showFundingIcon, setshowFundingIcon] = useState(false);
+    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
+    const [FooterVisible, setFooterVisible] = useState(true);
+    const [TutorialMode, setTutorialMode] = useState(false);
+
     const navigate = useNavigate()
-    // show EMI after funding
-    useEffect(() => {
-
-        AddEMIRow()
-        setTimeout(() => { //move to EMI row 
-            const anchor = document.querySelector('#OpEx_Total_ID')
-            if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
-            setTimeout(() => { // move to OpExTotal
-                SaveAfterEMI()
-
-            }, 1500);
-        }, 2000);
-    }, [EMI])
-
 
     // helper Functions
 
@@ -93,7 +93,7 @@ function OpEx() {
             // console.log("OpExDB start:", OpExDB);
             // console.log("OpExTotal start:", OpExTotal);
 
-            if (OpExDB && OpExTotal) {
+            if (OpExDB && OpExTotal != null) {
                 setRows(JSON.parse(OpExDB))
                 setTotalOpEx(OpExTotal)
             }
@@ -132,7 +132,7 @@ function OpEx() {
     // navigate to CapEx page
     const navigateToCapEx = () => {
         // todo: change to towards capex pages
-        navigate("/Biz-Sim-V2/capex-calculation")
+        navigate("/Biz-Sim-V2/towards-capex")
     }
     // helper Functions End
 
@@ -176,54 +176,6 @@ function OpEx() {
         setRows([...rows, newRow]);
     };
 
-    const AddEMIRow = () => {
-        // console.log('AddEMIRow called');
-
-        const anchor = document.querySelector('#AddExpenseBTN_ID')
-        if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
-
-        setTimeout(() => {
-
-
-            if (EMI && EMI != null) {
-                // try updating emi row
-                let IsEMI = false
-                const updatedRows = rows.map(row => {
-                    if (row.ExpenseName === "Monthly Repayment [Auto Cal]") {
-                        // console.log('AddEMIRow update', row);
-                        IsEMI = true
-                        return {
-                            ...row,
-                            ValueOfExpense: EMI
-                        }
-                    }
-
-                    return row
-                });
-                setRows(updatedRows);
-
-                if (!IsEMI) {
-                    // add emi row
-                    const newRow = {
-                        id: rows.length ? rows[rows.length - 1].id + 1 : 1,
-                        ExpenseName: 'Monthly Repayment [Auto Cal]',
-                        TypeOfExpense: 'variable',
-                        ValueOfExpense: EMI,
-                    };
-                    // console.log('AddEMIRow newRow', newRow);
-                    setRows([...rows, newRow]);
-                }
-            }
-        }, 1000);
-    };
-
-    const SaveAfterEMI = () => {
-        const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString());
-        // localStorage.setItem('OpExTotal', total.toString());
-        // localStorage.setItem('OpExDB', JSON.stringify(rows));
-    }
-
     const handleSaveDetails = () => {
         const allFieldsFilled = rows.every(row => row.ExpenseName !== '' && row.ValueOfExpense !== '' && row.TypeOfExpense !== '');
         if (!allFieldsFilled) {
@@ -241,11 +193,57 @@ function OpEx() {
         // console.log("OpEx Total: ", total.toString());
 
     };
-
-
-
     // Table functions end
+    const showNavIconIfData = () => {
+        try {
+            // TutorialMode
+            const Tutorialmode = localStorage.getItem('TutorialMode')
+            if (Tutorialmode == "true") setTutorialMode(true)
 
+            // show TAM ICON
+            const TAMtotal = localStorage.getItem('TAM');
+            if (TAMtotal) setshowTAMIcon(true)
+
+            // show SAM ICON
+            const SAMtotal = localStorage.getItem('SAM');
+            if (SAMtotal) setshowSAMIcon(true)
+
+            // show CSP ICON
+            const CSPMonthly = localStorage.getItem('CSPMonthly')
+            const OPdays = localStorage.getItem('OPdays')
+            if (CSPMonthly && OPdays) setshowCSPIcon(true)
+
+            // show SOM ICON
+            const SOM = localStorage.getItem('SOM')
+            if (SOM) setshowSOMIcon(true)
+
+            // show OpEx ICON
+            const OpExTotal = localStorage.getItem('OpExTotal')
+            if (OpExTotal) {
+                setshowOpExIcon(true)
+                setFooterVisible(false)
+            }
+
+            // show CapEx ICON
+            const CapExTotal = localStorage.getItem('CapExTotal')
+            if (CapExTotal) setshowCapExIcon(true)
+
+            // show EBT_WC ICON
+            const EBT = localStorage.getItem('ebt')
+            const WC = localStorage.getItem('WC')
+            if (EBT && WC) setshowEBTWCIcon(true)
+
+            // show Funding ICON
+            const EMI = localStorage.getItem('EMI')
+            if (EMI) setshowFundingIcon(true)
+
+            // show dashboard ICON
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+
+        } catch (error) {
+            console.log("showNavIconIfData Error", error)
+        }
+    }
 
     const footerTexts = [
         "Here in the section of Operational Expenditure (OpEx), you will have to list down each expense that your business is going to incur while in operation. You will first have to enter the name of the expense, then select its type, whether it is fixed or variable, and then mention a value - amount of money which is going to be spent on that particular expense.",
@@ -259,222 +257,435 @@ function OpEx() {
 
     return (
         <div>
-            <Header />
-            <BackButton topOffset='10vh' />
-            <div className='indicatorIcon-container'>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/som')}>
-                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
-                </div>
-                {/* Animate the icon entry */}
-                <div className='Icon-div'>
-                    <AnimatePresence mode="wait">
-                        {showOpExIcon ? (
+            {TutorialMode ?
+                // TutorialMode=True
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className='indicatorIcon-container'>
+                        {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>}
+                        {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>}
+                        {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>}
+                        {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>}
+                        {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>}
+                        {/* Animate the icon entry */}
+                        <div className='Icon-div'>
+                            <AnimatePresence mode="wait">
+                                {showOpExIcon ? (
 
-                            <motion.img
-                                key="OpEx-img"
-                                src={OpExIcon}
-                                alt="OpEx-Icon"
-                                className="SOM-Icon"
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 1 }}
-                            />
+                                    <motion.img
+                                        key="OpEx-img"
+                                        src={opexIcon}
+                                        alt="OpEx-Icon"
+                                        className="SOM-Icon"
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 1 }}
+                                    />
 
-                        ) : <div></div>}
-                    </AnimatePresence>
-                    {/* Animate the text entry/exit */}
-                    <AnimatePresence mode="wait">
-                        {showOpExIconText && (
-                            <motion.span
-                                key="OpEx-Icon-Text"
-                                initial={{ opacity: 0, x: -100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 1 }}
-                            >
-                                Operational Expenditure
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
-            <div className="table-container opex-table-container">
-                <h1>Operational Expenditure</h1>
-                <table className="table">
-                    <thead>
-                        <tr>
+                                ) : <div></div>}
+                            </AnimatePresence>
+                            {/* Animate the text entry/exit */}
+                            <AnimatePresence mode="wait">
+                                {showOpExIconText && (
+                                    <motion.span
+                                        key="OpEx-Icon-Text"
+                                        initial={{ opacity: 0, x: -100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 1 }}
+                                    >
+                                        Operational Expenditure
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>}
+                        {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>}
+                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>}
+                    </div>
+                    <div className={FooterVisible ? "table-container opex-table-container" : "table-container opex-table-container vh-90"}>
+                        <h1>Operational Expenditure</h1>
+                        <table className="table">
+                            <thead>
+                                <tr>
 
-                            <th></th>{/* Delete row column */}
-                            <th>Name of the Expense</th>
-                            <th>Type of Expense</th>
-                            <th>Value of the Expense</th>
-                            {<th></th>}{/* NumberToWords header */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rows.map(row => (
-                            row.ExpenseName === "Monthly Repayment [Auto Cal]" ? (
-                                <tr key={row.id} id="MonthlyRepaymentRow">
-                                    <td>
-                                        <PopUp keyName='EMI-delete'>
-                                            <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
-                                        </PopUp>
-                                    </td>
-                                    <td>
-                                        <PopUp keyName='EMI-ExpenseName'>
-                                            <TextDisplay
-                                                value={row.ExpenseName}
-                                            />
-                                        </PopUp>
-                                        {/* <CustomTextField
+                                    <th></th>{/* Delete row column */}
+                                    <th>Name of the Expense</th>
+                                    <th>Type of Expense</th>
+                                    <th>Value of the Expense</th>
+                                    {<th></th>}{/* NumberToWords header */}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map(row => (
+                                    row.ExpenseName === "Monthly Repayment [Auto Cal]" ? (
+                                        <tr key={row.id} id="MonthlyRepaymentRow">
+                                            <td>
+                                                <PopUp keyName='EMI-delete'>
+                                                    <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                <PopUp keyName='EMI-ExpenseName'>
+                                                    <TextDisplay
+                                                        value={row.ExpenseName}
+                                                    />
+                                                </PopUp>
+                                                {/* <CustomTextField
                                             value={row.ExpenseName}
                                             type='text'
                                             placeholder='Enter Name'
                                             onChange={(value) => handleExpenseNameChange(row.id, value)}
                                         /> */}
-                                    </td>
-                                    <td>
-                                        {/* Expense type toggle */}
-                                        <PopUp keyName='EMI-expense-type-toggle'>
-                                            <div className="expense-type-toggle">
-                                                <button
-                                                    // type="button"
-                                                    className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
-                                                // onClick={() => {}}
-                                                >
-                                                    Fixed
-                                                </button>
+                                            </td>
+                                            <td>
+                                                {/* Expense type toggle */}
+                                                <PopUp keyName='EMI-expense-type-toggle'>
+                                                    <div className="expense-type-toggle">
+                                                        <button
+                                                            // type="button"
+                                                            className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
+                                                        // onClick={() => {}}
+                                                        >
+                                                            Fixed
+                                                        </button>
 
-                                                <button
-                                                    // type="button"
-                                                    className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
-                                                // onClick={() => {}}
-                                                >
-                                                    Variable
-                                                </button>
-                                            </div>
-                                        </PopUp>
-                                    </td>
-                                    <td>
-                                        <PopUp keyName='EMI-ExpenseName'>
-                                            <div
-                                                onMouseEnter={() => setisHoveredRow(`${row.id}`)}
-                                                onMouseLeave={() => setisHoveredRow("")}
-                                            >
-                                                <TextDisplay
-                                                    value={row.ValueOfExpense}
-                                                />
-                                                {/* <CustomTextField
+                                                        <button
+                                                            // type="button"
+                                                            className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
+                                                        // onClick={() => {}}
+                                                        >
+                                                            Variable
+                                                        </button>
+                                                    </div>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                <PopUp keyName='EMI-ExpenseName'>
+                                                    <div
+                                                        onMouseEnter={() => setisHoveredRow(`${row.id}`)}
+                                                        onMouseLeave={() => setisHoveredRow("")}
+                                                    >
+                                                        <TextDisplay
+                                                            value={row.ValueOfExpense}
+                                                        />
+                                                        {/* <CustomTextField
                                                 value={row.ValueOfExpense}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 onChange={(value) => handleExpenseValueChange(row.id, value)}
                                             /> */}
-                                            </div>
-                                        </PopUp>
-                                    </td>
+                                                    </div>
+                                                </PopUp>
+                                            </td>
 
-                                    <td className='NumberToWords-opex'>
-                                        {isHoveredRow == `${row.id}` &&
-                                            <Slide keyName={"NumberToWords-row:" + row.id}                                    >
-                                                <NumberToWords value={row.ValueOfExpense} />
-                                            </Slide>
-                                        }
-                                    </td>
+                                            <td className='NumberToWords-opex'>
+                                                {isHoveredRow == `${row.id}` &&
+                                                    <Slide keyName={"NumberToWords-row:" + row.id}                                    >
+                                                        <NumberToWords value={row.ValueOfExpense} />
+                                                    </Slide>
+                                                }
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        // regular OpEx table rows
+                                        <tr key={row.id}>
+                                            <td>
+                                                <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                            </td>
+                                            <td>
+                                                <CustomTextField
+                                                    value={row.ExpenseName}
+                                                    type='text'
+                                                    placeholder='Enter Name'
+                                                    onChange={(value) => handleExpenseNameChange(row.id, value)}
+                                                />
+                                            </td>
+                                            <td>
+                                                {/* Expense type toggle */}
+                                                <div className="expense-type-toggle">
+                                                    <button
+                                                        // type="button"
+                                                        className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
+                                                        onClick={() => handleExpenseTypeChange(row.id, 'fixed')}
+                                                    >
+                                                        Fixed
+                                                    </button>
+
+                                                    <button
+                                                        // type="button"
+                                                        className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
+                                                        onClick={() => handleExpenseTypeChange(row.id, 'variable')}
+                                                    >
+                                                        Variable
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div
+                                                    onMouseEnter={() => setisHoveredRow(`${row.id}`)}
+                                                    onMouseLeave={() => setisHoveredRow("")}
+                                                >
+                                                    <CustomTextField
+                                                        value={row.ValueOfExpense}
+                                                        type='number'
+                                                        placeholder='Enter Value'
+                                                        onChange={(value) => handleExpenseValueChange(row.id, value)}
+                                                    />
+                                                </div>
+                                            </td>
+
+                                            <td className='NumberToWords-opex'>
+                                                {isHoveredRow == `${row.id}` &&
+                                                    <Slide keyName={"NumberToWords-row:" + row.id}                                    >
+                                                        <NumberToWords value={row.ValueOfExpense} />
+                                                    </Slide>
+                                                }
+                                            </td>
+                                        </tr>)
+                                ))}
+                            </tbody>
+                        </table>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
+                        <div className="button-container">
+                            <button id='AddExpenseBTN_ID' className="add-button" onClick={handleAddRow}>ADD EXPENSE</button>
+                            {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                        </div>
+
+
+                        <div id='OpEx_Total_ID' className="total-size-container">
+                            {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
+                            <span className="total-size-words">Total OpEx</span>
+                            <span className="total-size-words"><NumberToWords value={TotalOpEx.toString()} /></span>
+                            <input
+                                type="text"
+                                value={TotalOpEx}
+                                readOnly
+                                className="total-size-field"
+                            />
+                        </div>
+
+                    </div>
+                    {FooterVisible && <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />}
+                </div>
+                :
+                // TutorialMode=False
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className="indicatorIcon-container">
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>
+                    </div>
+                    <div className="table-container opex-table-container vh-90">
+                        <h1>Operational Expenditure</h1>
+                        <table className="table">
+                            <thead>
+                                <tr>
+
+                                    <th></th>{/* Delete row column */}
+                                    <th>Name of the Expense</th>
+                                    <th>Type of Expense</th>
+                                    <th>Value of the Expense</th>
+                                    {<th></th>}{/* NumberToWords header */}
                                 </tr>
-                            ) : (
-                                // regular OpEx table rows
-                                <tr key={row.id}>
-                                    <td>
-                                        <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
-                                    </td>
-                                    <td>
-                                        <CustomTextField
+                            </thead>
+                            <tbody>
+                                {rows.map(row => (
+                                    row.ExpenseName === "Monthly Repayment [Auto Cal]" ? (
+                                        <tr key={row.id} id="MonthlyRepaymentRow">
+                                            <td>
+                                                <PopUp keyName='EMI-delete'>
+                                                    <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                <PopUp keyName='EMI-ExpenseName'>
+                                                    <TextDisplay
+                                                        value={row.ExpenseName}
+                                                    />
+                                                </PopUp>
+                                                {/* <CustomTextField
                                             value={row.ExpenseName}
                                             type='text'
                                             placeholder='Enter Name'
                                             onChange={(value) => handleExpenseNameChange(row.id, value)}
-                                        />
-                                    </td>
-                                    <td>
-                                        {/* Expense type toggle */}
-                                        <div className="expense-type-toggle">
-                                            <button
-                                                // type="button"
-                                                className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
-                                                onClick={() => handleExpenseTypeChange(row.id, 'fixed')}
-                                            >
-                                                Fixed
-                                            </button>
+                                        /> */}
+                                            </td>
+                                            <td>
+                                                {/* Expense type toggle */}
+                                                <PopUp keyName='EMI-expense-type-toggle'>
+                                                    <div className="expense-type-toggle">
+                                                        <button
+                                                            // type="button"
+                                                            className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
+                                                        // onClick={() => {}}
+                                                        >
+                                                            Fixed
+                                                        </button>
 
-                                            <button
-                                                // type="button"
-                                                className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
-                                                onClick={() => handleExpenseTypeChange(row.id, 'variable')}
-                                            >
-                                                Variable
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div
-                                            onMouseEnter={() => setisHoveredRow(`${row.id}`)}
-                                            onMouseLeave={() => setisHoveredRow("")}
-                                        >
-                                            <CustomTextField
+                                                        <button
+                                                            // type="button"
+                                                            className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
+                                                        // onClick={() => {}}
+                                                        >
+                                                            Variable
+                                                        </button>
+                                                    </div>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                <PopUp keyName='EMI-ExpenseName'>
+                                                    <div
+                                                        onMouseEnter={() => setisHoveredRow(`${row.id}`)}
+                                                        onMouseLeave={() => setisHoveredRow("")}
+                                                    >
+                                                        <TextDisplay
+                                                            value={row.ValueOfExpense}
+                                                        />
+                                                        {/* <CustomTextField
                                                 value={row.ValueOfExpense}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 onChange={(value) => handleExpenseValueChange(row.id, value)}
-                                            />
-                                        </div>
-                                    </td>
+                                            /> */}
+                                                    </div>
+                                                </PopUp>
+                                            </td>
 
-                                    <td className='NumberToWords-opex'>
-                                        {isHoveredRow == `${row.id}` &&
-                                            <Slide keyName={"NumberToWords-row:" + row.id}                                    >
-                                                <NumberToWords value={row.ValueOfExpense} />
-                                            </Slide>
-                                        }
-                                    </td>
-                                </tr>)
-                        ))}
-                    </tbody>
-                </table>
-                {errorMessage && <div className="error-message">{errorMessage}</div>}
-                <div className="button-container">
-                    <button id='AddExpenseBTN_ID' className="add-button" onClick={handleAddRow}>ADD EXPENSE</button>
-                    {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                                            <td className='NumberToWords-opex'>
+                                                {isHoveredRow == `${row.id}` &&
+                                                    <Slide keyName={"NumberToWords-row:" + row.id}                                    >
+                                                        <NumberToWords value={row.ValueOfExpense} />
+                                                    </Slide>
+                                                }
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        // regular OpEx table rows
+                                        <tr key={row.id}>
+                                            <td>
+                                                <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                            </td>
+                                            <td>
+                                                <CustomTextField
+                                                    value={row.ExpenseName}
+                                                    type='text'
+                                                    placeholder='Enter Name'
+                                                    onChange={(value) => handleExpenseNameChange(row.id, value)}
+                                                />
+                                            </td>
+                                            <td>
+                                                {/* Expense type toggle */}
+                                                <div className="expense-type-toggle">
+                                                    <button
+                                                        // type="button"
+                                                        className={`expense-type-btn left ${row.TypeOfExpense === 'fixed' ? 'selected' : ''}`}
+                                                        onClick={() => handleExpenseTypeChange(row.id, 'fixed')}
+                                                    >
+                                                        Fixed
+                                                    </button>
+
+                                                    <button
+                                                        // type="button"
+                                                        className={`expense-type-btn right ${row.TypeOfExpense === 'variable' ? 'selected' : ''}`}
+                                                        onClick={() => handleExpenseTypeChange(row.id, 'variable')}
+                                                    >
+                                                        Variable
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div
+                                                    onMouseEnter={() => setisHoveredRow(`${row.id}`)}
+                                                    onMouseLeave={() => setisHoveredRow("")}
+                                                >
+                                                    <CustomTextField
+                                                        value={row.ValueOfExpense}
+                                                        type='number'
+                                                        placeholder='Enter Value'
+                                                        onChange={(value) => handleExpenseValueChange(row.id, value)}
+                                                    />
+                                                </div>
+                                            </td>
+
+                                            <td className='NumberToWords-opex'>
+                                                {isHoveredRow == `${row.id}` &&
+                                                    <Slide keyName={"NumberToWords-row:" + row.id}                                    >
+                                                        <NumberToWords value={row.ValueOfExpense} />
+                                                    </Slide>
+                                                }
+                                            </td>
+                                        </tr>)
+                                ))}
+                            </tbody>
+                        </table>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
+                        <div className="button-container">
+                            <button id='AddExpenseBTN_ID' className="add-button" onClick={handleAddRow}>ADD EXPENSE</button>
+                            {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                        </div>
+
+
+                        <div id='OpEx_Total_ID' className="total-size-container">
+                            {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
+                            <span className="total-size-words">Total OpEx</span>
+                            <span className="total-size-words"><NumberToWords value={TotalOpEx.toString()} /></span>
+                            <input
+                                type="text"
+                                value={TotalOpEx}
+                                readOnly
+                                className="total-size-field"
+                            />
+                        </div>
+
+                    </div>
                 </div>
+            }
 
-
-                <div id='OpEx_Total_ID' className="total-size-container">
-                    {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
-                    <span className="total-size-words">Total OpEx</span>
-                    <span className="total-size-words"><NumberToWords value={TotalOpEx.toString()} /></span>
-                    <input
-                        type="text"
-                        value={TotalOpEx}
-                        readOnly
-                        className="total-size-field"
-                    />
-                </div>
-
-            </div>
-
-
-
-            <Footer texts={footerTexts} onNextNavtoCapEx={navigateToCapEx} />
         </div>
     )
 }
