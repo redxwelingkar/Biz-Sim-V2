@@ -98,13 +98,13 @@ function OpEx_EMIDisplay() {
 
             if (OpExDB && OpExTotal) {
                 setRows(JSON.parse(OpExDB))
-                setTotalOpEx(OpExTotal)
+                setTotalOpEx(OpExTotal.toString())
             }
 
             if (EMI && EMI != null) {
                 // console.log('emi start',EMI);
 
-                setEMI(EMI)
+                setEMI(EMI.toString())
             }
 
         } catch (error) {

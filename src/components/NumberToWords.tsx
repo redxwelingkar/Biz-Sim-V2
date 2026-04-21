@@ -5,7 +5,7 @@ interface NumberToWordsProps {
 }
 
 const NumberToWords = ({ value }: NumberToWordsProps) => {
-  if (!value) return "NIL";
+  if (!value || value=="NaN") return "NIL";
   let words, capitalizedWords
   try {
     words = numberToWords.toWords(parseInt(value, 10));

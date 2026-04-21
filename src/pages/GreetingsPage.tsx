@@ -12,7 +12,7 @@ function GreetingsPage() {
     try {
       localStorage.setItem("TutorialMode", "true")
     } catch (error) {
-      console.log("TutorialMode Save Error", error);
+      console.error("TutorialMode Save Error", error);
     }
     navigate('/Biz-Sim-V2/business-name');
   };
@@ -21,7 +21,7 @@ function GreetingsPage() {
     try {
       localStorage.setItem("TutorialMode", "false")
     } catch (error) {
-      console.log("TutorialMode Save Error", error);
+      console.error("TutorialMode Save Error", error);
     }
     navigate('/Biz-Sim-V2/business-name');
   };

@@ -83,7 +83,7 @@ function TowardsSOM() {
 
 
         } catch (error) {
-            console.log("showNavIconIfData Error", error)
+            console.error("showNavIconIfData Error", error)
         }
     }
 

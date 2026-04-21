@@ -23,7 +23,7 @@ const SAMCalc = () => {
       let TutorialMode = localStorage.getItem("TutorialMode")
       if (TutorialMode === 'true') setTutorialMode(true)
       else setTutorialMode(false)
-      console.log("samCal TutorialMode", TutorialMode);
+      // console.log("samCal TutorialMode", TutorialMode);
 
       // if SAMTotal calculated remove footer, show all col
       const SAMTotal = localStorage.getItem('SAM');
@@ -41,7 +41,7 @@ const SAMCalc = () => {
       //   setShowTable(true)
       // }
     } catch (error) {
-      console.log("Business Name Error", error);
+      console.error("Business Name Error", error);
     }
   }, [])
 

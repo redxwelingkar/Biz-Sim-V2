@@ -9,7 +9,7 @@ const BeginPage = () => {
             let bname = localStorage.getItem("businessName")
             if (bname) setBusinessName(bname)
         } catch (error) {
-            console.log("Business Name Error", error);
+            console.error("Business Name Error", error);
         }
     }, [])
 
@@ -18,7 +18,7 @@ const BeginPage = () => {
         try {
             localStorage.clear()
         } catch (error) {
-            console.log("deleteAllSavedData Error", error);
+            console.error("deleteAllSavedData Error", error);
         }
     }
     const tutorialpage = () => {

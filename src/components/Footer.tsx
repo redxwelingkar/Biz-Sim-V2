@@ -23,6 +23,7 @@ interface FooterProps {
   onNextNavtoDashboard?: () => void;
   onNextNavtowardsEBT_WC?: () => void;
   onNextNavtowardsFunding?: () => void;
+  onNextNavtoEMI?: () => void;
   onNextShowWC?: () => void;
   CalSAMBTNclick?: boolean;
   SaveFundingSaved?: boolean;
@@ -47,6 +48,7 @@ const Footer = ({ onNext,
   onNextNavtowardsEBT_WC,
   onNextNavtowardsFunding,
   onNextNavtoDashboard,
+  onNextNavtoEMI,
   onNextShowWC,
   CalSAMBTNclick,
   SaveFundingSaved,
@@ -55,6 +57,7 @@ const Footer = ({ onNext,
 
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
+  // const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || SaveFundingSaved);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || SaveFundingSaved);
 
   useEffect(() => {
@@ -69,8 +72,8 @@ const Footer = ({ onNext,
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
     // setdown_Arrow(CalSAMBTNclick)
     if (CalSAMBTNclick) setdown_Arrow(false)
-    // if (SaveFundingSaved) setdown_Arrow(false)
-  }, [CalSAMBTNclick])
+    if (SaveFundingSaved) setdown_Arrow(false)
+  }, [CalSAMBTNclick,SaveFundingSaved])
 
   const handleUpArrowClick = () => {
     if (textIndex > 0) {
@@ -157,12 +160,13 @@ const Footer = ({ onNext,
       }
       if (textIndex === 5) {
         if (onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
+        if(onNextNavtoEMI) setdown_Arrow(true)
       }
 
       if (textIndex === 6) {
         // move to OpEx
-        if (onNextNavtoOpEx) {
-          onNextNavtoOpEx()
+        if (onNextNavtoEMI) {
+          onNextNavtoEMI()
         }
       }
 

@@ -264,7 +264,7 @@ function EBT_WC() {
             if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
-            console.log("showNavIconIfData Error", error)
+            console.error("showNavIconIfData Error", error)
         }
     }
 
@@ -330,9 +330,6 @@ function EBT_WC() {
                                 )}
                             </AnimatePresence>
                         </div>
-                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
-                        </div>}
                         {showEBTWCIcon && !showEBTWC && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
                             <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
                         </div>}

@@ -220,6 +220,8 @@ function OpEx() {
             // show OpEx ICON
             const OpExTotal = localStorage.getItem('OpExTotal')
             if (OpExTotal) {
+                // console.log("OpExTotal 212",OpExTotal);
+                
                 setshowOpExIcon(true)
                 setFooterVisible(false)
             }
@@ -241,7 +243,7 @@ function OpEx() {
             if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
-            console.log("showNavIconIfData Error", error)
+            console.error("showNavIconIfData Error", error)
         }
     }
 

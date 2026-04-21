@@ -79,7 +79,7 @@ const TowardsOpEx = () => {
             if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
-            console.log("showNavIconIfData Error", error)
+            console.error("showNavIconIfData Error", error)
         }
     }
 

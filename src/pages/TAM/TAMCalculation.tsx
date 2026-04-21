@@ -49,7 +49,7 @@ const TAMCalc = () => {
         setShowTable(true)
       }
     } catch (error) {
-      console.log("Business Name Error", error);
+      console.error("Business Name Error", error);
     }
   }, [])
 
@@ -65,7 +65,7 @@ const TAMCalc = () => {
       // }
 
     } catch (error) {
-      console.log("showNavIconIfData Error", error)
+      console.error("showNavIconIfData Error", error)
     }
   }
 

@@ -134,7 +134,7 @@ const TableComponent = ({
     const storedRows = localStorage.getItem('rows');
     const storedTotalSize = localStorage.getItem('TAM');
 
-    console.log("Main Table TutorialMode", isTutorialMode)
+    // console.log("Main Table TutorialMode", isTutorialMode)
 
     if (storedRows) {
       setRows(JSON.parse(storedRows));
@@ -155,7 +155,7 @@ const TableComponent = ({
       const TAMtotal = localStorage.getItem('TAM');
       if (TAMtotal) setshowTAMIcon(true)
       if (TAMtotal && window.location.href.split("/").includes("tam-calculation")) {
-        console.log("SAMtotal", TAMtotal);
+        // console.log("SAMtotal", TAMtotal);
         setfullscreen(true)
       }
 
@@ -164,7 +164,7 @@ const TableComponent = ({
       if (SAMtotal) setshowSAMIcon(true)
       // if SAM Calculated show all col in TutorialMode
       if (SAMtotal && window.location.href.split("/").includes("sam-calculation")) {
-        console.log("SAMtotal", SAMtotal);
+        // console.log("SAMtotal", SAMtotal);
         setSAM(parseInt(SAMtotal))
         setfullscreen(true)
         setPercentageConvCOL(true)
@@ -203,7 +203,7 @@ const TableComponent = ({
 
         
     } catch (error) {
-      console.log("showNavIconIfData Error", error)
+      console.error("showNavIconIfData Error", error)
     }
   }
 
@@ -372,6 +372,9 @@ const TableComponent = ({
         <div className={fullscreen ? 'table-container vh-90' : 'table-container'}>
 
           <div className='indicatorIcon-container'>
+            {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+              <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+            </div>}
             {/* TAM Icon */}
             <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
 
@@ -440,9 +443,6 @@ const TableComponent = ({
                 )}
               </AnimatePresence>
             </div>
-            {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-              <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
-            </div>}
             {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
               <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
             </div>}

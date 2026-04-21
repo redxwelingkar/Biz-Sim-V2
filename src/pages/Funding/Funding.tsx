@@ -4,20 +4,24 @@ import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 
 import '../../css/Funding.css'
-
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
 import OpExIcon from "../../assets/img/OpEx-icon.png";
 import CapExIcon from "../../assets/img/CapEx-icon.png";
 import EBTWCIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/funding-icon.png";
 import Footer from '../../components/Footer';
 // import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
 import TextDisplay from '../../components/TextDisplay';
+
+import DashboardIcon from "../../assets/img/DashB-Icon.png";
+import tamIcon from "../../assets/img/tam-icon.png";
+import samIcon from "../../assets/img/sam-icon.png";
+import somIcon from "../../assets/img/som-icon.png";
+import cspIcon from "../../assets/img/csp-icon.png";
+import opexIcon from "../../assets/img/OpEx-icon.png";
+import capexIcon from "../../assets/img/CapEx-icon.png";
+import ebtwcIcon from "../../assets/img/EBT_WC.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
 
 
 // const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -37,21 +41,11 @@ import TextDisplay from '../../components/TextDisplay';
 
 const Funding = () => {
     const [showTable, setShowTable] = useState(false);
-    const [TutorialMode, setTutorialMode] = useState(false);
 
     // always run at start
     useEffect(() => {
-        try {
-            const tutorialMode = localStorage.getItem('TutorialMode');
-            setTutorialMode(tutorialMode === 'true');
-            setShowTable(tutorialMode !== 'true');
-        } catch (error) {
-            console.error('Error reading TutorialMode from localStorage:', error);
-            setTutorialMode(false);
-            setShowTable(true);
-        }
-
         loadFundingRowsfromLocalStorage()
+        showNavIconIfData()
     }, [])
 
 
@@ -61,12 +55,23 @@ const Funding = () => {
         { id: 3, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
     ]);
     const [errorMessage, setErrorMessage] = useState('');
-    const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showFundingIconText, setshowFundingIconText] = useState(false);
     const [isSaveFundingSaved, setisSaveFundingSaved] = useState(false);
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
+
+    const [showTAMIcon, setshowTAMIcon] = useState(false);
+    const [showSAMIcon, setshowSAMIcon] = useState(false);
+    const [showCSPIcon, setshowCSPIcon] = useState(false);
+    const [showSOMIcon, setshowSOMIcon] = useState(false);
+    const [showOpExIcon, setshowOpExIcon] = useState(false);
+    const [showCapExIcon, setshowCapExIcon] = useState(false);
+    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
+    const [showFundingIcon, setshowFundingIcon] = useState(false);
+    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
+    const [FooterVisible, setFooterVisible] = useState(true);
+    const [TutorialMode, setTutorialMode] = useState(false);
 
     const navigate = useNavigate()
 
@@ -84,10 +89,10 @@ const Funding = () => {
             // console.log("FundingDB start:", FundingDB);
             // console.log("FundingTotal start:", FundingTotal);
 
-            if (FundingDB !=null 
-                && TotalAmountBorrowed!= null 
-                && TotalMonthlyPrincipalRepayment!= null 
-                && TotalMonthlyInterest!= null) {
+            if (FundingDB != null
+                && TotalAmountBorrowed != null
+                && TotalMonthlyPrincipalRepayment != null
+                && TotalMonthlyInterest != null) {
                 const parsedRows = JSON.parse(FundingDB)
                 if (Array.isArray(parsedRows)) {
                     setRows(parsedRows)
@@ -123,13 +128,10 @@ const Funding = () => {
     }
 
     // navigate to CapEx page
-    const navigateToOpEx = () => {
+    const navigateToEMI = () => {
         navigate("/Biz-Sim-V2/opex-EMIdisplay")
     }
 
-    const handleNext = () => {
-        setShowTable(true);
-    }
     // helper Functions End
 
     // Table functions
@@ -139,7 +141,7 @@ const Funding = () => {
             return;
         }
         setRows(rows.filter(row => row.id !== id));
-    };  
+    };
     const handleAddRow = () => {
         const newRow = {
             id: rows.length ? rows[rows.length - 1].id + 1 : 1,
@@ -149,7 +151,7 @@ const Funding = () => {
             interestPayable: '',
             RepaymentPeriod: '',
             MonthlyPrincipalPayment: '',
-            MonthlyInterestPayment:''
+            MonthlyInterestPayment: ''
         };
         setRows([...rows, newRow]);
     };
@@ -180,7 +182,7 @@ const Funding = () => {
                 const interestPayable = (borrowed * interest * parseFloat(value)) / 100;
 
                 const monthlyPrincipal = borrowed / (parseFloat(value) * 12);
-                
+
                 const totalMonths = parseFloat(value) * 12;
                 const monthlyInterest = interestPayable / totalMonths
                 // console.log("borrowed", borrowed, "interest", interest, "period", parseFloat(value));
@@ -191,7 +193,7 @@ const Funding = () => {
                     RepaymentPeriod: value,
                     interestPayable: interestPayable.toFixed(2),
                     MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
-                    MonthlyInterestPayment:monthlyInterest.toFixed(2)
+                    MonthlyInterestPayment: monthlyInterest.toFixed(2)
                 };
             }
             return row;
@@ -227,9 +229,9 @@ const Funding = () => {
         localStorage.setItem('FundingDB', JSON.stringify(rows));
         setisSaveFundingSaved(true)
         showFundingIconAndText()
-        setTimeout(() => {
-            navigateToOpEx();
-        }, 1000);
+        // setTimeout(() => {
+        //     navigateToOpEx();
+        // }, 1000);
 
         // console.log("FundingDB: ", JSON.stringify(rows));
         // console.log("Funding Total: ", total.toString());
@@ -256,177 +258,372 @@ const Funding = () => {
         // "",
     ];
 
+    const showNavIconIfData = () => {
+        try {
+            // TutorialMode
+            const Tutorialmode = localStorage.getItem('TutorialMode')
+            if (Tutorialmode == "true") setTutorialMode(true)
+
+            // show TAM ICON
+            const TAMtotal = localStorage.getItem('TAM');
+            if (TAMtotal) setshowTAMIcon(true)
+
+            // show SAM ICON
+            const SAMtotal = localStorage.getItem('SAM');
+            if (SAMtotal) setshowSAMIcon(true)
+
+            // show CSP ICON
+            const CSPMonthly = localStorage.getItem('CSPMonthly')
+            const OPdays = localStorage.getItem('OPdays')
+            if (CSPMonthly && OPdays) setshowCSPIcon(true)
+
+            // show SOM ICON
+            const SOM = localStorage.getItem('SOM')
+            if (SOM) setshowSOMIcon(true)
+
+            // show OpEx ICON
+            const OpExTotal = localStorage.getItem('OpExTotal')
+            if (OpExTotal) setshowOpExIcon(true)
+
+            // show CapEx ICON
+            const CapExTotal = localStorage.getItem('CapExTotal')
+            if (CapExTotal) setshowCapExIcon(true)
+
+            // show EBT_WC ICON
+            const EBT = localStorage.getItem('ebt')
+            const WC = localStorage.getItem('WC')
+            if (EBT && WC) setshowEBTWCIcon(true)
+
+            // show Funding ICON
+            const EMI = localStorage.getItem('EMI')
+            if (EMI) { setshowFundingIcon(true); setFooterVisible(false) }
+
+            // show dashboard ICON
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+
+        } catch (error) {
+            console.error("showNavIconIfData Error", error)
+        }
+    }
 
     return (
         <div>
-            <Header />
-            <BackButton topOffset='10vh' />
-            <div className='indicatorIcon-container'>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/som')}>
-                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
-                </div>
-                {/* Animate the icon entry */}
-                <div className='Icon-div'>
-                    <AnimatePresence mode="wait">
-                        {showFundingIcon ? (
+            {TutorialMode ?
+                // TutorialMode=True
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className='indicatorIcon-container'>
+                        {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>}
+                        {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>}
+                        {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>}
+                        {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>}
+                        {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>}
+                        {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>}
+                        {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>}
+                        {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>}
+                        {/* Animate the icon entry */}
+                        <div className='Icon-div'>
+                            <AnimatePresence mode="wait">
+                                {showFundingIcon ? (
 
-                            <motion.img
-                                key="Funding-img"
-                                src={FundingIcon}
-                                alt="Funding-Icon"
-                                className="SOM-Icon"
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 1 }}
-                            />
+                                    <motion.img
+                                        key="Funding-img"
+                                        src={FundingIcon}
+                                        alt="Funding-Icon"
+                                        className="SOM-Icon"
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 1 }}
+                                    />
 
-                        ) : <div></div>}
-                    </AnimatePresence>
-                    {/* Animate the text entry/exit */}
-                    <AnimatePresence mode="wait">
-                        {showFundingIconText && (
-                            <motion.span
-                                key="Funding-Icon-Text"
-                                initial={{ opacity: 0, x: -100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 1 }}
-                            >
-                                Operational Expenditure
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
-            {showTable && <div className="table-container height">
-                <h1>Funding</h1>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th></th>{/* Delete row column */}
-                            <th>Source of funds</th>
-                            <th>Borrowed Amount</th>
-                            <th>Interest</th>
-                            <th>Repayment Period</th>
-                            <th>Interest Payable</th>
-                            <th>Monthly Principal Repayment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rows.map(row => (
-                            <tr key={row.id}>
-                                <td>
-                                    <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
-                                </td>
-                                <td>
-                                    <CustomTextField
-                                        value={row.SourceofFunds}
-                                        type='text'
-                                        placeholder='Enter Name'
-                                        onChange={(value) => handleSourceOfFundsChange(row.id, value)}
-                                    />
-                                </td>
-                                <td>
-                                    <CustomTextField
-                                        value={row.BorrowedAmount}
-                                        type='number'
-                                        min={0}
-                                        placeholder='Enter Value'
-                                        onChange={(value) => handleBorrowedAmountChange(row.id, value)}
-                                    />
-                                </td>
-                                <td>
-                                    <CustomTextField
-                                        value={row.interest}
-                                        type='number'
-                                        min={0}
-                                        placeholder='Enter %'
-                                        onChange={(value) => handleInterestChange(row.id, value)}
-                                    />
-                                </td>
-                                <td>
-                                    <CustomTextField
-                                        value={row.RepaymentPeriod}
-                                        type='number'
-                                        min={0}
-                                        placeholder='Enter No. of Years'
-                                        onChange={(value) => handleRepaymentPeriodChange(row.id, value)}
-                                    />
-                                </td>
-                                <td>
-                                    <TextDisplay
-                                        value={row.interestPayable}
-                                    />
-                                </td>
-
-                                <td>
-                                    <TextDisplay
-                                        value={row.MonthlyPrincipalPayment}
-                                    />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                {errorMessage && <div className="error-message">{errorMessage}</div>}
-                <div className="button-container">
-                    <button className="add-button" onClick={handleAddRow}>ADD A SOURCE OF FUNDS</button>
-                    {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
-                </div>
-
-                <div className="FundingTotals-container">
-                    <div>
-                        <span className="total-funding-words">Total Amount Borrowed</span>
-                        <input
-                            type="text"
-                            value={TotalAmountBorrowed}
-                            readOnly
-                            className="total-size-field"
-                        />
+                                ) : <div></div>}
+                            </AnimatePresence>
+                            {/* Animate the text entry/exit */}
+                            <AnimatePresence mode="wait">
+                                {showFundingIconText && (
+                                    <motion.span
+                                        key="Funding-Icon-Text"
+                                        initial={{ opacity: 0, x: -100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 1 }}
+                                    >
+                                        Operational Expenditure
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </div>
-                    <div>
-                        <span className="total-funding-words">Monthly Interest</span>
-                        <input
-                            type="text"
-                            value={TotalMonthlyInterest}
-                            readOnly
-                            className="total-size-field"
-                        />
+                    <div className={FooterVisible ? "table-container" : "table-container vh-90"}>
+                        <h1>Funding</h1>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th></th>{/* Delete row column */}
+                                    <th>Source of funds</th>
+                                    <th>Borrowed Amount</th>
+                                    <th>Interest</th>
+                                    <th>Repayment Period</th>
+                                    <th>Interest Payable</th>
+                                    <th>Monthly Principal Repayment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map(row => (
+                                    <tr key={row.id}>
+                                        <td>
+                                            <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.SourceofFunds}
+                                                type='text'
+                                                placeholder='Enter Name'
+                                                onChange={(value) => handleSourceOfFundsChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.BorrowedAmount}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter Value'
+                                                onChange={(value) => handleBorrowedAmountChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.interest}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter %'
+                                                onChange={(value) => handleInterestChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.RepaymentPeriod}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter No. of Years'
+                                                onChange={(value) => handleRepaymentPeriodChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <TextDisplay
+                                                value={row.interestPayable}
+                                            />
+                                        </td>
+
+                                        <td>
+                                            <TextDisplay
+                                                value={row.MonthlyPrincipalPayment}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
+                        <div className="button-container">
+                            <button className="add-button" onClick={handleAddRow}>ADD A SOURCE OF FUNDS</button>
+                            {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                        </div>
+
+                        <div className="FundingTotals-container">
+                            <div>
+                                <span className="total-funding-words">Total Amount Borrowed</span>
+                                <input
+                                    type="text"
+                                    value={TotalAmountBorrowed}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                            <div>
+                                <span className="total-funding-words">Monthly Interest</span>
+                                <input
+                                    type="text"
+                                    value={TotalMonthlyInterest}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                            <div>
+                                <span className="total-funding-words">Total Monthly Principal Repayment</span>
+                                <input
+                                    type="text"
+                                    value={TotalMonthlyPrincipalRepayment}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <span className="total-funding-words">Total Monthly Principal Repayment</span>
-                        <input
-                            type="text"
-                            value={TotalMonthlyPrincipalRepayment}
-                            readOnly
-                            className="total-size-field"
-                        />
+                    {FooterVisible && <Footer texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoEMI={navigateToEMI} />}
+                </div>
+                :
+                // TutorialMode=False
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className="indicatorIcon-container">
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>
+                    </div>
+                    <div className="table-container vh-90">
+                        <h1>Funding</h1>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th></th>{/* Delete row column */}
+                                    <th>Source of funds</th>
+                                    <th>Borrowed Amount</th>
+                                    <th>Interest</th>
+                                    <th>Repayment Period</th>
+                                    <th>Interest Payable</th>
+                                    <th>Monthly Principal Repayment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rows.map(row => (
+                                    <tr key={row.id}>
+                                        <td>
+                                            <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.SourceofFunds}
+                                                type='text'
+                                                placeholder='Enter Name'
+                                                onChange={(value) => handleSourceOfFundsChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.BorrowedAmount}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter Value'
+                                                onChange={(value) => handleBorrowedAmountChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.interest}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter %'
+                                                onChange={(value) => handleInterestChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <CustomTextField
+                                                value={row.RepaymentPeriod}
+                                                type='number'
+                                                min={0}
+                                                placeholder='Enter No. of Years'
+                                                onChange={(value) => handleRepaymentPeriodChange(row.id, value)}
+                                            />
+                                        </td>
+                                        <td>
+                                            <TextDisplay
+                                                value={row.interestPayable}
+                                            />
+                                        </td>
+
+                                        <td>
+                                            <TextDisplay
+                                                value={row.MonthlyPrincipalPayment}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
+                        <div className="button-container">
+                            <button className="add-button" onClick={handleAddRow}>ADD A SOURCE OF FUNDS</button>
+                            {<button className="save-button" onClick={handleSaveDetails}>SAVE DETAILS</button>}
+                        </div>
+
+                        <div className="FundingTotals-container">
+                            <div>
+                                <span className="total-funding-words">Total Amount Borrowed</span>
+                                <input
+                                    type="text"
+                                    value={TotalAmountBorrowed}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                            <div>
+                                <span className="total-funding-words">Monthly Interest</span>
+                                <input
+                                    type="text"
+                                    value={TotalMonthlyInterest}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                            <div>
+                                <span className="total-funding-words">Total Monthly Principal Repayment</span>
+                                <input
+                                    type="text"
+                                    value={TotalMonthlyPrincipalRepayment}
+                                    readOnly
+                                    className="total-size-field"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>}
+            }
 
 
-
-            {TutorialMode && <Footer onNext={handleNext} texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoOpEx={navigateToOpEx} />}
         </div>
     )
 };

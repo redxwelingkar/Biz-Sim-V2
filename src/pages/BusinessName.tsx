@@ -19,7 +19,7 @@ function BusinessName() {
       if (TutorialMode) setTutorialMode(TutorialMode)
       if (bname) setBusinessName(bname)
     } catch (error) {
-      console.log("Business Name Error", error);
+      console.error("Business Name Error", error);
     }
   }, [])
 

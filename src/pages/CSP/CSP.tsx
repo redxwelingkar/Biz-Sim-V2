@@ -177,7 +177,7 @@ function CSP() {
     }
 
     function onNextshowCSPIcon() {
-        console.log("onNextshowCSPIcon called");
+        // console.log("onNextshowCSPIcon called");
         setTimeout(() => {
             setshowCSPIcon(true)
             setTimeout(() => {
