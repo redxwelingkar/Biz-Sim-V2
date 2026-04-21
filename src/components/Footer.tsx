@@ -37,17 +37,17 @@ const Footer = ({ onNext,
   onNextshowCSPIcon,
   onNextshowSOMIcon,
   onNextshowCalSAMBTN,
+  onNextshowSAMIcon,
+  onNextshowTAMIcon,
   onNextNavtoSAM,
   onNextNavtoCSP,
   onNextNavtoSOM,
-  onNextshowSAMIcon,
-  onNextshowTAMIcon,
+  onNextNavtoOpEx,
   onNextNavtoCapEx,
-  onNextShowWC,
   onNextNavtowardsEBT_WC,
   onNextNavtowardsFunding,
-  onNextNavtoOpEx,
   onNextNavtoDashboard,
+  onNextShowWC,
   CalSAMBTNclick,
   SaveFundingSaved,
   texts }: FooterProps) => {
@@ -107,7 +107,7 @@ const Footer = ({ onNext,
         if (onNextShowWC) {
           onNextShowWC(); // Call onNextShowWC when dowm arrow click occurs on index 1
         }
-        if(onNextNavtoDashboard){
+        if (onNextNavtoDashboard) {
           onNextNavtoDashboard()
         }
 
@@ -123,11 +123,11 @@ const Footer = ({ onNext,
         if (onNextshowSOMIcon) {
           onNextshowSOMIcon(); // Call onNextshowCalSAMBTN when dowm arrow click occurs on index 2
         }
-        
+
 
       }
       if (textIndex === 3) {
-        if(onNextNavtoSAM) onNextNavtoSAM() // navigate to SAM Pages
+        if (onNextNavtoSAM) onNextNavtoSAM() // navigate to SAM Pages
         if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
@@ -141,8 +141,9 @@ const Footer = ({ onNext,
       }
       if (textIndex === 4) {
         // move to SOM
-        if(onNextNavtoSOM) onNextNavtoSOM() // navigate to SOM pages
-        
+        if (onNextNavtoSOM) onNextNavtoSOM() // navigate to SOM pages
+        if (onNextNavtoOpEx) onNextNavtoOpEx() // navigate to OpEx Pages
+
         // move to CapEx
         if (onNextNavtoCapEx) {
           onNextNavtoCapEx()
@@ -154,8 +155,8 @@ const Footer = ({ onNext,
         }
 
       }
-      if(textIndex === 5){
-        if(onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
+      if (textIndex === 5) {
+        if (onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
       }
 
       if (textIndex === 6) {
