@@ -3,21 +3,21 @@ import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../css/EBT_WC.css'
-
-
-
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import OpExIcon from "../../assets/img/OpEx-icon.png";
-import CapExIcon from "../../assets/img/CapEx-icon.png";
-import EBTWCIcon from "../../assets/img/EBT_WC.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
+
+import DashboardIcon from "../../assets/img/DashB-Icon.png";
+import tamIcon from "../../assets/img/tam-icon.png";
+import samIcon from "../../assets/img/sam-icon.png";
+import somIcon from "../../assets/img/som-icon.png";
+import cspIcon from "../../assets/img/csp-icon.png";
+import opexIcon from "../../assets/img/OpEx-icon.png";
+import capexIcon from "../../assets/img/CapEx-icon.png";
+import ebtwcIcon from "../../assets/img/EBT_WC.png";
+import FundingIcon from "../../assets/img/funding-icon.png";
 
 const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
     <AnimatePresence mode="wait">
@@ -63,11 +63,24 @@ function EBT_WC() {
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [successloadDataFromLocalStorage, setsuccessloadDataFromLocalStorage] = useState(false);
 
+    const [showTAMIcon, setshowTAMIcon] = useState(false);
+    const [showSAMIcon, setshowSAMIcon] = useState(false);
+    const [showCSPIcon, setshowCSPIcon] = useState(false);
+    const [showSOMIcon, setshowSOMIcon] = useState(false);
+    const [showOpExIcon, setshowOpExIcon] = useState(false);
+    const [showCapExIcon, setshowCapExIcon] = useState(false);
+    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
+    const [showFundingIcon, setshowFundingIcon] = useState(false);
+    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
+    const [FooterVisible, setFooterVisible] = useState(true);
+    const [TutorialMode, setTutorialMode] = useState(false);
+
     const navigate = useNavigate()
 
     // always run at start
     useEffect(() => {
         loadDataFromLocalStorage()
+        showNavIconIfData()
     }, [])
     useEffect(() => {
         if (successloadDataFromLocalStorage) calculateEBT()
@@ -81,8 +94,15 @@ function EBT_WC() {
         try {
             let SOMMonthly = localStorage.getItem('SOMMonthly')
             let OpExDB = localStorage.getItem('OpExDB')
+            let ebt = localStorage.getItem('ebt')
+            let WC = localStorage.getItem('WC')
+            let WCMonths = localStorage.getItem('WCMonths')
             // console.log("SOMMonthly start:", SOMMonthly);
             // console.log("OpExDB start:", OpExDB);
+
+            if (ebt != null) setEBT(ebt)
+            if (WC != null) setWC(WC)
+            if (WCMonths != null) setWCMonths(WCMonths)
 
             if (SOMMonthly && OpExDB && SOMMonthly != null && OpExDB != null) {
                 setOpExrows(JSON.parse(OpExDB))
@@ -200,160 +220,337 @@ function EBT_WC() {
         ""
     ];
 
+    const showNavIconIfData = () => {
+        try {
+            // TutorialMode
+            const Tutorialmode = localStorage.getItem('TutorialMode')
+            if (Tutorialmode == "true") setTutorialMode(true)
+
+            // show TAM ICON
+            const TAMtotal = localStorage.getItem('TAM');
+            if (TAMtotal) setshowTAMIcon(true)
+
+            // show SAM ICON
+            const SAMtotal = localStorage.getItem('SAM');
+            if (SAMtotal) setshowSAMIcon(true)
+
+            // show CSP ICON
+            const CSPMonthly = localStorage.getItem('CSPMonthly')
+            const OPdays = localStorage.getItem('OPdays')
+            if (CSPMonthly && OPdays) setshowCSPIcon(true)
+
+            // show SOM ICON
+            const SOM = localStorage.getItem('SOM')
+            if (SOM) setshowSOMIcon(true)
+
+            // show OpEx ICON
+            const OpExTotal = localStorage.getItem('OpExTotal')
+            if (OpExTotal) setshowOpExIcon(true)
+
+            // show CapEx ICON
+            const CapExTotal = localStorage.getItem('CapExTotal')
+            if (CapExTotal) setshowCapExIcon(true)
+
+            // show EBT_WC ICON
+            const EBT = localStorage.getItem('ebt')
+            const WC = localStorage.getItem('WC')
+            if (EBT && WC) { setshowEBTWCIcon(true); setshowWorkingCapital(true); setFooterVisible(false) }
+
+            // show Funding ICON
+            const EMI = localStorage.getItem('EMI')
+            if (EMI) setshowFundingIcon(true)
+
+            // show dashboard ICON
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+
+        } catch (error) {
+            console.log("showNavIconIfData Error", error)
+        }
+    }
 
     return (
         <div>
-            <Header />
-            <BackButton topOffset='10vh' />
-            <div className='indicatorIcon-container'>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/som')}>
-                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
-                </div>
-                <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
-                </div>
-                {/* Animate the icon entry */}
-                <div className='Icon-div'>
-                    <AnimatePresence mode="wait">
-                        {showEBTWC ? (
+            {TutorialMode ?
+                // TutorialMode=True
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className='indicatorIcon-container'>
+                        {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>}
+                        {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>}
+                        {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>}
+                        {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>}
+                        {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>}
+                        {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>}
+                        {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>}
+                        {/* Animate the icon entry */}
+                        <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <AnimatePresence mode="wait">
+                                {showEBTWC ? (
 
-                            <motion.img
-                                key="EBTWCIcon-img"
-                                src={EBTWCIcon}
-                                alt="CapEx-Icon"
-                                className="EBT-Icon"
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 1 }}
-                            />
+                                    <motion.img
+                                        key="EBTWCIcon-img"
+                                        src={ebtwcIcon}
+                                        alt="CapEx-Icon"
+                                        className="EBT-Icon"
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 1 }}
+                                    />
 
-                        ) : <div></div>}
-                    </AnimatePresence>
-                    {/* Animate the text entry/exit */}
-                    <AnimatePresence mode="wait">
-                        {showEBTWCText && (
-                            <motion.span
-                                key="EBTWC-Icon-Text"
-                                initial={{ opacity: 0, x: -100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 1 }}
-                            >
-                                EBT & Working Capital
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
-            <div className="csp-container">
-                <h1>Earnings Before Tax</h1>
-
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <PopUp keyName='EBTHeader'>
-                                    <p>Earnings Before Tax</p>
-                                </PopUp>
-                            </td>
-                            <td>
-                                <PopUp keyName='EBT'>
-                                    <div
-                                        onMouseEnter={() => setisHoveredRow("EBTwords")}
-                                        onMouseLeave={() => setisHoveredRow("")}
+                                ) : <div></div>}
+                            </AnimatePresence>
+                            {/* Animate the text entry/exit */}
+                            <AnimatePresence mode="wait">
+                                {showEBTWCText && (
+                                    <motion.span
+                                        key="EBTWC-Icon-Text"
+                                        initial={{ opacity: 0, x: -100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 1 }}
                                     >
-                                        <TextDisplay label='per month' value={EBT} />
-                                    </div>
-                                </PopUp>
-                            </td>
-                            <td >
-                                {isHoveredRow === "EBTwords" &&
-                                    <Slide keyName='EBTwords'>
-                                        <NumberToWords value={EBT} />
-                                    </Slide>
-                                }
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                {showWorkingCapital &&
-                    <div className="csp-container" >
-                        <PopUp keyName='WCHeader'>
-                            <h1>Working Capital</h1>
-                        </PopUp>
+                                        EBT & Working Capital
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>}
+                        {showEBTWCIcon && !showEBTWC && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>}
+                        {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>}
+                    </div>
+                    <div className={FooterVisible ? "csp-container" : "csp-container vh-90"}>
+                        <h1>Earnings Before Tax</h1>
                         <table>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <PopUp keyName='WCMonthsHeader'>
-                                            <p>Number of months</p>
+                                        <PopUp keyName='EBTHeader'>
+                                            <p>Earnings Before Tax</p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='WCMonths'>
+                                        <PopUp keyName='EBT'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("WCMonthsWords")}
+                                                onMouseEnter={() => setisHoveredRow("EBTwords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <CustomTextField
-                                                    value={WCMonths}
-                                                    type='number'
-                                                    placeholder='Enter No. of Months'
-                                                    min={1}
-                                                    onChange={(value) => handleWCMonthsChange(value)} />
+                                                <TextDisplay label='per month' value={EBT} />
                                             </div>
                                         </PopUp>
                                     </td>
-                                    <td>
-                                        {isHoveredRow === "WCMonthsWords" &&
-                                            <Slide keyName='WCMonthsWords'>
-                                                <NumberToWords value={WCMonths} />
+                                    <td >
+                                        {isHoveredRow === "EBTwords" &&
+                                            <Slide keyName='EBTwords'>
+                                                <NumberToWords value={EBT} />
                                             </Slide>
                                         }
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <PopUp keyName='WC'>
-                            <div>
-                                <h1>To Start the Business</h1>
-                                <input
-                                    type="text"
-                                    value={WC}
-                                    readOnly
-                                    className="total-size-field"
-                                />
-                                <div className='WC-words'>
-                                    <NumberToWords value={WC} />
-                                </div>
+
+                        {showWorkingCapital &&
+                            <div className="csp-container" >
+                                <PopUp keyName='WCHeader'>
+                                    <h1>Working Capital</h1>
+                                </PopUp>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <PopUp keyName='WCMonthsHeader'>
+                                                    <p>Number of months</p>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                <PopUp keyName='WCMonths'>
+                                                    <div
+                                                        onMouseEnter={() => setisHoveredRow("WCMonthsWords")}
+                                                        onMouseLeave={() => setisHoveredRow("")}
+                                                    >
+                                                        <CustomTextField
+                                                            value={WCMonths}
+                                                            type='number'
+                                                            placeholder='Enter No. of Months'
+                                                            min={1}
+                                                            onChange={(value) => handleWCMonthsChange(value)} />
+                                                    </div>
+                                                </PopUp>
+                                            </td>
+                                            <td>
+                                                {isHoveredRow === "WCMonthsWords" &&
+                                                    <Slide keyName='WCMonthsWords'>
+                                                        <NumberToWords value={WCMonths} />
+                                                    </Slide>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <PopUp keyName='WC'>
+                                    <div>
+                                        <h1>To Start the Business</h1>
+                                        <input
+                                            type="text"
+                                            value={WC}
+                                            readOnly
+                                            className="total-size-field"
+                                        />
+                                        <div className='WC-words'>
+                                            <NumberToWords value={WC} />
+                                        </div>
+                                    </div>
+                                </PopUp>
+                                <button className="save-button" onClick={handleSaveWC}>SAVE DETAILS</button>
                             </div>
-                        </PopUp>
-                        <button className="save-button" onClick={handleSaveWC}>SAVE DETAILS</button>
+
+                        }
                     </div>
-
-                }
-            </div>
-
-            <div className="button-container">
-
-                { }
-            </div>
-
-            <Footer texts={footerTexts} onNextShowWC={() => setshowWorkingCapital(true)} onNextNavtowardsFunding={onNextNavtowardsFunding} />
+                    {FooterVisible &&
+                        <Footer texts={footerTexts} onNextShowWC={() => setshowWorkingCapital(true)} onNextNavtowardsFunding={onNextNavtowardsFunding} />}
+                </div>
+                :
+                // TutorialMode=False
+                <div>
+                    <Header />
+                    <BackButton topOffset='10vh' />
+                    <div className="indicatorIcon-container">
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
+                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                        </div>
+                        <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                        </div>
+                    </div>
+                    <div className="csp-container">
+                        <h1>Earnings Before Tax</h1>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <PopUp keyName='EBTHeader'>
+                                            <p>Earnings Before Tax</p>
+                                        </PopUp>
+                                    </td>
+                                    <td>
+                                        <PopUp keyName='EBT'>
+                                            <div
+                                                onMouseEnter={() => setisHoveredRow("EBTwords")}
+                                                onMouseLeave={() => setisHoveredRow("")}
+                                            >
+                                                <TextDisplay label='per month' value={EBT} />
+                                            </div>
+                                        </PopUp>
+                                    </td>
+                                    <td >
+                                        {isHoveredRow === "EBTwords" &&
+                                            <Slide keyName='EBTwords'>
+                                                <NumberToWords value={EBT} />
+                                            </Slide>
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className="csp-container" >
+                            <PopUp keyName='WCHeader'>
+                                <h1>Working Capital</h1>
+                            </PopUp>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <PopUp keyName='WCMonthsHeader'>
+                                                <p>Number of months</p>
+                                            </PopUp>
+                                        </td>
+                                        <td>
+                                            <PopUp keyName='WCMonths'>
+                                                <div
+                                                    onMouseEnter={() => setisHoveredRow("WCMonthsWords")}
+                                                    onMouseLeave={() => setisHoveredRow("")}
+                                                >
+                                                    <CustomTextField
+                                                        value={WCMonths}
+                                                        type='number'
+                                                        placeholder='Enter No. of Months'
+                                                        min={1}
+                                                        onChange={(value) => handleWCMonthsChange(value)} />
+                                                </div>
+                                            </PopUp>
+                                        </td>
+                                        <td>
+                                            {isHoveredRow === "WCMonthsWords" &&
+                                                <Slide keyName='WCMonthsWords'>
+                                                    <NumberToWords value={WCMonths} />
+                                                </Slide>
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <PopUp keyName='WC'>
+                                <div>
+                                    <h1>To Start the Business</h1>
+                                    <input
+                                        type="text"
+                                        value={WC}
+                                        readOnly
+                                        className="total-size-field"
+                                    />
+                                    <div className='WC-words'>
+                                        <NumberToWords value={WC} />
+                                    </div>
+                                </div>
+                            </PopUp>
+                            <button className="save-button" onClick={handleSaveWC}>SAVE DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     )
 }
