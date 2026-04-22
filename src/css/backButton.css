@@ -15,6 +15,16 @@
     height: 36px;
 }
 
+.forwardButtonStyle{
+    left: 3vmin;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    transform: rotate(180deg);
+}
+
+
+
 .tamContainer {
     display: flex;
     align-items: center;

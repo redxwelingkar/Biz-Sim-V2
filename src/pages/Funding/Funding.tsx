@@ -291,11 +291,11 @@ const Funding = () => {
 
     const SaveAfterEMI = () => {
         const total = rowsOpex.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
-        console.log("SaveAfterEMI total", rowsOpex);
-        console.log("SaveAfterEMI total", total);
+        // console.log("SaveAfterEMI total", rowsOpex);
+        // console.log("SaveAfterEMI total", total);
 
         if (total > 0) {
-            console.log("OpExTotal saved", total.toString());
+            // console.log("OpExTotal saved", total.toString());
 
             localStorage.setItem('OpExTotal', total.toString());
             localStorage.setItem('OpExDB', JSON.stringify(rowsOpex));

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import backButtonImage from '../assets/img/back_arrow.png'; // replace with the correct path to your image
-// import tamButtonImage from '../assets/img/tam-icon.png'; // replace with the correct path to your image
 import "../css/backButton.css"
 
 interface BackButtonProps {
@@ -13,6 +12,9 @@ const BackButton: React.FC<BackButtonProps> = () => {
   const handleBackClick = () => {
     navigate(-1); // -1 navigates to the previous page
   };
+  const handleForwardClick = () => {
+    navigate(+1); // +1 navigates to the foward page
+  };
 
   return (
     <div className='backbutton_container'>
@@ -21,6 +23,12 @@ const BackButton: React.FC<BackButtonProps> = () => {
         alt="Back"
         onClick={handleBackClick}
         className='backButtonStyle'
+      />
+      <img
+        src={backButtonImage}
+        alt="Forward"
+        onClick={handleForwardClick}
+        className='forwardButtonStyle'
       />
       {/* {props.showtam ?
         <div className='tamContainer' >
