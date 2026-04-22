@@ -84,6 +84,7 @@ function CSP() {
             setSAM(sam)
         } else {
             window.alert("SAM not calulated please Complete previous step")
+            // navigate(-1)
         }
         // console.log("SAM", sam)
         // console.log("displayOPDays", displayOPDays)

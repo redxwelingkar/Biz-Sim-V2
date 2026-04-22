@@ -29,7 +29,11 @@ function BusinessName() {
     } else {
       localStorage.setItem('businessName', businessName);
       setErrorMessage('');
-      navigate('/Biz-Sim-V2/towards-tam');
+      console.log("TutorialMode", TutorialMode);
+
+      if (TutorialMode) navigate('/Biz-Sim-V2/towards-tam');
+      navigate('/Biz-Sim-V2/tam-calculation')
+
     }
   };
 

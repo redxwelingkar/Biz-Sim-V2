@@ -30,7 +30,6 @@ function TowardsSOM() {
     const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
-    const [TutorialMode, setTutorialMode] = useState(false);
 
     const navigate = useNavigate()
 
@@ -169,7 +168,7 @@ function TowardsSOM() {
                                 <div className='towardsSOMready'>Proceed to SOM</div>
                             </div>
                         </div>
-                        <div>Click here to learn more about SOM</div>
+                        {/* <div>Click here to learn more about SOM</div> */}
 
                     </div>}
                 <button className='towardsSOM-NextBTN' onClick={Next}>NEXT</button>

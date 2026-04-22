@@ -13,14 +13,6 @@ const TAMCalc = () => {
 
 
   const [showTAMIcon, setshowTAMIcon] = useState(false);
-  const [showSAMIcon, setshowSAMIcon] = useState(false);
-  const [showCSPIcon, setshowCSPIcon] = useState(false);
-  const [showSOMIcon, setshowSOMIcon] = useState(false);
-  const [showOpExIcon, setshowOpExIcon] = useState(false);
-  const [showCapExIcon, setshowCapExIcon] = useState(false);
-  const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-  const [showFundingIcon, setshowFundingIcon] = useState(false);
-  const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
   const [TutorialMode, setTutorialMode] = useState(false);
 
 
@@ -52,22 +44,6 @@ const TAMCalc = () => {
       console.error("Business Name Error", error);
     }
   }, [])
-
-  const showNavIconIfData = () => {
-    try {
-      // show TAM ICON
-      const TAMtotal = localStorage.getItem('TAM');
-      if (TAMtotal) setshowTAMIcon(true)
-
-      // show SAM ICON
-      const SAMtotal = localStorage.getItem('SAM');
-      if (SAMtotal) setshowSAMIcon(true)
-      // }
-
-    } catch (error) {
-      console.error("showNavIconIfData Error", error)
-    }
-  }
 
 
   const handleNavToSAM = () => {

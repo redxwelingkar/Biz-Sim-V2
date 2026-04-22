@@ -93,7 +93,6 @@ const TableComponent = ({
   holdTAMIcon,
   holdSAMIcon,
   TutorialMode,
-  FooterVisible,
   SAMCalBTNclick
 
 }: TableComponentProps) => {
@@ -110,8 +109,8 @@ const TableComponent = ({
 
   const [showTAMIconText, setshowTAMIconText] = useState(false);
   const [showSAMIconText, setshowSAMIconText] = useState(false);
-  const [showPercentageConvCOL, setPercentageConvCOL] = useState(PercentageConvCOL);
-  const [showSizeofSAMCOL, setSizeofSAMCOL] = useState(SizeofSAMCOL);
+  // const [showPercentageConvCOL, setPercentageConvCOL] = useState(PercentageConvCOL);
+  // const [showSizeofSAMCOL, setSizeofSAMCOL] = useState(SizeofSAMCOL);
   const [showshowCalSAMBTN, setshowCalSAMBTN] = useState(showCalSAMBTN);
   const [fullscreen, setfullscreen] = useState(false);
 
@@ -125,7 +124,6 @@ const TableComponent = ({
   const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
   const [showFundingIcon, setshowFundingIcon] = useState(false);
   const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
-  const [isTutorialMode, setTutorialMode] = useState(TutorialMode);
 
 
   const navigate = useNavigate(); // Initialize useNavigate
@@ -151,6 +149,8 @@ const TableComponent = ({
     // console.log("showNavIconIfData", window.location.href.split("/").includes("sam-calculation"));
 
     try {
+      // Tutorial mode
+      if(!TutorialMode && window.location.href.split("/").includes("sam-calculation")) setshowCalSAMBTN(true)
       // show TAM ICON
       const TAMtotal = localStorage.getItem('TAM');
       if (TAMtotal) setshowTAMIcon(true)
@@ -167,8 +167,8 @@ const TableComponent = ({
         // console.log("SAMtotal", SAMtotal);
         setSAM(parseInt(SAMtotal))
         setfullscreen(true)
-        setPercentageConvCOL(true)
-        setSizeofSAMCOL(true)
+        // setPercentageConvCOL(true)
+        // setSizeofSAMCOL(true)
         setshowCalSAMBTN(true)
       }
 
@@ -357,13 +357,6 @@ const TableComponent = ({
   //     setShowText(true); // Show text after image transition
   //   }, 2500);
   // };
-
-  const navigateToTowardsSam = () => {
-    navigate('/Biz-Sim-V2/towards-sam'); // Navigate to the next page after transitions
-  };
-  const navigateToTowardsCSP = () => {
-    navigate('/Biz-Sim-V2/towards-csp'); // Navigate to the next page after transitions
-  };
 
   return (
     <div>
@@ -587,8 +580,8 @@ const TableComponent = ({
                 <th>Customer Segment</th>
                 <th>Size</th>
                 {NumbertoWordsCOL && <th></th>}{/* NumberToWords header */}
-                <AnimatedHeader keyName='precentConv'> Percentage Conversion</AnimatedHeader>
-                <AnimatedHeader keyName='SizeofSAM'>Size of SAM</AnimatedHeader>
+                {!NumbertoWordsCOL && <AnimatedHeader keyName='precentConv'> Percentage Conversion</AnimatedHeader>}
+                {!NumbertoWordsCOL && <AnimatedHeader keyName='SizeofSAM'>Size of SAM</AnimatedHeader>}
               </tr>
             </thead>
             <tbody>
@@ -614,17 +607,17 @@ const TableComponent = ({
                       <NumberToWords value={row.size} />
                     </td>
                   }
-                  <AnimatedColumn keyName={`percent-${row.id}`}>
+                  {!NumbertoWordsCOL && <AnimatedColumn keyName={`percent-${row.id}`}>
                     <Percentage
                       value={row.percentage}
                       onChange={(value) => handlePercentageChange(row.id, value)} />
-                  </AnimatedColumn>
+                  </AnimatedColumn>}
 
-                  <AnimatedColumn keyName={`sizeofSAM-${row.id}`}>
+                  {!NumbertoWordsCOL && <AnimatedColumn keyName={`sizeofSAM-${row.id}`}>
                     <SizeofSAM
                       value={row.sizeofSAM}
                     />
-                  </AnimatedColumn>
+                  </AnimatedColumn>}
 
 
                 </tr>

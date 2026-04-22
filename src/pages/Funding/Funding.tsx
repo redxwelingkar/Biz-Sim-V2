@@ -2,13 +2,8 @@ import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
-
 import '../../css/Funding.css'
-import OpExIcon from "../../assets/img/OpEx-icon.png";
-import CapExIcon from "../../assets/img/CapEx-icon.png";
-import EBTWCIcon from "../../assets/img/EBT_WC.png";
 import Footer from '../../components/Footer';
-// import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
 import TextDisplay from '../../components/TextDisplay';
@@ -40,8 +35,6 @@ import FundingIcon from "../../assets/img/funding-icon.png";
 // );
 
 const Funding = () => {
-    const [showTable, setShowTable] = useState(false);
-
     // always run at start
     useEffect(() => {
         loadFundingRowsfromLocalStorage()
@@ -56,7 +49,7 @@ const Funding = () => {
     ]);
     const [errorMessage, setErrorMessage] = useState('');
     const [showFundingIconText, setshowFundingIconText] = useState(false);
-    const [isSaveFundingSaved, setisSaveFundingSaved] = useState(false);
+    const [isFundingSaved, setisFundingSaved] = useState(false);
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
@@ -227,7 +220,7 @@ const Funding = () => {
         localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toFixed(2));
         localStorage.setItem('EMI', EMI.toFixed(2));
         localStorage.setItem('FundingDB', JSON.stringify(rows));
-        setisSaveFundingSaved(true)
+        setisFundingSaved(true)
         showFundingIconAndText()
         // setTimeout(() => {
         //     navigateToOpEx();
@@ -478,7 +471,7 @@ const Funding = () => {
                             </div>
                         </div>
                     </div>
-                    {FooterVisible && <Footer texts={footerTexts} SaveFundingSaved={isSaveFundingSaved} onNextNavtoEMI={navigateToEMI} />}
+                    {FooterVisible && <Footer texts={footerTexts} FundingSaved={isFundingSaved} onNextNavtoEMI={navigateToEMI} />}
                 </div>
                 :
                 // TutorialMode=False

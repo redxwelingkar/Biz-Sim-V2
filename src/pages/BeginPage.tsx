@@ -41,7 +41,7 @@ Are You Sure You Want To Continue?
         try {
             let tutorialMode = localStorage.getItem("TutorialMode")
             if(tutorialMode!=null && tutorialMode==="true") navigate("/Biz-Sim-V2/tam-calculation");
-            else navigate("/Biz-Sim-V2/towards-tam");
+            else navigate("/Biz-Sim-V2/tutorial");
         } catch (error) {
             
         }

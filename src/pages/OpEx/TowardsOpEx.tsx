@@ -33,7 +33,6 @@ const TowardsOpEx = () => {
     const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
-    const [TutorialMode, setTutorialMode] = useState(false);
 
     const handleNextClick = () => setOnNext(true);
     const handleYesClick = () => navigate("/Biz-Sim-V2/opex-calculation");

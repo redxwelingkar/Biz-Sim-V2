@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import TransitionWrapper from "../../components/TransitionWrapper";
@@ -31,15 +31,9 @@ const TowardsFunding = () => {
     const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
-    const [FooterVisible, setFooterVisible] = useState(true);
-    const [TutorialMode, setTutorialMode] = useState(false);
 
     const showNavIconIfData = () => {
         try {
-            // TutorialMode
-            const Tutorialmode = localStorage.getItem('TutorialMode')
-            if (Tutorialmode == "true") setTutorialMode(true)
-
             // show TAM ICON
             const TAMtotal = localStorage.getItem('TAM');
             if (TAMtotal) setshowTAMIcon(true)

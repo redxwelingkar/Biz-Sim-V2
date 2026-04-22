@@ -77,10 +77,10 @@ function OpEx_EMIDisplay() {
         setTimeout(() => { //move to EMI row 
             const anchor = document.querySelector('#OpEx_Total_ID')
             if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
-            setTimeout(() => { // move to OpExTotal
+            // setTimeout(() => { // move to OpExTotal
                 SaveAfterEMI()
                 
-            }, 1500);
+            // }, 500);
         }, 3000);
     }, [EMI])
 
@@ -221,8 +221,11 @@ function OpEx_EMIDisplay() {
     };
 
     const SaveAfterEMI = () => {
-        const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString());
+        const total = rows.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
+        // console.log("SaveAfterEMI total",rows);
+        // console.log("SaveAfterEMI total",total);
+        
+        setTotalOpEx(total.toFixed(2));
         localStorage.setItem('OpExTotal', total.toString());
         localStorage.setItem('OpExDB', JSON.stringify(rows));
     }

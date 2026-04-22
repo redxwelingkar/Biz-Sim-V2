@@ -26,7 +26,7 @@ interface FooterProps {
   onNextNavtoEMI?: () => void;
   onNextShowWC?: () => void;
   CalSAMBTNclick?: boolean;
-  SaveFundingSaved?: boolean;
+  FundingSaved?: boolean;
   texts: string[]; // Add texts prop
 }
 
@@ -51,14 +51,14 @@ const Footer = ({ onNext,
   onNextNavtoEMI,
   onNextShowWC,
   CalSAMBTNclick,
-  SaveFundingSaved,
+  FundingSaved,
   texts }: FooterProps) => {
 
 
   const [textIndex, setTextIndex] = useState(0);
   const [blink, setBlink] = useState(false);
-  // const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || SaveFundingSaved);
-  const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || SaveFundingSaved);
+  // const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || FundingSaved);
+  const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || FundingSaved);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -72,8 +72,8 @@ const Footer = ({ onNext,
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
     // setdown_Arrow(CalSAMBTNclick)
     if (CalSAMBTNclick) setdown_Arrow(false)
-    if (SaveFundingSaved) setdown_Arrow(false)
-  }, [CalSAMBTNclick,SaveFundingSaved])
+    if (FundingSaved) setdown_Arrow(false)
+  }, [CalSAMBTNclick,FundingSaved])
 
   const handleUpArrowClick = () => {
     if (textIndex > 0) {
@@ -130,7 +130,7 @@ const Footer = ({ onNext,
 
       }
       if (textIndex === 3) {
-        if (onNextNavtoSAM) onNextNavtoSAM() // navigate to SAM Pages
+        
         if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
@@ -143,6 +143,7 @@ const Footer = ({ onNext,
         }
       }
       if (textIndex === 4) {
+        if (onNextNavtoSAM) onNextNavtoSAM() // navigate to SAM Pages
         // move to SOM
         if (onNextNavtoSOM) onNextNavtoSOM() // navigate to SOM pages
         if (onNextNavtoOpEx) onNextNavtoOpEx() // navigate to OpEx Pages

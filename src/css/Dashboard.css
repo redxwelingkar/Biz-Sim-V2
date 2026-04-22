@@ -9,7 +9,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(18, 0, 90, 0.86), rgba(18, 0, 90, 0.9)), url("../assets/img/bg.png");
+    /* background-image: linear-gradient(rgba(18, 0, 90, 0.86), rgba(18, 0, 90, 0.9)), url("../assets/img/bg.png"); */
     background-size: cover;
     background-position: center;
     z-index: -2;

@@ -64,7 +64,6 @@ function OpEx() {
     ]);
     const [errorMessage, setErrorMessage] = useState('');
     const [TotalOpEx, setTotalOpEx] = useState('');
-    const [EMI, setEMI] = useState('');
     const [showOpExIconText, setshowOpExIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
@@ -89,19 +88,13 @@ function OpEx() {
         try {
             let OpExDB = localStorage.getItem('OpExDB')
             let OpExTotal = localStorage.getItem('OpExTotal')
-            let EMI = localStorage.getItem('EMI')
+
             // console.log("OpExDB start:", OpExDB);
             // console.log("OpExTotal start:", OpExTotal);
 
             if (OpExDB && OpExTotal != null) {
                 setRows(JSON.parse(OpExDB))
                 setTotalOpEx(OpExTotal)
-            }
-
-            if (EMI && EMI != null) {
-                // console.log('emi start',EMI);
-
-                setEMI(EMI)
             }
 
         } catch (error) {
