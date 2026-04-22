@@ -73,12 +73,12 @@ function OpEx_EMIDisplay() {
     // show EMI after funding
     useEffect(() => {
 
-        AddEMIRow()
+        // AddEMIRow()
         setTimeout(() => { //move to EMI row 
             const anchor = document.querySelector('#OpEx_Total_ID')
             if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
             // setTimeout(() => { // move to OpExTotal
-                SaveAfterEMI()
+                // SaveAfterEMI()
                 
             // }, 500);
         }, 3000);

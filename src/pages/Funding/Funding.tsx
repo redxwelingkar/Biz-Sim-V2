@@ -35,17 +35,17 @@ import FundingIcon from "../../assets/img/funding-icon.png";
 // );
 
 const Funding = () => {
-    // always run at start
-    useEffect(() => {
-        loadFundingRowsfromLocalStorage()
-        showNavIconIfData()
-    }, [])
 
-
-    const [rows, setRows] = useState([
+    const [rowsFunding, setRowsFunding] = useState([
         { id: 1, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
         { id: 2, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
         { id: 3, SourceofFunds: '', BorrowedAmount: '', interest: '', interestPayable: '', RepaymentPeriod: '', MonthlyPrincipalPayment: '', MonthlyInterestPayment: '' },
+    ]);
+
+    const [rowsOpex, setRowsOpex] = useState([
+        { id: 1, ExpenseName: '', TypeOfExpense: '', ValueOfExpense: '' },
+        { id: 2, ExpenseName: '', TypeOfExpense: '', ValueOfExpense: '' },
+        { id: 3, ExpenseName: '', TypeOfExpense: '', ValueOfExpense: '' },
     ]);
     const [errorMessage, setErrorMessage] = useState('');
     const [showFundingIconText, setshowFundingIconText] = useState(false);
@@ -53,6 +53,8 @@ const Funding = () => {
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
+    const [EMI, setEMI] = useState('');
+    const [TotalOpEx, setTotalOpEx] = useState('');
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
@@ -68,6 +70,21 @@ const Funding = () => {
 
     const navigate = useNavigate()
 
+    // always run at start
+    useEffect(() => {
+        loadFundingRowsfromLocalStorage()
+        showNavIconIfData()
+    }, [])
+
+
+    useEffect(() => {
+        AddEMIRow()
+    }, [EMI])
+
+    useEffect(() => {
+        SaveAfterEMI()
+    }, [rowsOpex])
+
 
 
     // helper Functions
@@ -76,6 +93,7 @@ const Funding = () => {
     const loadFundingRowsfromLocalStorage = () => {
         try {
             const FundingDB = localStorage.getItem('FundingDB')
+            const OpExDB = localStorage.getItem('OpExDB')
             const TotalAmountBorrowed = localStorage.getItem('TotalAmountBorrowed')
             const TotalMonthlyInterest = localStorage.getItem('TotalMonthlyInterest')
             const TotalMonthlyPrincipalRepayment = localStorage.getItem('TotalMonthlyPrincipalRepayment')
@@ -88,12 +106,14 @@ const Funding = () => {
                 && TotalMonthlyInterest != null) {
                 const parsedRows = JSON.parse(FundingDB)
                 if (Array.isArray(parsedRows)) {
-                    setRows(parsedRows)
+                    setRowsFunding(parsedRows)
                 }
                 setTotalAmountBorrowed(TotalAmountBorrowed)
                 setTotalMonthlyInterest(TotalMonthlyInterest)
                 setTotalMonthlyPrincipalRepayment(TotalMonthlyPrincipalRepayment)
             }
+
+            if (OpExDB != null) setRowsOpex(JSON.parse(OpExDB))
 
         } catch (error) {
             console.error("loadFundingRowsfromLocalStorage", error);
@@ -129,15 +149,15 @@ const Funding = () => {
 
     // Table functions
     const handleDeleteRow = (id: number) => {
-        if (rows.length === 1) {
+        if (rowsFunding.length === 1) {
             setErrorMessage('Please enter at least one segment.');
             return;
         }
-        setRows(rows.filter(row => row.id !== id));
+        setRowsFunding(rowsFunding.filter(row => row.id !== id));
     };
     const handleAddRow = () => {
         const newRow = {
-            id: rows.length ? rows[rows.length - 1].id + 1 : 1,
+            id: rowsFunding.length ? rowsFunding[rowsFunding.length - 1].id + 1 : 1,
             SourceofFunds: '',
             BorrowedAmount: '',
             interest: '',
@@ -146,28 +166,28 @@ const Funding = () => {
             MonthlyPrincipalPayment: '',
             MonthlyInterestPayment: ''
         };
-        setRows([...rows, newRow]);
+        setRowsFunding([...rowsFunding, newRow]);
     };
     const handleSourceOfFundsChange = (id: number, value: string) => {
-        const updatedRows = rows.map(row =>
+        const updatedRows = rowsFunding.map(row =>
             row.id === id ? { ...row, SourceofFunds: value } : row
         );
-        setRows(updatedRows);
+        setRowsFunding(updatedRows);
     };
     const handleBorrowedAmountChange = (id: number, value: string) => {
-        const updatedRows = rows.map(row =>
+        const updatedRows = rowsFunding.map(row =>
             row.id === id ? { ...row, BorrowedAmount: value } : row
         );
-        setRows(updatedRows);
+        setRowsFunding(updatedRows);
     };
     const handleInterestChange = (id: number, value: string) => {
-        const updatedRows = rows.map(row =>
+        const updatedRows = rowsFunding.map(row =>
             row.id === id ? { ...row, interest: value } : row
         );
-        setRows(updatedRows);
+        setRowsFunding(updatedRows);
     };
     const handleRepaymentPeriodChange = (id: number, value: string) => {
-        const updatedRows = rows.map(row => {
+        const updatedRows = rowsFunding.map(row => {
             if (row.id === id) {
                 const borrowed = parseFloat(row.BorrowedAmount || "0");
                 const interest = parseFloat(row.interest || "0");
@@ -193,23 +213,23 @@ const Funding = () => {
         });
         // console.log(updatedRows);
 
-        setRows(updatedRows);
+        setRowsFunding(updatedRows);
     };
 
 
     const handleSaveDetails = () => {
-        const allFieldsFilled = rows.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
+        const allFieldsFilled = rowsFunding.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
         if (!allFieldsFilled) {
             setErrorMessage('Please enter details in all cells.');
             return;
         }
         setErrorMessage('');
         //Total Amount borrowed
-        const TAB = rows.reduce((total, row) => total + parseFloat(row.BorrowedAmount), 0);
+        const TAB = rowsFunding.reduce((total, row) => total + parseFloat(row.BorrowedAmount), 0);
         //Total Monthly interest
-        const TMI = rows.reduce((total, row) => total + parseFloat(row.MonthlyInterestPayment), 0);
+        const TMI = rowsFunding.reduce((total, row) => total + parseFloat(row.MonthlyInterestPayment), 0);
         //Total Monthly Principal
-        const TMP = rows.reduce((total, row) => total + parseFloat(row.MonthlyPrincipalPayment), 0);
+        const TMP = rowsFunding.reduce((total, row) => total + parseFloat(row.MonthlyPrincipalPayment), 0);
         // Monthly EMI 
         const EMI = TMP + TMI
         setTotalAmountBorrowed(TAB.toFixed(2));
@@ -219,22 +239,69 @@ const Funding = () => {
         localStorage.setItem('TotalMonthlyInterest', TMI.toFixed(2));
         localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toFixed(2));
         localStorage.setItem('EMI', EMI.toFixed(2));
-        localStorage.setItem('FundingDB', JSON.stringify(rows));
+        localStorage.setItem('FundingDB', JSON.stringify(rowsFunding));
+        setEMI(EMI.toFixed(2))
         setisFundingSaved(true)
         showFundingIconAndText()
         // setTimeout(() => {
         //     navigateToOpEx();
         // }, 1000);
 
-        // console.log("FundingDB: ", JSON.stringify(rows));
+        // console.log("FundingDB: ", JSON.stringify(rowsFunding));
         // console.log("Funding Total: ", total.toString());
 
     };
 
-
-
     // Table functions end
 
+    const AddEMIRow = () => {
+        // console.log('AddEMIRow called');
+
+        if (EMI && EMI != null) {
+            // try updating emi row
+            let IsEMI = false
+            const updatedRows = rowsOpex.map(row => {
+                if (row.ExpenseName === "Monthly Repayment [Auto Cal]") {
+                    // console.log('AddEMIRow update', row);
+                    IsEMI = true
+                    return {
+                        ...row,
+                        ValueOfExpense: EMI
+                    }
+                }
+
+                return row
+            });
+            setRowsOpex(updatedRows);
+
+            if (!IsEMI) {
+                // add emi row
+                const newRow = {
+                    id: rowsOpex.length ? rowsOpex[rowsOpex.length - 1].id + 1 : 1,
+                    ExpenseName: 'Monthly Repayment [Auto Cal]',
+                    TypeOfExpense: 'variable',
+                    ValueOfExpense: EMI,
+                };
+                // console.log('AddEMIRow newRow', newRow);
+                setRowsOpex([...rowsOpex, newRow]);
+            }
+        }
+
+    };
+
+    const SaveAfterEMI = () => {
+        const total = rowsOpex.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
+        console.log("SaveAfterEMI total", rowsOpex);
+        console.log("SaveAfterEMI total", total);
+
+        if (total > 0) {
+            console.log("OpExTotal saved", total.toString());
+
+            localStorage.setItem('OpExTotal', total.toString());
+            localStorage.setItem('OpExDB', JSON.stringify(rowsOpex));
+        }
+
+    }
 
     const footerTexts = [
         "You must be thinking, that's a lot or rows and columns, but don't be intimidated by them, we'll take on each column and then row, one at a time. So in the first column you have to enter the name of the source of your funds, for example, you may use your own funds, or borrow from a bank or from some friends.",
@@ -380,7 +447,7 @@ const Funding = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {rows.map(row => (
+                                {rowsFunding.map(row => (
                                     <tr key={row.id}>
                                         <td>
                                             <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>
@@ -522,7 +589,7 @@ const Funding = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {rows.map(row => (
+                                {rowsFunding.map(row => (
                                     <tr key={row.id}>
                                         <td>
                                             <button className="delete-button" onClick={() => handleDeleteRow(row.id)}>-</button>

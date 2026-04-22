@@ -72,8 +72,22 @@ const Footer = ({ onNext,
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
     // setdown_Arrow(CalSAMBTNclick)
     if (CalSAMBTNclick) setdown_Arrow(false)
-    if (FundingSaved) setdown_Arrow(false)
-  }, [CalSAMBTNclick,FundingSaved])
+    
+  }, [CalSAMBTNclick])
+
+  // useEffect(() => {
+  //   if (FundingSaved) setdown_Arrow(false)
+  //   console.log("FundingSaved", FundingSaved);
+
+
+  // }, [FundingSaved])
+
+  useEffect(() => {
+    let emi = localStorage.getItem("EMI")
+    // console.log("emi", emi);
+
+    if (emi) setdown_Arrow(false)
+  })
 
   const handleUpArrowClick = () => {
     if (textIndex > 0) {
@@ -130,7 +144,7 @@ const Footer = ({ onNext,
 
       }
       if (textIndex === 3) {
-        
+
         if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
@@ -161,7 +175,7 @@ const Footer = ({ onNext,
       }
       if (textIndex === 5) {
         if (onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
-        if(onNextNavtoEMI) setdown_Arrow(true)
+        if (onNextNavtoEMI) setdown_Arrow(true)
       }
 
       if (textIndex === 6) {
