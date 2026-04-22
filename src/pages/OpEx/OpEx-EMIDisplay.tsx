@@ -179,56 +179,56 @@ function OpEx_EMIDisplay() {
         setRows([...rows, newRow]);
     };
 
-    const AddEMIRow = () => {
-        // console.log('AddEMIRow called');
+    // const AddEMIRow = () => {
+    //     // console.log('AddEMIRow called');
 
-        const anchor = document.querySelector('#AddExpenseBTN_ID')
-        if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    //     const anchor = document.querySelector('#AddExpenseBTN_ID')
+    //     if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
-        setTimeout(() => {
+    //     setTimeout(() => {
 
 
-            if (EMI && EMI != null) {
-                // try updating emi row
-                let IsEMI = false
-                const updatedRows = rows.map(row => {
-                    if (row.ExpenseName === "Monthly Repayment [Auto Cal]") {
-                        // console.log('AddEMIRow update', row);
-                        IsEMI = true
-                        return {
-                            ...row,
-                            ValueOfExpense: EMI
-                        }
-                    }
+    //         if (EMI && EMI != null) {
+    //             // try updating emi row
+    //             let IsEMI = false
+    //             const updatedRows = rows.map(row => {
+    //                 if (row.ExpenseName === "Monthly Repayment [Auto Cal]") {
+    //                     // console.log('AddEMIRow update', row);
+    //                     IsEMI = true
+    //                     return {
+    //                         ...row,
+    //                         ValueOfExpense: EMI
+    //                     }
+    //                 }
 
-                    return row
-                });
-                setRows(updatedRows);
+    //                 return row
+    //             });
+    //             setRows(updatedRows);
 
-                if (!IsEMI) {
-                    // add emi row
-                    const newRow = {
-                        id: rows.length ? rows[rows.length - 1].id + 1 : 1,
-                        ExpenseName: 'Monthly Repayment [Auto Cal]',
-                        TypeOfExpense: 'variable',
-                        ValueOfExpense: EMI,
-                    };
-                    // console.log('AddEMIRow newRow', newRow);
-                    setRows([...rows, newRow]);
-                }
-            }
-        }, 1000);
-    };
+    //             if (!IsEMI) {
+    //                 // add emi row
+    //                 const newRow = {
+    //                     id: rows.length ? rows[rows.length - 1].id + 1 : 1,
+    //                     ExpenseName: 'Monthly Repayment [Auto Cal]',
+    //                     TypeOfExpense: 'variable',
+    //                     ValueOfExpense: EMI,
+    //                 };
+    //                 // console.log('AddEMIRow newRow', newRow);
+    //                 setRows([...rows, newRow]);
+    //             }
+    //         }
+    //     }, 1000);
+    // };
 
-    const SaveAfterEMI = () => {
-        const total = rows.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
-        // console.log("SaveAfterEMI total",rows);
-        // console.log("SaveAfterEMI total",total);
+    // const SaveAfterEMI = () => {
+    //     const total = rows.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
+    //     // console.log("SaveAfterEMI total",rows);
+    //     // console.log("SaveAfterEMI total",total);
         
-        setTotalOpEx(total.toFixed(2));
-        localStorage.setItem('OpExTotal', total.toString());
-        localStorage.setItem('OpExDB', JSON.stringify(rows));
-    }
+    //     setTotalOpEx(total.toFixed(2));
+    //     localStorage.setItem('OpExTotal', total.toString());
+    //     localStorage.setItem('OpExDB', JSON.stringify(rows));
+    // }
 
     const handleSaveDetails = () => {
         const allFieldsFilled = rows.every(row => row.ExpenseName !== '' && row.ValueOfExpense !== '' && row.TypeOfExpense !== '');
@@ -238,7 +238,7 @@ function OpEx_EMIDisplay() {
         }
         setErrorMessage('');
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString());
+        setTotalOpEx(total.toString()); 
         localStorage.setItem('OpExTotal', total.toString());
         localStorage.setItem('OpExDB', JSON.stringify(rows));
         showOpExIconAndText()

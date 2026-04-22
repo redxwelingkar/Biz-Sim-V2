@@ -54,7 +54,6 @@ const Funding = () => {
     const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
     const [EMI, setEMI] = useState('');
-    const [TotalOpEx, setTotalOpEx] = useState('');
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);

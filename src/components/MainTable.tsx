@@ -80,6 +80,7 @@ const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: stri
 );
 
 
+
 const TableComponent = ({
   hideTotalSum,
   headingText,
@@ -150,7 +151,7 @@ const TableComponent = ({
 
     try {
       // Tutorial mode
-      if(!TutorialMode && window.location.href.split("/").includes("sam-calculation")) setshowCalSAMBTN(true)
+      if (!TutorialMode && window.location.href.split("/").includes("sam-calculation")) setshowCalSAMBTN(true)
       // show TAM ICON
       const TAMtotal = localStorage.getItem('TAM');
       if (TAMtotal) setshowTAMIcon(true)
@@ -201,7 +202,7 @@ const TableComponent = ({
       // show dashboard ICON
       if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
-        
+
     } catch (error) {
       console.error("showNavIconIfData Error", error)
     }
