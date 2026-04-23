@@ -24,22 +24,22 @@ const TowardsEBT = () => {
             <Avatar />
             <div className="indicatorIcon-container">
                 <div className="Icon-div" data-label="TAM">
-                    <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
+                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
                 <div className="Icon-div" data-label="SAM">
-                    <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
+                    <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 </div>
                 <div className="Icon-div" data-label="CSP">
-                    <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
+                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 <div className="Icon-div" data-label="SOM">
-                    <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
+                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
                 </div>
                 <div className="Icon-div" data-label="OpEx">
-                    <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
+                    <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
                 </div>
                 <div className="Icon-div" data-label="CapEx">
-                    <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
+                    <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
                 </div>
             </div>
             <div className="body-container">

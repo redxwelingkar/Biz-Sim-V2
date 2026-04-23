@@ -269,28 +269,28 @@ function OpEx_EMIDisplay() {
             <BackButton topOffset='10vh' />
             <div className='indicatorIcon-container'>
                 <div className='Icon-div' data-label='TAM'>
-                    <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
+                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 </div>
                 <div className='Icon-div' data-label='SAM'>
-                    <img src={samIcon} alt="SAM-Icon" title="SAM" className="Tam-Icon" />
+                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
                 </div>
                 <div className='Icon-div' data-label='CSP'>
-                    <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
+                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
                 </div>
                 <div className='Icon-div' data-label='SOM'>
-                    <img src={somIcon} alt="SOM-Icon" title="SOM" className="Tam-Icon" />
+                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
                 </div>
                 <div className='Icon-div' data-label='OpEx'>
-                    <img src={OpExIcon} alt="OpEx-Icon" title="OpEx" className="EBT-Icon" />
+                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
                 </div>
                 <div className='Icon-div' data-label='CapEx'>
-                    <img src={CapExIcon} alt="CapEx-Icon" title="CapEx" className="SOM-Icon" />
+                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
                 </div>
                 <div className='Icon-div' data-label='EBT & WC'>
-                    <img src={EBTWCIcon} alt="CapEx-Icon" title="EBT & WC" className="EBT-Icon" />
+                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
                 </div>
                 <div className='Icon-div' data-label='Funding'>
-                    <img src={FundingIcon} alt="CapEx-Icon" title="Funding" className="EBT-Icon" />
+                    <img src={FundingIcon} alt="CapEx-Icon" className="EBT-Icon" />
                 </div>
                 {/* Animate the icon entry */}
                 <div className='Icon-div' data-label='OpEx'>
