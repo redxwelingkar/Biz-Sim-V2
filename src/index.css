@@ -26,7 +26,7 @@ html {
   scroll-behavior: smooth;
 }
 
-h1{
+h1 {
   color: rgb(255, 255, 255);
 }
 
@@ -48,7 +48,8 @@ body {
   /* min-width: 320px; */
   /* min-height: 100vh; */
 }
-.vh-90{
+
+.vh-90 {
   max-height: 90vh !important;
 }
 
@@ -119,6 +120,39 @@ button:focus-visible {
   width: 36px;
 }
 
+.indicatorIcon-container .Icon-div[data-label] {
+  position: relative;
+}
+
+.indicatorIcon-container .Icon-div[data-label]::after {
+  content: attr(data-label);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(22, 7, 78, 0.88);
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  z-index: 20;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.indicatorIcon-container .Icon-div[data-label]:hover::after,
+.indicatorIcon-container .Icon-div[data-label]:focus-within::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
 /* Nav - Icons */
 
 
@@ -137,7 +171,7 @@ button:focus-visible {
   }
 }
 
-#screen-cover{
+#screen-cover {
   position: absolute;
   background-color: rgba(0, 50, 0, 0);
   z-index: 99;
@@ -145,6 +179,6 @@ button:focus-visible {
   height: 80%;
 }
 
-.NumberToWords{
+.NumberToWords {
   color: rgb(255, 255, 255);
 }

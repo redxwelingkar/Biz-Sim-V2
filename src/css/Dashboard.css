@@ -27,7 +27,8 @@
     position: relative;
 }
 
-.dashboard-page .icon-hover-label {
+.indicatorIcon-container .Icon-div[data-label]::after {
+    content: attr(data-label);
     position: absolute;
     left: calc(100% + 10px);
     top: 50%;
@@ -49,10 +50,14 @@
     transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-.dashboard-page .Icon-div:hover .icon-hover-label,
-.dashboard-page .Icon-div:focus-within .icon-hover-label {
+.indicatorIcon-container .Icon-div[data-label]:hover::after,
+.indicatorIcon-container .Icon-div[data-label]:focus-within::after {
     opacity: 1;
     transform: translateY(-50%) translateX(0);
+}
+
+.dashboard-page .icon-hover-label {
+    display: none;
 }
 
 /* .dashboard-sidebar {

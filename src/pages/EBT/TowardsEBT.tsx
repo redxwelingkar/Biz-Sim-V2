@@ -1,4 +1,4 @@
-﻿import Header from "../../components/Header";
+import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import TransitionWrapper from "../../components/TransitionWrapper";
 import Avatar from "../../components/Avatar";
@@ -23,22 +23,22 @@ const TowardsEBT = () => {
             <BackButton topOffset="10vh" />
             <Avatar />
             <div className="indicatorIcon-container">
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="TAM">
                     <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="SAM">
                     <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="CSP">
                     <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="SOM">
                     <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="OpEx">
                     <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                 </div>
-                <div className="Icon-div">
+                <div className="Icon-div" data-label="CapEx">
                     <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                 </div>
             </div>
