@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
@@ -197,9 +197,9 @@ function CSP() {
 
     }
     const footerTexts = [
-        "Here in the section of Customer Spending Power (CSP), the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of CSP and click on “SUBMIT” or press “Enter”.",
-        "Voila! What just popped up on the screen is “Daily Expenditure by SAM”, which gets calculated automatically by multiplying the value of Customer Spending Power (CSP) with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at CSP value in one day.",
-        "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against “No. of Operational Days” and click on “SUBMIT” or press “Enter”.",
+        "Here in the section of Customer Spending Power (CSP), the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of CSP and click on \"SUBMIT\" or press \"Enter\".",
+        "Voila! What just popped up on the screen is \"Daily Expenditure by SAM\", which gets calculated automatically by multiplying the value of Customer Spending Power (CSP) with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at CSP value in one day.",
+        "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against \"No. of Operational Days\" and click on \"SUBMIT\" or press \"Enter\".",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to CSP if you want to make any changes later.",
         "Click on the downward arrow here to move on to the next section.",
@@ -268,13 +268,13 @@ function CSP() {
                     <BackButton topOffset='10vh' />
                     <div className='indicatorIcon-container'>
                         {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>}
                         {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>}
                         {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div'>
@@ -284,7 +284,7 @@ function CSP() {
                                     <motion.img
                                         key="CSP-img"
                                         src={cspIcon}
-                                        alt="CSP-Icon"
+                                        alt="CSP-Icon" title="CSP"
                                         className="CSP-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -311,19 +311,19 @@ function CSP() {
                         </div>
 
                         {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>}
                         {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>}
                         {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>}
                         {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>}
                         {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>}
                     </div>
                     <div className="csp-container">
@@ -477,31 +477,31 @@ function CSP() {
                     <BackButton topOffset='10vh' />
                     <div className="indicatorIcon-container ">
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>
                     </div>
                     <div className="csp-container vh-90">

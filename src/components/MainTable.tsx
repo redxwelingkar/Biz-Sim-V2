@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { debounce } from 'lodash';
 import CustomerSegment from './CustomerSegmentCell';
@@ -367,7 +367,7 @@ const TableComponent = ({
 
           <div className='indicatorIcon-container'>
             {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-              <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+              <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
             </div>}
             {/* TAM Icon */}
             <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
@@ -378,7 +378,7 @@ const TableComponent = ({
                   <motion.img
                     key="tam-img"
                     src={tamIcon}
-                    alt="Tam-Icon"
+                    alt="TAM-Icon" title="TAM"
                     className="Tam-Icon"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -412,7 +412,7 @@ const TableComponent = ({
                   <motion.img
                     key="sam-img"
                     src={samIcon}
-                    alt="Sam-Icon"
+                    alt="SAM-Icon" title="SAM"
                     className="Tam-Icon"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -438,22 +438,22 @@ const TableComponent = ({
               </AnimatePresence>
             </div>
             {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-              <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+              <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
             </div>}
             {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-              <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+              <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
             </div>}
             {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-              <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+              <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
             </div>}
             {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-              <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+              <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
             </div>}
             {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-              <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+              <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
             </div>}
             {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-              <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+              <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
             </div>}
           </div>
 
@@ -545,31 +545,31 @@ const TableComponent = ({
 
           <div className="indicatorIcon-container">
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-              <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+              <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-              <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+              <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-              <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+              <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-              <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+              <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-              <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+              <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-              <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+              <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-              <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+              <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-              <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+              <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
             </div>
             <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-              <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+              <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
             </div>
           </div>
 
@@ -662,3 +662,4 @@ const TableComponent = ({
 };
 
 export default TableComponent;
+

@@ -78,8 +78,8 @@ function OpEx_EMIDisplay() {
             const anchor = document.querySelector('#OpEx_Total_ID')
             if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
             // setTimeout(() => { // move to OpExTotal
-                // SaveAfterEMI()
-                
+            // SaveAfterEMI()
+
             // }, 500);
         }, 3000);
     }, [EMI])
@@ -224,7 +224,7 @@ function OpEx_EMIDisplay() {
     //     const total = rows.reduce((total, row) => total + parseFloat(row.ValueOfExpense), 0);
     //     // console.log("SaveAfterEMI total",rows);
     //     // console.log("SaveAfterEMI total",total);
-        
+
     //     setTotalOpEx(total.toFixed(2));
     //     localStorage.setItem('OpExTotal', total.toString());
     //     localStorage.setItem('OpExDB', JSON.stringify(rows));
@@ -238,7 +238,7 @@ function OpEx_EMIDisplay() {
         }
         setErrorMessage('');
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString()); 
+        setTotalOpEx(total.toString());
         localStorage.setItem('OpExTotal', total.toString());
         localStorage.setItem('OpExDB', JSON.stringify(rows));
         showOpExIconAndText()
@@ -268,39 +268,39 @@ function OpEx_EMIDisplay() {
             <Header />
             <BackButton topOffset='10vh' />
             <div className='indicatorIcon-container'>
-                <div className='Icon-div'>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                <div className='Icon-div' data-label='TAM'>
+                    <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
+                <div className='Icon-div' data-label='SAM'>
+                    <img src={samIcon} alt="SAM-Icon" title="SAM" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                <div className='Icon-div' data-label='CSP'>
+                    <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
+                <div className='Icon-div' data-label='SOM'>
+                    <img src={somIcon} alt="SOM-Icon" title="SOM" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
+                <div className='Icon-div' data-label='OpEx'>
+                    <img src={OpExIcon} alt="OpEx-Icon" title="OpEx" className="EBT-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
+                <div className='Icon-div' data-label='CapEx'>
+                    <img src={CapExIcon} alt="CapEx-Icon" title="CapEx" className="SOM-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
+                <div className='Icon-div' data-label='EBT & WC'>
+                    <img src={EBTWCIcon} alt="CapEx-Icon" title="EBT & WC" className="EBT-Icon" />
                 </div>
-                <div className='Icon-div'>
-                    <img src={FundingIcon} alt="CapEx-Icon" className="EBT-Icon" />
+                <div className='Icon-div' data-label='Funding'>
+                    <img src={FundingIcon} alt="CapEx-Icon" title="Funding" className="EBT-Icon" />
                 </div>
                 {/* Animate the icon entry */}
-                <div className='Icon-div'>
+                <div className='Icon-div' data-label='OpEx'>
                     <AnimatePresence mode="wait">
                         {showOpExIcon ? (
 
                             <motion.img
                                 key="OpEx-img"
                                 src={OpExIcon}
-                                alt="OpEx-Icon"
+                                alt="OpEx-Icon" title="OpEx"
                                 className="SOM-Icon"
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={{ opacity: 1, x: 0 }}

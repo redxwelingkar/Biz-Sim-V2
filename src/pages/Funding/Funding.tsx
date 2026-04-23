@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
@@ -190,7 +190,7 @@ const Funding = () => {
             if (row.id === id) {
                 const borrowed = parseFloat(row.BorrowedAmount || "0");
                 const interest = parseFloat(row.interest || "0");
-                // Interest = (P × R × T) / 100
+                // Interest = (P x R x T) / 100
                 const interestPayable = (borrowed * interest * parseFloat(value)) / 100;
 
                 const monthlyPrincipal = borrowed / (parseFloat(value) * 12);
@@ -305,11 +305,11 @@ const Funding = () => {
     const footerTexts = [
         "You must be thinking, that's a lot or rows and columns, but don't be intimidated by them, we'll take on each column and then row, one at a time. So in the first column you have to enter the name of the source of your funds, for example, you may use your own funds, or borrow from a bank or from some friends.",
         "In the second column you have to enter the amount of funds that you will be borrowing from that source, for example, you borrow 10 lacs from a bank, mention the same in the field as a numerical value. In the third column you have to enter the annual rate of interest at which you have borrowed the money, this is required to calculate the repayment amount which will include the interest accrued.",
-        "As you press “Enter” after entering the annual rate of interest, the system will automatically give you the value of the total interest payable in the fourth column. The values in this column are not editable and will only change if you change the values of the borrowed amount or the annual rate of interest.",
-        "In the fifth column named “Repayment Period”, you have to enter the number of years that you will have agreed to repay the borrowed amount along with the accrued interest. As you press “Enter” after entering that value the system will automatically calculate the monthly amount of the principal borrowed amount that you will have to repay.",
-        "You can also use the “Add a Source of Funds” button to add another row, or click the “-” sign against each row to delete a row as well.",
-        "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment",
-        "When you have completed with filling all the details of funding click on “SAVE DETAILS” to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment. this will also create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        "As you press \"Enter\" after entering the annual rate of interest, the system will automatically give you the value of the total interest payable in the fourth column. The values in this column are not editable and will only change if you change the values of the borrowed amount or the annual rate of interest.",
+        "In the fifth column named \"Repayment Period\", you have to enter the number of years that you will have agreed to repay the borrowed amount along with the accrued interest. As you press \"Enter\" after entering that value the system will automatically calculate the monthly amount of the principal borrowed amount that you will have to repay.",
+        "You can also use the \"Add a Source of Funds\" button to add another row, or click the \"-\" sign against each row to delete a row as well.",
+        "When you have completed with filling all the details of funding click on \"SAVE DETAILS\" to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment",
+        "When you have completed with filling all the details of funding click on \"SAVE DETAILS\" to get the total amount you have borrowed, the monthly interest payable and the monthly principal repayment. this will also create an icon in the left navigation bar, from where you can access this section and make changes later.",
         // show OpEx Emi screen when on below line
         "Now let me remind you that the combined monthly repayment value of principal amount plus interest is going to be added as a monthly EMI to your operational costs, as it is going to be a monthly expense that you'll have to incur, and it's going to be a variable expenditure.",
         "Now all this additional operational expenditure will also affect your EBT and Working Capital. We can see such changes to each of the sectional at a glance in the home dashboard, click the downward arrow to go to it, an icon will also be added in the left navigation bar for the same.  ",
@@ -374,28 +374,28 @@ const Funding = () => {
                     <BackButton topOffset='10vh' />
                     <div className='indicatorIcon-container'>
                         {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>}
                         {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>}
                         {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>}
                         {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>}
                         {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>}
                         {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>}
                         {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>}
                         {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div'>
@@ -405,7 +405,7 @@ const Funding = () => {
                                     <motion.img
                                         key="Funding-img"
                                         src={FundingIcon}
-                                        alt="Funding-Icon"
+                                        alt="Funding-Icon" title="Funding"
                                         className="SOM-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -546,31 +546,31 @@ const Funding = () => {
                     <BackButton topOffset='10vh' />
                     <div className="indicatorIcon-container">
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>
                     </div>
                     <div className="table-container vh-90">

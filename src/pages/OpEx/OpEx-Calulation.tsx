@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
@@ -214,7 +214,7 @@ function OpEx() {
             const OpExTotal = localStorage.getItem('OpExTotal')
             if (OpExTotal) {
                 // console.log("OpExTotal 212",OpExTotal);
-                
+
                 setshowOpExIcon(true)
                 setFooterVisible(false)
             }
@@ -243,8 +243,8 @@ function OpEx() {
     const footerTexts = [
         "Here in the section of Operational Expenditure (OpEx), you will have to list down each expense that your business is going to incur while in operation. You will first have to enter the name of the expense, then select its type, whether it is fixed or variable, and then mention a value - amount of money which is going to be spent on that particular expense.",
         "Fixed operating expenses are those which remain constant regardless of business activity (e.g., rent, insurance, salaried wages), while variable operating expenses are those that fluctuate with business activity (e.g., raw materials, commissions, utilities). It is ideal to be thorough when listing down the expenses and an estimate value for them.",
-        "You can add more rows for adding more expenses by clicking on “ADD EXPENSE” button, you may edit each expense, their type and value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total operational expenditure will keep getting updated at the bottom field of “Total OpEx”.",
-        "When you have completed with filling all the details of operational expenditure click on “SAVE DETAILS” to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        "You can add more rows for adding more expenses by clicking on \"ADD EXPENSE\" button, you may edit each expense, their type and value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total operational expenditure will keep getting updated at the bottom field of \"Total OpEx\".",
+        "When you have completed with filling all the details of operational expenditure click on \"SAVE DETAILS\" to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""
     ];
@@ -259,19 +259,19 @@ function OpEx() {
                     <BackButton topOffset='10vh' />
                     <div className='indicatorIcon-container'>
                         {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>}
                         {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>}
                         {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>}
                         {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>}
                         {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div'>
@@ -281,7 +281,7 @@ function OpEx() {
                                     <motion.img
                                         key="OpEx-img"
                                         src={opexIcon}
-                                        alt="OpEx-Icon"
+                                        alt="OpEx-Icon" title="OpEx"
                                         className="SOM-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -307,13 +307,13 @@ function OpEx() {
                             </AnimatePresence>
                         </div>
                         {showCapExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>}
                         {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>}
                         {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>}
                     </div>
                     <div className={FooterVisible ? "table-container opex-table-container" : "table-container opex-table-container vh-90"}>
@@ -488,31 +488,31 @@ function OpEx() {
                     <BackButton topOffset='10vh' />
                     <div className="indicatorIcon-container">
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>
                     </div>
                     <div className="table-container opex-table-container vh-90">

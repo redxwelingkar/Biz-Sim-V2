@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+﻿import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
@@ -171,8 +171,8 @@ function CapEx() {
 
     const footerTexts = [
         "Here in the section of Capital Expenditure (OpEx), similar to what we did in the section of  OpEx, you will have to list down each expense that you are going to invest in to start your business. You will first have to enter the name of the expense, and then mention a value - amount of money which is going to be spent on that particular expense.",
-        "You can add more rows for adding more expenses by clicking on “ADD EXPENSE” button, you may edit each expense and its value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total capital expenditure will keep getting updated at the bottom field of “Total CapEx”.",
-        "When you have completed with filling all the details of capital expenditure click on “SAVE DETAILS” to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        "You can add more rows for adding more expenses by clicking on \"ADD EXPENSE\" button, you may edit each expense and its value as well or remove an expense using the [-] icon. As an when you keep adding each expense the total capital expenditure will keep getting updated at the bottom field of \"Total CapEx\".",
+        "When you have completed with filling all the details of capital expenditure click on \"SAVE DETAILS\" to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""
     ];
@@ -234,22 +234,22 @@ function CapEx() {
                     <BackButton topOffset='10vh' />
                     <div className='indicatorIcon-container'>
                         {showDashBoardIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>}
                         {showTAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>}
                         {showSAMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>}
                         {showCSPIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>}
                         {showSOMIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>}
                         {showOpExIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div' onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
@@ -259,7 +259,7 @@ function CapEx() {
                                     <motion.img
                                         key="CapEx-img"
                                         src={CapExIcon}
-                                        alt="CapEx-Icon"
+                                        alt="CapEx-Icon" title="CapEx"
                                         className="SOM-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -285,10 +285,10 @@ function CapEx() {
                             </AnimatePresence>
                         </div>
                         {showEBTWCIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>}
                         {showFundingIcon && <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>}
                     </div>
                     <div className={FooterVisible ? "table-container capex-table-container" : "table-container capex-table-container vh-90"}>
@@ -372,31 +372,31 @@ function CapEx() {
                     <BackButton topOffset='10vh' />
                     <div className="indicatorIcon-container">
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                            <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                            <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                            <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                            <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                            <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                            <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                            <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
                         </div>
                         <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                            <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
                         </div>
                     </div>
                     <div className="table-container capex-table-container vh-90">

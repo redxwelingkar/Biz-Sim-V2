@@ -23,6 +23,38 @@
     z-index: -1;
 }
 
+.dashboard-page .Icon-div {
+    position: relative;
+}
+
+.dashboard-page .icon-hover-label {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(22, 7, 78, 0.88);
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    z-index: 20;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.dashboard-page .Icon-div:hover .icon-hover-label,
+.dashboard-page .Icon-div:focus-within .icon-hover-label {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
 /* .dashboard-sidebar {
     position: fixed;
     top: 84px;

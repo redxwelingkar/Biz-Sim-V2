@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+﻿import Header from "../../components/Header";
 import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/Dashboard.css";
@@ -130,31 +130,40 @@ const Dashboard = () => {
 
             <div className="indicatorIcon-container">
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                    <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                    <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
+                    <span className="icon-hover-label">Dashboard</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
+                    <img src={tamIcon} alt="TAM-Icon" title="TAM" className="Tam-Icon" />
+                    <span className="icon-hover-label">TAM</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                    <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
+                    <img src={samIcon} alt="SAM-Icon" title="SAM" className="SAM-Icon" />
+                    <span className="icon-hover-label">SAM</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                    <img src={cspIcon} alt="CSP-Icon" title="CSP" className="CSP-Icon" />
+                    <span className="icon-hover-label">CSP</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
+                    <img src={somIcon} alt="SOM-Icon" title="SOM" className="SOM-Icon" />
+                    <span className="icon-hover-label">SOM</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                    <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
+                    <img src={opexIcon} alt="OpEx-Icon" title="OpEx" className="OpEx-Icon" />
+                    <span className="icon-hover-label">OpEx</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                    <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
+                    <img src={capexIcon} alt="CapEx-Icon" title="CapEx" className="CapEx-Icon" />
+                    <span className="icon-hover-label">CapEx</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                    <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
+                    <img src={ebtwcIcon} alt="EBT_WC-Icon" title="EBT & WC" className="EBTWC-Icon" />
+                    <span className="icon-hover-label">EBT &amp; WC</span>
                 </div>
                 <div className="Icon-div" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                    <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
+                    <img src={FundingIcon} alt="Funding-Icon" title="Funding" className="Funding-Icon" />
+                    <span className="icon-hover-label">Funding</span>
                 </div>
             </div>
 
@@ -336,3 +345,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
