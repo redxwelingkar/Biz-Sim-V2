@@ -8,7 +8,7 @@ import TowardsSAM from "./pages/SAM/TowardsSAM";
 import GreetingsPage from "./pages/GreetingsPage";
 import SAMCalc from "./pages/SAM/SAMCalculation";
 import TowardsCSP from "./pages/CSP/TowardsCSP";
-import CSP from "./pages/CSP/CSP";
+import IntendedPricing from "./pages/CSP/IntendedPricing";
 import TowardsSOM from "./pages/SOM/TowardsSOM";
 import SOM from "./pages/SOM/SOM";
 import TowardsOpEx from "./pages/OpEx/TowardsOpEx";
@@ -35,7 +35,7 @@ function App() {
           <Route path="/Biz-Sim-V2/towards-sam" element={<TowardsSAM />} />
           <Route path="/Biz-Sim-V2/sam-calculation" element={<SAMCalc />} />
           <Route path="/Biz-Sim-V2/towards-csp" element={<TowardsCSP />} />
-          <Route path="/Biz-Sim-V2/csp" element={<CSP />} />
+          <Route path="/Biz-Sim-V2/csp" element={<IntendedPricing />} />
           <Route path="/Biz-Sim-V2/towards-som" element={<TowardsSOM />} />
           <Route path="/Biz-Sim-V2/som" element={<SOM />} />
           <Route path="/Biz-Sim-V2/towards-opex" element={<TowardsOpEx />} />
@@ -68,14 +68,14 @@ TODO: Delete below Template
   <div></div>}
 </div>
 
-TODO Fix: after you click continue on begin page you cannot move forward in tutorial mode
-TODO Grammar and Text: Begin Page Button text = "LOOKS GOOD"
-TODO Grammar and Text: Footer Text for Nav Icon adding = "icon has been added."
-TODO Grammar and Text: TAM Page Footer text = there in TAR, → To estimate the TAM...
-TODO Grammar and Text: TAM Page Header text = Estimate the Total Adds Market TAM
-TODO Grammar and Text: TAM Page Footer text = right side bar ⇒ left side bar
-TODO Grammar and Text: CSP Page Header text = Header → Intended pricing
-TODO Grammar and Text: CSP Page text = Monthly Exp by SAM → Monthy Revenue from SAT
+Done Fix: after you click continue on begin page you cannot move forward in tutorial mode
+Done Grammar and Text: Begin Page Button text = "LOOKS GOOD"
+Done Grammar and Text: Footer Text for Nav Icon adding = "icon has been added."
+Done Grammar and Text: TAM Page Footer text = there in TAR, → To estimate the TAM...
+Done Grammar and Text: TAM Page Header text = Estimate the Total Adds Market TAM, same for SAM pages
+Done Grammar and Text: TAM Page Footer text = right side bar ⇒ left side bar
+Done Grammar and Text: CSP Page Header text = Header → Intended pricing
+TODO Grammar and Text: CSP Page text = Monthly Exp by SAM → Monthy Revenue from SAM
 TODO Grammar and Text: SOM Page text = Month → Yearly som
 TODO Grammar and Text: SOM Page text = Monthly revenue from Customer
 TODO Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when

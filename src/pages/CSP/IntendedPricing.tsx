@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
-import "../../css/CSP.css";
+import "../../css/IntPricing.css";
 
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
@@ -16,7 +16,7 @@ import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntPricingIcon from "../../assets/img/csp-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
@@ -51,23 +51,23 @@ const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: stri
 );
 
 
-function CSP() {
+function IntendedPricing() {
 
-    const [CSPValue, setCSPValue] = useState("")
-    const [CSPMonthly, setCSPMonthly] = useState("")
-    const [CSPYearly, setCSPYearly] = useState("")
-    const [DailyExpbySAM, setDailyExpbySAM] = useState("")
+    const [IntPricingValue, setIntPricingValue] = useState("")
+    const [IntPricingMonthly, setIntPricingMonthly] = useState("")
+    const [IntPricingYearly, setIntPricingYearly] = useState("")
+    const [DailyRevfromSAM, setDailyRevfromSAM] = useState("")
     const [displayOPDays, setdisplayOPDays] = useState(false)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("")
-    const [showCSPIconText, setshowCSPIconText] = useState(false);
+    const [showIntPricingIconText, setshowIntPricingIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
     const navigate = useNavigate()
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showCSPIcon, setshowCSPIcon] = useState(false);
+    const [showIntPricingIcon, setshowIntPricingIcon] = useState(false);
     const [showSOMIcon, setshowSOMIcon] = useState(false);
     const [showOpExIcon, setshowOpExIcon] = useState(false);
     const [showCapExIcon, setshowCapExIcon] = useState(false);
@@ -83,28 +83,28 @@ function CSP() {
         if (sam) {
             setSAM(sam)
         } else {
-            window.alert("SAM not calulated please Complete previous step")
+            // window.alert("SAM not calulated please Complete previous step")
             // navigate(-1)
         }
         // console.log("SAM", sam)
         // console.log("displayOPDays", displayOPDays)
 
         // check if values already exist and populate them
-        let CSPValueLS = localStorage.getItem("CSPValue")
+        let IntPricingValueLS = localStorage.getItem("IntPricingValue")
         let OPdaysLS = localStorage.getItem("OPdays")
-        let CSPMonthlyLS = localStorage.getItem("CSPMonthly")
-        let CSPYearlyLS = localStorage.getItem("CSPYearly")
+        let IntPricingMonthlyLS = localStorage.getItem("IntPricingMonthly")
+        let IntPricingYearlyLS = localStorage.getItem("IntPricingYearly")
 
-        if (CSPValueLS != null) {
-            setCSPValue(CSPValueLS)
-            if (sam) setDailyExpbySAM((parseFloat(sam) * parseFloat(CSPValueLS)).toString())
+        if (IntPricingValueLS != null) {
+            setIntPricingValue(IntPricingValueLS)
+            if (sam) setDailyRevfromSAM((parseFloat(sam) * parseFloat(IntPricingValueLS)).toString())
         }
         if (OPdaysLS != null) {
             setOPDays(OPdaysLS)
             setdisplayOPDays(true)
         }
-        if (CSPMonthlyLS != null) setCSPMonthly(CSPMonthlyLS)
-        if (CSPYearlyLS != null) setCSPYearly(CSPYearlyLS)
+        if (IntPricingMonthlyLS != null) setIntPricingMonthly(IntPricingMonthlyLS)
+        if (IntPricingYearlyLS != null) setIntPricingYearly(IntPricingYearlyLS)
 
     }, []);
 
@@ -114,33 +114,33 @@ function CSP() {
 
     useEffect(() => {
 
-    }, [showCSPIcon])
+    }, [showIntPricingIcon])
 
-    function handleCSPChange(value: string) {
-        setCSPValue(value)
+    function handleIntPricingChange(value: string) {
+        setIntPricingValue(value)
     }
 
     function handleOPDaysChange(value: string) {
         setOPDays(value)
     }
 
-    function submitCSP() {
-        // Save / set CSPvalue in local storage
-        if (CSPValue || parseFloat(CSPValue) > 0) {
-            localStorage.setItem("CSPValue", CSPValue)
+    function submitIntPricing() {
+        // Save / set IntPricingvalue in local storage
+        if (IntPricingValue || parseFloat(IntPricingValue) > 0) {
+            localStorage.setItem("IntPricingValue", IntPricingValue)
 
-            // get SAM from localstorage and multiply it with CSPValue to get Daily Expenditure by SAM Value
-            setDailyExpbySAM((parseFloat(SAM) * parseFloat(CSPValue)).toString())
+            // get SAM from localstorage and multiply it with IntPricingValue to get Daily Revenue from SAM Value
+            setDailyRevfromSAM((parseFloat(SAM) * parseFloat(IntPricingValue)).toString())
 
-            // hide submitCSP BTN
-            let submitCSPBTN = document.getElementById("submitCSP")
-            if (submitCSPBTN) submitCSPBTN.hidden = true
+            // hide submitIntPricing BTN
+            let submitIntPricingBTN = document.getElementById("submitIntPricing")
+            if (submitIntPricingBTN) submitIntPricingBTN.hidden = true
 
-            // Autoclick down arrow to go to next step when submitting CSPValue
+            // Autoclick down arrow to go to next step when submitting IntPricingValue
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
         } else {
-            window.alert("Please enter Customer Spending power Value")
+            // window.alert("Please enter Customer Spending power Value")
         }
 
         if (!TutorialMode) showOPDays()
@@ -159,36 +159,36 @@ function CSP() {
         if (OPDays || parseFloat(OPDays) > 0) {
             localStorage.setItem("OPdays", OPDays)
 
-            // calculate and save monthly expenditure by SAM
-            let SAMmonthlyExp = parseFloat(OPDays) * parseFloat(DailyExpbySAM)
-            setCSPMonthly(SAMmonthlyExp.toString())
-            localStorage.setItem("CSPMonthly", SAMmonthlyExp.toString())
+            // calculate and save monthly revenue by SAM
+            let SAMmonthlyRev = parseFloat(OPDays) * parseFloat(DailyRevfromSAM)
+            setIntPricingMonthly(SAMmonthlyRev.toString())
+            localStorage.setItem("IntPricingMonthly", SAMmonthlyRev.toString())
 
-            // calculate and save Yearly expenditure by SAM
-            let SAMYearlyExp = SAMmonthlyExp * 12
-            setCSPYearly(SAMYearlyExp.toString())
-            localStorage.setItem("CSPYearly", SAMmonthlyExp.toString())
+            // calculate and save Yearly revenue by SAM
+            let SAMYearlyRev = SAMmonthlyRev * 12
+            setIntPricingYearly(SAMYearlyRev.toString())
+            localStorage.setItem("IntPricingYearly", SAMmonthlyRev.toString())
 
             // Autoclick down arrow to go to next step when submitting OPdays Value
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
         } else {
-            window.alert("Please enter No. of Operational Days Value")
+            // window.alert("Please enter No. of Operational Days Value")
         }
     }
 
-    function onNextshowCSPIcon() {
-        // console.log("onNextshowCSPIcon called");
+    function onNextshowIntPricingIcon() {
+        // console.log("onNextshowIntPricingIcon called");
         setTimeout(() => {
-            setshowCSPIcon(true)
+            setshowIntPricingIcon(true)
             setTimeout(() => {
-                // console.log("setshowCSPIconText(true)");
-                setshowCSPIconText(true)
+                // console.log("setshowIntPricingIconText(true)");
+                setshowIntPricingIconText(true)
                 setTimeout(() => {
-                    // console.log("setshowCSPIconText(false)");
-                    setshowCSPIconText(false)
+                    // console.log("setshowIntPricingIconText(false)");
+                    setshowIntPricingIconText(false)
                     // setTimeout(() => {
-                    //     // console.log("setshowCSPIconText(false)");
+                    //     // console.log("setshowIntPricingIconText(false)");
                     //     navigateToTowardsSOM()
                     // }, 1000 * 2);
                 }, 1000 * 2.5);
@@ -197,11 +197,11 @@ function CSP() {
 
     }
     const footerTexts = [
-        "Here in the section of Customer Spending Power (CSP), the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of CSP and click on \"SUBMIT\" or press \"Enter\".",
-        "Voila! What just popped up on the screen is \"Daily Expenditure by SAM\", which gets calculated automatically by multiplying the value of Customer Spending Power (CSP) with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at CSP value in one day.",
+        "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of IntPricing and click on \"SUBMIT\" or press \"Enter\".",
+        "Voila! What just popped up on the screen is \"Daily Revenue from SAM\", which gets calculated automatically by multiplying the value of Intended Pricing with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at IntPricing value in one day.",
         "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against \"No. of Operational Days\" and click on \"SUBMIT\" or press \"Enter\".",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
-        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to CSP if you want to make any changes later.",
+        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to IntPricing if you want to make any changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""
 
@@ -221,11 +221,11 @@ function CSP() {
             const SAMtotal = localStorage.getItem('SAM');
             if (SAMtotal) setshowSAMIcon(true)
 
-            // show CSP ICON
-            const CSPMonthly = localStorage.getItem('CSPMonthly')
+            // show IntPricing ICON
+            const IntPricingMonthly = localStorage.getItem('IntPricingMonthly')
             const OPdays = localStorage.getItem('OPdays')
-            if (CSPMonthly && OPdays) {
-                setshowCSPIcon(true)
+            if (IntPricingMonthly && OPdays) {
+                setshowIntPricingIcon(true)
                 setFooterVisible(false)
 
             }
@@ -252,7 +252,7 @@ function CSP() {
             if (EMI) setshowFundingIcon(true)
 
             // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
             console.log("showNavIconIfData Error", error)
@@ -277,15 +277,15 @@ function CSP() {
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
-                        <div className='Icon-div' data-label='CSP'>
+                        <div className='Icon-div' data-label='IntPricing'>
                             <AnimatePresence mode="wait">
-                                {showCSPIcon ? (
+                                {showIntPricingIcon ? (
 
                                     <motion.img
-                                        key="CSP-img"
-                                        src={cspIcon}
-                                        alt="CSP-Icon" title="CSP"
-                                        className="CSP-Icon"
+                                        key="IntPricing-img"
+                                        src={IntPricingIcon}
+                                        alt="IntPricing-Icon" title="IntPricing"
+                                        className="IntPricing-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -50 }}
@@ -296,15 +296,15 @@ function CSP() {
                             </AnimatePresence>
                             {/* Animate the text entry/exit */}
                             <AnimatePresence mode="wait">
-                                {showCSPIconText && (
+                                {showIntPricingIconText && (
                                     <motion.span
-                                        key="CSP-Icon-Text"
+                                        key="IntPricing-Icon-Text"
                                         initial={{ opacity: 0, x: -100 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -100 }}
                                         transition={{ duration: 1 }}
                                     >
-                                        Customer Spending Power
+                                        Intended Pricing
                                     </motion.span>
                                 )}
                             </AnimatePresence>
@@ -327,56 +327,56 @@ function CSP() {
                         </div>}
                     </div>
                     <div className="csp-container">
-                        <h1>Customer Spending Power</h1>
+                        <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <p>Customer Spending Power</p>
+                                        <p>Intended Pricing</p>
                                     </td>
                                     <td>
                                         <div
-                                            onMouseEnter={() => setisHoveredRow("CSPValueWords")}
+                                            onMouseEnter={() => setisHoveredRow("IntPricingValueWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
                                             <CustomTextField
-                                                value={CSPValue}
+                                                value={IntPricingValue}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 min={0}
                                                 label='per customer / product'
-                                                onChange={(value) => handleCSPChange(value)} />
+                                                onChange={(value) => handleIntPricingChange(value)} />
                                         </div>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "CSPValueWords" &&
-                                            <Slide keyName='CSPValueWords'>
-                                                <NumberToWords value={CSPValue} />
+                                        {isHoveredRow === "IntPricingValueWords" &&
+                                            <Slide keyName='IntPricingValueWords'>
+                                                <NumberToWords value={IntPricingValue} />
                                             </Slide>
                                         }
                                     </td>
                                 </tr>
-                                {DailyExpbySAM &&
+                                {DailyRevfromSAM &&
                                     <tr>
                                         <td>
-                                            <PopUp keyName='DailyExpbySAMHeader'>
-                                                <p>Daily Expenditure by SAM</p>
+                                            <PopUp keyName='DailyRevfromSAMHeader'>
+                                                <p>Daily Revenue from SAM</p>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            <PopUp keyName='DailyExpbySAM'>
+                                            <PopUp keyName='DailyRevfromSAM'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("DailyExpbySAMWords")}
+                                                    onMouseEnter={() => setisHoveredRow("DailyRevfromSAMWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay label='per day' value={DailyExpbySAM} />
+                                                    <TextDisplay label='per day' value={DailyRevfromSAM} />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "DailyExpbySAMWords" &&
-                                                <Slide keyName='DailyExpbySAMWords'>
-                                                    <NumberToWords value={DailyExpbySAM} />
+                                            {isHoveredRow === "DailyRevfromSAMWords" &&
+                                                <Slide keyName='DailyRevfromSAMWords'>
+                                                    <NumberToWords value={DailyRevfromSAM} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
@@ -411,64 +411,64 @@ function CSP() {
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {CSPMonthly &&
+                                {IntPricingMonthly &&
                                     <tr>
                                         <td>
-                                            <PopUp keyName='CSPMonthlyHeader'>
-                                                <p>Monthly Expenditure by SAM</p>
+                                            <PopUp keyName='IntPricingMonthlyHeader'>
+                                                <p>Monthly Revenue from SAM</p>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            <PopUp keyName='CSPMonthly'>
+                                            <PopUp keyName='IntPricingMonthly'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("CSPMonthlyWords")}
+                                                    onMouseEnter={() => setisHoveredRow("IntPricingMonthlyWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay value={CSPMonthly} label='per month' />
+                                                    <TextDisplay value={IntPricingMonthly} label='per month' />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "CSPMonthlyWords" &&
-                                                <Slide keyName='CSPMonthlyWords'>
-                                                    <NumberToWords value={CSPMonthly} />
+                                            {isHoveredRow === "IntPricingMonthlyWords" &&
+                                                <Slide keyName='IntPricingMonthlyWords'>
+                                                    <NumberToWords value={IntPricingMonthly} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {CSPYearly &&
+                                {IntPricingYearly &&
                                     <tr>
                                         <td>
-                                            <PopUp keyName='CSPYearlyHeader'>
-                                                <p>Yearly Expenditure by SAM </p>
+                                            <PopUp keyName='IntPricingYearlyHeader'>
+                                                <p>Yearly Revenue from SAM </p>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            <PopUp keyName='CSPYearly'>
+                                            <PopUp keyName='IntPricingYearly'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("CSPYearlyWords")}
+                                                    onMouseEnter={() => setisHoveredRow("IntPricingYearlyWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay value={CSPYearly} label='per year' />
+                                                    <TextDisplay value={IntPricingYearly} label='per year' />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "CSPYearlyWords" &&
-                                                <Slide keyName='CSPYearlyWords'>
-                                                    <NumberToWords value={CSPYearly} />
+                                            {isHoveredRow === "IntPricingYearlyWords" &&
+                                                <Slide keyName='IntPricingYearlyWords'>
+                                                    <NumberToWords value={IntPricingYearly} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
                             </tbody>
                         </table>
-                        <button id='submitCSP' className='SubmitBTNCSP' onClick={submitCSP}>Submit CSP</button>
-                        {/* {DailyExpbySAM && displayOPDays && CSPMonthly && CSPYearly &&
-                            <button id='submitOPdays' className='SubmitBTNCSP' onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitIntPricing' className='SubmitBTNIntPricing' onClick={submitIntPricing}>Submit Intended Pricing</button>
+                        {/* {DailyExpbySAM && displayOPDays && IntPricingMonthly && IntPricingYearly &&
+                            <button id='submitOPdays' className='SubmitBTNIntPricing' onClick={submitOPdays}>Submit OP</button>
                         } */}
-                        <button id='submitOPdays' className='SubmitBTNCSP' hidden onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitOPdays' className='SubmitBTNIntPricing' hidden onClick={submitOPdays}>Submit OP</button>
                     </div>
                     {FooterVisible &&
-                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowCSPIcon={onNextshowCSPIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
+                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowCSPIcon={onNextshowIntPricingIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
                 </div>
                 :
                 // TutorialMode=False
@@ -485,8 +485,8 @@ function CSP() {
                         <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>
-                        <div className="Icon-div" data-label="CSP" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        <div className="Icon-div" data-label="IntPricing" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                            <img src={IntPricingIcon} alt="IntPricing-Icon" title="IntPricing" className="CSP-Icon" />
                         </div>
                         <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
                             <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
@@ -505,31 +505,31 @@ function CSP() {
                         </div>
                     </div>
                     <div className="csp-container vh-90">
-                        <h1>Customer Spending Power</h1>
+                        <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <p>Customer Spending Power</p>
+                                        <p>Intended Pricing</p>
                                     </td>
                                     <td>
                                         <div
-                                            onMouseEnter={() => setisHoveredRow("CSPValueWords")}
+                                            onMouseEnter={() => setisHoveredRow("IntPricingValueWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
                                             <CustomTextField
-                                                value={CSPValue}
+                                                value={IntPricingValue}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 min={0}
                                                 label='per customer / product'
-                                                onChange={(value) => handleCSPChange(value)} />
+                                                onChange={(value) => handleIntPricingChange(value)} />
                                         </div>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "CSPValueWords" &&
-                                            <Slide keyName='CSPValueWords'>
-                                                <NumberToWords value={CSPValue} />
+                                        {isHoveredRow === "IntPricingValueWords" &&
+                                            <Slide keyName='IntPricingValueWords'>
+                                                <NumberToWords value={IntPricingValue} />
                                             </Slide>
                                         }
                                     </td>
@@ -537,24 +537,24 @@ function CSP() {
 
                                 <tr>
                                     <td>
-                                        <PopUp keyName='DailyExpbySAMHeader'>
-                                            <p>Daily Expenditure by SAM</p>
+                                        <PopUp keyName='DailyRevfromSAMHeader'>
+                                            <p>Daily Revenue from SAM</p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='DailyExpbySAM'>
+                                        <PopUp keyName='DailyRevfromSAM'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("DailyExpbySAMWords")}
+                                                onMouseEnter={() => setisHoveredRow("DailyRevfromSAMWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay label='per day' value={DailyExpbySAM} />
+                                                <TextDisplay label='per day' value={DailyRevfromSAM} />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "DailyExpbySAMWords" &&
-                                            <Slide keyName='DailyExpbySAMWords'>
-                                                <NumberToWords value={DailyExpbySAM} />
+                                        {isHoveredRow === "DailyRevfromSAMWords" &&
+                                            <Slide keyName='DailyRevfromSAMWords'>
+                                                <NumberToWords value={DailyRevfromSAM} />
                                             </Slide>}
                                     </td>
                                 </tr>
@@ -592,55 +592,55 @@ function CSP() {
 
                                 <tr>
                                     <td>
-                                        <PopUp keyName='CSPMonthlyHeader'>
-                                            <p>Monthly Expenditure by SAM</p>
+                                        <PopUp keyName='IntPricingMonthlyHeader'>
+                                            <p>Monthly Revenue from SAM</p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='CSPMonthly'>
+                                        <PopUp keyName='IntPricingMonthly'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("CSPMonthlyWords")}
+                                                onMouseEnter={() => setisHoveredRow("IntPricingMonthlyWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay value={CSPMonthly} label='per month' />
+                                                <TextDisplay value={IntPricingMonthly} label='per month' />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "CSPMonthlyWords" &&
-                                            <Slide keyName='CSPMonthlyWords'>
-                                                <NumberToWords value={CSPMonthly} />
+                                        {isHoveredRow === "IntPricingMonthlyWords" &&
+                                            <Slide keyName='IntPricingMonthlyWords'>
+                                                <NumberToWords value={IntPricingMonthly} />
                                             </Slide>}
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <PopUp keyName='CSPYearlyHeader'>
-                                            <p>Yearly Expenditure by SAM </p>
+                                        <PopUp keyName='IntPricingYearlyHeader'>
+                                            <p>Yearly Revenue from SAM </p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='CSPYearly'>
+                                        <PopUp keyName='IntPricingYearly'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("CSPYearlyWords")}
+                                                onMouseEnter={() => setisHoveredRow("IntPricingYearlyWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay value={CSPYearly} label='per year' />
+                                                <TextDisplay value={IntPricingYearly} label='per year' />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "CSPYearlyWords" &&
-                                            <Slide keyName='CSPYearlyWords'>
-                                                <NumberToWords value={CSPYearly} />
+                                        {isHoveredRow === "IntPricingYearlyWords" &&
+                                            <Slide keyName='IntPricingYearlyWords'>
+                                                <NumberToWords value={IntPricingYearly} />
                                             </Slide>}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button id='submitCSP' className='SubmitBTNCSP' onClick={submitCSP}>Submit CSP</button>
-                        <button id='submitOPdays' className='SubmitBTNCSP' onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitIntPricing' className='SubmitBTNIntPricing' onClick={submitIntPricing}>Submit Intended Pricing</button>
+                        <button id='submitOPdays' className='SubmitBTNIntPricing' onClick={submitOPdays}>Submit OP</button>
                     </div>
                 </div>
             }
@@ -649,4 +649,4 @@ function CSP() {
     )
 }
 
-export default CSP
+export default IntendedPricing

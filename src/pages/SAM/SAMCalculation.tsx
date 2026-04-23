@@ -88,7 +88,7 @@ const SAMCalc = () => {
           {/* <TamIcon /> */}
           <TableComponent
             hideTotalSum={true}
-            headingText="Serviceable Addressable Market"
+            headingText="Estimate the Serviceable Addressable Market (SAM)"
             hideSaveDetailsButton={true}
             NumbertoWordsCOL={false}
             PercentageConvCOL={showpercent}
@@ -118,7 +118,7 @@ const SAMCalc = () => {
           {/* <TamIcon /> */}
           <TableComponent
             hideTotalSum={true}
-            headingText="Serviceable Addressable Market"
+            headingText="Estimate the Serviceable Addressable Market (SAM)"
             hideSaveDetailsButton={true}
             NumbertoWordsCOL={false}
             PercentageConvCOL={showpercent}

@@ -21,6 +21,9 @@
     width: 36px;
     height: 36px;
     transform: rotate(180deg);
+    margin-left: 95vw;
+    /* position: absolute; */
+    /* right: 10rem; */
 }
 
 

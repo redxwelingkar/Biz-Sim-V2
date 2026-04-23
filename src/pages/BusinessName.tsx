@@ -59,7 +59,7 @@ function BusinessName() {
                   onChange={(e) => setBusinessName(e.target.value)}
                 />
                 {errorMessage && <div className="error-msg">{errorMessage}</div>}
-                <button className="looks-good-button" onClick={handleButtonClick}>LOOK'S GOOD</button>
+                <button className="looks-good-button" onClick={handleButtonClick}>LOOKS GOOD</button>
               </div>
             )}
           </>
