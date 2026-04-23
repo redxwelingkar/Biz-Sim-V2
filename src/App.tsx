@@ -69,5 +69,36 @@ TODO: Delete below Template
 </div>
 
 TODO Fix: after you click continue on begin page you cannot move forward in tutorial mode
+TODO Grammar and Text: Begin Page Button text = "LOOKS GOOD"
+TODO Grammar and Text: Footer Text for Nav Icon adding = "icon has been added."
+TODO Grammar and Text: TAM Page Footer text = there in TAR, → To estimate the TAM...
+TODO Grammar and Text: TAM Page Header text = Estimate the Total Adds Market TAM
+TODO Grammar and Text: TAM Page Footer text = right side bar ⇒ left side bar
+TODO Grammar and Text: CSP Page Header text = Header → Intended pricing
+TODO Grammar and Text: CSP Page text = Monthly Exp by SAM → Monthy Revenue from SAT
+TODO Grammar and Text: SOM Page text = Month → Yearly som
+TODO Grammar and Text: SOM Page text = Monthly revenue from Customer
+TODO Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when
+TODO Grammar and Text: EBT towards text = "system" ⇒ simulation
+TODO Grammar and Text: Remove technical jargain but keep in Footer.
+
+
+TODO Bugs: CSP Page = Next button disappear after its job is done on 
+TODO Bugs: OPEX Page = Number to words spacing for total OPEX
+TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
+TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
+TODO Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
+
+
+TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
+TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
+TODO Feature: Number to words should be sidebyside with number cell always
+TODO Feature: keep Blinking the down arrow 'All times
+TODO Feature: Enter Button on Keyboard will do something as down arrow
+TODO Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist all pages, completed step nav-icon glows
+TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
+TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
+TODO Feature: Funding Page = Total funding Number towards below Member text
+
 
 */
