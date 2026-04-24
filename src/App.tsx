@@ -83,13 +83,13 @@ TODO Grammar and Text: EBT towards text = "system" ⇒ simulation
 TODO Grammar and Text: Remove technical jargain but keep in Footer.
 
 
-TODO Bugs: CSP Page = Next button disappear after its job is done on 
-TODO Bugs: OPEX Page = Number to words spacing for total OPEX
-TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
-TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
-TODO Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
+// TODO Bugs: CSP Page = Next button disappear after its job is done on 
+// TODO Bugs: OPEX Page = Number to words spacing for total OPEX
+// TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
+// TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
+// TODO Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
 TODO Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
-TODO Bugs: Towards SOM Pages = YES / NO
+// TODO Bugs: Towards SOM Pages = YES / NO
 
 
 TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
@@ -98,7 +98,7 @@ TODO Feature: Number to words should be sidebyside with number cell always
 TODO Feature: keep Blinking the down arrow 'All times
 TODO Feature: Enter Button on Keyboard will do something as down arrow
 TODO Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist all pages, completed step nav-icon glows
-TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
+// TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
 TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
 TODO Feature: Funding Page = Total funding Number towards below Member text
 TODO Feature: Funding Page = Add number to Text Column on right side of "Borrowed amount" column

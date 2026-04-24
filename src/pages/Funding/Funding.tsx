@@ -6,6 +6,7 @@ import '../../css/Funding.css'
 import Footer from '../../components/Footer';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
+import NumberToWords from '../../components/NumberToWords';
 import TextDisplay from '../../components/TextDisplay';
 
 import DashboardIcon from "../../assets/img/DashB-Icon.png";
@@ -444,9 +445,10 @@ const Funding = () => {
                                     <th></th>{/* Delete row column */}
                                     <th>Source of funds</th>
                                     <th>Borrowed Amount</th>
+                                    <th></th>{/* Borrowed amount in words */}
                                     <th>Interest</th>
                                     <th>Repayment Period</th>
-                                    <th>Monthly Interest & Principal Repayment</th>
+                                    <th>Monthly Repayment with Interest</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -471,6 +473,9 @@ const Funding = () => {
                                                 placeholder='Enter Value'
                                                 onChange={(value) => handleBorrowedAmountChange(row.id, value)}
                                             />
+                                        </td>
+                                        <td>
+                                            <NumberToWords value={row.BorrowedAmount} />
                                         </td>
                                         <td>
                                             <CustomTextField
@@ -516,7 +521,7 @@ const Funding = () => {
                                 />
                             </div>
                             <div>
-                                <span className="total-funding-words">Total Monthly Interest & Principal Repayment</span>
+                                <span className="total-funding-words">Total Monthly Repayment with Interest</span>
                                 <input
                                     type="text"
                                     value={TotalMonthlyPrincipalRepayment}
@@ -570,6 +575,7 @@ const Funding = () => {
                                     <th></th>{/* Delete row column */}
                                     <th>Source of funds</th>
                                     <th>Borrowed Amount</th>
+                                    <th></th>{/* Borrowed amount in words */}
                                     <th>Interest</th>
                                     <th>Repayment Period</th>
                                     <th>Interest + Principal Repayment</th>
@@ -597,6 +603,9 @@ const Funding = () => {
                                                 placeholder='Enter Value'
                                                 onChange={(value) => handleBorrowedAmountChange(row.id, value)}
                                             />
+                                        </td>
+                                        <td>
+                                            <NumberToWords value={row.BorrowedAmount} />
                                         </td>
                                         <td>
                                             <CustomTextField
