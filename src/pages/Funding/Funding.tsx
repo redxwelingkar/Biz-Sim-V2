@@ -51,7 +51,6 @@ const Funding = () => {
     const [showFundingIconText, setshowFundingIconText] = useState(false);
     const [isFundingSaved, setisFundingSaved] = useState(false);
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
-    const [TotalMonthlyInterest, setTotalMonthlyInterest] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
     const [EMI, setEMI] = useState('');
 
@@ -108,7 +107,6 @@ const Funding = () => {
                     setRowsFunding(parsedRows)
                 }
                 setTotalAmountBorrowed(TotalAmountBorrowed)
-                setTotalMonthlyInterest(TotalMonthlyInterest)
                 setTotalMonthlyPrincipalRepayment(TotalMonthlyPrincipalRepayment)
             }
 
@@ -142,6 +140,12 @@ const Funding = () => {
     // navigate to CapEx page
     const navigateToEMI = () => {
         navigate("/Biz-Sim-V2/opex-EMIdisplay")
+    }
+
+    const getInterestPlusPrincipalRepayment = (row: { MonthlyPrincipalPayment: string; MonthlyInterestPayment: string }) => {
+        const principal = parseFloat(row.MonthlyPrincipalPayment || '0')
+        const monthlyInterest = parseFloat(row.MonthlyInterestPayment || '0')
+        return (principal + monthlyInterest).toFixed(2)
     }
 
     // helper Functions End
@@ -217,7 +221,7 @@ const Funding = () => {
 
 
     const handleSaveDetails = () => {
-        const allFieldsFilled = rowsFunding.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
+        const allFieldsFilled = rowsFunding.every(row => row.BorrowedAmount !== '' && row.MonthlyPrincipalPayment !== '' && row.MonthlyInterestPayment !== '' && row.RepaymentPeriod !== '' && row.SourceofFunds !== '' && row.interest !== '' && row.interestPayable !== '');
         if (!allFieldsFilled) {
             setErrorMessage('Please enter details in all cells.');
             return;
@@ -227,12 +231,13 @@ const Funding = () => {
         const TAB = rowsFunding.reduce((total, row) => total + parseFloat(row.BorrowedAmount), 0);
         //Total Monthly interest
         const TMI = rowsFunding.reduce((total, row) => total + parseFloat(row.MonthlyInterestPayment), 0);
-        //Total Monthly Principal
-        const TMP = rowsFunding.reduce((total, row) => total + parseFloat(row.MonthlyPrincipalPayment), 0);
-        // Monthly EMI 
-        const EMI = TMP + TMI
+        //Total Interest + Principal Repayment
+        const TMP = rowsFunding.reduce((total, row) => {
+            return total + parseFloat(row.MonthlyPrincipalPayment) + parseFloat(row.MonthlyInterestPayment)
+        }, 0);
+        // Monthly EMI
+        const EMI = TMP
         setTotalAmountBorrowed(TAB.toFixed(2));
-        setTotalMonthlyInterest(TMI.toFixed(2));
         setTotalMonthlyPrincipalRepayment(TMP.toFixed(2));
         localStorage.setItem('TotalAmountBorrowed', TAB.toFixed(2));
         localStorage.setItem('TotalMonthlyInterest', TMI.toFixed(2));
@@ -374,7 +379,7 @@ const Funding = () => {
                     <BackButton topOffset='10vh' />
                     <div className='indicatorIcon-container'>
                         {showDashBoardIcon && <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>}
                         {showTAMIcon && <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
                             <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
@@ -441,8 +446,7 @@ const Funding = () => {
                                     <th>Borrowed Amount</th>
                                     <th>Interest</th>
                                     <th>Repayment Period</th>
-                                    <th>Interest Payable</th>
-                                    <th>Monthly Principal Repayment</th>
+                                    <th>Monthly Interest & Principal Repayment</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -488,13 +492,7 @@ const Funding = () => {
                                         </td>
                                         <td>
                                             <TextDisplay
-                                                value={row.interestPayable}
-                                            />
-                                        </td>
-
-                                        <td>
-                                            <TextDisplay
-                                                value={row.MonthlyPrincipalPayment}
+                                                value={getInterestPlusPrincipalRepayment(row)}
                                             />
                                         </td>
                                     </tr>
@@ -518,16 +516,7 @@ const Funding = () => {
                                 />
                             </div>
                             <div>
-                                <span className="total-funding-words">Monthly Interest</span>
-                                <input
-                                    type="text"
-                                    value={TotalMonthlyInterest}
-                                    readOnly
-                                    className="total-size-field"
-                                />
-                            </div>
-                            <div>
-                                <span className="total-funding-words">Total Monthly Principal Repayment</span>
+                                <span className="total-funding-words">Total Monthly Interest & Principal Repayment</span>
                                 <input
                                     type="text"
                                     value={TotalMonthlyPrincipalRepayment}
@@ -546,7 +535,7 @@ const Funding = () => {
                     <BackButton topOffset='10vh' />
                     <div className="indicatorIcon-container">
                         <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
+                            <img src={DashboardIcon} alt="Dashboard-Icon" title="Dashboard" className="Dashboard-Icon" />
                         </div>
                         <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
                             <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
@@ -583,8 +572,7 @@ const Funding = () => {
                                     <th>Borrowed Amount</th>
                                     <th>Interest</th>
                                     <th>Repayment Period</th>
-                                    <th>Interest Payable</th>
-                                    <th>Monthly Principal Repayment</th>
+                                    <th>Interest + Principal Repayment</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -630,13 +618,7 @@ const Funding = () => {
                                         </td>
                                         <td>
                                             <TextDisplay
-                                                value={row.interestPayable}
-                                            />
-                                        </td>
-
-                                        <td>
-                                            <TextDisplay
-                                                value={row.MonthlyPrincipalPayment}
+                                                value={getInterestPlusPrincipalRepayment(row)}
                                             />
                                         </td>
                                     </tr>
@@ -660,16 +642,7 @@ const Funding = () => {
                                 />
                             </div>
                             <div>
-                                <span className="total-funding-words">Monthly Interest</span>
-                                <input
-                                    type="text"
-                                    value={TotalMonthlyInterest}
-                                    readOnly
-                                    className="total-size-field"
-                                />
-                            </div>
-                            <div>
-                                <span className="total-funding-words">Total Monthly Principal Repayment</span>
+                                <span className="total-funding-words">Total Interest + Principal Repayment</span>
                                 <input
                                     type="text"
                                     value={TotalMonthlyPrincipalRepayment}

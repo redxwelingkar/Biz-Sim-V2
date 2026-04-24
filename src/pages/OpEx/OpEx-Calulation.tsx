@@ -466,10 +466,10 @@ function OpEx() {
                         </div>
 
 
-                        <div id='OpEx_Total_ID' className="total-size-container">
+                        <div id='OpEx_Total_ID' className="total-size-container width-60">
                             {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
                             <span className="total-size-words">Total OpEx</span>
-                            <span className="total-size-words"><NumberToWords value={TotalOpEx.toString()} /></span>
+                            <span className="total-size-words width-auto"><NumberToWords value={TotalOpEx.toString()} /></span>
                             <input
                                 type="text"
                                 value={TotalOpEx}
@@ -665,10 +665,10 @@ function OpEx() {
                         </div>
 
 
-                        <div id='OpEx_Total_ID' className="total-size-container">
+                        <div id='OpEx_Total_ID' className="total-size-container width-60">
                             {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
                             <span className="total-size-words">Total OpEx</span>
-                            <span className="total-size-words"><NumberToWords value={TotalOpEx.toString()} /></span>
+                            <span className="total-size-words width-auto"><NumberToWords value={TotalOpEx.toString()} /></span>
                             <input
                                 type="text"
                                 value={TotalOpEx}

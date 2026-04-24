@@ -142,6 +142,8 @@ function TowardsSOM() {
                         <div className=''>
                             Which means that the Yearly Expenditure by SAM value that we calculated in the last section might not be a realistic value of the revenue that you generate from your business
                         </div>
+                        <br />
+                        <button className='towardsSOM-NextBTN' onClick={Next}>NEXT</button>
                     </div>}
                 {onNext &&
                     <div className='towardsSOMHeaders'>
@@ -171,7 +173,6 @@ function TowardsSOM() {
                         {/* <div>Click here to learn more about SOM</div> */}
 
                     </div>}
-                <button className='towardsSOM-NextBTN' onClick={Next}>NEXT</button>
             </div>
 
 

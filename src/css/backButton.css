@@ -1,23 +1,26 @@
-.backbutton_container{
+.backbutton_container {
     position: absolute;
     top: 10vh;
     left: 1.5vw;
     z-index: 100;
+    pointer-events: none;
     /* cursor: pointer; */
     /* display: grid;
     gap: 4 */
 }
 
-.backButtonStyle{
+.backButtonStyle {
     left: 3vmin;
     cursor: pointer;
+    pointer-events: auto;
     width: 36px;
     height: 36px;
 }
 
-.forwardButtonStyle{
+.forwardButtonStyle {
     left: 3vmin;
     cursor: pointer;
+    pointer-events: auto;
     width: 36px;
     height: 36px;
     transform: rotate(180deg);
@@ -31,15 +34,18 @@
 .tamContainer {
     display: flex;
     align-items: center;
-    gap:5;
-    left: -10vw; /* start off-screen */
+    gap: 5;
+    left: -10vw;
+    /* start off-screen */
     transition: left 2s ease;
 }
-.tamButtonStyle{
+
+.tamButtonStyle {
     /* cursor: pointer; */
     width: 4.5vmin
 }
 
 .backbutton-container.slide-in {
-    left: 3vmin; /* slide to this position */
-  }
+    left: 3vmin;
+    /* slide to this position */
+}
