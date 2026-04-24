@@ -101,6 +101,7 @@ TODO Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist al
 TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
 TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
 TODO Feature: Funding Page = Total funding Number towards below Member text
+TODO Feature: Funding Page = Add number to Text Column on right side of "Borrowed amount" column
 Done Feature: Change CSP to Intended Pricing
 
 
