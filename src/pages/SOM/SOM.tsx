@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
-import "../../css/IntPricing.css";
+import "../../css/IntendedPricing.css";
 
 import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
@@ -54,7 +54,7 @@ const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: stri
 function SOM() {
 
     const [SOMValue, setSOMValue] = useState("")
-    const [CSPValue, setCSPValue] = useState("")
+    const [IntendedPricingValue, setIntendedPricingValue] = useState("")
     const [DailyExpbySOM, setDailyExpbySOM] = useState("")
     const [MonthlyExpbySOM, setMonthlyExpbySOM] = useState("")
     const [YearlyExpbySOM, setYearlyExpbySOM] = useState("")
@@ -68,7 +68,7 @@ function SOM() {
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showCSPIcon, setshowCSPIcon] = useState(false);
+    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
     const [showSOMIcon, setshowSOMIcon] = useState(false);
     const [showOpExIcon, setshowOpExIcon] = useState(false);
     const [showCapExIcon, setshowCapExIcon] = useState(false);
@@ -89,11 +89,11 @@ function SOM() {
         } else {
             window.alert("SAM not calulated please Complete previous step")
         }
-        let csp = localStorage.getItem("CSPValue")
-        if (csp) {
-            setCSPValue(csp)
+        let IntendedPricing = localStorage.getItem("IntendedPricingValue")
+        if (IntendedPricing) {
+            setIntendedPricingValue(IntendedPricing)
         } else {
-            window.alert("CSP not calulated please Complete previous step")
+            window.alert("IntendedPricing not calulated please Complete previous step")
         }
         let opdays = localStorage.getItem("OPdays")
         if (opdays) {
@@ -156,27 +156,27 @@ function SOM() {
             localStorage.setItem("SAMPercent", SAMPercent)
 
             // Calculate SOM values
-            let CSP = parseFloat(CSPValue)
+            let IntendedPricing = parseFloat(IntendedPricingValue)
             let SOM = (parseFloat(SAMPercent) / 100) * parseFloat(SAM)
             setSOMValue(SOM.toFixed(2))
             localStorage.setItem("SOM", SOM.toFixed(2))
 
-            let DailyExpSOM = (SOM * CSP).toFixed(2)
+            let DailyExpSOM = (SOM * IntendedPricing).toFixed(2)
             setDailyExpbySOM(DailyExpSOM.toString())
             localStorage.setItem("SOMDaily", DailyExpSOM)
 
-            let MonthlyExpSOM = (SOM * CSP * parseFloat(OPDays)).toFixed(2)
+            let MonthlyExpSOM = (SOM * IntendedPricing * parseFloat(OPDays)).toFixed(2)
             setMonthlyExpbySOM(MonthlyExpSOM.toString())
             localStorage.setItem("SOMMonthly", MonthlyExpSOM)
 
-            let YearlyExpSOM = (SOM * CSP * parseFloat(OPDays) * 12).toFixed(2)
+            let YearlyExpSOM = (SOM * IntendedPricing * parseFloat(OPDays) * 12).toFixed(2)
             setYearlyExpbySOM(YearlyExpSOM.toString())
             localStorage.setItem("SOMYearly", YearlyExpSOM)
 
             setdisplayExpbySOM(true)
             // savetoLocalStorage()
 
-            // Autoclick down arrow to go to next step when submitting CSPValue
+            // Autoclick down arrow to go to next step when submitting IntendedPricingValue
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
 
@@ -224,10 +224,10 @@ function SOM() {
             const SAMtotal = localStorage.getItem('SAM');
             if (SAMtotal) setshowSAMIcon(true)
 
-            // show CSP ICON
-            const CSPMonthly = localStorage.getItem('CSPMonthly')
+            // show IntendedPricing ICON
+            const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
             const OPdays = localStorage.getItem('OPdays')
-            if (CSPMonthly && OPdays) setshowCSPIcon(true)
+            if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
 
             // show SOM ICON
             const SOM = localStorage.getItem('SOM')
@@ -254,7 +254,7 @@ function SOM() {
             if (EMI) setshowFundingIcon(true)
 
             // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
             console.log("showNavIconIfData Error", error)
@@ -278,8 +278,8 @@ function SOM() {
                         {showSAMIcon && <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>}
-                        {showCSPIcon && <div className="Icon-div" data-label="CSP" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        {showIntendedPricingIcon && <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+                            <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
                         <div className='Icon-div' data-label='SOM'>
@@ -329,7 +329,7 @@ function SOM() {
                         </div>}
 
                     </div>
-                    <div className="csp-container">
+                    <div className="IntendedPricing-container">
                         <h1>Serviceable Obtainable Market</h1>
                         <table>
                             <tbody>
@@ -489,7 +489,7 @@ function SOM() {
                             </tbody>
                         </table>
                         {showSAMPercentInput &&
-                            <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>}
+                            <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitSAMPercent}>Submit SAM %</button>}
                     </div>
                     {FooterVisible &&
                         <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
@@ -510,8 +510,8 @@ function SOM() {
                         <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>
-                        <div className="Icon-div" data-label="CSP" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                        <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+                            <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
                         </div>
                         <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
                             <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
@@ -529,7 +529,7 @@ function SOM() {
                             <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
                         </div>
                     </div>
-                    <div className="csp-container">
+                    <div className="IntendedPricing-container">
                         <h1>Serviceable Obtainable Market</h1>
                         <table>
                             <tbody>
@@ -689,7 +689,7 @@ function SOM() {
                             </tbody>
                         </table>
 
-                        <button id='submitCSP' className='SubmitBTNCSP' onClick={submitSAMPercent}>Submit SAM %</button>
+                        <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitSAMPercent}>Submit SAM %</button>
                     </div>
                 </div>
             }

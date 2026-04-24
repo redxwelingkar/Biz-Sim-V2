@@ -9,7 +9,7 @@ import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
@@ -26,7 +26,7 @@ const Dashboard = () => {
         tam: 0,
         sam: 0,
         som: 0,
-        cspValue: 0,
+        IntendedPricingValue: 0,
         somMonthly: 0,
         somYearly: 0,
         opExTotal: 0,
@@ -44,7 +44,7 @@ const Dashboard = () => {
                 tam: parseFloat(localStorage.getItem("TAM") || "0"),
                 sam: parseFloat(localStorage.getItem("SAM") || "0"),
                 som: parseFloat(localStorage.getItem("SOM") || "0"),
-                cspValue: parseFloat(localStorage.getItem("CSPValue") || "0"),
+                IntendedPricingValue: parseFloat(localStorage.getItem("IntendedPricingValue") || "0"),
                 somMonthly: parseFloat(localStorage.getItem("SOMMonthly") || "0"),
                 somYearly: parseFloat(localStorage.getItem("SOMYearly") || "0"),
                 opExTotal: parseFloat(localStorage.getItem("OpExTotal") || "0"),
@@ -60,7 +60,7 @@ const Dashboard = () => {
                 tam: 0,
                 sam: 0,
                 som: 0,
-                cspValue: 0,
+                IntendedPricingValue: 0,
                 somMonthly: 0,
                 somYearly: 0,
                 opExTotal: 0,
@@ -75,7 +75,7 @@ const Dashboard = () => {
         tam,
         sam,
         som,
-        cspValue,
+        IntendedPricingValue,
         somMonthly,
         somYearly,
         opExTotal,
@@ -141,9 +141,9 @@ const Dashboard = () => {
                     <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                     <span className="icon-hover-label">SAM</span>
                 </div>
-                <div className="Icon-div" data-label="CSP" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
-                    <span className="icon-hover-label">CSP</span>
+                <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+                    <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
+                    <span className="icon-hover-label">Intended Pricing</span>
                 </div>
                 <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
                     <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
@@ -205,14 +205,14 @@ const Dashboard = () => {
                         </div>
                     </article>
 
-                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/csp')}>
+                    <article className="dash-card summary-card" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
                         <div>
-                            <p className="card-label">CSP</p>
-                            <p className="card-value">Rs {formatNumber(cspValue)}</p>
+                            <p className="card-label">Intended Pricing</p>
+                            <p className="card-value">Rs {formatNumber(IntendedPricingValue)}</p>
                             <p className="card-meta">per customer</p>
                         </div>
                         <div className="card-icon-shell">
-                            <img src={cspIcon} alt="CSP icon" className="CSP-Icon" />
+                            <img src={IntendedPricingIcon} alt="IntendedPricing icon" className="IntendedPricing-Icon" />
                         </div>
                     </article>
                 </section>

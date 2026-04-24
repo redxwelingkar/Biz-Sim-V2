@@ -11,7 +11,7 @@ import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
@@ -24,7 +24,7 @@ const TowardsSAM = () => {
 
   const [showTAMIcon, setshowTAMIcon] = useState(false);
   const [showSAMIcon, setshowSAMIcon] = useState(false);
-  const [showCSPIcon, setshowCSPIcon] = useState(false);
+  const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
   const [showSOMIcon, setshowSOMIcon] = useState(false);
   const [showOpExIcon, setshowOpExIcon] = useState(false);
   const [showCapExIcon, setshowCapExIcon] = useState(false);
@@ -47,10 +47,10 @@ const TowardsSAM = () => {
       const SAMtotal = localStorage.getItem('SAM');
       if (SAMtotal) setshowSAMIcon(true)
 
-      // show CSP ICON
-      const CSPMonthly = localStorage.getItem('CSPMonthly')
+      // show IntendedPricing ICON
+      const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
       const OPdays = localStorage.getItem('OPdays')
-      if (CSPMonthly && OPdays) setshowCSPIcon(true)
+      if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
 
       // show SOM ICON
       const SOM = localStorage.getItem('SOM')
@@ -74,7 +74,7 @@ const TowardsSAM = () => {
       if (EMI) setshowFundingIcon(true)
 
       // show dashboard ICON
-      if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && CSPMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+      if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
     } catch (error) {
       console.error("showNavIconIfData Error", error)
@@ -103,8 +103,8 @@ const TowardsSAM = () => {
         {showSAMIcon && <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
           <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
         </div>}
-        {showCSPIcon && <div className="Icon-div" data-label="CSP" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-          <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+        {showIntendedPricingIcon && <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+          <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
         </div>}
         {showSOMIcon && <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
           <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />

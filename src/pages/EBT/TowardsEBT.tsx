@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "../../css/TowardsEBT.css";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
@@ -29,8 +29,8 @@ const TowardsEBT = () => {
                 <div className="Icon-div" data-label="SAM">
                     <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 </div>
-                <div className="Icon-div" data-label="CSP">
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                <div className="Icon-div" data-label="IntendedPricing">
+                    <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
                 </div>
                 <div className="Icon-div" data-label="SOM">
                     <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />

@@ -8,7 +8,7 @@ import '../../css/OpEx.css'
 
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
-import cspIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
 import OpExIcon from "../../assets/img/OpEx-icon.png";
 import CapExIcon from "../../assets/img/CapEx-icon.png";
@@ -120,10 +120,10 @@ function OpEx_EMIDisplay() {
             setTimeout(() => {
                 setshowOpExIcon(true)
                 setTimeout(() => {
-                    // console.log("setshowCSPIconText(true)");
+                    // console.log("setshowIntendedPricingIconText(true)");
                     setshowOpExIconText(true)
                     setTimeout(() => {
-                        // console.log("setshowCSPIconText(false)");
+                        // console.log("setshowIntendedPricingIconText(false)");
                         setshowOpExIconText(false)
                     }, 1000 * 2.5);
                 }, 1000);
@@ -274,8 +274,8 @@ function OpEx_EMIDisplay() {
                 <div className='Icon-div' data-label='SAM'>
                     <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
                 </div>
-                <div className='Icon-div' data-label='CSP'>
-                    <img src={cspIcon} alt="CSP-Icon" className="CSP-Icon" />
+                <div className='Icon-div' data-label='IntendedPricing'>
+                    <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
                 </div>
                 <div className='Icon-div' data-label='SOM'>
                     <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />

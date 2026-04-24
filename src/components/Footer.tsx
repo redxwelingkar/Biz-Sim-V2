@@ -13,10 +13,10 @@ interface FooterProps {
   onNextSAMPercent?: () => void;
   onNextshowTAMIcon?: () => void;
   onNextshowSAMIcon?: () => void;
-  onNextshowCSPIcon?: () => void;
+  onNextshowIntendedPricingIcon?: () => void;
   onNextshowSOMIcon?: () => void;
   onNextNavtoSAM?: () => void;
-  onNextNavtoCSP?: () => void;
+  onNextNavtoIntendedPricing?: () => void;
   onNextNavtoSOM?: () => void;
   onNextNavtoCapEx?: () => void;
   onNextNavtoOpEx?: () => void;
@@ -35,13 +35,13 @@ const Footer = ({ onNext,
   onNextsizeofSAM,
   onNextOPDays,
   onNextSAMPercent,
-  onNextshowCSPIcon,
+  onNextshowIntendedPricingIcon,
   onNextshowSOMIcon,
   onNextshowCalSAMBTN,
   onNextshowSAMIcon,
   onNextshowTAMIcon,
   onNextNavtoSAM,
-  onNextNavtoCSP,
+  onNextNavtoIntendedPricing,
   onNextNavtoSOM,
   onNextNavtoOpEx,
   onNextNavtoCapEx,
@@ -119,7 +119,7 @@ const Footer = ({ onNext,
           onNextsizeofSAM(); // Call onNextsizeofSAM when dowm arrow click occurs on index 1
         }
         if (onNextOPDays) {
-          onNextOPDays(); // Call onNextCSP when dowm arrow click occurs on index 1
+          onNextOPDays(); // Call onNextIntendedPricing when dowm arrow click occurs on index 1
         }
         if (onNextShowWC) {
           onNextShowWC(); // Call onNextShowWC when dowm arrow click occurs on index 1
@@ -148,8 +148,8 @@ const Footer = ({ onNext,
         if (onNextshowSAMIcon) {
           onNextshowSAMIcon(); // Call onNextshowSAMIcon when dowm arrow click occurs on index 3
         }
-        if (onNextshowCSPIcon) {
-          onNextshowCSPIcon()// Call onNextshowCSPIcon when dowm arrow click occurs on index 3
+        if (onNextshowIntendedPricingIcon) {
+          onNextshowIntendedPricingIcon()// Call onNextshowIntendedPricingIcon when dowm arrow click occurs on index 3
         }
         // move to Towards EBT_WC
         if (onNextNavtowardsEBT_WC) {
@@ -174,7 +174,7 @@ const Footer = ({ onNext,
 
       }
       if (textIndex === 5) {
-        if (onNextNavtoCSP) onNextNavtoCSP()  // navigate to CSP Pages
+        if (onNextNavtoIntendedPricing) onNextNavtoIntendedPricing()  // navigate to IntendedPricing Pages
         if (onNextNavtoEMI) setdown_Arrow(true)
       }
 

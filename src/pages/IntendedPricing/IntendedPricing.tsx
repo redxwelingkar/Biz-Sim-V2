@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
-import "../../css/IntPricing.css";
+import "../../css/IntendedPricing.css";
 
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
@@ -16,7 +16,7 @@ import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
-import IntPricingIcon from "../../assets/img/csp-icon.png";
+import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
 import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
@@ -53,21 +53,21 @@ const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: stri
 
 function IntendedPricing() {
 
-    const [IntPricingValue, setIntPricingValue] = useState("")
-    const [IntPricingMonthly, setIntPricingMonthly] = useState("")
-    const [IntPricingYearly, setIntPricingYearly] = useState("")
+    const [IntendedPricingValue, setIntendedPricingValue] = useState("")
+    const [IntendedPricingMonthly, setIntendedPricingMonthly] = useState("")
+    const [IntendedPricingYearly, setIntendedPricingYearly] = useState("")
     const [DailyRevfromSAM, setDailyRevfromSAM] = useState("")
     const [displayOPDays, setdisplayOPDays] = useState(false)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("")
-    const [showIntPricingIconText, setshowIntPricingIconText] = useState(false);
+    const [showIntendedPricingIconText, setshowIntendedPricingIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
     const navigate = useNavigate()
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showIntPricingIcon, setshowIntPricingIcon] = useState(false);
+    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
     const [showSOMIcon, setshowSOMIcon] = useState(false);
     const [showOpExIcon, setshowOpExIcon] = useState(false);
     const [showCapExIcon, setshowCapExIcon] = useState(false);
@@ -90,21 +90,21 @@ function IntendedPricing() {
         // console.log("displayOPDays", displayOPDays)
 
         // check if values already exist and populate them
-        let IntPricingValueLS = localStorage.getItem("IntPricingValue")
+        let IntendedPricingValueLS = localStorage.getItem("IntendedPricingValue")
         let OPdaysLS = localStorage.getItem("OPdays")
-        let IntPricingMonthlyLS = localStorage.getItem("IntPricingMonthly")
-        let IntPricingYearlyLS = localStorage.getItem("IntPricingYearly")
+        let IntendedPricingMonthlyLS = localStorage.getItem("IntendedPricingMonthly")
+        let IntendedPricingYearlyLS = localStorage.getItem("IntendedPricingYearly")
 
-        if (IntPricingValueLS != null) {
-            setIntPricingValue(IntPricingValueLS)
-            if (sam) setDailyRevfromSAM((parseFloat(sam) * parseFloat(IntPricingValueLS)).toString())
+        if (IntendedPricingValueLS != null) {
+            setIntendedPricingValue(IntendedPricingValueLS)
+            if (sam) setDailyRevfromSAM((parseFloat(sam) * parseFloat(IntendedPricingValueLS)).toString())
         }
         if (OPdaysLS != null) {
             setOPDays(OPdaysLS)
             setdisplayOPDays(true)
         }
-        if (IntPricingMonthlyLS != null) setIntPricingMonthly(IntPricingMonthlyLS)
-        if (IntPricingYearlyLS != null) setIntPricingYearly(IntPricingYearlyLS)
+        if (IntendedPricingMonthlyLS != null) setIntendedPricingMonthly(IntendedPricingMonthlyLS)
+        if (IntendedPricingYearlyLS != null) setIntendedPricingYearly(IntendedPricingYearlyLS)
 
     }, []);
 
@@ -114,29 +114,29 @@ function IntendedPricing() {
 
     useEffect(() => {
 
-    }, [showIntPricingIcon])
+    }, [showIntendedPricingIcon])
 
-    function handleIntPricingChange(value: string) {
-        setIntPricingValue(value)
+    function handleIntendedPricingChange(value: string) {
+        setIntendedPricingValue(value)
     }
 
     function handleOPDaysChange(value: string) {
         setOPDays(value)
     }
 
-    function submitIntPricing() {
-        // Save / set IntPricingvalue in local storage
-        if (IntPricingValue || parseFloat(IntPricingValue) > 0) {
-            localStorage.setItem("IntPricingValue", IntPricingValue)
+    function submitIntendedPricing() {
+        // Save / set IntendedPricingvalue in local storage
+        if (IntendedPricingValue || parseFloat(IntendedPricingValue) > 0) {
+            localStorage.setItem("IntendedPricingValue", IntendedPricingValue)
 
-            // get SAM from localstorage and multiply it with IntPricingValue to get Daily Revenue from SAM Value
-            setDailyRevfromSAM((parseFloat(SAM) * parseFloat(IntPricingValue)).toString())
+            // get SAM from localstorage and multiply it with IntendedPricingValue to get Daily Revenue from SAM Value
+            setDailyRevfromSAM((parseFloat(SAM) * parseFloat(IntendedPricingValue)).toString())
 
-            // hide submitIntPricing BTN
-            let submitIntPricingBTN = document.getElementById("submitIntPricing")
-            if (submitIntPricingBTN) submitIntPricingBTN.hidden = true
+            // hide submitIntendedPricing BTN
+            let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
+            if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = true
 
-            // Autoclick down arrow to go to next step when submitting IntPricingValue
+            // Autoclick down arrow to go to next step when submitting IntendedPricingValue
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
         } else {
@@ -161,13 +161,13 @@ function IntendedPricing() {
 
             // calculate and save monthly revenue by SAM
             let SAMmonthlyRev = parseFloat(OPDays) * parseFloat(DailyRevfromSAM)
-            setIntPricingMonthly(SAMmonthlyRev.toString())
-            localStorage.setItem("IntPricingMonthly", SAMmonthlyRev.toString())
+            setIntendedPricingMonthly(SAMmonthlyRev.toString())
+            localStorage.setItem("IntendedPricingMonthly", SAMmonthlyRev.toString())
 
             // calculate and save Yearly revenue by SAM
             let SAMYearlyRev = SAMmonthlyRev * 12
-            setIntPricingYearly(SAMYearlyRev.toString())
-            localStorage.setItem("IntPricingYearly", SAMmonthlyRev.toString())
+            setIntendedPricingYearly(SAMYearlyRev.toString())
+            localStorage.setItem("IntendedPricingYearly", SAMmonthlyRev.toString())
 
             // Autoclick down arrow to go to next step when submitting OPdays Value
             let downArrow = document.getElementById("downArrow")
@@ -177,18 +177,18 @@ function IntendedPricing() {
         }
     }
 
-    function onNextshowIntPricingIcon() {
-        // console.log("onNextshowIntPricingIcon called");
+    function onNextshowIntendedPricingIcon() {
+        // console.log("onNextshowIntendedPricingIcon called");
         setTimeout(() => {
-            setshowIntPricingIcon(true)
+            setshowIntendedPricingIcon(true)
             setTimeout(() => {
-                // console.log("setshowIntPricingIconText(true)");
-                setshowIntPricingIconText(true)
+                // console.log("setshowIntendedPricingIconText(true)");
+                setshowIntendedPricingIconText(true)
                 setTimeout(() => {
-                    // console.log("setshowIntPricingIconText(false)");
-                    setshowIntPricingIconText(false)
+                    // console.log("setshowIntendedPricingIconText(false)");
+                    setshowIntendedPricingIconText(false)
                     // setTimeout(() => {
-                    //     // console.log("setshowIntPricingIconText(false)");
+                    //     // console.log("setshowIntendedPricingIconText(false)");
                     //     navigateToTowardsSOM()
                     // }, 1000 * 2);
                 }, 1000 * 2.5);
@@ -197,11 +197,11 @@ function IntendedPricing() {
 
     }
     const footerTexts = [
-        "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of IntPricing and click on \"SUBMIT\" or press \"Enter\".",
-        "Voila! What just popped up on the screen is \"Daily Revenue from SAM\", which gets calculated automatically by multiplying the value of Intended Pricing with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at IntPricing value in one day.",
+        "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of Intended Pricing and click on \"SUBMIT\" or press \"Enter\".",
+        "Voila! What just popped up on the screen is \"Daily Revenue from SAM\", which gets calculated automatically by multiplying the value of Intended Pricing with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at Intended Pricing value in one day.",
         "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against \"No. of Operational Days\" and click on \"SUBMIT\" or press \"Enter\".",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
-        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to IntPricing if you want to make any changes later.",
+        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to Intended Pricing if you want to make any changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""
 
@@ -221,11 +221,11 @@ function IntendedPricing() {
             const SAMtotal = localStorage.getItem('SAM');
             if (SAMtotal) setshowSAMIcon(true)
 
-            // show IntPricing ICON
-            const IntPricingMonthly = localStorage.getItem('IntPricingMonthly')
+            // show IntendedPricing ICON
+            const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
             const OPdays = localStorage.getItem('OPdays')
-            if (IntPricingMonthly && OPdays) {
-                setshowIntPricingIcon(true)
+            if (IntendedPricingMonthly && OPdays) {
+                setshowIntendedPricingIcon(true)
                 setFooterVisible(false)
 
             }
@@ -252,7 +252,7 @@ function IntendedPricing() {
             if (EMI) setshowFundingIcon(true)
 
             // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
+            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
             console.log("showNavIconIfData Error", error)
@@ -277,15 +277,15 @@ function IntendedPricing() {
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>}
                         {/* Animate the icon entry */}
-                        <div className='Icon-div' data-label='IntPricing'>
+                        <div className='Icon-div' data-label='IntendedPricing'>
                             <AnimatePresence mode="wait">
-                                {showIntPricingIcon ? (
+                                {showIntendedPricingIcon ? (
 
                                     <motion.img
-                                        key="IntPricing-img"
-                                        src={IntPricingIcon}
-                                        alt="IntPricing-Icon" title="IntPricing"
-                                        className="IntPricing-Icon"
+                                        key="IntendedPricing-img"
+                                        src={IntendedPricingIcon}
+                                        alt="IntendedPricing-Icon" title="IntendedPricing"
+                                        className="IntendedPricing-Icon"
                                         initial={{ opacity: 0, x: -50 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -50 }}
@@ -296,9 +296,9 @@ function IntendedPricing() {
                             </AnimatePresence>
                             {/* Animate the text entry/exit */}
                             <AnimatePresence mode="wait">
-                                {showIntPricingIconText && (
+                                {showIntendedPricingIconText && (
                                     <motion.span
-                                        key="IntPricing-Icon-Text"
+                                        key="IntendedPricing-Icon-Text"
                                         initial={{ opacity: 0, x: -100 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -100 }}
@@ -326,7 +326,7 @@ function IntendedPricing() {
                             <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
                         </div>}
                     </div>
-                    <div className="csp-container">
+                    <div className="IntendedPricing-container">
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
@@ -336,22 +336,22 @@ function IntendedPricing() {
                                     </td>
                                     <td>
                                         <div
-                                            onMouseEnter={() => setisHoveredRow("IntPricingValueWords")}
+                                            onMouseEnter={() => setisHoveredRow("IntendedPricingValueWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
                                             <CustomTextField
-                                                value={IntPricingValue}
+                                                value={IntendedPricingValue}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 min={0}
                                                 label='per customer / product'
-                                                onChange={(value) => handleIntPricingChange(value)} />
+                                                onChange={(value) => handleIntendedPricingChange(value)} />
                                         </div>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "IntPricingValueWords" &&
-                                            <Slide keyName='IntPricingValueWords'>
-                                                <NumberToWords value={IntPricingValue} />
+                                        {isHoveredRow === "IntendedPricingValueWords" &&
+                                            <Slide keyName='IntendedPricingValueWords'>
+                                                <NumberToWords value={IntendedPricingValue} />
                                             </Slide>
                                         }
                                     </td>
@@ -411,64 +411,64 @@ function IntendedPricing() {
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {IntPricingMonthly &&
+                                {IntendedPricingMonthly &&
                                     <tr>
                                         <td>
-                                            <PopUp keyName='IntPricingMonthlyHeader'>
+                                            <PopUp keyName='IntendedPricingMonthlyHeader'>
                                                 <p>Monthly Revenue from SAM</p>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            <PopUp keyName='IntPricingMonthly'>
+                                            <PopUp keyName='IntendedPricingMonthly'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("IntPricingMonthlyWords")}
+                                                    onMouseEnter={() => setisHoveredRow("IntendedPricingMonthlyWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay value={IntPricingMonthly} label='per month' />
+                                                    <TextDisplay value={IntendedPricingMonthly} label='per month' />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "IntPricingMonthlyWords" &&
-                                                <Slide keyName='IntPricingMonthlyWords'>
-                                                    <NumberToWords value={IntPricingMonthly} />
+                                            {isHoveredRow === "IntendedPricingMonthlyWords" &&
+                                                <Slide keyName='IntendedPricingMonthlyWords'>
+                                                    <NumberToWords value={IntendedPricingMonthly} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {IntPricingYearly &&
+                                {IntendedPricingYearly &&
                                     <tr>
                                         <td>
-                                            <PopUp keyName='IntPricingYearlyHeader'>
+                                            <PopUp keyName='IntendedPricingYearlyHeader'>
                                                 <p>Yearly Revenue from SAM </p>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            <PopUp keyName='IntPricingYearly'>
+                                            <PopUp keyName='IntendedPricingYearly'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("IntPricingYearlyWords")}
+                                                    onMouseEnter={() => setisHoveredRow("IntendedPricingYearlyWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay value={IntPricingYearly} label='per year' />
+                                                    <TextDisplay value={IntendedPricingYearly} label='per year' />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "IntPricingYearlyWords" &&
-                                                <Slide keyName='IntPricingYearlyWords'>
-                                                    <NumberToWords value={IntPricingYearly} />
+                                            {isHoveredRow === "IntendedPricingYearlyWords" &&
+                                                <Slide keyName='IntendedPricingYearlyWords'>
+                                                    <NumberToWords value={IntendedPricingYearly} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
                             </tbody>
                         </table>
-                        <button id='submitIntPricing' className='SubmitBTNIntPricing' onClick={submitIntPricing}>Submit Intended Pricing</button>
-                        {/* {DailyExpbySAM && displayOPDays && IntPricingMonthly && IntPricingYearly &&
-                            <button id='submitOPdays' className='SubmitBTNIntPricing' onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitIntendedPricing}>Submit Intended Pricing</button>
+                        {/* {DailyExpbySAM && displayOPDays && IntendedPricingMonthly && IntendedPricingYearly &&
+                            <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>
                         } */}
-                        <button id='submitOPdays' className='SubmitBTNIntPricing' hidden onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitOPdays' className='SubmitBTNIntendedPricing' hidden onClick={submitOPdays}>Submit OP</button>
                     </div>
                     {FooterVisible &&
-                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowCSPIcon={onNextshowIntPricingIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
+                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowIntendedPricingIcon={onNextshowIntendedPricingIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
                 </div>
                 :
                 // TutorialMode=False
@@ -485,8 +485,8 @@ function IntendedPricing() {
                         <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
                             <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                         </div>
-                        <div className="Icon-div" data-label="IntPricing" onClick={() => navigate('/Biz-Sim-V2/csp')}>
-                            <img src={IntPricingIcon} alt="IntPricing-Icon" title="IntPricing" className="CSP-Icon" />
+                        <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+                            <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" title="IntendedPricing" className="IntendedPricing-Icon" />
                         </div>
                         <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
                             <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
@@ -504,7 +504,7 @@ function IntendedPricing() {
                             <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
                         </div>
                     </div>
-                    <div className="csp-container vh-90">
+                    <div className="IntendedPricing-container vh-90">
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
@@ -514,22 +514,22 @@ function IntendedPricing() {
                                     </td>
                                     <td>
                                         <div
-                                            onMouseEnter={() => setisHoveredRow("IntPricingValueWords")}
+                                            onMouseEnter={() => setisHoveredRow("IntendedPricingValueWords")}
                                             onMouseLeave={() => setisHoveredRow("")}
                                         >
                                             <CustomTextField
-                                                value={IntPricingValue}
+                                                value={IntendedPricingValue}
                                                 type='number'
                                                 placeholder='Enter Value'
                                                 min={0}
                                                 label='per customer / product'
-                                                onChange={(value) => handleIntPricingChange(value)} />
+                                                onChange={(value) => handleIntendedPricingChange(value)} />
                                         </div>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "IntPricingValueWords" &&
-                                            <Slide keyName='IntPricingValueWords'>
-                                                <NumberToWords value={IntPricingValue} />
+                                        {isHoveredRow === "IntendedPricingValueWords" &&
+                                            <Slide keyName='IntendedPricingValueWords'>
+                                                <NumberToWords value={IntendedPricingValue} />
                                             </Slide>
                                         }
                                     </td>
@@ -592,55 +592,55 @@ function IntendedPricing() {
 
                                 <tr>
                                     <td>
-                                        <PopUp keyName='IntPricingMonthlyHeader'>
+                                        <PopUp keyName='IntendedPricingMonthlyHeader'>
                                             <p>Monthly Revenue from SAM</p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='IntPricingMonthly'>
+                                        <PopUp keyName='IntendedPricingMonthly'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("IntPricingMonthlyWords")}
+                                                onMouseEnter={() => setisHoveredRow("IntendedPricingMonthlyWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay value={IntPricingMonthly} label='per month' />
+                                                <TextDisplay value={IntendedPricingMonthly} label='per month' />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "IntPricingMonthlyWords" &&
-                                            <Slide keyName='IntPricingMonthlyWords'>
-                                                <NumberToWords value={IntPricingMonthly} />
+                                        {isHoveredRow === "IntendedPricingMonthlyWords" &&
+                                            <Slide keyName='IntendedPricingMonthlyWords'>
+                                                <NumberToWords value={IntendedPricingMonthly} />
                                             </Slide>}
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <PopUp keyName='IntPricingYearlyHeader'>
+                                        <PopUp keyName='IntendedPricingYearlyHeader'>
                                             <p>Yearly Revenue from SAM </p>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        <PopUp keyName='IntPricingYearly'>
+                                        <PopUp keyName='IntendedPricingYearly'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("IntPricingYearlyWords")}
+                                                onMouseEnter={() => setisHoveredRow("IntendedPricingYearlyWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay value={IntPricingYearly} label='per year' />
+                                                <TextDisplay value={IntendedPricingYearly} label='per year' />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "IntPricingYearlyWords" &&
-                                            <Slide keyName='IntPricingYearlyWords'>
-                                                <NumberToWords value={IntPricingYearly} />
+                                        {isHoveredRow === "IntendedPricingYearlyWords" &&
+                                            <Slide keyName='IntendedPricingYearlyWords'>
+                                                <NumberToWords value={IntendedPricingYearly} />
                                             </Slide>}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button id='submitIntPricing' className='SubmitBTNIntPricing' onClick={submitIntPricing}>Submit Intended Pricing</button>
-                        <button id='submitOPdays' className='SubmitBTNIntPricing' onClick={submitOPdays}>Submit OP</button>
+                        <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitIntendedPricing}>Submit Intended Pricing</button>
+                        <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>
                     </div>
                 </div>
             }

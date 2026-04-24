@@ -7,8 +7,8 @@ import TAMCalc from "./pages/TAM/TAMCalculation";
 import TowardsSAM from "./pages/SAM/TowardsSAM";
 import GreetingsPage from "./pages/GreetingsPage";
 import SAMCalc from "./pages/SAM/SAMCalculation";
-import TowardsCSP from "./pages/CSP/TowardsCSP";
-import IntendedPricing from "./pages/CSP/IntendedPricing";
+import TowardsIntendedPricing from "./pages/IntendedPricing/TowardsIntendedPricing";
+import IntendedPricing from "./pages/IntendedPricing/IntendedPricing";
 import TowardsSOM from "./pages/SOM/TowardsSOM";
 import SOM from "./pages/SOM/SOM";
 import TowardsOpEx from "./pages/OpEx/TowardsOpEx";
@@ -34,8 +34,8 @@ function App() {
           <Route path="/Biz-Sim-V2/tam-calculation" element={<TAMCalc />} />
           <Route path="/Biz-Sim-V2/towards-sam" element={<TowardsSAM />} />
           <Route path="/Biz-Sim-V2/sam-calculation" element={<SAMCalc />} />
-          <Route path="/Biz-Sim-V2/towards-csp" element={<TowardsCSP />} />
-          <Route path="/Biz-Sim-V2/csp" element={<IntendedPricing />} />
+          <Route path="/Biz-Sim-V2/towards-IntendedPricing" element={<TowardsIntendedPricing />} />
+          <Route path="/Biz-Sim-V2/IntendedPricing" element={<IntendedPricing />} />
           <Route path="/Biz-Sim-V2/towards-som" element={<TowardsSOM />} />
           <Route path="/Biz-Sim-V2/som" element={<SOM />} />
           <Route path="/Biz-Sim-V2/towards-opex" element={<TowardsOpEx />} />
@@ -88,6 +88,8 @@ TODO Bugs: OPEX Page = Number to words spacing for total OPEX
 TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
 TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
 TODO Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
+TODO Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
+TODO Bugs: Towards SOM Pages = YES / NO
 
 
 TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
@@ -99,6 +101,7 @@ TODO Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist al
 TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
 TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
 TODO Feature: Funding Page = Total funding Number towards below Member text
+Done Feature: Change CSP to Intended Pricing
 
 
 */

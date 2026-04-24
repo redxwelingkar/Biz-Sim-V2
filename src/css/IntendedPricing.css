@@ -1,4 +1,4 @@
-.csp-container {
+.IntendedPricing-container {
     width: 100%;
     text-align: center;
     display: flex;
@@ -10,25 +10,25 @@
     max-height: 71vh;
 }
 
-.csp-container::-webkit-scrollbar {
+.IntendedPricing-container::-webkit-scrollbar {
     width: 5px;
     /* Width of the scrollbar */
 }
 
-.csp-container::-webkit-scrollbar-thumb {
+.IntendedPricing-container::-webkit-scrollbar-thumb {
     background-color: #744c9b;
     /* Color of the scrollbar thumb */
     border-radius: 3px;
     /* Rounded edges for the scrollbar thumb */
 }
 
-.csp-container::-webkit-scrollbar-track {
+.IntendedPricing-container::-webkit-scrollbar-track {
     background: transparent;
     /* Transparent track */
 }
 
 
-.csp-container h1 {
+.IntendedPricing-container h1 {
     margin-top: 10px;
     color: #FFF;
     text-align: center;
@@ -39,7 +39,7 @@
     line-height: normal;
 }
 
-.csp-container p {
+.IntendedPricing-container p {
     color: #FFF;
     font-family: "Open Sans";
     font-size: 28px;
@@ -51,17 +51,17 @@
     text-align: left;
 }
 
-.csp-container td {
+.IntendedPricing-container td {
     vertical-align: bottom;
 }
 
-.csp-container td:nth-child(3) {
+.IntendedPricing-container td:nth-child(3) {
     width: 300px;
     /* Width for size in words column */
 }
 
 
-.SubmitBTNCSP {
+.SubmitBTNIntendedPricing {
     margin-top: 2rem;
 }
 

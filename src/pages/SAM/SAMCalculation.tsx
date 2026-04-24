@@ -45,10 +45,10 @@ const SAMCalc = () => {
     }
   }, [])
 
-  const handleNavToCSP = () => {
-    let CSPMonthly = localStorage.getItem("CSPMonthly")
-    if (CSPMonthly) navigate('/Biz-Sim-V2/csp');
-    else navigate('/Biz-Sim-V2/towards-csp');
+  const handleNavToIntendedPricing = () => {
+    let IntendedPricingMonthly = localStorage.getItem("IntendedPricingMonthly")
+    if (IntendedPricingMonthly) navigate('/Biz-Sim-V2/IntendedPricing');
+    else navigate('/Biz-Sim-V2/towards-IntendedPricing');
   }
 
   const footerTexts = [
@@ -105,7 +105,7 @@ const SAMCalc = () => {
               onNextsizeofSAM={onNextsizeofSAM}
               onNextshowCalSAMBTN={onNextshowCalSAMBTN}
               onNextshowSAMIcon={onNextshowSAMIcon}
-              onNextNavtoCSP={handleNavToCSP}
+              onNextNavtoIntendedPricing={handleNavToIntendedPricing}
               CalSAMBTNclick={CalSAMBTNclick}
               texts={footerTexts} />}
           {/* <button onClick={navigateNext}>NEXT</button> */}
