@@ -120,12 +120,12 @@ const TowardsEBT = () => {
                             <p
                                 className={`transition-items text-two ${visibleStates[0] ? "visible" : ""}`}
                             >
-                                Now that we've estimated the revenue and expenses, the system can automatically calculate the business's Earnings Before Tax (EBT) by subtracting monthly operational expenses (OpEx) from the monthly sales (SOM).
+                                Now that we've estimated the revenue and expenses, the simulation can automatically calculate the business's Earnings Before Tax (EBT) by subtracting monthly operational expenses (OpEx) from the monthly sales (SOM).
                             </p>
                             <p
                                 className={`transition-items text-two ${visibleStates[1] ? "visible" : ""}`}
                             >
-                                Once the system gives us an approx EBT, we will then calculate the funds needed to start the business and sustain it for the initial months - this is what we call "Working Capital."
+                                Once the simulation gives us an approx EBT, we will then calculate the funds needed to start the business and sustain it for the initial months - this is what we call "Working Capital."
                             </p>
                             <p
                                 className={`transition-items towardsEBT-question ${visibleStates[2] ? "visible" : ""}`}

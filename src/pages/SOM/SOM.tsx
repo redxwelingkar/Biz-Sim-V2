@@ -417,7 +417,7 @@ function SOM() {
                                     <tr>
                                         <td>
                                             <PopUp keyName='DailySOMHeader'>
-                                                <p>Daily Expenditure by SOM</p>
+                                                <p>Daily Revenue from SOM</p>
                                             </PopUp>
                                         </td>
                                         <td>
@@ -441,7 +441,7 @@ function SOM() {
                                     <tr>
                                         <td>
                                             <PopUp keyName='MonthlySOMHeader'>
-                                                <p>Monthly Expenditure by SOM</p>
+                                                <p>Monthly Revenue from SOM</p>
                                             </PopUp>
                                         </td>
                                         <td>
@@ -465,7 +465,7 @@ function SOM() {
                                     <tr>
                                         <td>
                                             <PopUp keyName='YearlySOMHeader'>
-                                                <p>Monthly Expenditure by SOM</p>
+                                                <p>Yearly Revenue from SOM</p>
                                             </PopUp>
                                         </td>
                                         <td>
@@ -617,7 +617,7 @@ function SOM() {
                                 <tr>
                                     <td>
                                         <PopUp keyName='DailySOMHeader'>
-                                            <p>Daily Expenditure by SOM</p>
+                                            <p>Daily Revenue from SOM</p>
                                         </PopUp>
                                     </td>
                                     <td>
@@ -641,7 +641,7 @@ function SOM() {
                                 <tr>
                                     <td>
                                         <PopUp keyName='MonthlySOMHeader'>
-                                            <p>Monthly Expenditure by SOM</p>
+                                            <p>Monthly Revenue from SOM</p>
                                         </PopUp>
                                     </td>
                                     <td>
@@ -665,7 +665,7 @@ function SOM() {
                                 <tr>
                                     <td>
                                         <PopUp keyName='YearlySOMHeader'>
-                                            <p>Monthly Expenditure by SOM</p>
+                                            <p>Monthly Revenue from SOM</p>
                                         </PopUp>
                                     </td>
                                     <td>

@@ -212,9 +212,9 @@ function EBT_WC() {
 
 
     const footerTexts = [
-        "Here in this section, the system will automatically calculate your monthly Earnings Before Tax (EBT) based on the earlier data,  by subtracting monthly operational expenses (OpEx) from the monthly sales obtained from the Serviceable Obtainable Market (SOM). The field is uneditable and will only change if there's a change in the operational expenditure or sales from SOM.",
-        "Now to calculate the working capital the system will use the earlier calculated data on Capital Expenditure (CapEx) and Operational Expenditure (OpEx) the you wil have to enter the number of months for which those values should be considered, this represents the assumption that your business needs to sustain itself for that duration, after which it'll start making actual profit over the investment.",
-        "Now enter the number of months in the provided field and press \"Enter\", the system will immediately calculate the working capital for the entered number of months.",
+        "Here in this section, the simulation will automatically calculate your monthly Earnings Before Tax (EBT) based on the earlier data,  by subtracting monthly operational expenses (OpEx) from the monthly sales obtained from the Serviceable Obtainable Market (SOM). The field is uneditable and will only change if there's a change in the operational expenditure or sales from SOM.",
+        "Now to calculate the working capital the simulation will use the earlier calculated data on Capital Expenditure (CapEx) and Operational Expenditure (OpEx) the you wil have to enter the number of months for which those values should be considered, this represents the assumption that your business needs to sustain itself for that duration, after which it'll start making actual profit over the investment.",
+        "Now enter the number of months in the provided field and press \"Enter\", the simulation will immediately calculate the working capital for the entered number of months.",
         "Click on \"SAVE DETAILS\" to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""

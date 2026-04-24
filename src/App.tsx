@@ -75,11 +75,11 @@ Done Grammar and Text: TAM Page Footer text = there in TAR, → To estimate the 
 Done Grammar and Text: TAM Page Header text = Estimate the Total Adds Market TAM, same for SAM pages
 Done Grammar and Text: TAM Page Footer text = right side bar ⇒ left side bar
 Done Grammar and Text: CSP Page Header text = Header → Intended pricing
-TODO Grammar and Text: CSP Page text = Monthly Exp by SAM → Monthy Revenue from SAM
-TODO Grammar and Text: SOM Page text = Month → Yearly som
-TODO Grammar and Text: SOM Page text = Monthly revenue from Customer
-TODO Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when
-TODO Grammar and Text: EBT towards text = "system" ⇒ simulation
+Done Grammar and Text: CSP Page text = Monthly Exp by SAM → Monthy Revenue from SAM
+Done Grammar and Text: SOM Page text = Month → Yearly som
+Done Grammar and Text: SOM Page text = Monthly revenue from Customer
+Done Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when
+Done Grammar and Text: EBT towards text = "system" ⇒ simulation
 TODO Grammar and Text: Remove technical jargain but keep in Footer.
 
 
@@ -92,6 +92,7 @@ TODO Bugs: All Pages = add space at the bottom of last element on the page to co
 // TODO Bugs: Towards SOM Pages = YES / NO
 
 
+TODO Feature: All Pages = remove up and down arrows from text boxes
 TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
 TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
 TODO Feature: Number to words should be sidebyside with number cell always
