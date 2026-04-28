@@ -98,7 +98,7 @@ TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
 TODO Feature: Number to words should be sidebyside with number cell always
 TODO Feature: keep Blinking the down arrow 'All times
 TODO Feature: Enter Button on Keyboard will do something as down arrow
-TODO Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist all pages, completed step nav-icon glows
+Doing Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist all pages, completed step nav-icon glows
 // TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
 TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
 TODO Feature: Funding Page = Total funding Number towards below Member text
