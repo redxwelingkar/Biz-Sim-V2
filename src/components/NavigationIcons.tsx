@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+import "../css/NavigationIcons.css"
+
 import DashboardIcon from "../assets/img/DashB-Icon.png";
 import tamIcon from "../assets/img/tam-icon.png";
 import samIcon from "../assets/img/sam-icon.png";

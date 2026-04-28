@@ -19,6 +19,7 @@ import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
 import { useNavigate } from 'react-router-dom';
 import TextDisplay from '../../components/TextDisplay';
+import NavigationIcons from '../../components/NavigationIcons';
 
 const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
     <AnimatePresence mode="wait">
@@ -267,65 +268,7 @@ function OpEx_EMIDisplay() {
             <div id='screen-cover'></div>
             <Header />
             <BackButton topOffset='10vh' />
-            <div className='indicatorIcon-container'>
-                <div className='Icon-div' data-label='TAM'>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' data-label='SAM'>
-                    <img src={samIcon} alt="SAM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' data-label='IntendedPricing'>
-                    <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
-                </div>
-                <div className='Icon-div' data-label='SOM'>
-                    <img src={somIcon} alt="SOM-Icon" className="Tam-Icon" />
-                </div>
-                <div className='Icon-div' data-label='OpEx'>
-                    <img src={OpExIcon} alt="OpEx-Icon" className="EBT-Icon" />
-                </div>
-                <div className='Icon-div' data-label='CapEx'>
-                    <img src={CapExIcon} alt="CapEx-Icon" className="SOM-Icon" />
-                </div>
-                <div className='Icon-div' data-label='EBT & WC'>
-                    <img src={EBTWCIcon} alt="CapEx-Icon" className="EBT-Icon" />
-                </div>
-                <div className='Icon-div' data-label='Funding'>
-                    <img src={FundingIcon} alt="CapEx-Icon" className="EBT-Icon" />
-                </div>
-                {/* Animate the icon entry */}
-                <div className='Icon-div' data-label='OpEx'>
-                    <AnimatePresence mode="wait">
-                        {showOpExIcon ? (
-
-                            <motion.img
-                                key="OpEx-img"
-                                src={OpExIcon}
-                                alt="OpEx-Icon" title="OpEx"
-                                className="SOM-Icon"
-                                initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
-                                transition={{ duration: 1 }}
-                            />
-
-                        ) : <div></div>}
-                    </AnimatePresence>
-                    {/* Animate the text entry/exit */}
-                    <AnimatePresence mode="wait">
-                        {showOpExIconText && (
-                            <motion.span
-                                key="OpEx-Icon-Text"
-                                initial={{ opacity: 0, x: -100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -100 }}
-                                transition={{ duration: 1 }}
-                            >
-                                Operational Expenditure
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
+            <NavigationIcons/>
             <div className="table-container opex-table-container">
                 <h1>Operational Expenditure</h1>
                 <table className="table">
