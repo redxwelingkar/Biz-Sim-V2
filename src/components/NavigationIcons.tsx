@@ -24,6 +24,8 @@ function NavigationIcons() {
     const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
     const [showFundingIcon, setshowFundingIcon] = useState(false);
     const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
+    const [TutorialMode, setTutorialMode] = useState(false);
+
 
     const navigate = useNavigate();
 
@@ -32,6 +34,11 @@ function NavigationIcons() {
         // console.log("showNavIconIfData", window.location.href.split("/").includes("sam-calculation"));
 
         try {
+
+            // TutorialMode
+            const Tutorialmode = localStorage.getItem('TutorialMode')
+            if (Tutorialmode == "true") setTutorialMode(true)
+
             // show TAM ICON
             const TAMtotal = localStorage.getItem('TAM');
             if (TAMtotal) setshowTAMIcon(true)
@@ -81,47 +88,56 @@ function NavigationIcons() {
 
     return (
         <div className="indicatorIcon-container">
-            <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
+            <div className="Icon-div" data-label="Dashboard"
+                onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
                 <div className={showDashBoardIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
                 <span className="icon-hover-label">Dashboard</span>
             </div>
-            <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
+            <div className="Icon-div" data-label="TAM"
+                onClick={() => { TutorialMode && !showTAMIcon1 ? navigate('/Biz-Sim-V2/towards-tam') : navigate('/Biz-Sim-V2/tam-calculation') }}>
                 <div className={showTAMIcon1 ? "bar" : "bar opacity-0"}></div>
                 <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
                 <span className="icon-hover-label">TAM</span>
             </div>
-            <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
+            <div className="Icon-div" data-label="SAM"
+                onClick={() => { TutorialMode && !showSAMIcon1 ? navigate('/Biz-Sim-V2/towards-sam') : navigate('/Biz-Sim-V2/sam-calculation') }}>
                 <div className={showSAMIcon1 ? "bar" : "bar opacity-0"}></div>
                 <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
                 <span className="icon-hover-label">SAM</span>
             </div>
-            <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
+            <div className="Icon-div" data-label="IntendedPricing"
+                onClick={() => { TutorialMode && !showIntendedPricingIcon ? navigate('/Biz-Sim-V2/towards-IntendedPricing') : navigate('/Biz-Sim-V2/IntendedPricing') }}>
                 <div className={showIntendedPricingIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
                 <span className="icon-hover-label">Intended Pricing</span>
             </div>
-            <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
+            <div className="Icon-div" data-label="SOM"
+                onClick={() => { TutorialMode && !showSOMIcon ? navigate('/Biz-Sim-V2/towards-som') : navigate('/Biz-Sim-V2/som') }}>
                 <div className={showSOMIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
                 <span className="icon-hover-label">SOM</span>
             </div>
-            <div className="Icon-div" data-label="OpEx" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
+            <div className="Icon-div" data-label="OpEx"
+                onClick={() => { TutorialMode && !showOpExIcon ? navigate('/Biz-Sim-V2/towards-opex') : navigate('/Biz-Sim-V2/opex-calculation') }}>
                 <div className={showOpExIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
                 <span className="icon-hover-label">OpEx</span>
             </div>
-            <div className="Icon-div" data-label="CapEx" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
+            <div className="Icon-div" data-label="CapEx"
+                onClick={() => { TutorialMode && !showCapExIcon ? navigate('/Biz-Sim-V2/towards-capex') : navigate('/Biz-Sim-V2/capex-calculation') }}>
                 <div className={showCapExIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
                 <span className="icon-hover-label">CapEx</span>
             </div>
-            <div className="Icon-div" data-label="EBT & WC" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
+            <div className="Icon-div" data-label="EBT & WC"
+                onClick={() => { TutorialMode && !showEBTWCIcon ? navigate('/Biz-Sim-V2/towards-ebt-wc') : navigate('/Biz-Sim-V2/EBT_WC-calculation') }}>
                 <div className={showEBTWCIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
                 <span className="icon-hover-label">EBT &amp; WC</span>
             </div>
-            <div className="Icon-div" data-label="Funding" onClick={() => navigate('/Biz-Sim-V2/funding')}>
+            <div className="Icon-div" data-label="Funding"
+                onClick={() => { TutorialMode && !showFundingIcon ? navigate('/Biz-Sim-V2/towards-funding') : navigate('/Biz-Sim-V2/funding') }}>
                 <div className={showFundingIcon ? "bar" : "bar opacity-0"}></div>
                 <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
                 <span className="icon-hover-label">Funding</span>
