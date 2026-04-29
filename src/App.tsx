@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 import BeginPage from "./pages/BeginPage";
 import BusinessName from "./pages/BusinessName";
@@ -23,6 +24,43 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import OpEx_EMIDisplay from "./pages/OpEx/OpEx-EMIDisplay";
 
 function App() {
+  useEffect(() => {
+    const setOff = (el: HTMLInputElement) => {
+      if (!el) return;
+      el.autocomplete = "off";
+      el.setAttribute("autocomplete", "off");
+      el.setAttribute("autocorrect", "off");
+      el.setAttribute("autocapitalize", "off");
+      el.setAttribute("spellcheck", "false");
+    };
+
+    const setForm = (f: HTMLFormElement) => {
+      if (!f) return;
+      f.setAttribute("autocomplete", "off");
+    };
+
+    // Initial scan
+    document.querySelectorAll('input').forEach(i => setOff(i as HTMLInputElement));
+    document.querySelectorAll('form').forEach(f => setForm(f as HTMLFormElement));
+
+    const mo = new MutationObserver(mutations => {
+      mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (node instanceof HTMLElement) {
+            if (node.tagName === 'INPUT') setOff(node as HTMLInputElement);
+            if (node.tagName === 'FORM') setForm(node as HTMLFormElement);
+
+            // Use optional chaining for querySelectorAll
+            node.querySelectorAll?.('input').forEach(i => setOff(i as HTMLInputElement));
+            node.querySelectorAll?.('form').forEach(f => setForm(f as HTMLFormElement));
+          }
+        });
+      });
+    });
+
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => mo.disconnect();
+  }, []);
   return (
     <>
       <BrowserRouter>
@@ -92,9 +130,9 @@ TODO Bugs: All Pages = add space at the bottom of last element on the page to co
 // TODO Bugs: Towards SOM Pages = YES / NO
 
 
-TODO Feature: All Pages = remove up and down arrows from text boxes
+// TODO Feature: All Pages = remove up and down arrows from text boxes
 TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
-TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
+// TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
 TODO Feature: Number to words should be sidebyside with number cell always
 TODO Feature: keep Blinking the down arrow 'All times
 TODO Feature: Enter Button on Keyboard will do something as down arrow
