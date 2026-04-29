@@ -56,11 +56,11 @@ const CustomTextField = ({ value, onChange, max, min, label, type, placeholder }
                 onFocus={handleFocus}
                 className={value ? 'value-entered' : ''}
             />
-            {value && (
+            {/* {value && (
                 <span onClick={handleClear} className="clear-icon clear-icon-left">
                     x
                 </span>
-            )}
+            )} */}
         </div>
     );
 };
