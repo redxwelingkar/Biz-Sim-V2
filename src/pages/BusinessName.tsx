@@ -39,7 +39,6 @@ function BusinessName() {
 
   return (
     <div className="businessName-container">
-      <BackButton />
       <TransitionWrapper delays={[1000, 3000, 4500]}>
         {([showFirstText, showSecondText, showInput]) => (
           <>

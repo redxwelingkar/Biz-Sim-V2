@@ -208,7 +208,8 @@ const Footer = ({ onNext,
         </button>
         <button
           id='downArrow'
-          className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : ''}`}
+          // className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : ''}`}
+          className={`footer-icon  ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : 'blink'}`}
           onClick={handleDownArrowClick}
           disabled={down_Arrow || textIndex === texts.length - 1}
         >

@@ -28,7 +28,6 @@ function GreetingsPage() {
 
   return (
     <div className="greetingsPage">
-      <BackButton />
       <TransitionWrapper delays={[1000, 2000, 3500]}>
         {([showFirstText, showSecondText, showButtonsAndImage]) => (
           <>
