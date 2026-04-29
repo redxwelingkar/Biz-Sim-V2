@@ -4,6 +4,7 @@ import '../../css/TotalAddrMarket.css';
 import BackButton from '../../components/BackButton';
 import Avatar from '../../components/Avatar';
 import TransitionWrapper from '../../components/TransitionWrapper'; // Import the new component
+import NavigationIcons from '../../components/NavigationIcons';
 
 function TotalAddrMarket() {
   const [extraContentVisible, setExtraContentVisible] = useState<boolean>(false);
@@ -19,7 +20,7 @@ function TotalAddrMarket() {
 
   return (
     <div className="totalAddrMarket-container">
-      <BackButton />
+      <NavigationIcons/>
       <TransitionWrapper delays={[1000, 3000]}>
         {([textMoved, contentVisible]) => (
           <>

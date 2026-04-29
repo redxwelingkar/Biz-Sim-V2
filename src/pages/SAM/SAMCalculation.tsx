@@ -84,7 +84,6 @@ const SAMCalc = () => {
         // TutorialMode=True
         <div className="sam-calculation">
           <Header />
-          <BackButton topOffset="10vh" />
           {/* <TamIcon /> */}
           <TableComponent
             hideTotalSum={true}
@@ -114,7 +113,6 @@ const SAMCalc = () => {
         // TutorialMode=False
         <div className="sam-calculation">
           <Header />
-          <BackButton topOffset="10vh" />
           {/* <TamIcon /> */}
           <TableComponent
             hideTotalSum={true}

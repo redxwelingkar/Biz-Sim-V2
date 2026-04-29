@@ -15,6 +15,7 @@ import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
+import NavigationIcons from "../../components/NavigationIcons";
 
 const TowardsOpEx = () => {
     const [onNext, setOnNext] = useState(false);
@@ -85,37 +86,8 @@ const TowardsOpEx = () => {
     return (
         <div className="towards-opex">
             <Header />
-            <BackButton topOffset="10vh" />
             <Avatar />
-            <div className="indicatorIcon-container">
-                {showDashBoardIcon && <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                    <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
-                </div>}
-                {showTAMIcon && <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                    <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                </div>}
-                {showSAMIcon && <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                    <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
-                </div>}
-                {showIntendedPricingIcon && <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
-                    <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" className="IntendedPricing-Icon" />
-                </div>}
-                {showSOMIcon && <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                    <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
-                </div>}
-                {showOpExIcon && <div className="Icon-div" data-label="OpEx" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                    <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
-                </div>}
-                {showCapExIcon && <div className="Icon-div" data-label="CapEx" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                    <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
-                </div>}
-                {showEBTWCIcon && <div className="Icon-div" data-label="EBT & WC" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                    <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
-                </div>}
-                {showFundingIcon && <div className="Icon-div" data-label="Funding" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                    <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
-                </div>}
-            </div>
+            <NavigationIcons/>
             <div className="body-container">
                 {!onNext && (
                     <TransitionWrapper delays={[1500, 3500, 5500]}>

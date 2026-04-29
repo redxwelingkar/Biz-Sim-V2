@@ -21,6 +21,7 @@ import opexIcon from "../../assets/img/OpEx-icon.png";
 import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
+import NavigationIcons from '../../components/NavigationIcons';
 
 
 const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -265,67 +266,7 @@ function IntendedPricing() {
                 // TutorialMode=True
                 <div>
                     <Header />
-                    <BackButton topOffset='10vh' />
-                    <div className='indicatorIcon-container'>
-                        {showDashBoardIcon && <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
-                        </div>}
-                        {showTAMIcon && <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                        </div>}
-                        {showSAMIcon && <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
-                        </div>}
-                        {/* Animate the icon entry */}
-                        <div className='Icon-div' data-label='IntendedPricing'>
-                            <AnimatePresence mode="wait">
-                                {showIntendedPricingIcon ? (
-
-                                    <motion.img
-                                        key="IntendedPricing-img"
-                                        src={IntendedPricingIcon}
-                                        alt="IntendedPricing-Icon" title="IntendedPricing"
-                                        className="IntendedPricing-Icon"
-                                        initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -50 }}
-                                        transition={{ duration: 1 }}
-                                    />
-
-                                ) : <div></div>}
-                            </AnimatePresence>
-                            {/* Animate the text entry/exit */}
-                            <AnimatePresence mode="wait">
-                                {showIntendedPricingIconText && (
-                                    <motion.span
-                                        key="IntendedPricing-Icon-Text"
-                                        initial={{ opacity: 0, x: -100 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -100 }}
-                                        transition={{ duration: 1 }}
-                                    >
-                                        Intended Pricing
-                                    </motion.span>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-                        {showSOMIcon && <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
-                        </div>}
-                        {showOpExIcon && <div className="Icon-div" data-label="OpEx" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
-                        </div>}
-                        {showCapExIcon && <div className="Icon-div" data-label="CapEx" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
-                        </div>}
-                        {showEBTWCIcon && <div className="Icon-div" data-label="EBT & WC" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
-                        </div>}
-                        {showFundingIcon && <div className="Icon-div" data-label="Funding" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
-                        </div>}
-                    </div>
+                    <NavigationIcons/>
                     <div className="IntendedPricing-container">
                         <h1>Intended Pricing</h1>
                         <table>
@@ -474,36 +415,7 @@ function IntendedPricing() {
                 // TutorialMode=False
                 <div>
                     <Header />
-                    <BackButton topOffset='10vh' />
-                    <div className="indicatorIcon-container ">
-                        <div className="Icon-div" data-label="Dashboard" onClick={() => navigate('/Biz-Sim-V2/dashboard')}>
-                            <img src={DashboardIcon} alt="Dashboard-Icon" className="Dashboard-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="TAM" onClick={() => navigate('/Biz-Sim-V2/tam-calculation')}>
-                            <img src={tamIcon} alt="TAM-Icon" className="Tam-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="SAM" onClick={() => navigate('/Biz-Sim-V2/sam-calculation')}>
-                            <img src={samIcon} alt="SAM-Icon" className="SAM-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="IntendedPricing" onClick={() => navigate('/Biz-Sim-V2/IntendedPricing')}>
-                            <img src={IntendedPricingIcon} alt="IntendedPricing-Icon" title="IntendedPricing" className="IntendedPricing-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="SOM" onClick={() => navigate('/Biz-Sim-V2/som')}>
-                            <img src={somIcon} alt="SOM-Icon" className="SOM-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="OpEx" onClick={() => navigate('/Biz-Sim-V2/opex-calculation')}>
-                            <img src={opexIcon} alt="OpEx-Icon" className="OpEx-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="CapEx" onClick={() => navigate('/Biz-Sim-V2/capex-calculation')}>
-                            <img src={capexIcon} alt="CapEx-Icon" className="CapEx-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="EBT & WC" onClick={() => navigate('/Biz-Sim-V2/EBT_WC-calculation')}>
-                            <img src={ebtwcIcon} alt="EBT_WC-Icon" className="EBTWC-Icon" />
-                        </div>
-                        <div className="Icon-div" data-label="Funding" onClick={() => navigate('/Biz-Sim-V2/funding')}>
-                            <img src={FundingIcon} alt="Funding-Icon" className="Funding-Icon" />
-                        </div>
-                    </div>
+                    <NavigationIcons/>
                     <div className="IntendedPricing-container vh-90">
                         <h1>Intended Pricing</h1>
                         <table>

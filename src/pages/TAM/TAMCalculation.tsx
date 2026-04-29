@@ -69,7 +69,6 @@ const TAMCalc = () => {
         // TutorialMode=true
         <div className="tam-calculation">
           <Header />
-          <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
           {!showTable && <div className='table-placeholder'></div>}
           {showTable &&
             <TableComponent
@@ -90,7 +89,6 @@ const TAMCalc = () => {
         // TutorialMode=false
         <div className="tam-calculation">
           <Header />
-          <BackButton topOffset="10vh" /> {/* Adjust the value as needed */}
           <TableComponent
             headingText="Estimate the Total Addressable Market (TAM)"
             NumbertoWordsCOL={true}
