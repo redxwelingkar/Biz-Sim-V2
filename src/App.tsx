@@ -121,13 +121,13 @@ Done Grammar and Text: EBT towards text = "system" ⇒ simulation
 TODO Grammar and Text: Remove technical jargain but keep in Footer.
 
 
-// TODO Bugs: CSP Page = Next button disappear after its job is done on 
-// TODO Bugs: OPEX Page = Number to words spacing for total OPEX
-// TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
-// TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
+// Done TODO Bugs: CSP Page = Next button disappear after its job is done on 
+// Done TODO Bugs: OPEX Page = Number to words spacing for total OPEX
+// Done TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
+// Done TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
 // TODO Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
 TODO Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
-// TODO Bugs: Towards SOM Pages = YES / NO
+// Done TODO Bugs: Towards SOM Pages = YES / NO
 
 
 // TODO Feature: All Pages = remove up and down arrows from text boxes
@@ -137,10 +137,10 @@ TODO Feature: Number to words should be sidebyside with number cell always
 Done Feature: keep Blinking the down arrow 'All times
 Doing Feature: Enter Button on Keyboard will do something as down arrow
 Done Feature: Remove Forward & Backward Button ⇒ Navigation Buttons persist all pages, completed step nav-icon glows
-// TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
-TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
-TODO Feature: Funding Page = Total funding Number towards below Member text
-// TODO Feature: Funding Page = Add number to Text Column on right side of "Borrowed amount" column
+// Done TODO Feature: Funding Page = show Number to words on Borrowed Amount Cells
+// Done TODO Feature: Funding Page = Show funds needed on the funding page. related it with the Borrowed amount (reduce needed funds as you fill funding rows)
+// Done TODO Feature: Funding Page = Total funding Number towards below Member text
+// Done TODO Feature: Funding Page = Add number to Text Column on right side of "Borrowed amount" column
 Done Feature: Change CSP to Intended Pricing
 
 

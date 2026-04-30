@@ -55,6 +55,7 @@ const Funding = () => {
     const [TotalAmountBorrowed, setTotalAmountBorrowed] = useState("");
     const [TotalMonthlyPrincipalRepayment, setTotalMonthlyPrincipalRepayment] = useState("");
     const [EMI, setEMI] = useState('');
+    const [fundsToStartBusiness, setFundsToStartBusiness] = useState("");
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
@@ -69,6 +70,14 @@ const Funding = () => {
     const [TutorialMode, setTutorialMode] = useState(false);
 
     const navigate = useNavigate()
+
+    const liveTotalAmountBorrowed = rowsFunding.reduce((total, row) => {
+        const borrowedAmount = parseFloat(row.BorrowedAmount)
+        return total + (Number.isFinite(borrowedAmount) ? borrowedAmount : 0)
+    }, 0)
+
+    const fundsToStartBusinessNumber = parseFloat(fundsToStartBusiness)
+    const remainingAmount = (Number.isFinite(fundsToStartBusinessNumber) ? fundsToStartBusinessNumber : 0) - liveTotalAmountBorrowed
 
     // always run at start
     useEffect(() => {
@@ -97,8 +106,11 @@ const Funding = () => {
             const TotalAmountBorrowed = localStorage.getItem('TotalAmountBorrowed')
             const TotalMonthlyInterest = localStorage.getItem('TotalMonthlyInterest')
             const TotalMonthlyPrincipalRepayment = localStorage.getItem('TotalMonthlyPrincipalRepayment')
+            const WC = localStorage.getItem('WC')
             // console.log("FundingDB start:", FundingDB);
             // console.log("FundingTotal start:", FundingTotal);
+
+            if (WC != null) setFundsToStartBusiness(WC)
 
             if (FundingDB != null
                 && TotalAmountBorrowed != null
@@ -149,6 +161,19 @@ const Funding = () => {
         const monthlyInterest = parseFloat(row.MonthlyInterestPayment || '0')
         return (principal + monthlyInterest).toFixed(2)
     }
+
+    const renderFundingRequirement = () => (
+        <div className="FundingRequirement-container">
+            <div>
+                <span className="funding-requirement-label">Funds to start the business : </span>
+                <span className="funding-requirement-value">{fundsToStartBusiness || '0'}</span>
+            </div>
+            <div>
+                <span className="funding-requirement-label">Remaining Amount: </span>
+                <span className="funding-requirement-value">{remainingAmount.toFixed(2)}</span>
+            </div>
+        </div>
+    )
 
     // helper Functions End
 
@@ -378,9 +403,12 @@ const Funding = () => {
                 // TutorialMode=True
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     <div className={FooterVisible ? "table-container" : "table-container vh-90"}>
                         <h1>Funding</h1>
+
+                        {renderFundingRequirement()}
+
                         <table className="table">
                             <thead>
                                 <tr>
@@ -479,9 +507,12 @@ const Funding = () => {
                 // TutorialMode=False
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     <div className="table-container vh-90">
                         <h1>Funding</h1>
+
+                        {renderFundingRequirement()}
+
                         <table className="table">
                             <thead>
                                 <tr>
