@@ -21,6 +21,7 @@ import { Simulate } from 'react-dom/test-utils';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
 import NavigationIcons from '../../components/NavigationIcons';
+import syncAllData from '../../components/SyncData';
 
 const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
     <AnimatePresence mode="wait">
@@ -56,16 +57,17 @@ function SOM() {
 
     const [SOMValue, setSOMValue] = useState("")
     const [IntendedPricingValue, setIntendedPricingValue] = useState("")
-    const [DailyExpbySOM, setDailyExpbySOM] = useState("")
-    const [MonthlyExpbySOM, setMonthlyExpbySOM] = useState("")
-    const [YearlyExpbySOM, setYearlyExpbySOM] = useState("")
-    const [displayExpbySOM, setdisplayExpbySOM] = useState(false)
+    const [DailyRevfromSOM, setDailyRevfromSOM] = useState("")
+    const [MonthlyRevfromSOM, setMonthlyRevfromSOM] = useState("")
+    const [YearlyRevfromSOM, setYearlyRevfromSOM] = useState("")
+    const [displayRevfromSOM, setdisplayRevfromSOM] = useState(false)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("");
     const [SAMPercent, setSAMPercent] = useState("");
     const [showSOMIconText, setshowSOMIconText] = useState(false);
     const [showSAMPercentInput, setshowSAMPercentInput] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const [showTAMIcon, setshowTAMIcon] = useState(false);
     const [showSAMIcon, setshowSAMIcon] = useState(false);
@@ -84,23 +86,29 @@ function SOM() {
 
     useEffect(() => {
         showNavIconIfData()
-        let sam = localStorage.getItem("SAM")
-        if (sam) {
-            setSAM(sam)
+
+        let opdays = localStorage.getItem("OPdays")
+        if (opdays) {
+            setOPDays(opdays)
         } else {
-            window.alert("SAM not calulated please Complete previous step")
+            setErrorMessage("Operational Days Not Calculated, Please Complete Previous Steps")
+            // window.alert("Operational days not calulated please Complete previous step")
         }
         let IntendedPricing = localStorage.getItem("IntendedPricingValue")
         if (IntendedPricing) {
             setIntendedPricingValue(IntendedPricing)
         } else {
-            window.alert("IntendedPricing not calulated please Complete previous step")
+            setErrorMessage("IntendedPricing Not Calculated, Please Complete Previous Steps")
+            // window.alert("IntendedPricing not calulated please Complete previous step")
         }
-        let opdays = localStorage.getItem("OPdays")
-        if (opdays) {
-            setOPDays(opdays)
+
+
+        let sam = localStorage.getItem("SAM")
+        if (sam) {
+            setSAM(sam)
         } else {
-            window.alert("Operational days not calulated please Complete previous step")
+            setErrorMessage("SAM Not Calculated, Please Complete Previous Steps")
+            // window.alert("SAM not calulated please Complete previous step")
         }
         // console.log("opdays", opdays)
         // console.log("displayOPDays", displayOPDays)
@@ -122,10 +130,10 @@ function SOM() {
 
         if (OPdaysLS != null) setOPDays(OPdaysLS)
         if (SOM != null) setSOMValue(SOM)
-        if (SOMDaily != null) setDailyExpbySOM(SOMDaily)
-        if (SOMMonthlyLS != null) setMonthlyExpbySOM(SOMMonthlyLS)
-        if (SOMYearlyLS != null) setYearlyExpbySOM(SOMYearlyLS)
-        if (SOM && SOMDaily && SOMMonthlyLS && SOMYearlyLS) setdisplayExpbySOM(true)
+        if (SOMDaily != null) setDailyRevfromSOM(SOMDaily)
+        if (SOMMonthlyLS != null) setMonthlyRevfromSOM(SOMMonthlyLS)
+        if (SOMYearlyLS != null) setYearlyRevfromSOM(SOMYearlyLS)
+        if (SOM && SOMDaily && SOMMonthlyLS && SOMYearlyLS) setdisplayRevfromSOM(true)
 
 
     }, []);
@@ -143,9 +151,9 @@ function SOM() {
     //         console.log("savetoLocalStorage SOMValue",SOMValue);
 
     //         localStorage.setItem("SOM",SOMValue)
-    //         localStorage.setItem("SOMDaily",DailyExpbySOM)
-    //         localStorage.setItem("SOMMonthly",MonthlyExpbySOM)
-    //         localStorage.setItem("SOMYearly",YearlyExpbySOM)
+    //         localStorage.setItem("SOMDaily",DailyRevfromSOM)
+    //         localStorage.setItem("SOMMonthly",MonthlyRevfromSOM)
+    //         localStorage.setItem("SOMYearly",YearlyRevfromSOM)
     //     } catch (error) {
     //         console.error("SOM - savetoLocalStorage",error);
 
@@ -162,20 +170,21 @@ function SOM() {
             setSOMValue(SOM.toFixed(2))
             localStorage.setItem("SOM", SOM.toFixed(2))
 
-            let DailyExpSOM = (SOM * IntendedPricing).toFixed(2)
-            setDailyExpbySOM(DailyExpSOM.toString())
-            localStorage.setItem("SOMDaily", DailyExpSOM)
+            let DailyRevfromSOM = (SOM * IntendedPricing).toFixed(2)
+            setDailyRevfromSOM(DailyRevfromSOM.toString())
+            localStorage.setItem("SOMDaily", DailyRevfromSOM)
 
-            let MonthlyExpSOM = (SOM * IntendedPricing * parseFloat(OPDays)).toFixed(2)
-            setMonthlyExpbySOM(MonthlyExpSOM.toString())
-            localStorage.setItem("SOMMonthly", MonthlyExpSOM)
+            let MonthlyRevfromSOM = (SOM * IntendedPricing * parseFloat(OPDays)).toFixed(2)
+            setMonthlyRevfromSOM(MonthlyRevfromSOM.toString())
+            localStorage.setItem("SOMMonthly", MonthlyRevfromSOM)
 
-            let YearlyExpSOM = (SOM * IntendedPricing * parseFloat(OPDays) * 12).toFixed(2)
-            setYearlyExpbySOM(YearlyExpSOM.toString())
-            localStorage.setItem("SOMYearly", YearlyExpSOM)
+            let YearlyRevfromSOM = (SOM * IntendedPricing * parseFloat(OPDays) * 12).toFixed(2)
+            setYearlyRevfromSOM(YearlyRevfromSOM.toString())
+            localStorage.setItem("SOMYearly", YearlyRevfromSOM)
 
-            setdisplayExpbySOM(true)
-            // savetoLocalStorage()
+            setdisplayRevfromSOM(true)
+            
+            syncAllData("SAMPercent")
 
             // Autoclick down arrow to go to next step when submitting IntendedPricingValue
             let downArrow = document.getElementById("downArrow")
@@ -268,8 +277,9 @@ function SOM() {
                 // TutorialMode=True
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     <div className="IntendedPricing-container">
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Serviceable Obtainable Market</h1>
                         <table>
                             <tbody>
@@ -329,7 +339,7 @@ function SOM() {
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {displayExpbySOM &&
+                                {displayRevfromSOM &&
                                     <tr>
                                         <td>
                                             <PopUp keyName='SOMHeader'>
@@ -353,7 +363,7 @@ function SOM() {
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {displayExpbySOM &&
+                                {displayRevfromSOM &&
                                     <tr>
                                         <td>
                                             <PopUp keyName='DailySOMHeader'>
@@ -363,21 +373,21 @@ function SOM() {
                                         <td>
                                             <PopUp keyName='DailySOMValue'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("DailyExpSOMWords")}
+                                                    onMouseEnter={() => setisHoveredRow("DailyRevfromSOMWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay label='per day' value={DailyExpbySOM} />
+                                                    <TextDisplay label='per day' value={DailyRevfromSOM} />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "DailyExpSOMWords" &&
-                                                <Slide keyName='DailyExpSOMWords'>
-                                                    <NumberToWords value={DailyExpbySOM} />
+                                            {isHoveredRow === "DailyRevfromSOMWords" &&
+                                                <Slide keyName='DailyRevfromSOMWords'>
+                                                    <NumberToWords value={DailyRevfromSOM} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {displayExpbySOM &&
+                                {displayRevfromSOM &&
                                     <tr>
                                         <td>
                                             <PopUp keyName='MonthlySOMHeader'>
@@ -387,21 +397,21 @@ function SOM() {
                                         <td>
                                             <PopUp keyName='MonthlySOMValue'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("MonthlyExpSOMWords")}
+                                                    onMouseEnter={() => setisHoveredRow("MonthlyRevfromSOMWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay label='per month' value={MonthlyExpbySOM} />
+                                                    <TextDisplay label='per month' value={MonthlyRevfromSOM} />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "MonthlyExpSOMWords" &&
-                                                <Slide keyName='MonthlyExpSOMWords'>
-                                                    <NumberToWords value={MonthlyExpbySOM} />
+                                            {isHoveredRow === "MonthlyRevfromSOMWords" &&
+                                                <Slide keyName='MonthlyRevfromSOMWords'>
+                                                    <NumberToWords value={MonthlyRevfromSOM} />
                                                 </Slide>}
                                         </td>
                                     </tr>}
-                                {displayExpbySOM &&
+                                {displayRevfromSOM &&
                                     <tr>
                                         <td>
                                             <PopUp keyName='YearlySOMHeader'>
@@ -411,17 +421,17 @@ function SOM() {
                                         <td>
                                             <PopUp keyName='YearlySOMValue'>
                                                 <div
-                                                    onMouseEnter={() => setisHoveredRow("YearlyExpSOMWords")}
+                                                    onMouseEnter={() => setisHoveredRow("YearlyRevfromSOMWords")}
                                                     onMouseLeave={() => setisHoveredRow("")}
                                                 >
-                                                    <TextDisplay label='per year' value={YearlyExpbySOM} />
+                                                    <TextDisplay label='per year' value={YearlyRevfromSOM} />
                                                 </div>
                                             </PopUp>
                                         </td>
                                         <td>
-                                            {isHoveredRow === "YearlyExpSOMWords" &&
-                                                <Slide keyName='YearlyExpSOMWords'>
-                                                    <NumberToWords value={YearlyExpbySOM} />
+                                            {isHoveredRow === "YearlyRevfromSOMWords" &&
+                                                <Slide keyName='YearlyRevfromSOMWords'>
+                                                    <NumberToWords value={YearlyRevfromSOM} />
                                                 </Slide>
                                             }
                                         </td>
@@ -439,8 +449,9 @@ function SOM() {
                 // TutorialMode=False
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     <div className="IntendedPricing-container">
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Serviceable Obtainable Market</h1>
                         <table>
                             <tbody>
@@ -534,17 +545,17 @@ function SOM() {
                                     <td>
                                         <PopUp keyName='DailySOMValue'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("DailyExpSOMWords")}
+                                                onMouseEnter={() => setisHoveredRow("DailyRevfromSOMWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay label='per day' value={DailyExpbySOM} />
+                                                <TextDisplay label='per day' value={DailyRevfromSOM} />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "DailyExpSOMWords" &&
-                                            <Slide keyName='DailyExpSOMWords'>
-                                                <NumberToWords value={DailyExpbySOM} />
+                                        {isHoveredRow === "DailyRevfromSOMWords" &&
+                                            <Slide keyName='DailyRevfromSOMWords'>
+                                                <NumberToWords value={DailyRevfromSOM} />
                                             </Slide>}
                                     </td>
                                 </tr>
@@ -558,17 +569,17 @@ function SOM() {
                                     <td>
                                         <PopUp keyName='MonthlySOMValue'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("MonthlyExpSOMWords")}
+                                                onMouseEnter={() => setisHoveredRow("MonthlyRevfromSOMWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay label='per month' value={MonthlyExpbySOM} />
+                                                <TextDisplay label='per month' value={MonthlyRevfromSOM} />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "MonthlyExpSOMWords" &&
-                                            <Slide keyName='MonthlyExpSOMWords'>
-                                                <NumberToWords value={MonthlyExpbySOM} />
+                                        {isHoveredRow === "MonthlyRevfromSOMWords" &&
+                                            <Slide keyName='MonthlyRevfromSOMWords'>
+                                                <NumberToWords value={MonthlyRevfromSOM} />
                                             </Slide>}
                                     </td>
                                 </tr>
@@ -576,23 +587,23 @@ function SOM() {
                                 <tr>
                                     <td>
                                         <PopUp keyName='YearlySOMHeader'>
-                                            <p>Monthly Revenue from SOM</p>
+                                            <p>Yearly Revenue from SOM</p>
                                         </PopUp>
                                     </td>
                                     <td>
                                         <PopUp keyName='YearlySOMValue'>
                                             <div
-                                                onMouseEnter={() => setisHoveredRow("YearlyExpSOMWords")}
+                                                onMouseEnter={() => setisHoveredRow("YearlyRevfromSOMWords")}
                                                 onMouseLeave={() => setisHoveredRow("")}
                                             >
-                                                <TextDisplay label='per year' value={YearlyExpbySOM} />
+                                                <TextDisplay label='per year' value={YearlyRevfromSOM} />
                                             </div>
                                         </PopUp>
                                     </td>
                                     <td>
-                                        {isHoveredRow === "YearlyExpSOMWords" &&
-                                            <Slide keyName='YearlyExpSOMWords'>
-                                                <NumberToWords value={YearlyExpbySOM} />
+                                        {isHoveredRow === "YearlyRevfromSOMWords" &&
+                                            <Slide keyName='YearlyRevfromSOMWords'>
+                                                <NumberToWords value={YearlyRevfromSOM} />
                                             </Slide>
                                         }
                                     </td>

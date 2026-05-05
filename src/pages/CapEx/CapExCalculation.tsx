@@ -20,6 +20,7 @@ import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
+import syncAllData from '../../components/SyncData';
 
 
 const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -161,6 +162,7 @@ function CapEx() {
         setTotalCapEx(total.toString());
         localStorage.setItem('CapExTotal', total.toString());
         localStorage.setItem('CapExDB', JSON.stringify(rows));
+        syncAllData("CapEx")
         showCapExIconAndText()
 
         // console.log("CapExDB: ", JSON.stringify(rows));

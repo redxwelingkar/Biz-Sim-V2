@@ -19,6 +19,7 @@ import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
+import syncAllData from '../../components/SyncData';
 
 
 // const Slide = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -355,6 +356,7 @@ const Funding = () => {
         localStorage.setItem('TotalMonthlyPrincipalRepayment', TMP.toFixed(2));
         localStorage.setItem('EMI', EMI.toFixed(2));
         localStorage.setItem('FundingDB', JSON.stringify(rowsFunding));
+        syncAllData("Funding")
         setEMI(EMI.toFixed(2))
         setisFundingSaved(true)
         showFundingIconAndText()

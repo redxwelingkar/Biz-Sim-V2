@@ -19,6 +19,7 @@ import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
+import syncAllData from '../../components/SyncData';
 
 const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
     <AnimatePresence mode="wait">
@@ -53,7 +54,7 @@ function EBT_WC() {
     const [OpExrows, setOpExrows] = useState([
         { id: 1, ExpenseName: '', TypeOfExpense: "", ValueOfExpense: '' }
     ]);
-    // const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const [EBT, setEBT] = useState('');
     const [SOMMonthly, setSOMMonthly] = useState('');
     const [WCMonths, setWCMonths] = useState('');
@@ -111,13 +112,14 @@ function EBT_WC() {
                 setsuccessloadDataFromLocalStorage(true)
             } else {
                 setsuccessloadDataFromLocalStorage(false)
-                window.alert("SOM or Operational Expenses Not Calculated, Please complete those steps")
+                setErrorMessage("SOM or OpEx  Not Calculated, Please complete those steps")
+                // window.alert("SOM or Operational Expenses Not Calculated, Please complete those steps")
             }
 
         } catch (error) {
             console.error("loadDataFromLocalStorage", error);
             setsuccessloadDataFromLocalStorage(false)
-            window.alert("SOM or Operational Expenses Not Calculated, Please complete those steps")
+            window.alert("SOM or OpEx Not Calculated, Please complete those steps")
         }
     }
 
@@ -206,6 +208,7 @@ function EBT_WC() {
         // save no. of months and WC 
         localStorage.setItem("WC", WC)
         localStorage.setItem("WCMonths", WCMonths)
+        syncAllData("WC")
         showEBT_WCIcon()
     }
     // helper Functions End
@@ -271,11 +274,13 @@ function EBT_WC() {
 
     return (
         <div>
+            
             {TutorialMode ?
                 // TutorialMode=True
                 <div>
                     <Header />
                     <NavigationIcons/>
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <div className={FooterVisible ? "IntendedPricing-container" : "IntendedPricing-container vh-90"}>
                         <h1>Earnings Before Tax</h1>
                         <table>
@@ -373,6 +378,7 @@ function EBT_WC() {
                     <Header />
                     <NavigationIcons/>
                     <div className="IntendedPricing-container">
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Earnings Before Tax</h1>
                         <table>
                             <tbody>

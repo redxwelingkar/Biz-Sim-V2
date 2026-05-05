@@ -22,6 +22,7 @@ import capexIcon from "../../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../../assets/img/EBT_WC.png";
 import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
+import syncAllData from '../../components/SyncData';
 
 
 const PopUp = ({ children, keyName }: { children: React.ReactNode; keyName: string }) => (
@@ -63,6 +64,7 @@ function IntendedPricing() {
     const [SAM, setSAM] = useState("")
     const [showIntendedPricingIconText, setshowIntendedPricingIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate()
 
@@ -84,6 +86,7 @@ function IntendedPricing() {
         if (sam) {
             setSAM(sam)
         } else {
+            setErrorMessage("SAM Not Calculated, Please Complete Previous Steps")
             // window.alert("SAM not calulated please Complete previous step")
             // navigate(-1)
         }
@@ -131,12 +134,15 @@ function IntendedPricing() {
             localStorage.setItem("IntendedPricingValue", IntendedPricingValue)
 
             // get SAM from localstorage and multiply it with IntendedPricingValue to get Daily Revenue from SAM Value
-            setDailyRevfromSAM((parseFloat(SAM) * parseFloat(IntendedPricingValue)).toString())
+            let DailyRevenuefromSAM = (parseFloat(SAM) * parseFloat(IntendedPricingValue)).toString()
+            localStorage.setItem('DailyRevenuefromSAM',DailyRevenuefromSAM)
+            setDailyRevfromSAM(DailyRevenuefromSAM)
 
             // hide submitIntendedPricing BTN
             let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
             if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = true
 
+            syncAllData("IntendedPricing")
             // Autoclick down arrow to go to next step when submitting IntendedPricingValue
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
@@ -168,13 +174,14 @@ function IntendedPricing() {
             // calculate and save Yearly revenue by SAM
             let SAMYearlyRev = SAMmonthlyRev * 12
             setIntendedPricingYearly(SAMYearlyRev.toString())
-            localStorage.setItem("IntendedPricingYearly", SAMmonthlyRev.toString())
+            localStorage.setItem("IntendedPricingYearly", SAMYearlyRev.toString())
 
+            syncAllData("OPdays")
             // Autoclick down arrow to go to next step when submitting OPdays Value
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
         } else {
-            // window.alert("Please enter No. of Operational Days Value")
+            window.alert("Please enter No. of Operational Days Value")
         }
     }
 
@@ -268,6 +275,7 @@ function IntendedPricing() {
                     <Header />
                     <NavigationIcons/>
                     <div className="IntendedPricing-container">
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
@@ -417,6 +425,7 @@ function IntendedPricing() {
                     <Header />
                     <NavigationIcons/>
                     <div className="IntendedPricing-container vh-90">
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>

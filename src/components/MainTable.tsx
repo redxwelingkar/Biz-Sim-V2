@@ -19,6 +19,7 @@ import capexIcon from "../assets/img/CapEx-icon.png";
 import ebtwcIcon from "../assets/img/EBT_WC.png";
 import FundingIcon from "../assets/img/funding-icon.png";
 import NavigationIcons from './NavigationIcons';
+import syncAllData from './SyncData';
 
 
 interface TableComponentProps {
@@ -320,6 +321,7 @@ const TableComponent = ({
     setTotalSize(total);
     localStorage.setItem('TAM', total.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
+    syncAllData("TAM")
     // setShowNext(true); // Show Next button when details are saved
   };
 
@@ -337,6 +339,7 @@ const TableComponent = ({
     localStorage.setItem('TAM', totalsize.toString());
     localStorage.setItem('SAM', totalSAM.toString());
     localStorage.setItem('rows', JSON.stringify(rows));
+    syncAllData("SAM")
     if (SAMCalBTNclick) {
       SAMCalBTNclick()
     }
