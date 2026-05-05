@@ -98,6 +98,7 @@ const Funding = () => {
 
     // helper Functions
 
+
     // if data in DB overwrite rows useState
     const loadFundingRowsfromLocalStorage = () => {
         try {
@@ -206,43 +207,126 @@ const Funding = () => {
     };
     const handleBorrowedAmountChange = (id: number, value: string) => {
         const updatedRows = rowsFunding.map(row =>
-            row.id === id ? { ...row, BorrowedAmount: value } : row
+        // row.id === id ? { ...row, BorrowedAmount: value } : row
+        {
+            if (row.id === id) {
+                const borrowed = parseFloat(value);
+                const interest = parseFloat(row.interest || "0");
+                const time = parseFloat(row.RepaymentPeriod || "0");
+
+                // if simple interest can be calculated, upated row with value and calculate SI
+                if (borrowed > 0 && interest > 0 && time > 0) {
+                    // Interest = (P x R x T) / 100
+                    const interestPayable = (borrowed * interest * time) / 100;
+
+                    const monthlyPrincipal = borrowed / (time * 12);
+
+                    const totalMonths = time * 12;
+                    const monthlyInterest = interestPayable / totalMonths
+                    // console.log("borrowed", borrowed, "interest", interest, "period", time);
+                    // console.log("row", row);
+
+                    return {
+                        ...row,
+                        BorrowedAmount: value,
+                        interestPayable: interestPayable.toFixed(2),
+                        MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
+                        MonthlyInterestPayment: monthlyInterest.toFixed(2)
+                    };
+                } // if simple interest cannot be calculated, upated row with value
+                else {
+                    return {
+                        ...row,
+                        BorrowedAmount: value,
+                    };
+                }
+            }
+            return row;
+        }
         );
         setRowsFunding(updatedRows);
     };
     const handleInterestChange = (id: number, value: string) => {
         const updatedRows = rowsFunding.map(row =>
-            row.id === id ? { ...row, interest: value } : row
+        // row.id === id ? { ...row, interest: value } : row
+        {
+            if (row.id === id) {
+                const borrowed = parseFloat(row.BorrowedAmount || "0");
+                const interest = parseFloat(value);
+                const time = parseFloat(row.RepaymentPeriod || "0");
+
+                // if simple interest can be calculated, upated row with value and calculate SI
+                if (borrowed > 0 && interest > 0 && time > 0) {
+                    // Interest = (P x R x T) / 100
+                    const interestPayable = (borrowed * interest * time) / 100;
+
+                    const monthlyPrincipal = borrowed / (time * 12);
+
+                    const totalMonths = time * 12;
+                    const monthlyInterest = interestPayable / totalMonths
+                    // console.log("borrowed", borrowed, "interest", interest, "period", time);
+                    // console.log("row", row);
+
+                    return {
+                        ...row,
+                        interest: value,
+                        interestPayable: interestPayable.toFixed(2),
+                        MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
+                        MonthlyInterestPayment: monthlyInterest.toFixed(2)
+                    };
+                } // if simple interest cannot be calculated, upated row with value
+                else {
+                    return {
+                        ...row,
+                        interest: value,
+                    };
+                }
+            }
+            return row;
+        }
         );
         setRowsFunding(updatedRows);
     };
     const handleRepaymentPeriodChange = (id: number, value: string) => {
-        const updatedRows = rowsFunding.map(row => {
+        const updatedRows = rowsFunding.map(row =>
+        // row.id === id ? { ...row, RepaymentPeriod: value } : row
+        {
             if (row.id === id) {
                 const borrowed = parseFloat(row.BorrowedAmount || "0");
                 const interest = parseFloat(row.interest || "0");
-                // Interest = (P x R x T) / 100
-                const interestPayable = (borrowed * interest * parseFloat(value)) / 100;
+                const time = parseFloat(value);
 
-                const monthlyPrincipal = borrowed / (parseFloat(value) * 12);
+                // if simple interest can be calculated, upated row with value and calculate SI
+                if (borrowed > 0 && interest > 0 && time > 0) {
+                    // Interest = (P x R x T) / 100
+                    const interestPayable = (borrowed * interest * time) / 100;
 
-                const totalMonths = parseFloat(value) * 12;
-                const monthlyInterest = interestPayable / totalMonths
-                // console.log("borrowed", borrowed, "interest", interest, "period", parseFloat(value));
-                // console.log("row", row);
+                    const monthlyPrincipal = borrowed / (time * 12);
 
-                return {
-                    ...row,
-                    RepaymentPeriod: value,
-                    interestPayable: interestPayable.toFixed(2),
-                    MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
-                    MonthlyInterestPayment: monthlyInterest.toFixed(2)
-                };
+                    const totalMonths = time * 12;
+                    const monthlyInterest = interestPayable / totalMonths
+                    // console.log("borrowed", borrowed, "interest", interest, "period", time);
+                    // console.log("row", row);
+
+                    return {
+                        ...row,
+                        RepaymentPeriod: value,
+                        interestPayable: interestPayable.toFixed(2),
+                        MonthlyPrincipalPayment: monthlyPrincipal.toFixed(2),
+                        MonthlyInterestPayment: monthlyInterest.toFixed(2)
+                    };
+                } // if simple interest cannot be calculated, upated row with value
+                else {
+                    return {
+                        ...row,
+                        RepaymentPeriod: value,
+                    };
+                }
             }
             return row;
-        });
-        // console.log(updatedRows);
+        }
 
+        );
         setRowsFunding(updatedRows);
     };
 
