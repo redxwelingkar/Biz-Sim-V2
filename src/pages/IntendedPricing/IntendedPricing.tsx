@@ -225,12 +225,12 @@ function IntendedPricing() {
 
     }
     const footerTexts = [
-        "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of Intended Pricing and click on \"SUBMIT\" or press \"Enter\".",
+        "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of Intended Pricing and click on \"SUBMIT\".",
         "Voila! What just popped up on the screen is \"Daily Revenue from SAM\", which gets calculated automatically by multiplying the value of Intended Pricing with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at Intended Pricing value in one day.",
-        "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against \"No. of Operational Days\" and click on \"SUBMIT\" or press \"Enter\".",
+        "Now that we have our estimated earning from SAM in a day let's put in the number of days in month that we will keep our business operational and open to customers. Enter the value for the same in the field against \"No. of Operational Days\" and click on \"SUBMIT\".",
         "Great! You have successfully calculated the monthly and annual earnings from SAM for your business.",
-        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to Intended Pricing if you want to make any changes later.",
-        "Click on the downward arrow here to move on to the next section.",
+        "Great! You have successfully calculated the monthly and annual earnings from SAM for your business. To mark this milestone the icon for Intended pricing will be highlighted in the side navigation bar, which you can use to navigate back to Intended Pricing if you want to make any changes later.",
+        "Click on the “Blinking down arrow” here to move on to the next section.",
         ""
 
     ];

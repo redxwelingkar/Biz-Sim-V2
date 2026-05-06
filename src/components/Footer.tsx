@@ -72,7 +72,7 @@ const Footer = ({ onNext,
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
     // setdown_Arrow(CalSAMBTNclick)
     if (CalSAMBTNclick) setdown_Arrow(false)
-    
+
   }, [CalSAMBTNclick])
 
   // useEffect(() => {
@@ -209,7 +209,7 @@ const Footer = ({ onNext,
         <button
           id='downArrow'
           // className={`footer-icon ${blink && textIndex < texts.length - 1 ? 'blink' : ''} ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : ''}`}
-          className={`footer-icon  ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : 'blink'}`}
+          className={`footer-icon ${down_Arrow || textIndex === texts.length - 1 ? 'disabled' : 'blink'}`}
           onClick={handleDownArrowClick}
           disabled={down_Arrow || textIndex === texts.length - 1}
         >

@@ -53,11 +53,11 @@ const SAMCalc = () => {
 
   const footerTexts = [
     "Here in SAM, you must be seeing the same details that you just submitted in TAM. Confused? Why are they back? Don't worry... For calculating the Serviceable Addressable Market, we need the TAM data. ",
-    "And the only action required from you to calculate SAM is to fill the value of the “Percentage Conversion” for each of your customer segment and then press “Down Arrow Key”, and, Voila! The “Size of SAM” for each customer segment will be displayed in the fourth column. ",
-    "You can still add more customer segments here, by clicking on the “ADD CUSTOMER SEGMENT” button and adding their names and vales for TAM and then their Percentage Conversion values. Go ahead try and try adding one, you can always delete it later... ",
+    "And the only action required from you to calculate SAM is to fill the value of the “Percentage Conversion” for each of your customer segment and then press “Blinking down arrow”, and, Voila! The “Size of SAM” for each customer segment will be displayed in the fourth column. ",
+    "You can still add more customer segments here, by clicking on the “ADD CUSTOMER SEGMENT” button and adding their names and vales for TAM and then their Percentage Conversion values. Go ahead and try adding one, you can always delete it later... ",
     "Alright! Now that you have calculated the SAM for each customer segment, it is time to calculate the total value of SAM. For this, just click on the “CALCULATE SAM” button and the total size of SAM will be calculated and displayed.",
-    "Great! You have successfully defined and calculated the size of the Serviceable Addressable Market (SAM) for your business. To mark this milestone an icon signifying the same will be added to the sidebar, which you can use to navigate back to SAM if you want to make any changes later.",
-    "Click on the downward arrow here to move on to the next section.",
+    "Great! You have successfully defined and calculated the size of the Serviceable Addressable Market (SAM) for your business. To mark this milestone the icon for SAM will be highlighted in the side navigation bar, which you can use to navigate back to SAM if you want to make any changes later.",
+    "Click on the “Blinking down arrow” here to move on to the next section.",
     "",
   ];
 

@@ -21,7 +21,7 @@ function TotalAddrMarket() {
   return (
     <div className="totalAddrMarket-container">
       <NavigationIcons/>
-      <TransitionWrapper delays={[1000, 3000]}>
+      <TransitionWrapper delays={[10, 1000]}>
         {([textMoved, contentVisible]) => (
           <>
             <div className={`text ${textMoved ? 'moved' : ''}`}>

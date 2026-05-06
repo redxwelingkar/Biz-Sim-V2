@@ -39,7 +39,7 @@ function BusinessName() {
 
   return (
     <div className="businessName-container">
-      <TransitionWrapper delays={[1000, 3000, 4500]}>
+      <TransitionWrapper delays={[100, 600, 1100]}>
         {([showFirstText, showSecondText, showInput]) => (
           <>
             <div className={`first-text ${showFirstText ? 'slide-up' : ''} ${showSecondText ? 'slide-up-more' : ''}`}>

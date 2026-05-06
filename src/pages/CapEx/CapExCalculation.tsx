@@ -173,9 +173,9 @@ function CapEx() {
     // Table functions end
 
     const footerTexts = [
-        "Here in the section of Capital Expenditure (OpEx), similar to what we did in the section of  OpEx, you will have to list down each expense that you are going to invest in to start your business. You will first have to enter the name of the expense, and then mention a value - amount of money which is going to be spent on that particular expense.",
+        "Here in the section of Capital Expenditure (CapEx), similar to what we did in the section of OpEx, you will have to list down each expense that you are going to invest in to start your business. You will first have to enter the name of the expense, and then mention a value - amount of money which is going to be spent on that particular expense.",
         "You can add more rows for adding more expenses by clicking on \"ADD EXPENSE\" button, you may edit each expense and its value as well or remove an expense using the [-] icon. As and when you keep adding each expense the total capital expenditure will keep getting updated at the bottom field of \"Total CapEx\".",
-        "When you have completed with filling all the details of capital expenditure click on \"SAVE DETAILS\" to save your progress, this will create an icon in the left navigation bar, from where you can access this section and make changes later.",
+        "When you have completed with filling all the details of capital expenditure click on \"SAVE DETAILS\" to save your progress, this will hightlight the CapEx icon in the left navigation bar, from where you can access this section and make changes later.",
         "Click on the downward arrow here to move on to the next section.",
         ""
     ];
