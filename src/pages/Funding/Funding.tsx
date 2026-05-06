@@ -490,12 +490,12 @@ const Funding = () => {
                 <div>
                     <Header />
                     <NavigationIcons />
-                    <div className={FooterVisible ? "table-container" : "table-container vh-90"}>
+                    <div className={FooterVisible ? "table-container funding-table-container" : "table-container funding-table-container vh-90"}>
                         <h1>Funding</h1>
 
                         {renderFundingRequirement()}
 
-                        <table className="table">
+                        <table className="table funding-table">
                             <thead>
                                 <tr>
                                     <th></th>{/* Delete row column */}
@@ -594,12 +594,12 @@ const Funding = () => {
                 <div>
                     <Header />
                     <NavigationIcons />
-                    <div className="table-container vh-90">
+                    <div className="table-container funding-table-container vh-90">
                         <h1>Funding</h1>
 
                         {renderFundingRequirement()}
 
-                        <table className="table">
+                        <table className="table funding-table">
                             <thead>
                                 <tr>
                                     <th></th>{/* Delete row column */}

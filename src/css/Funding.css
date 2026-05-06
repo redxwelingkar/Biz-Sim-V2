@@ -1,3 +1,90 @@
+/* Funding Table Styles */
+/* Fix to responsive and small screens */
+.funding-table-container {
+    box-sizing: border-box;
+    width: 100vw;
+    padding: 0 2rem 2rem 5rem;
+    overflow-x: hidden;
+}
+
+.funding-table {
+    width: min(1120px, calc(100vw - 8rem));
+    table-layout: fixed;
+}
+
+.funding-table th,
+.funding-table td {
+    box-sizing: border-box;
+    padding: 4px 5px;
+    vertical-align: middle;
+}
+
+.funding-table th {
+    font-size: clamp(13px, 1.35vw, 18px);
+    line-height: 1.15;
+    white-space: normal;
+}
+
+.funding-table .cell input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    font-size: clamp(13px, 1vw, 16px);
+}
+
+.funding-table .delete-button {
+    width: 28px;
+    height: 30px;
+    min-width: 28px;
+    padding: 0;
+    font-size: 18px;
+}
+
+.funding-table .NumberToWords {
+    display: block;
+    max-height: 48px;
+    overflow-wrap: anywhere;
+    color: #ffffff;
+    font-size: clamp(12px, 0.95vw, 15px);
+    line-height: 1.2;
+}
+
+.funding-table th:nth-child(1),
+.funding-table td:nth-child(1) {
+    width: 38px;
+}
+
+.funding-table th:nth-child(2),
+.funding-table td:nth-child(2) {
+    width: 16%;
+}
+
+.funding-table th:nth-child(3),
+.funding-table td:nth-child(3) {
+    width: 14%;
+}
+
+.funding-table th:nth-child(4),
+.funding-table td:nth-child(4) {
+    width: 22%;
+}
+
+.funding-table th:nth-child(5),
+.funding-table td:nth-child(5) {
+    width: 10%;
+}
+
+.funding-table th:nth-child(6),
+.funding-table td:nth-child(6) {
+    width: 16%;
+}
+
+.funding-table th:nth-child(7),
+.funding-table td:nth-child(7) {
+    width: 22%;
+}
+
 .FundingTotals-container {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -41,4 +128,53 @@
 
 .height {
     max-height: 90vh;
+}
+
+@media (max-width: 1200px) {
+    .funding-table-container {
+        padding-right: 1.25rem;
+        padding-left: 4.5rem;
+    }
+
+    .funding-table {
+        width: calc(100vw - 6rem);
+    }
+
+    .funding-requirement-label,
+    .funding-requirement-value,
+    .total-funding-words {
+        font-size: 20px;
+    }
+
+    .FundingTotals-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: min(720px, calc(100vw - 8rem));
+    }
+
+    .total-size-field {
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .funding-table {
+        width: calc(100vw - 5rem);
+    }
+
+    .funding-table th,
+    .funding-table td {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+
+    .funding-table .cell input {
+        height: 31px;
+        padding: 4px 3px;
+    }
+
+    .FundingTotals-container {
+        width: calc(100vw - 7rem);
+    }
 }
