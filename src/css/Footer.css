@@ -61,6 +61,7 @@
     width: 7vh; 
     height: 7vh; /* Ensure the button is square */
     margin: 5px 10px; /* Space between buttons */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .footer-icon img {

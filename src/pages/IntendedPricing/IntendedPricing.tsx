@@ -110,6 +110,15 @@ function IntendedPricing() {
         if (IntendedPricingMonthlyLS != null) setIntendedPricingMonthly(IntendedPricingMonthlyLS)
         if (IntendedPricingYearlyLS != null) setIntendedPricingYearly(IntendedPricingYearlyLS)
 
+        // show both submit buttons if OPdays and intendedPricing values are saved
+        if (OPdaysLS != null && IntendedPricingValueLS != null) {
+            let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
+            if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = false
+
+            let submitOPdaysPBTN = document.getElementById("submitOPdays")
+            if (submitOPdaysPBTN) submitOPdaysPBTN.hidden = false
+        }
+
     }, []);
 
     function navigateToTowardsSOM() {
@@ -135,7 +144,7 @@ function IntendedPricing() {
 
             // get SAM from localstorage and multiply it with IntendedPricingValue to get Daily Revenue from SAM Value
             let DailyRevenuefromSAM = (parseFloat(SAM) * parseFloat(IntendedPricingValue)).toString()
-            localStorage.setItem('DailyRevenuefromSAM',DailyRevenuefromSAM)
+            localStorage.setItem('DailyRevenuefromSAM', DailyRevenuefromSAM)
             setDailyRevfromSAM(DailyRevenuefromSAM)
 
             // hide submitIntendedPricing BTN
@@ -147,7 +156,7 @@ function IntendedPricing() {
             let downArrow = document.getElementById("downArrow")
             if (downArrow) Simulate.click(downArrow)
         } else {
-            // window.alert("Please enter Customer Spending power Value")
+            window.alert("Please enter Intended Pricing Value")
         }
 
         if (!TutorialMode) showOPDays()
@@ -273,9 +282,9 @@ function IntendedPricing() {
                 // TutorialMode=True
                 <div>
                     <Header />
-                    <NavigationIcons/>
-                    <div className="IntendedPricing-container">
-                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    <NavigationIcons />
+                    <div className={FooterVisible ? "IntendedPricing-container" : "IntendedPricing-container vh-90"}>
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
@@ -415,6 +424,7 @@ function IntendedPricing() {
                             <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>
                         } */}
                         <button id='submitOPdays' className='SubmitBTNIntendedPricing' hidden onClick={submitOPdays}>Submit OP</button>
+                        <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&
                         <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowIntendedPricingIcon={onNextshowIntendedPricingIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
@@ -423,9 +433,9 @@ function IntendedPricing() {
                 // TutorialMode=False
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     <div className="IntendedPricing-container vh-90">
-                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Intended Pricing</h1>
                         <table>
                             <tbody>
@@ -562,6 +572,7 @@ function IntendedPricing() {
                         </table>
                         <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitIntendedPricing}>Submit Intended Pricing</button>
                         <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>
+                        <div className='bottom-margin'></div>
                     </div>
                 </div>
             }
