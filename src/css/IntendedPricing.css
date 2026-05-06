@@ -47,7 +47,8 @@
     font-weight: 600;
     line-height: normal;
     margin: 0;
-    width: 492.258px;
+    padding: 0 1rem 0 0;
+    /* width: 492.258px; */
     text-align: left;
 }
 
@@ -63,6 +64,10 @@
 
 .SubmitBTNIntendedPricing {
     margin-top: 2rem;
+}
+
+.bottom-margin {
+    margin-bottom: 50vh;
 }
 
 .SAM-Icon {

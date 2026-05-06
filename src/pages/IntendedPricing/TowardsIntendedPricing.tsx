@@ -133,7 +133,7 @@ const TowardsIntendedPricing = () => {
             Now let's move on to the next step finding out how much money the customers in our Serviceable Addressable Market (SAM) are going to spend on our offering which we'll call as
           </div>
           <div className={`second-txt ${slideSecondText ? 'slide-up' : ''}`}>
-            Customer Spending Power
+            Intended Pricing
           </div>
           <div className={`third-txt ${showThirdText ? 'fade-in slide-up' : ''}`}>
             <p>Here you'll have to make an informed, near accurate guess, as to how much money an individual customer is going to spend, on an average, on your offering, in a day.</p>

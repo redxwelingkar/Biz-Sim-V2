@@ -274,12 +274,12 @@ function EBT_WC() {
 
     return (
         <div>
-            
+
             {TutorialMode ?
                 // TutorialMode=True
                 <div>
                     <Header />
-                    <NavigationIcons/>
+                    <NavigationIcons />
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <div className={FooterVisible ? "IntendedPricing-container" : "IntendedPricing-container vh-90"}>
                         <h1>Earnings Before Tax</h1>
@@ -368,6 +368,7 @@ function EBT_WC() {
                             </div>
 
                         }
+                        <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&
                         <Footer texts={footerTexts} onNextShowWC={() => setshowWorkingCapital(true)} onNextNavtowardsFunding={onNextNavtowardsFunding} />}
@@ -376,9 +377,9 @@ function EBT_WC() {
                 // TutorialMode=False
                 <div>
                     <Header />
-                    <NavigationIcons/>
-                    <div className="IntendedPricing-container">
-                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    <NavigationIcons />
+                    <div className="IntendedPricing-container vh-90">
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Earnings Before Tax</h1>
                         <table>
                             <tbody>

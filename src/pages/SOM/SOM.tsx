@@ -183,7 +183,7 @@ function SOM() {
             localStorage.setItem("SOMYearly", YearlyRevfromSOM)
 
             setdisplayRevfromSOM(true)
-            
+
             syncAllData("SAMPercent")
 
             // Autoclick down arrow to go to next step when submitting IntendedPricingValue
@@ -278,7 +278,7 @@ function SOM() {
                 <div>
                     <Header />
                     <NavigationIcons />
-                    <div className="IntendedPricing-container">
+                    <div className={FooterVisible ? "IntendedPricing-container" : "IntendedPricing-container vh-90"}>
                         {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Serviceable Obtainable Market</h1>
                         <table>
@@ -440,6 +440,7 @@ function SOM() {
                         </table>
                         {showSAMPercentInput &&
                             <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitSAMPercent}>Submit SAM %</button>}
+                        <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&
                         <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
@@ -450,7 +451,7 @@ function SOM() {
                 <div>
                     <Header />
                     <NavigationIcons />
-                    <div className="IntendedPricing-container">
+                    <div className="IntendedPricing-container vh-90">
                         {errorMessage && <div className="error-message">{errorMessage}</div>}
                         <h1>Serviceable Obtainable Market</h1>
                         <table>

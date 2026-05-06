@@ -122,17 +122,17 @@ TODO Grammar and Text: Remove technical jargain but keep in Footer.
 
 
 // Done TODO Bugs: CSP Page = Next button disappear after its job is done on 
-// Done TODO Bugs: OPEX Page = Number to words spacing for total OPEX
+Done TODO Bugs: OPEX Page = Number to words spacing for total OPEX
 // Done TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
 TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
 Done Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
-Doing Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
+Done* Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
 // Done TODO Bugs: Towards SOM Pages = YES / NO
 
 
-// TODO Feature: All Pages = remove up and down arrows from text boxes
+// Done TODO Feature: All Pages = remove up and down arrows from text boxes
 TODO Feature: Towards Pages = don't show blank pages ⇒ keep text or something on screen at' all times
-// TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
+// Done TODO Feature: Disable Autofill on all text boxes or limit to origin (domain)
 TODO Feature: Number to words should be sidebyside with number cell always
 Done Feature: keep Blinking the down arrow 'All times
 TODO Feature: Enter Button on Keyboard will do something as down arrow

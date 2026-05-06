@@ -440,6 +440,7 @@ const TableComponent = ({
               />
             </div>
           )}
+          {hideTotalSum && <div className='bottom-margin'></div>}
           {!hideTotalSum && totalSize !== null && (
             <div className="total-size-container">
               {/* <span className="total-size-clear-icon" onClick={handleClearTotal}>x</span> */}
