@@ -60,6 +60,8 @@ function IntendedPricing() {
     const [IntendedPricingYearly, setIntendedPricingYearly] = useState("")
     const [DailyRevfromSAM, setDailyRevfromSAM] = useState("")
     const [displayOPDays, setdisplayOPDays] = useState(false)
+    const [showOPDaysSubmitBTN, setshowOPDaysSubmitBTN] = useState(false)
+    const [showIntendedPriceSubmitBTN, setshowIntendedPriceSubmitBTN] = useState(true)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("")
     const [showIntendedPricingIconText, setshowIntendedPricingIconText] = useState(false);
@@ -101,7 +103,7 @@ function IntendedPricing() {
 
         if (IntendedPricingValueLS != null) {
             setIntendedPricingValue(IntendedPricingValueLS)
-            if (sam) setDailyRevfromSAM((parseFloat(sam) * parseFloat(IntendedPricingValueLS)).toString())
+            if (sam) setDailyRevfromSAM((parseFloat(sam) * parseFloat(IntendedPricingValueLS)).toFixed(2))
         }
         if (OPdaysLS != null) {
             setOPDays(OPdaysLS)
@@ -111,13 +113,13 @@ function IntendedPricing() {
         if (IntendedPricingYearlyLS != null) setIntendedPricingYearly(IntendedPricingYearlyLS)
 
         // show both submit buttons if OPdays and intendedPricing values are saved
-        if (OPdaysLS != null && IntendedPricingValueLS != null) {
-            let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
-            if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = false
+        // if (OPdaysLS != null && IntendedPricingValueLS != null) {
+        //     let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
+        //     if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = false
 
-            let submitOPdaysPBTN = document.getElementById("submitOPdays")
-            if (submitOPdaysPBTN) submitOPdaysPBTN.hidden = false
-        }
+        //     let submitOPdaysPBTN = document.getElementById("submitOPdays")
+        //     if (submitOPdaysPBTN) submitOPdaysPBTN.hidden = false
+        // }
 
     }, []);
 
@@ -140,21 +142,29 @@ function IntendedPricing() {
     function submitIntendedPricing() {
         // Save / set IntendedPricingvalue in local storage
         if (IntendedPricingValue || parseFloat(IntendedPricingValue) > 0) {
+            // hide submitIntendedPricing BTN only in Tutorial mode if value not in Local Storage
+            let IntendedPricingValueLS = localStorage.getItem("IntendedPricingValue")
+            if(TutorialMode && IntendedPricingValueLS == null) setshowIntendedPriceSubmitBTN(false)
+
+
             localStorage.setItem("IntendedPricingValue", IntendedPricingValue)
 
             // get SAM from localstorage and multiply it with IntendedPricingValue to get Daily Revenue from SAM Value
-            let DailyRevenuefromSAM = (parseFloat(SAM) * parseFloat(IntendedPricingValue)).toString()
+            let DailyRevenuefromSAM = (parseFloat(SAM) * parseFloat(IntendedPricingValue)).toFixed(2)
             localStorage.setItem('DailyRevenuefromSAM', DailyRevenuefromSAM)
             setDailyRevfromSAM(DailyRevenuefromSAM)
 
-            // hide submitIntendedPricing BTN
+
+
             let submitIntendedPricingBTN = document.getElementById("submitIntendedPricing")
             if (submitIntendedPricingBTN) submitIntendedPricingBTN.hidden = true
 
+            setshowOPDaysSubmitBTN(true)
+
             syncAllData("IntendedPricing")
             // Autoclick down arrow to go to next step when submitting IntendedPricingValue
-            let downArrow = document.getElementById("downArrow")
-            if (downArrow) Simulate.click(downArrow)
+            // let downArrow = document.getElementById("downArrow")
+            // if (downArrow) Simulate.click(downArrow)
         } else {
             window.alert("Please enter Intended Pricing Value")
         }
@@ -177,18 +187,19 @@ function IntendedPricing() {
 
             // calculate and save monthly revenue by SAM
             let SAMmonthlyRev = parseFloat(OPDays) * parseFloat(DailyRevfromSAM)
-            setIntendedPricingMonthly(SAMmonthlyRev.toString())
-            localStorage.setItem("IntendedPricingMonthly", SAMmonthlyRev.toString())
+            setIntendedPricingMonthly(SAMmonthlyRev.toFixed(2))
+            localStorage.setItem("IntendedPricingMonthly", SAMmonthlyRev.toFixed(2))
 
             // calculate and save Yearly revenue by SAM
             let SAMYearlyRev = SAMmonthlyRev * 12
-            setIntendedPricingYearly(SAMYearlyRev.toString())
-            localStorage.setItem("IntendedPricingYearly", SAMYearlyRev.toString())
+            setIntendedPricingYearly(SAMYearlyRev.toFixed(2))
+            localStorage.setItem("IntendedPricingYearly", SAMYearlyRev.toFixed(2))
 
             syncAllData("OPdays")
+            setshowIntendedPriceSubmitBTN(true)
             // Autoclick down arrow to go to next step when submitting OPdays Value
-            let downArrow = document.getElementById("downArrow")
-            if (downArrow) Simulate.click(downArrow)
+            // let downArrow = document.getElementById("downArrow")
+            // if (downArrow) Simulate.click(downArrow)
         } else {
             window.alert("Please enter No. of Operational Days Value")
         }
@@ -419,11 +430,11 @@ function IntendedPricing() {
                                     </tr>}
                             </tbody>
                         </table>
-                        <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitIntendedPricing}>Submit Intended Pricing</button>
+                        {showIntendedPriceSubmitBTN && <button id='submitIntendedPricing' className='SubmitBTNIntendedPricing' onClick={submitIntendedPricing}>Submit Intended Pricing</button>}
                         {/* {DailyExpbySAM && displayOPDays && IntendedPricingMonthly && IntendedPricingYearly &&
                             <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>
                         } */}
-                        <button id='submitOPdays' className='SubmitBTNIntendedPricing' hidden onClick={submitOPdays}>Submit OP</button>
+                        {showOPDaysSubmitBTN && <button id='submitOPdays' className='SubmitBTNIntendedPricing' onClick={submitOPdays}>Submit OP</button>}
                         <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&

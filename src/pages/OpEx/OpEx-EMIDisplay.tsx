@@ -239,8 +239,8 @@ function OpEx_EMIDisplay() {
         }
         setErrorMessage('');
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString());
-        localStorage.setItem('OpExTotal', total.toString());
+        setTotalOpEx(total.toFixed(2));
+        localStorage.setItem('OpExTotal', total.toFixed(2));
         localStorage.setItem('OpExDB', JSON.stringify(rows));
         showOpExIconAndText()
 
@@ -267,7 +267,6 @@ function OpEx_EMIDisplay() {
         <div>
             <div id='screen-cover'></div>
             <Header />
-            <BackButton topOffset='10vh' />
             <NavigationIcons/>
             <div className="table-container opex-table-container">
                 <h1>Operational Expenditure</h1>

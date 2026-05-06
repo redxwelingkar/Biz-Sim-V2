@@ -179,8 +179,8 @@ function OpEx() {
         }
         setErrorMessage('');
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalOpEx(total.toString());
-        localStorage.setItem('OpExTotal', total.toString());
+        setTotalOpEx(total.toFixed(2));
+        localStorage.setItem('OpExTotal', total.toFixed(2));
         localStorage.setItem('OpExDB', JSON.stringify(rows));
         syncAllData("OpEx")
         showOpExIconAndText()

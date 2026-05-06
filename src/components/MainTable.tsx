@@ -319,7 +319,7 @@ const TableComponent = ({
     setErrorMessage('');
     const total = rows.reduce((total, row) => total + parseInt(row.size), 0);
     setTotalSize(total);
-    localStorage.setItem('TAM', total.toString());
+    localStorage.setItem('TAM', total.toFixed(2));
     localStorage.setItem('rows', JSON.stringify(rows));
     syncAllData("TAM")
     // setShowNext(true); // Show Next button when details are saved
@@ -336,8 +336,8 @@ const TableComponent = ({
     setTotalSize(totalsize);
     const totalSAM = rows.reduce((total, row) => total + parseInt(row.sizeofSAM), 0);
     setSAM(totalSAM);
-    localStorage.setItem('TAM', totalsize.toString());
-    localStorage.setItem('SAM', totalSAM.toString());
+    localStorage.setItem('TAM', totalsize.toFixed(2));
+    localStorage.setItem('SAM', totalSAM.toFixed(2));
     localStorage.setItem('rows', JSON.stringify(rows));
     syncAllData("SAM")
     if (SAMCalBTNclick) {

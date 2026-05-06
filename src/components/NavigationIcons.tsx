@@ -71,7 +71,8 @@ function NavigationIcons() {
 
             // show Funding ICON
             const EMI = localStorage.getItem('EMI')
-            if (EMI) setshowFundingIcon(true)
+            const FundingDB = localStorage.getItem('FundingDB')
+            if (EMI && FundingDB != null) setshowFundingIcon(true)
 
             // show dashboard ICON
             if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)

@@ -150,8 +150,8 @@ function EBT_WC() {
         // find total variable OpEx and subtract it with SOMMonthly
         let OpExVariableTotal = getOpExVariableTotal()
         let ebt = parseFloat(SOMMonthly) - OpExVariableTotal
-        setEBT(ebt.toString())
-        localStorage.setItem("ebt", ebt.toString())
+        setEBT(ebt.toFixed(2))
+        localStorage.setItem("ebt", ebt.toFixed(2))
         // console.log("OpExVariableTotal", OpExVariableTotal);
         // console.log("ebt", ebt);
 
@@ -175,7 +175,7 @@ function EBT_WC() {
             // console.log("WC: ", "CapExT", CapExT, "OpExF", OpExF, "OpExV", OpExV, "value", value);
 
             WC = (parseInt(CapExT) + OpExF) + (OpExV * parseInt(value))
-            setWC(WC.toString())
+            setWC(WC.toFixed(2))
         }
     }
 

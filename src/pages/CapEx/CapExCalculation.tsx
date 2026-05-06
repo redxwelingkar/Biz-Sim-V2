@@ -159,8 +159,8 @@ function CapEx() {
         }
         setErrorMessage('');
         const total = rows.reduce((total, row) => total + parseInt(row.ValueOfExpense), 0);
-        setTotalCapEx(total.toString());
-        localStorage.setItem('CapExTotal', total.toString());
+        setTotalCapEx(total.toFixed(2));
+        localStorage.setItem('CapExTotal', total.toFixed(2));
         localStorage.setItem('CapExDB', JSON.stringify(rows));
         syncAllData("CapEx")
         showCapExIconAndText()

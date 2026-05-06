@@ -171,15 +171,15 @@ function SOM() {
             localStorage.setItem("SOM", SOM.toFixed(2))
 
             let DailyRevfromSOM = (SOM * IntendedPricing).toFixed(2)
-            setDailyRevfromSOM(DailyRevfromSOM.toString())
+            setDailyRevfromSOM(DailyRevfromSOM)
             localStorage.setItem("SOMDaily", DailyRevfromSOM)
 
             let MonthlyRevfromSOM = (SOM * IntendedPricing * parseFloat(OPDays)).toFixed(2)
-            setMonthlyRevfromSOM(MonthlyRevfromSOM.toString())
+            setMonthlyRevfromSOM(MonthlyRevfromSOM)
             localStorage.setItem("SOMMonthly", MonthlyRevfromSOM)
 
             let YearlyRevfromSOM = (SOM * IntendedPricing * parseFloat(OPDays) * 12).toFixed(2)
-            setYearlyRevfromSOM(YearlyRevfromSOM.toString())
+            setYearlyRevfromSOM(YearlyRevfromSOM)
             localStorage.setItem("SOMYearly", YearlyRevfromSOM)
 
             setdisplayRevfromSOM(true)
@@ -187,8 +187,8 @@ function SOM() {
             syncAllData("SAMPercent")
 
             // Autoclick down arrow to go to next step when submitting IntendedPricingValue
-            let downArrow = document.getElementById("downArrow")
-            if (downArrow) Simulate.click(downArrow)
+            // let downArrow = document.getElementById("downArrow")
+            // if (downArrow) Simulate.click(downArrow)
 
         } else {
             window.alert("Please enter Percentage of SAM Captured by the business")

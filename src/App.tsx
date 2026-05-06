@@ -118,7 +118,7 @@ Done Grammar and Text: SOM Page text = Month → Yearly som
 Done Grammar and Text: SOM Page text = Monthly revenue from Customer
 Done Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when
 Done Grammar and Text: EBT towards text = "system" ⇒ simulation
-TODO Grammar and Text: Remove technical jargain but keep in Footer.
+TODO Doing Grammar and Text: Remove technical jargain but keep in Footer.
 
 
 // Done TODO Bugs: CSP Page = Next button disappear after its job is done on 
@@ -126,7 +126,7 @@ Done TODO Bugs: OPEX Page = Number to words spacing for total OPEX
 // Done TODO Bugs: Funding Page = Combine interest payable and Monthly Principal Repayment => Interest + Principal Repayment
 // Done TODO Bugs: Funding Page = Rduced the size of cells, minimum width should be width of Header of the column.
 Done Bugs: Dashboard Page = check interdependency of calculations, any change & should reflect on all pages.
-Done* Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
+Done Bugs: All Pages = add space at the bottom of last element on the page to compensate for the footer on small screens.
 // Done TODO Bugs: Towards SOM Pages = YES / NO
 
 

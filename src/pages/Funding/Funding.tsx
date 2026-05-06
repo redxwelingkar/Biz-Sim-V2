@@ -473,7 +473,8 @@ const Funding = () => {
 
             // show Funding ICON
             const EMI = localStorage.getItem('EMI')
-            if (EMI) { setshowFundingIcon(true); setFooterVisible(false) }
+            const FundingDB = localStorage.getItem('FundingDB')
+            if (EMI && FundingDB != null) { setshowFundingIcon(true); setFooterVisible(false) }
 
             // show dashboard ICON
             if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
@@ -586,6 +587,7 @@ const Funding = () => {
                                 />
                             </div>
                         </div>
+                        <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible && <Footer texts={footerTexts} FundingSaved={isFundingSaved} onNextNavtoEMI={navigateToEMI} />}
                 </div>
