@@ -86,7 +86,7 @@ const TowardsFunding = () => {
             <Avatar />
             <NavigationIcons/>
             <div className="body-container">
-                <TransitionWrapper delays={[1000, 1800, 2200, 3000]}>
+                <TransitionWrapper delays={[200, 600, 1100, 1600]}>
                     {(visibleStates) => (
                         <div className="texts-container">
                             <p

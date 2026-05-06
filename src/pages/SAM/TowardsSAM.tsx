@@ -96,7 +96,7 @@ const TowardsSAM = () => {
       <NavigationIcons/>
       <Avatar />
       <div className="body-container">
-        <TransitionWrapper delays={[1500, 3500, 5500]}>
+        <TransitionWrapper delays={[100, 1000, 2000]}>
           {(visibleStates) => (
             <div className="texts-container">
               <p

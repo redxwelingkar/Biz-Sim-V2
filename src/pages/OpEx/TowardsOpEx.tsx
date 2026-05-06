@@ -90,7 +90,7 @@ const TowardsOpEx = () => {
             <NavigationIcons/>
             <div className="body-container">
                 {!onNext && (
-                    <TransitionWrapper delays={[1500, 3500, 5500]}>
+                    <TransitionWrapper delays={[100, 700, 1200]}>
                         {(visibleStates) => (
                             <div className="texts-container">
                                 <p
@@ -115,7 +115,7 @@ const TowardsOpEx = () => {
                     </TransitionWrapper>
                 )}
                 {onNext && (
-                    <TransitionWrapper delays={[1200, 2400, 3600, 4800]}>
+                    <TransitionWrapper delays={[100, 600, 1100, 1600]}>
                         {(visibleStates) => (
                             <div className="texts-container">
                                 <p

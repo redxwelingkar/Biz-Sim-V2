@@ -100,7 +100,7 @@ const TowardsCapEx = () => {
             <Avatar />
             <NavigationIcons/>
             <div className="body-container">
-                <TransitionWrapper delays={[1500]}>
+                <TransitionWrapper delays={[200]}>
                     {(visibleStates) => (
                         <div className={`texts-container towardsCapEx-intro ${!showIntro ? "fade-away" : ""}`}>
                             <p
@@ -112,7 +112,7 @@ const TowardsCapEx = () => {
                     )}
                 </TransitionWrapper>
                 {showDetails && (
-                    <TransitionWrapper delays={[600, 1200, 2400, 3600, 4800, 6000]}>
+                    <TransitionWrapper delays={[300, 1200, 2400, 3600, 4800, 6000]}>
                         {(visibleStates) => (
                             <div className="texts-container" style={{ top: "10vh" }}>
                                 <p

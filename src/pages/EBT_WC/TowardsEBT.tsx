@@ -86,7 +86,7 @@ const TowardsEBT = () => {
             <Avatar />
             <NavigationIcons/>
             <div className="body-container">
-                <TransitionWrapper delays={[1000, 1800, 2400, 3000, 3800, 4400]}>
+                <TransitionWrapper delays={[200, 600, 1100, 1600, 2100, 2600]}>
                     {(visibleStates) => (
                         <div className="texts-container">
                             <p
