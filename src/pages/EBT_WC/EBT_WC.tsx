@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../css/EBT_WC.css'
 import Footer from '../../components/Footer';
@@ -9,15 +8,6 @@ import CustomTextField from '../../components/CustomTextField';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
 
-import DashboardIcon from "../../assets/img/DashB-Icon.png";
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
-import opexIcon from "../../assets/img/OpEx-icon.png";
-import capexIcon from "../../assets/img/CapEx-icon.png";
-import ebtwcIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
 import syncAllData from '../../components/SyncData';
 
@@ -59,21 +49,10 @@ function EBT_WC() {
     const [SOMMonthly, setSOMMonthly] = useState('');
     const [WCMonths, setWCMonths] = useState('');
     const [WC, setWC] = useState('');
-    const [showEBTWC, setshowEBTWC] = useState(false);
-    const [showEBTWCText, setshowEBTWCText] = useState(false);
     const [showWorkingCapital, setshowWorkingCapital] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [successloadDataFromLocalStorage, setsuccessloadDataFromLocalStorage] = useState(false);
 
-    const [showTAMIcon, setshowTAMIcon] = useState(false);
-    const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
-    const [showSOMIcon, setshowSOMIcon] = useState(false);
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
-    const [showCapExIcon, setshowCapExIcon] = useState(false);
-    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-    const [showFundingIcon, setshowFundingIcon] = useState(false);
-    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
     const [FooterVisible, setFooterVisible] = useState(true);
     const [TutorialMode, setTutorialMode] = useState(false);
 
@@ -179,20 +158,6 @@ function EBT_WC() {
         }
     }
 
-    // show CapEx indicator Icon and Text
-    const showEBT_WCIcon = () => {
-        setTimeout(() => {
-            setshowEBTWC(true)
-            setTimeout(() => {
-                // console.log("setshowIntendedPricingIconText(true)");
-                setshowEBTWCText(true)
-                setTimeout(() => {
-                    // console.log("setshowIntendedPricingIconText(false)");
-                    setshowEBTWCText(false)
-                }, 1000 * 2.5);
-            }, 1000);
-        }, 1000 * 2);
-    }
 
     // navigate to working-capital page
     const onNextNavtowardsFunding = () => {
@@ -209,7 +174,6 @@ function EBT_WC() {
         localStorage.setItem("WC", WC)
         localStorage.setItem("WCMonths", WCMonths)
         syncAllData("WC")
-        showEBT_WCIcon()
     }
     // helper Functions End
 
@@ -230,42 +194,11 @@ function EBT_WC() {
             const Tutorialmode = localStorage.getItem('TutorialMode')
             if (Tutorialmode == "true") setTutorialMode(true)
 
-            // show TAM ICON
-            const TAMtotal = localStorage.getItem('TAM');
-            if (TAMtotal) setshowTAMIcon(true)
-
-            // show SAM ICON
-            const SAMtotal = localStorage.getItem('SAM');
-            if (SAMtotal) setshowSAMIcon(true)
-
-            // show IntendedPricing ICON
-            const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
-            const OPdays = localStorage.getItem('OPdays')
-            if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
-
-            // show SOM ICON
-            const SOM = localStorage.getItem('SOM')
-            if (SOM) setshowSOMIcon(true)
-
-            // show OpEx ICON
-            const OpExTotal = localStorage.getItem('OpExTotal')
-            if (OpExTotal) setshowOpExIcon(true)
-
-            // show CapEx ICON
-            const CapExTotal = localStorage.getItem('CapExTotal')
-            if (CapExTotal) setshowCapExIcon(true)
-
             // show EBT_WC ICON
             const EBT = localStorage.getItem('ebt')
             const WC = localStorage.getItem('WC')
-            if (EBT && WC) { setshowEBTWCIcon(true); setshowWorkingCapital(true); setFooterVisible(false) }
+            if (EBT && WC) { setshowWorkingCapital(true); setFooterVisible(false) }
 
-            // show Funding ICON
-            const EMI = localStorage.getItem('EMI')
-            if (EMI) setshowFundingIcon(true)
-
-            // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
             console.error("showNavIconIfData Error", error)

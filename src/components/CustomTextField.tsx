@@ -38,10 +38,6 @@ const CustomTextField = ({ value, onChange, max, min, label, type, placeholder }
         e.target.classList.remove("blurred");
     };
 
-    const handleClear = () => {
-        onChange("");
-    };
-
     return (
         <div className="cell">
             <div className="TextInputLabel">{label}</div>

@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../css/OpEx.css'
 
-
-
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import OpExIcon from "../../assets/img/OpEx-icon.png";
-import CapExIcon from "../../assets/img/CapEx-icon.png";
-import EBTWCIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/funding-icon.png";
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
@@ -66,8 +55,6 @@ function OpEx_EMIDisplay() {
     const [errorMessage, setErrorMessage] = useState('');
     const [TotalOpEx, setTotalOpEx] = useState('');
     const [EMI, setEMI] = useState('');
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
-    const [showOpExIconText, setshowOpExIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
 
     const navigate = useNavigate()
@@ -114,24 +101,6 @@ function OpEx_EMIDisplay() {
         }
     }
 
-    // show OpEx indicator Icon and Text
-    const showOpExIconAndText = () => {
-        if (!showOpExIcon) {
-
-            setTimeout(() => {
-                setshowOpExIcon(true)
-                setTimeout(() => {
-                    // console.log("setshowIntendedPricingIconText(true)");
-                    setshowOpExIconText(true)
-                    setTimeout(() => {
-                        // console.log("setshowIntendedPricingIconText(false)");
-                        setshowOpExIconText(false)
-                    }, 1000 * 2.5);
-                }, 1000);
-            }, 1000 * 2);
-        }
-
-    }
 
     // navigate to CapEx page
     const navigateToDashboard = () => {
@@ -242,7 +211,6 @@ function OpEx_EMIDisplay() {
         setTotalOpEx(total.toFixed(2));
         localStorage.setItem('OpExTotal', total.toFixed(2));
         localStorage.setItem('OpExDB', JSON.stringify(rows));
-        showOpExIconAndText()
 
         // console.log("OpexDB: ", JSON.stringify(rows));
         // console.log("OpEx Total: ", total.toString());
@@ -267,7 +235,7 @@ function OpEx_EMIDisplay() {
         <div>
             <div id='screen-cover'></div>
             <Header />
-            <NavigationIcons/>
+            <NavigationIcons />
             <div className="table-container opex-table-container">
                 <h1>Operational Expenditure</h1>
                 <table className="table">
@@ -346,7 +314,7 @@ function OpEx_EMIDisplay() {
 
                                     <td className='NumberToWords-opex'>
                                         {isHoveredRow == `${row.id}` &&
-                                            <Slide keyName={"NumberToWords-row:" + row.id}                                    >
+                                            <Slide keyName={"NumberToWords-row:" + row.id} >
                                                 <NumberToWords value={row.ValueOfExpense} />
                                             </Slide>
                                         }

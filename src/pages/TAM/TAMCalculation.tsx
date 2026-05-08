@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Header from "../../components/Header";
-import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import "../../css/TamCalculation.css";
 import TableComponent from '../../components/MainTable';
@@ -54,7 +53,7 @@ const TAMCalc = () => {
   }
 
   const footerTexts = [
-    "Here you will get the instructions for Business Simulation Tutorial. To get the next instruction click on the “Blinking down arrow”",
+    "Here you will get the instructions for Business Simulation Tutorial. To get the next instructions for the tutorial you have to click on the “Blinking down arrow”. When you complete a step, the tutorial for the step is disabled, to navigate further use the left side navigation bar",
     "To estimate the TAM, the first thing you need to mention are the different customer segments in the field given under the column of “Customer Segments”, and mention a near accurate approximation of the number of people in that customer segment in the field next to the specified customer segment under the column of 'Size'.",
     "You can add more customer segments by clicking on the “ADD CUSTOMER SEGMENT” button. You can also edit an entry by clicking on it or you can completely remove a row of customer segment by clicking on the “[ - ]” icon before the start of every row.",
     "Once you have completed filling the details for all possible customer segments and their sizes for your business, please click the “SAVE DETAILS” button to get the overall sum value for your Total Addressable Market.",

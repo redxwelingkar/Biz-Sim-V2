@@ -118,7 +118,7 @@ Done Grammar and Text: SOM Page text = Month → Yearly som
 Done Grammar and Text: SOM Page text = Monthly revenue from Customer
 Done Grammar and Text: OPEX Page Footer text = text ⇒ as an when ⇒ as and when
 Done Grammar and Text: EBT towards text = "system" ⇒ simulation
-TODO Doing Grammar and Text: Remove technical jargain but keep in Footer.
+Done Doing Grammar and Text: Remove technical jargain but keep in Footer.
 
 
 // Done TODO Bugs: CSP Page = Next button disappear after its job is done on 

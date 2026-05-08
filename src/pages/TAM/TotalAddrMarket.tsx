@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/TotalAddrMarket.css';
-import BackButton from '../../components/BackButton';
 import Avatar from '../../components/Avatar';
 import TransitionWrapper from '../../components/TransitionWrapper'; // Import the new component
 import NavigationIcons from '../../components/NavigationIcons';

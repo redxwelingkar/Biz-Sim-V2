@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { debounce } from 'lodash';
 import CustomerSegment from './CustomerSegmentCell';
 import Size from './SizeCell';
@@ -8,16 +7,6 @@ import '../css/MainTable.css';
 import Percentage from './PercentageCell';
 import SizeofSAM from './SizeofSAM';
 import { motion, AnimatePresence } from 'framer-motion';
-
-import tamIcon from "../assets/img/tam-icon.png";
-import samIcon from "../assets/img/sam-icon.png";
-import DashboardIcon from "../assets/img/DashB-Icon.png";
-import somIcon from "../assets/img/som-icon.png";
-import IntendedPricingIcon from "../assets/img/IntendedPricing-icon.png";
-import opexIcon from "../assets/img/OpEx-icon.png";
-import capexIcon from "../assets/img/CapEx-icon.png";
-import ebtwcIcon from "../assets/img/EBT_WC.png";
-import FundingIcon from "../assets/img/funding-icon.png";
 import NavigationIcons from './NavigationIcons';
 import syncAllData from './SyncData';
 
@@ -91,10 +80,6 @@ const TableComponent = ({
   PercentageConvCOL,
   SizeofSAMCOL,
   showCalSAMBTN,
-  showSAMIcon,
-  showTAMIcon,
-  holdTAMIcon,
-  holdSAMIcon,
   TutorialMode,
   SAMCalBTNclick
 
@@ -107,29 +92,9 @@ const TableComponent = ({
   const [errorMessage, setErrorMessage] = useState('');
   const [totalSize, setTotalSize] = useState(0);
   const [SAM, setSAM] = useState(0);
-  // const [showNext, setShowNext] = useState(false);
-  // const [showText, setShowText] = useState(false);
-
-  const [showTAMIconText, setshowTAMIconText] = useState(false);
-  const [showSAMIconText, setshowSAMIconText] = useState(false);
-  // const [showPercentageConvCOL, setPercentageConvCOL] = useState(PercentageConvCOL);
-  // const [showSizeofSAMCOL, setSizeofSAMCOL] = useState(SizeofSAMCOL);
   const [showshowCalSAMBTN, setshowCalSAMBTN] = useState(showCalSAMBTN);
   const [fullscreen, setfullscreen] = useState(false);
 
-
-  const [showTAMIcon1, setshowTAMIcon] = useState(false);
-  const [showSAMIcon1, setshowSAMIcon] = useState(false);
-  const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
-  const [showSOMIcon, setshowSOMIcon] = useState(false);
-  const [showOpExIcon, setshowOpExIcon] = useState(false);
-  const [showCapExIcon, setshowCapExIcon] = useState(false);
-  const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-  const [showFundingIcon, setshowFundingIcon] = useState(false);
-  const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
-
-
-  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const storedRows = localStorage.getItem('rows');
@@ -156,7 +121,6 @@ const TableComponent = ({
       if (!TutorialMode && window.location.href.split("/").includes("sam-calculation")) setshowCalSAMBTN(true)
       // show TAM ICON
       const TAMtotal = localStorage.getItem('TAM');
-      if (TAMtotal) setshowTAMIcon(true)
       if (TAMtotal && window.location.href.split("/").includes("tam-calculation")) {
         // console.log("SAMtotal", TAMtotal);
         setfullscreen(true)
@@ -164,7 +128,6 @@ const TableComponent = ({
 
       // show SAM ICON
       const SAMtotal = localStorage.getItem('SAM');
-      if (SAMtotal) setshowSAMIcon(true)
       // if SAM Calculated show all col in TutorialMode
       if (SAMtotal && window.location.href.split("/").includes("sam-calculation")) {
         // console.log("SAMtotal", SAMtotal);
@@ -175,78 +138,10 @@ const TableComponent = ({
         setshowCalSAMBTN(true)
       }
 
-      // show IntendedPricing ICON
-      const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
-      const OPdays = localStorage.getItem('OPdays')
-      if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
-
-      // show SOM ICON
-      const SOM = localStorage.getItem('SOM')
-      if (SOM) setshowSOMIcon(true)
-
-      // show OpEx ICON
-      const OpExTotal = localStorage.getItem('OpExTotal')
-      if (OpExTotal) setshowOpExIcon(true)
-
-      // show CapEx ICON
-      const CapExTotal = localStorage.getItem('CapExTotal')
-      if (CapExTotal) setshowCapExIcon(true)
-
-      // show EBT_WC ICON
-      const EBT = localStorage.getItem('ebt')
-      const WC = localStorage.getItem('WC')
-      if (EBT && WC) setshowEBTWCIcon(true)
-
-      // show Funding ICON
-      const EMI = localStorage.getItem('EMI')
-      if (EMI) setshowFundingIcon(true)
-
-      // show dashboard ICON
-      if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
-
-
     } catch (error) {
       console.error("showNavIconIfData Error", error)
     }
   }
-
-  // hide SAM text after 2 sec
-  useEffect(() => {
-    if (showTAMIcon) {
-      setTimeout(() => {
-        setshowTAMIcon(true)
-        setTimeout(() => {
-          // console.log("setshowTAMIconText(true)");
-          setshowTAMIconText(true)
-          setTimeout(() => {
-            // console.log("setshowTAMIconText(false)");
-            setshowTAMIconText(false)
-            // setTimeout(() => {
-            //   // console.log("setshowTAMIconText(false)");
-            //   navigateToTowardsSam()
-            // }, 1000 * 2);
-          }, 1000 * 2.5);
-        }, 1000);
-      }, 1000 * 2);
-    }
-    if (showSAMIcon) {
-      setTimeout(() => {
-        setshowSAMIcon(true)
-        setTimeout(() => {
-          // console.log("setshowSAMIconText(true)");
-          setshowSAMIconText(true)
-          setTimeout(() => {
-            // console.log("setshowSAMIconText(false)");
-            setshowSAMIconText(false)
-            // setTimeout(() => {
-            //   // console.log("setshowSAMIconText(false)");
-            //   navigateToTowardsIntendedPricing()
-            // }, 1000 * 2);
-          }, 1000 * 2.5);
-        }, 1000);
-      }, 1000 * 2);
-    }
-  }, [showSAMIcon, showTAMIcon])
 
   const handleAddRow = () => {
     const newRow = {

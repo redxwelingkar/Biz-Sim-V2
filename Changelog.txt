@@ -1,0 +1,44 @@
+V0.0.0
+Changelog Summary
+Fixed tutorial navigation and page progression issues.
+Improved grammar, labels, headers, and instructional text across TAM, SAM, SOM, CSP, OPEX, and Funding pages.
+Standardized terminology, including renaming CSP to “Intended Pricing”.
+Enhanced dashboard calculation interdependency and real-time data reflection.
+Improved Funding page UI with combined repayment fields, reduced cell widths, dynamic funding balance, and number-to-words support.
+Improved responsiveness and usability on smaller screens.
+Removed textbox spinner arrows and disabled unnecessary autofill behavior.
+Added persistent navigation controls, glowing completed-step indicators.
+Improved visual consistency with spacing fixes, continuous arrow animation, and non-empty placeholder states.
+
+ChangeLog
+1. Fixed tutorial mode navigation issue where users could not move forward after clicking Continue on the Begin page.
+2. Updated Begin page button text to “LOOKS GOOD”.
+3. Corrected footer text for navigation icon addition to “icon has been added.”
+4. Corrected TAM page footer text from “there in TAR” to “To estimate the TAM...”.
+5. Updated TAM and SAM page header text to “Estimate the Total Addressable Market (TAM)” and corresponding SAM wording.
+6. Corrected TAM page footer instruction from “right side bar” to “left side bar”.
+7. Updated CSP page header text from “Header” to “Intended Pricing”.
+8. Corrected CSP page text from “Monthly Exp by SAM” to “Monthly Revenue from SAM”.
+9. Corrected SOM page text from “Month” to “Yearly SOM”.
+10. Updated SOM page text to “Monthly revenue from Customer”.
+11. Corrected OPEX page footer grammar from “as an when” to “as and when”.
+12. Updated EBT-related wording from “system” to “simulation”.
+13. Removed technical jargon from main content while retaining it in footer sections where necessary.
+14. Fixed CSP page issue where the Next button disappeared after completing its required action.
+15. Fixed spacing issue in number-to-words display for Total OPEX on the OPEX page.
+16. Combined “Interest Payable” and “Monthly Principal Repayment” into a unified “Interest + Principal Repayment” field on the Funding page.
+17. Reduced Funding page cell sizes and adjusted minimum widths to match header widths.
+18. Fixed Dashboard page calculation interdependencies so all page values refresh correctly after updates.
+19. Added bottom spacing on all pages to prevent footer overlap on smaller screens.
+20. Updated Towards SOM pages to properly display YES / NO options.
+21. Removed up and down spinner arrows from all text input fields.
+22. Prevented blank screens on Towards pages by ensuring content or placeholder text is always visible.
+23. Disabled browser autofill on all text fields or restricted autofill to the application domain.
+24. Ensured number-to-words display always stays aligned beside the related number input field.
+25. Enabled continuous blinking animation for the down arrow indicator.
+26. Removed Forward and Backward buttons and implemented persistent navigation controls across all pages, with completed step navigation icons glowing.
+27. Added number-to-words display for Borrowed Amount fields on the Funding page.
+28. Added dynamic “Funds Needed” display on the Funding page that decreases as borrowed amounts are entered.
+29. Added Total Funding amount display below the member section on the Funding page.
+30. Added a Number-to-Text column beside the Borrowed Amount column on the Funding page.
+31. Renamed “CSP” terminology to “Intended Pricing” throughout the application.

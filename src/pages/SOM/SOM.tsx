@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import "../../css/IntendedPricing.css";
-
-import DashboardIcon from "../../assets/img/DashB-Icon.png";
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
-import opexIcon from "../../assets/img/OpEx-icon.png";
-import capexIcon from "../../assets/img/CapEx-icon.png";
-import ebtwcIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/funding-icon.png";
 
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
-import { Simulate } from 'react-dom/test-utils';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
 import NavigationIcons from '../../components/NavigationIcons';
@@ -64,20 +52,10 @@ function SOM() {
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("");
     const [SAMPercent, setSAMPercent] = useState("");
-    const [showSOMIconText, setshowSOMIconText] = useState(false);
     const [showSAMPercentInput, setshowSAMPercentInput] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
 
-    const [showTAMIcon, setshowTAMIcon] = useState(false);
-    const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
-    const [showSOMIcon, setshowSOMIcon] = useState(false);
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
-    const [showCapExIcon, setshowCapExIcon] = useState(false);
-    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-    const [showFundingIcon, setshowFundingIcon] = useState(false);
-    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
     const [FooterVisible, setFooterVisible] = useState(true);
 
     const [TutorialMode, setTutorialMode] = useState(false);
@@ -196,19 +174,6 @@ function SOM() {
     }
 
 
-    function onNextshowSOMIcon() {
-        setTimeout(() => {
-            setshowSOMIcon(true)
-            setTimeout(() => {
-                // console.log("setshowSOMIconText(true)");
-                setshowSOMIconText(true)
-                setTimeout(() => {
-                    // console.log("setshowSOMIconText(false)");
-                    setshowSOMIconText(false)
-                }, 1000 * 2.5);
-            }, 1000);
-        }, 1000 * 2);
-    }
     function SAMPercentInput() {
         setshowSAMPercentInput(true)
     }
@@ -226,46 +191,11 @@ function SOM() {
             const Tutorialmode = localStorage.getItem('TutorialMode')
             if (Tutorialmode == "true") setTutorialMode(true)
 
-            // show TAM ICON
-            const TAMtotal = localStorage.getItem('TAM');
-            if (TAMtotal) setshowTAMIcon(true)
-
-            // show SAM ICON
-            const SAMtotal = localStorage.getItem('SAM');
-            if (SAMtotal) setshowSAMIcon(true)
-
-            // show IntendedPricing ICON
-            const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
-            const OPdays = localStorage.getItem('OPdays')
-            if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
-
             // show SOM ICON
             const SOM = localStorage.getItem('SOM')
             if (SOM) {
-                setshowSOMIcon(true)
                 setFooterVisible(false)
             }
-
-            // show OpEx ICON
-            const OpExTotal = localStorage.getItem('OpExTotal')
-            if (OpExTotal) setshowOpExIcon(true)
-
-            // show CapEx ICON
-            const CapExTotal = localStorage.getItem('CapExTotal')
-            if (CapExTotal) setshowCapExIcon(true)
-
-            // show EBT_WC ICON
-            const EBT = localStorage.getItem('ebt')
-            const WC = localStorage.getItem('WC')
-            if (EBT && WC) setshowEBTWCIcon(true)
-
-            // show Funding ICON
-            const EMI = localStorage.getItem('EMI')
-            if (EMI) setshowFundingIcon(true)
-
-            // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
-
         } catch (error) {
             console.log("showNavIconIfData Error", error)
         }
@@ -443,7 +373,7 @@ function SOM() {
                         <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&
-                        <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} onNextshowSOMIcon={onNextshowSOMIcon} />
+                        <Footer texts={footerTexts} onNextNavtoOpEx={() => navigateToTowardsOpEx()} onNextSAMPercent={SAMPercentInput} />
                     }
                 </div>
                 :

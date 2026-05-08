@@ -1,12 +1,10 @@
 ﻿import Header from "../../components/Header";
-import BackButton from "../../components/BackButton";
 import Footer from "../../components/Footer";
 import NavigationIcons from "../../components/NavigationIcons";
 import "../../css/Dashboard.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import DashboardIcon from "../../assets/img/DashB-Icon.png";
 import tamIcon from "../../assets/img/tam-icon.png";
 import samIcon from "../../assets/img/sam-icon.png";
 import somIcon from "../../assets/img/som-icon.png";
@@ -23,16 +21,6 @@ const Dashboard = () => {
     const [TutorialMode, setTutorialMode] = useState(false);
     const [loadError, setLoadError] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
-
-    const [showTAMIcon1, setshowTAMIcon] = useState(false);
-    const [showSAMIcon1, setshowSAMIcon] = useState(false);
-    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
-    const [showSOMIcon, setshowSOMIcon] = useState(false);
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
-    const [showCapExIcon, setshowCapExIcon] = useState(false);
-    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-    const [showFundingIcon, setshowFundingIcon] = useState(false);
-    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
 
     const [dashboardValues, setDashboardValues] = useState({
         tam: 0,
@@ -135,53 +123,6 @@ const Dashboard = () => {
         "This is the end of the simulation, we hope you had fun and learned a lot. We will be soon adding more features to the simulation, so stay tuned for that. If you have any feedback or suggestions, please feel free to reach out to us."
     ];
 
-    const showNavIconIfData = () => {
-        // console.log("showNavIconIfData");
-        // console.log("showNavIconIfData", window.location.href.split("/").includes("sam-calculation"));
-
-        try {
-            // show TAM ICON
-            const TAMtotal = localStorage.getItem('TAM');
-            if (TAMtotal) setshowTAMIcon(true)
-
-            // show SAM ICON
-            const SAMtotal = localStorage.getItem('SAM');
-            if (SAMtotal) setshowSAMIcon(true)
-
-            // show IntendedPricing ICON
-            const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
-            const OPdays = localStorage.getItem('OPdays')
-            if (IntendedPricingMonthly && OPdays) setshowIntendedPricingIcon(true)
-
-            // show SOM ICON
-            const SOM = localStorage.getItem('SOM')
-            if (SOM) setshowSOMIcon(true)
-
-            // show OpEx ICON
-            const OpExTotal = localStorage.getItem('OpExTotal')
-            if (OpExTotal) setshowOpExIcon(true)
-
-            // show CapEx ICON
-            const CapExTotal = localStorage.getItem('CapExTotal')
-            if (CapExTotal) setshowCapExIcon(true)
-
-            // show EBT_WC ICON
-            const EBT = localStorage.getItem('ebt')
-            const WC = localStorage.getItem('WC')
-            if (EBT && WC) setshowEBTWCIcon(true)
-
-            // show Funding ICON
-            const EMI = localStorage.getItem('EMI')
-            if (EMI) setshowFundingIcon(true)
-
-            // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
-
-
-        } catch (error) {
-            console.error("showNavIconIfData Error", error)
-        }
-    }
 
 
     return (

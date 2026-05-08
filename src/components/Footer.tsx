@@ -56,17 +56,16 @@ const Footer = ({ onNext,
 
 
   const [textIndex, setTextIndex] = useState(0);
-  const [blink, setBlink] = useState(false);
   // const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || FundingSaved);
   const [down_Arrow, setdown_Arrow] = useState(CalSAMBTNclick || FundingSaved);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setBlink(true);
-    }, 1000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setBlink(true);
+  //   }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   useEffect(() => {
     // console.log("texts.length", texts.length, "texts.length-1", texts.length - 1)
@@ -186,7 +185,7 @@ const Footer = ({ onNext,
       }
 
     }
-    setBlink(false); // Stop blinking when the button is clicked
+    // setBlink(false); // Stop blinking when the button is clicked
   };
 
   return (

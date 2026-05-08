@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/BusinessName.css';
 import Avatar from '../components/Avatar';
-import BackButton from '../components/BackButton';
 import TransitionWrapper from '../components/TransitionWrapper'; // Import the new component
 
 function BusinessName() {

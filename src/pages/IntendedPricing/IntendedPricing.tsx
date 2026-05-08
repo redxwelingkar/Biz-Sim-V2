@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import BackButton from '../../components/BackButton'
 import { motion, AnimatePresence } from 'framer-motion';
 import "../../css/IntendedPricing.css";
 
 import Footer from '../../components/Footer';
 import NumberToWords from '../../components/NumberToWords';
 import CustomTextField from '../../components/CustomTextField';
-import { Simulate } from 'react-dom/test-utils';
 import TextDisplay from '../../components/TextDisplay';
 import { useNavigate } from 'react-router-dom';
 
-
-import DashboardIcon from "../../assets/img/DashB-Icon.png";
-import tamIcon from "../../assets/img/tam-icon.png";
-import samIcon from "../../assets/img/sam-icon.png";
-import somIcon from "../../assets/img/som-icon.png";
-import IntendedPricingIcon from "../../assets/img/IntendedPricing-icon.png";
-import opexIcon from "../../assets/img/OpEx-icon.png";
-import capexIcon from "../../assets/img/CapEx-icon.png";
-import ebtwcIcon from "../../assets/img/EBT_WC.png";
-import FundingIcon from "../../assets/img/funding-icon.png";
 import NavigationIcons from '../../components/NavigationIcons';
 import syncAllData from '../../components/SyncData';
 
@@ -64,21 +52,11 @@ function IntendedPricing() {
     const [showIntendedPriceSubmitBTN, setshowIntendedPriceSubmitBTN] = useState(true)
     const [OPDays, setOPDays] = useState("")
     const [SAM, setSAM] = useState("")
-    const [showIntendedPricingIconText, setshowIntendedPricingIconText] = useState(false);
     const [isHoveredRow, setisHoveredRow] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate()
 
-    const [showTAMIcon, setshowTAMIcon] = useState(false);
-    const [showSAMIcon, setshowSAMIcon] = useState(false);
-    const [showIntendedPricingIcon, setshowIntendedPricingIcon] = useState(false);
-    const [showSOMIcon, setshowSOMIcon] = useState(false);
-    const [showOpExIcon, setshowOpExIcon] = useState(false);
-    const [showCapExIcon, setshowCapExIcon] = useState(false);
-    const [showEBTWCIcon, setshowEBTWCIcon] = useState(false);
-    const [showFundingIcon, setshowFundingIcon] = useState(false);
-    const [showDashBoardIcon, setshowDashboardIcon] = useState(false);
     const [FooterVisible, setFooterVisible] = useState(true);
     const [TutorialMode, setTutorialMode] = useState(false);
 
@@ -127,9 +105,6 @@ function IntendedPricing() {
         navigate("/Biz-Sim-V2/towards-som");
     }
 
-    useEffect(() => {
-
-    }, [showIntendedPricingIcon])
 
     function handleIntendedPricingChange(value: string) {
         setIntendedPricingValue(value)
@@ -205,25 +180,7 @@ function IntendedPricing() {
         }
     }
 
-    function onNextshowIntendedPricingIcon() {
-        // console.log("onNextshowIntendedPricingIcon called");
-        setTimeout(() => {
-            setshowIntendedPricingIcon(true)
-            setTimeout(() => {
-                // console.log("setshowIntendedPricingIconText(true)");
-                setshowIntendedPricingIconText(true)
-                setTimeout(() => {
-                    // console.log("setshowIntendedPricingIconText(false)");
-                    setshowIntendedPricingIconText(false)
-                    // setTimeout(() => {
-                    //     // console.log("setshowIntendedPricingIconText(false)");
-                    //     navigateToTowardsSOM()
-                    // }, 1000 * 2);
-                }, 1000 * 2.5);
-            }, 1000);
-        }, 1000 * 2);
 
-    }
     const footerTexts = [
         "Here in the section of Intended Pricing, the first thing you need to mention is the the amount of money that a customer will spend on your product/ service in one instance of transaction. Now go ahead and enter the value of Intended Pricing and click on \"SUBMIT\".",
         "Voila! What just popped up on the screen is \"Daily Revenue from SAM\", which gets calculated automatically by multiplying the value of Intended Pricing with the size of Serviceable Addressable Market (SAM) obtained in earlier steps. The resultant value is the amount of money that you will be able to make, if the number of people in SAM bought your product at Intended Pricing value in one day.",
@@ -241,46 +198,14 @@ function IntendedPricing() {
             const Tutorialmode = localStorage.getItem('TutorialMode')
             if (Tutorialmode == "true") setTutorialMode(true)
 
-            // show TAM ICON
-            const TAMtotal = localStorage.getItem('TAM');
-            if (TAMtotal) setshowTAMIcon(true)
-
-            // show SAM ICON
-            const SAMtotal = localStorage.getItem('SAM');
-            if (SAMtotal) setshowSAMIcon(true)
-
             // show IntendedPricing ICON
             const IntendedPricingMonthly = localStorage.getItem('IntendedPricingMonthly')
             const OPdays = localStorage.getItem('OPdays')
             if (IntendedPricingMonthly && OPdays) {
-                setshowIntendedPricingIcon(true)
                 setFooterVisible(false)
 
             }
 
-            // show SOM ICON
-            const SOM = localStorage.getItem('SOM')
-            if (SOM) setshowSOMIcon(true)
-
-            // show OpEx ICON
-            const OpExTotal = localStorage.getItem('OpExTotal')
-            if (OpExTotal) setshowOpExIcon(true)
-
-            // show CapEx ICON
-            const CapExTotal = localStorage.getItem('CapExTotal')
-            if (CapExTotal) setshowCapExIcon(true)
-
-            // show EBT_WC ICON
-            const EBT = localStorage.getItem('ebt')
-            const WC = localStorage.getItem('WC')
-            if (EBT && WC) setshowEBTWCIcon(true)
-
-            // show Funding ICON
-            const EMI = localStorage.getItem('EMI')
-            if (EMI) setshowFundingIcon(true)
-
-            // show dashboard ICON
-            if (EMI && EBT && WC && CapExTotal && OpExTotal && SOM && IntendedPricingMonthly && OPdays && SAMtotal && TAMtotal) setshowDashboardIcon(true)
 
         } catch (error) {
             console.log("showNavIconIfData Error", error)
@@ -438,7 +363,7 @@ function IntendedPricing() {
                         <div className='bottom-margin'></div>
                     </div>
                     {FooterVisible &&
-                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextshowIntendedPricingIcon={onNextshowIntendedPricingIcon} onNextNavtoSOM={navigateToTowardsSOM} />}
+                        <Footer texts={footerTexts} onNextOPDays={showOPDays} onNextNavtoSOM={navigateToTowardsSOM} />}
                 </div>
                 :
                 // TutorialMode=False

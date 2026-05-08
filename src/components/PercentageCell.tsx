@@ -27,10 +27,6 @@ const Percentage = ({ value, onChange }: PercentageProps) => {
         e.target.classList.remove('blurred');
     };
 
-    const handleClear = () => {
-        onChange('');
-    };
-
     return (
         <div className="cell">
             <input
